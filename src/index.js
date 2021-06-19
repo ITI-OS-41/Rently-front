@@ -45,7 +45,8 @@ import NewPage from "views/NewPage/NewPage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
-
+import CategoryPage from 'views/CategoryPage/CategoryPage';
+import SubCategoryPage from 'views/SubCategoryPage/SubCategoryPage';
 
 ReactDOM.render(
   <>
@@ -53,7 +54,7 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
-          {/* <Route path="/about-us" component={AboutUsPage} />
+          {/* <Route path="/about-us" component={AboutUsPage} /> */}
           <Route path="/blog-post" component={BlogPostPage} />
           <Route path="/blog-posts" component={BlogPostsPage} />
           <Route path="/components" component={ComponentsPage} />
@@ -67,8 +68,14 @@ ReactDOM.render(
           <Route path="/sections" component={SectionsPage} />
           <Route path="/shopping-cart-page" component={ShoppingCartPage} />
           <Route path="/signup-page" component={SignupPage} />
-          <Route path="/error-page" component={ErrorPage} />*/}
+          <Route path="/error-page" component={ErrorPage} />
           <UserRoute path="/new" component={NewPage} />
+
+
+
+          <Route path="/category" component={CategoryPage} />
+          <Route path="/subcategory/:id" component={SubCategoryPage}/>
+
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
           <Route path="/" component={PresentationPage} />
