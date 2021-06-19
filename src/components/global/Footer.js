@@ -12,7 +12,6 @@ export default () => {
   const classes = useStyles();
   return (
     <Footer
-      theme="white"
       content={
         <div>
           <div className={classes.left}>
@@ -21,20 +20,11 @@ export default () => {
               target="_blank"
               className={classes.footerBrand}
             >
-              Material Kit PRO React
+              Rently
             </a>
           </div>
           <div className={classes.pullCenter}>
             <List className={classes.list}>
-              <ListItem className={classes.inlineBlock}>
-                <a
-                  href="https://www.creative-tim.com/?ref=mkpr-presentation"
-                  target="_blank"
-                  className={classes.block}
-                >
-                  Creative Tim
-                </a>
-              </ListItem>
               <ListItem className={classes.inlineBlock}>
                 <a
                   href="https://www.creative-tim.com/presentation?ref=mkpr-presentation"
@@ -49,22 +39,24 @@ export default () => {
                   Blog
                 </a>
               </ListItem>
-              <ListItem className={classes.inlineBlock}>
-                <a
-                  href="https://www.creative-tim.com/license?ref=mkpr-presentation"
-                  target="_blank"
-                  className={classes.block}
-                >
-                  Licenses
-                </a>
-              </ListItem>
             </List>
           </div>
           <div className={classes.rightLinks}>
             <ul>
               <li>
                 <Button
-                  href="https://twitter.com/CreativeTim?ref=creativetim"
+                  href="#"
+                  target="_blank"
+                  color="facebook"
+                  justIcon
+                  simple
+                >
+                  <i className="fab fa-facebook-f" />
+                </Button>
+              </li>
+              <li>
+                <Button
+                  href="#"
                   target="_blank"
                   color="twitter"
                   justIcon
@@ -75,7 +67,7 @@ export default () => {
               </li>
               <li>
                 <Button
-                  href="https://dribbble.com/creativetim?ref=creativetim"
+                  href="#"
                   target="_blank"
                   color="dribbble"
                   justIcon
@@ -86,7 +78,7 @@ export default () => {
               </li>
               <li>
                 <Button
-                  href="https://instagram.com/CreativeTimOfficial?ref=creativetim"
+                  href="#"
                   target="_blank"
                   color="instagram"
                   justIcon

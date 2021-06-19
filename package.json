@@ -23,6 +23,7 @@
     "react-scripts": "4.0.3",
     "react-slick": "0.28.1",
     "react-tagsinput": "3.19.0",
+    "slick-carousel": "^1.8.1",
     "yup": "^0.32.9"
   },
   "scripts": {
