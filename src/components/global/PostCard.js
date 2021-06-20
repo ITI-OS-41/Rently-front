@@ -5,28 +5,39 @@ import CardBody from "../Card/CardBody";
 import React from "react";
 import blogsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/blogsStyle.js";
 import {makeStyles} from "@material-ui/core";
+import {stripHtml} from "../../functions/helpers";
 
-const useStyles = makeStyles(blogsStyle);
-export default function CategoryCard(props) {
+const style = {
+  ...blogsStyle,
+  oneLine:{
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis'
+  }
+}
+
+const useStyles = makeStyles(style);
+export default function PostCard(props) {
   const classes = useStyles();
-  const {category} = props;
+  const {post} = props;
 
   return (
     <Card >
       <CardHeader   image>
         <a href="#">
-          <img src={category.photo} style={{
+          <img src={post.photo} style={{
             height: '250px',
             objectFit: 'cover'
           }} alt=""/>
         </a>
       </CardHeader>
       <CardBody plain>
-        <h4 style={{textAlign: 'center'}} className={classes.cardTitle}>
+        <h4 style={{textAlign: 'center'}} className={classes.cardTitle + ' ' + classes.oneLine} >
           <a href="#" >
-            {category.name}
+            {post.title}
           </a>
         </h4>
+        <p className={classes.oneLine}>{stripHtml(post.description)}</p>
       </CardBody>
     </Card>
   )

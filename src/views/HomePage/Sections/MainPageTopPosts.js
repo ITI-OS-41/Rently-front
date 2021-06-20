@@ -14,6 +14,9 @@ import cardBlog4 from "assets/img/examples/card-blog4.jpg";
 import LoadingCircle from "../../../components/global/LoadingCircle";
 import CategoryCard from "../../../components/global/CategoryCard";
 import LoadingContainer from "../../../components/global/LoadingContainer";
+import Carousel from "nuka-carousel";
+import {CAROUSEL_SETTINGS} from "../../../config";
+import PostCard from "../../../components/global/PostCard";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'blog';
@@ -47,13 +50,13 @@ export default function MainPageTopPosts({ ...rest }) {
         <div>
           <h2 className={classes.title}>Recent blog posts</h2>
           <GridContainer>
-            {items ? items.map(item=>{
-              return(
-                <GridItem xs={12} sm={6} md={3}>
-                  <CategoryCard key={item._id} category={item} />
-                </GridItem>
-              )
-            }) : <LoadingContainer/>}
+            { items ?
+              (<Carousel {...CAROUSEL_SETTINGS}>
+                {items.map(item=>{
+                  return (<PostCard key={item._id} post={item} />)
+                })}
+              </Carousel>)
+              : <LoadingContainer/> }
           </GridContainer>
         </div>
     </div>

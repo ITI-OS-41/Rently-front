@@ -16,7 +16,11 @@ export default function UserCard(props) {
     <Card profile plain>
       <CardAvatar profile plain>
         <a href="#">
-          <img src={user.photo} alt={user.name} className={classes.img} />
+          <img src={user.photo} alt={user.name} className={classes.img} style={{
+            width: '130px',
+            height: '130px',
+            objectFit: 'cover'
+          }} />
         </a>
       </CardAvatar>
       <CardBody plain>

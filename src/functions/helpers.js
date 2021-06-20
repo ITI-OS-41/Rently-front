@@ -36,5 +36,9 @@ const isAdmin = (token) => {
     return getUserType(token) === 'admin'
 }
 
-
-export { getUserType, isAdmin, checkTokenValidity ,getToken}
+const stripHtml = (html) => {
+    let tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+}
+export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml}

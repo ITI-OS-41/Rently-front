@@ -16,13 +16,23 @@ export default function AppRateCard(props) {
     <Card profile plain>
       <CardAvatar profile plain>
         <a href="#">
-          <img src={rate.rater.photo} alt={rate.rater.name} className={classes.img} />
+          <img src={rate.rater.photo} alt={rate.rater.name} className={classes.img} style={{
+            width: '100px',
+            height: '100px',
+            objectFit: 'cover'
+          }} />
         </a>
       </CardAvatar>
-      <CardBody plain>
+      <CardBody plain style={{textAlign: 'center'}}>
         <h4 className={classes.cardTitle}>{rate.rater.firstname} {rate.rater.lastname}</h4>
-        <div className={classes.cardDescription}>
-          {Array(rate.rating).map(star=><StarIcon/>)}
+        <p className={classes.cardDescription}>{rate.comment}</p>
+        <div >
+          <span style={{color: 'gold'}}>
+            {Array(rate.rating).fill(0).map((_, i) => <StarIcon/>)}
+          </span>
+          <span className={classes.cardDescription}>
+            {Array(5-rate.rating).fill(0).map((_, i) => <StarIcon/>)}
+          </span>
         </div>
       </CardBody>
     </Card>

@@ -13,6 +13,7 @@
     "node-sass": "6.0.0",
     "notistack": "^1.0.9",
     "nouislider": "15.1.0",
+    "nuka-carousel": "^4.7.8",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-animate-on-scroll": "2.1.5",
@@ -21,9 +22,7 @@
     "react-image-gallery": "1.0.9",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
-    "react-slick": "0.28.1",
     "react-tagsinput": "3.19.0",
-    "slick-carousel": "^1.8.1",
     "yup": "^0.32.9"
   },
   "scripts": {

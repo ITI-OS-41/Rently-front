@@ -16,6 +16,8 @@ import CategoryCard from "../../../components/global/CategoryCard";
 import LoadingContainer from "../../../components/global/LoadingContainer";
 import UserCard from "../../../components/global/UserCard";
 import AppRateCard from "../../../components/global/AppRateCard";
+import Carousel from "nuka-carousel";
+import {CAROUSEL_SETTINGS} from "../../../config";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'apprate';
@@ -30,7 +32,7 @@ export default function MainPageAppRate({ ...rest }) {
     get(`/${modelName}`)
       .then(response => {
         const res = response.data
-        setItems(res.splice(-4,4))
+        setItems(res)
       })
       .catch(err=>{
         console.log(err)
@@ -46,13 +48,15 @@ export default function MainPageAppRate({ ...rest }) {
       <div>
         <h2 className={classes.title}>Users rating</h2>
         <GridContainer>
-          {items ? items.map(item=>{
-            return(
-              <GridItem xs={12} sm={6} md={3}>
-                <AppRateCard key={item._id} rate={item} />
-              </GridItem>
-            )
-          }) : <LoadingContainer/>}
+
+          { items?
+            (<Carousel { ...CAROUSEL_SETTINGS}
+            >
+              {items.map(item=>{
+                return (<AppRateCard key={item._id} rate={item} />)
+              })}
+            </Carousel>)
+            : <LoadingContainer/> }
         </GridContainer>
       </div>
     </div>

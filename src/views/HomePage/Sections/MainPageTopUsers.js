@@ -15,6 +15,8 @@ import LoadingCircle from "../../../components/global/LoadingCircle";
 import CategoryCard from "../../../components/global/CategoryCard";
 import LoadingContainer from "../../../components/global/LoadingContainer";
 import UserCard from "../../../components/global/UserCard";
+import Carousel from "nuka-carousel";
+import {CAROUSEL_SETTINGS} from "../../../config";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'user';
@@ -32,7 +34,7 @@ export default function MainPageUsers({ ...rest }) {
     get(`/${modelName}`)
       .then(response => {
         const res = response.data
-        setItems(res.splice(-4,4))
+        setItems(res)
       })
       .catch(err=>{
         console.log(err)
@@ -48,13 +50,13 @@ export default function MainPageUsers({ ...rest }) {
       <div>
         <h2 className={classes.title}>Top Users</h2>
         <GridContainer>
-          {items ? items.map(item=>{
-            return(
-              <GridItem xs={12} sm={6} md={3}>
-                <UserCard key={item._id} user={item} />
-              </GridItem>
-            )
-          }) : <LoadingContainer/>}
+          { items?
+            (<Carousel {...CAROUSEL_SETTINGS}>
+              {items.map(item=>{
+                return (<UserCard key={item._id} user={item} />)
+              })}
+            </Carousel>)
+            : <LoadingContainer/> }
         </GridContainer>
       </div>
     </div>
