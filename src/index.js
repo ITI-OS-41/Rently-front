@@ -9,28 +9,14 @@ import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
 import history from 'functions/history'
 
 // pages for this product
-import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
-import BlogPostPage from "views/BlogPostPage/BlogPostPage.js";
-import BlogPostsPage from "views/BlogPostsPage/BlogPostsPage.js";
-import ComponentsPage from "views/ComponentsPage/ComponentsPage.js";
-import ContactUsPage from "views/ContactUsPage/ContactUsPage.js";
-import EcommercePage from "views/EcommercePage/EcommercePage.js";
-import LandingPage from "views/LandingPage/LandingPage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
-import PresentationPage from "views/PresentationPage/PresentationPage.js";
-import PricingPage from "views/PricingPage/PricingPage.js";
-import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import ProductPage from "views/ProductPage/ProductPage.js";
-import SectionsPage from "views/SectionsPage/SectionsPage.js";
-import ShoppingCartPage from "views/ShoppingCartPage/ShoppingCartPage.js";
-import SignupPage from "views/SignupPage/SignupPage.js";
-import ErrorPage from "views/ErrorPage/ErrorPage.js";
 import NewPage from "views/NewPage/NewPage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
+import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
 
 
 ReactDOM.render(
@@ -58,6 +44,7 @@ ReactDOM.render(
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
           <Route path="/search" component={SearchPage} />
+          <Route path="/profile" component={UserProfilePage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>
@@ -65,3 +52,4 @@ ReactDOM.render(
   </>,
   document.getElementById("root")
 );
+
