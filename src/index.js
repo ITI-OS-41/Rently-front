@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router";
 import theme from 'assets/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -25,26 +24,11 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
-          {/* <Route path="/about-us" component={AboutUsPage} />
-          <Route path="/blog-post" component={BlogPostPage} />
-          <Route path="/blog-posts" component={BlogPostsPage} />
-          <Route path="/components" component={ComponentsPage} />
-          <Route path="/contact-us" component={ContactUsPage} />
-          <Route path="/ecommerce-page" component={EcommercePage} />
-          <Route path="/landing-page" component={LandingPage} />
-          <Route path="/pricing" component={PricingPage} />
-          <Route path="/profile-page" component={ProfilePage} />
-
-          <Route path="/product-page" component={ProductPage} />
-          <Route path="/sections" component={SectionsPage} />
-          <Route path="/shopping-cart-page" component={ShoppingCartPage} />
-          <Route path="/signup-page" component={SignupPage} />
-          <Route path="/error-page" component={ErrorPage} />*/}
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
           <Route path="/search" component={SearchPage} />
-          <Route path="/profile" component={UserProfilePage} />
+          <UserRoute path="/profile" component={UserProfilePage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>
