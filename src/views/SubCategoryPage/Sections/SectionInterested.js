@@ -8,9 +8,6 @@ import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import Info from "components/Typography/Info.js";
-
-import history from "functions/history";
-
 import sectionInterestedStyle from "assets/jss/material-kit-pro-react/views/blogPostsSections/sectionInterestedStyle.js";
 
 const useStyles = makeStyles(sectionInterestedStyle);
@@ -21,27 +18,23 @@ export default function SectionInterested({ cat }) {
     <div className={classes.section}>
       <br />
       <GridContainer>
-        {/* <GridItem xs={12} sm={4} md={4} lg={4} xl={4}> */}
         <Card
-          plain
           blog
           className={classes.card}
-          onClick={() => history.push("/subcategory/" + cat._id)}
         >
-          <CardHeader image plain>
+          <CardHeader image >
             <a>
-              <img src={cat.photo} alt={cat.name}  className={classes.catimg}/>
+              <img src={cat.photo} alt={cat.name}  style={{objectFit:'cover',height:'250px'}}/>
             </a>
           </CardHeader>
-          <CardBody plain>
+          <CardBody >
             <Info>
               <h3>{cat.name}</h3>
             </Info>
 
-            <p className={classes.description}>{cat.description}</p>
+            <p className={classes.description} style={{overflow:'hidden',whiteSpace:'nowrap',textOverflow:'ellipsis'}} >{cat.description}</p>
           </CardBody>
         </Card>
-        {/* </GridItem> */}
       </GridContainer>
     </div>
   );

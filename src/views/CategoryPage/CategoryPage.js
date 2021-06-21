@@ -5,29 +5,26 @@ import GridItem from "components/Grid/GridItem.js";
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import CategoryCard from "./Sections/CategoryCard";
 import { get } from "functions/request";
 import Grid from "@material-ui/core/Grid";
 import SectionInterested from "./Sections/SectionInterested.js";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    //   display: 'flex',
     marginTop: "10%",
   },
   title: {
     color: "white",
     textAlign: "center",
-    // position: "relative",
     textTransform: "uppercase",
-    // display: "block",
   },
   main: {
     background: "white",
     position: "relative",
     zIndex: "3",
   },
-  container:{
+
+  container: {
     paddingRight: "15px",
     paddingLeft: "15px",
     marginRight: "auto",
@@ -45,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     "@media (min-width: 1200px)": {
       maxWidth: "1140px",
     },
-  }
+  },
 }));
 export default function CategoryPage() {
   const classes = useStyles();
@@ -60,8 +57,10 @@ export default function CategoryPage() {
   }, []);
   return (
     <div>
+      <Header />
+
       <Parallax
-        image={require("assets/img/bg10.jpg").default}
+        image={require("assets/img/bgbooks.jpg").default}
         filter="dark"
         small
       >
@@ -76,31 +75,17 @@ export default function CategoryPage() {
         </div>
       </Parallax>
 
-      <Header />
-
-      {/* <Grid container spacing={3}>
-        {Categories.map((cat) => (
-          <Grid item key={cat._id} xs={12} md={6} lg={4}>
-            <CategoryCard cat={cat} />
-          </Grid>
-        ))}
-      </Grid> */}
-
       <div className={classes.main}>
         <div className={classes.container}>
-        <Grid container spacing={6}>
-        {Categories.map((cat) => (
-          <Grid item key={cat._id} xs={12} md={4} lg={4}>
-            <SectionInterested cat={cat}  />
+          <Grid container spacing={6}>
+            {Categories.map((cat) => (
+              <Grid item key={cat._id} xs={12} md={4} lg={4}>
+                <SectionInterested cat={cat} />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-         
         </div>
-     
       </div>
-
-
 
       <Footer />
     </div>

@@ -222,7 +222,7 @@ export default function SectionCards() {
                     </CardHeader>
                     <CardBody>
                       <Success>
-                        <h6 className={classes.cardCategory}>Legal</h6>
+                        <h6 className={classes.cardCategory}>Legal........</h6>
                       </Success>
                       <h4 className={classes.cardTitle}>
                         <a href="#pablo" onClick={(e) => e.preventDefault()}>
