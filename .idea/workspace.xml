@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/global/PostCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SearchPage/SearchPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SearchPage/Sections/SectionParallax.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SearchPage/Sections/SectionProducts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/AppRateCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/AppRateCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/CategoryCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/CategoryCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/UserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageAppReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageAppReview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopCategories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopPosts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageParallax.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageParallax.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +44,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/global" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/SearchPage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -63,6 +56,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\SearchPage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\HomePage\Sections" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\assets\vendors" />
@@ -81,7 +75,7 @@
       <workItem from="1623965531162" duration="2094000" />
       <workItem from="1624093382493" duration="19131000" />
       <workItem from="1624123170730" duration="54000" />
-      <workItem from="1624187137027" duration="11084000" />
+      <workItem from="1624187137027" duration="19009000" />
     </task>
     <servers />
   </component>

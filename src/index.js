@@ -30,6 +30,7 @@ import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import HomePage from "./views/HomePage/HomePage";
+import SearchPage from "./views/SearchPage/SearchPage";
 
 
 ReactDOM.render(
@@ -56,6 +57,7 @@ ReactDOM.render(
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
+          <Route path="/search" component={SearchPage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>

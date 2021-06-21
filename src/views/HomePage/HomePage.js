@@ -4,20 +4,8 @@ import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-// core components
-
-import Parallax from "components/Parallax/Parallax.js";
-
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
-
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-
-
 
 import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 

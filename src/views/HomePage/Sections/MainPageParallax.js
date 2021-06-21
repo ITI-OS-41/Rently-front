@@ -58,8 +58,6 @@ export default function MainPageParallax() {
                             marginTop: '0.8rem'
                           }
                         }}
-
-
                       />
                     </GridItem>
                     <GridItem xs={12} sm={4} md={4}>
