@@ -48,7 +48,7 @@ export default function SubCategoryPage(props) {
   console.log("log ", props);
 
   const classes = useStyles();
-  const [SubCategories, setSubCategory] = useState([]);
+  const [subCategories, setSubCategory] = useState([]);
   const [category, setCategory] = useState(null);
   useEffect(() => {
     get(`/subcategory?category=${id}`).then((response) => {
@@ -82,7 +82,7 @@ export default function SubCategoryPage(props) {
       <div className={classes.main}>
         <div className={classes.container}>
           <Grid container spacing={6}>
-            {SubCategories.map((cat) => (
+            {subCategories.map((cat) => (
               <Grid item key={cat._id} xs={12} md={4} lg={4}>
                 <SectionInterested cat={cat} />
               </Grid>

@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function CategoryPage() {
   const classes = useStyles();
-  const [Categories, setCategory] = useState([]);
+  const [categories, setCategory] = useState([]);
   useEffect(() => {
     get("/category").then((response) => {
       let res = response.data;
@@ -78,7 +78,7 @@ export default function CategoryPage() {
       <div className={classes.main}>
         <div className={classes.container}>
           <Grid container spacing={6}>
-            {Categories.map((cat) => (
+            {categories.map((cat) => (
               <Grid item key={cat._id} xs={12} md={4} lg={4}>
                 <SectionInterested cat={cat} />
               </Grid>
