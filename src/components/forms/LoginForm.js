@@ -58,6 +58,7 @@ export default function LoginForm({ props }) {
                 localStorage.setItem('rently-userid', userid);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
+
                 history.push("/");
             })
             .catch(error => {
