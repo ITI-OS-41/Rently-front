@@ -18,11 +18,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router";
-import theme from 'assets/theme'
-import { ThemeProvider } from '@material-ui/core/styles';
+import theme from "assets/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
-import history from 'functions/history'
+import history from "functions/history";
 
 // pages for this product
 import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
@@ -45,7 +45,9 @@ import NewPage from "views/NewPage/NewPage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
-
+import BasicInfo from "views/ItemWizardPage/BasicInfo";
+import PostingDetails from "views/ItemWizardPage/PostingDetails";
+import PricingAndProtection from "views/ItemWizardPage/PricingAndProtection";
 
 ReactDOM.render(
   <>
@@ -53,7 +55,7 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
-          {/* <Route path="/about-us" component={AboutUsPage} />
+          <Route path="/about-us" component={AboutUsPage} />
           <Route path="/blog-post" component={BlogPostPage} />
           <Route path="/blog-posts" component={BlogPostsPage} />
           <Route path="/components" component={ComponentsPage} />
@@ -67,7 +69,10 @@ ReactDOM.render(
           <Route path="/sections" component={SectionsPage} />
           <Route path="/shopping-cart-page" component={ShoppingCartPage} />
           <Route path="/signup-page" component={SignupPage} />
-          <Route path="/error-page" component={ErrorPage} />*/}
+          <Route path="/error-page" component={ErrorPage} />
+          <Route path="/item-wizard" component={BasicInfo} />
+          <Route path="/PostingDetails" component={PostingDetails} />
+          <Route path="/PricingAndProtection" component={PricingAndProtection} />
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
