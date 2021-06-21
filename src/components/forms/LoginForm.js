@@ -53,7 +53,9 @@ export default function LoginForm({ props }) {
         post('auth/login', values, "Login successfully!")
             .then(response => {
                 const token = response.data.token
+                const userid = response.data.user._id
                 localStorage.setItem('rently-token', token);
+                localStorage.setItem('rently-userid', userid);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
                 history.push("/");

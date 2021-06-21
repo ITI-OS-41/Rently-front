@@ -47,6 +47,7 @@ import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import CategoryPage from 'views/CategoryPage/CategoryPage';
 import SubCategoryPage from 'views/SubCategoryPage/SubCategoryPage';
+import UserProfilePage from 'views/UserProfilePage/UserProfilePag';
 
 ReactDOM.render(
   <>
@@ -75,6 +76,8 @@ ReactDOM.render(
 
           <Route path="/category" component={CategoryPage} />
           <Route path="/subcategory/:id" component={SubCategoryPage}/>
+          <Route path="/profile" component={UserProfilePage}/>
+          {/* <Route path="/profile/:id" component={UserProfilePage}/> */}
 
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />

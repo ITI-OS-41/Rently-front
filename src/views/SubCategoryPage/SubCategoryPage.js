@@ -62,7 +62,7 @@ export default function SubCategoryPage(props) {
       setCategory(res);
     });
   }, []);
-  return (
+    return (
     <div>
       <Header />
 
