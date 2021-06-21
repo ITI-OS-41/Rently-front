@@ -46,6 +46,8 @@ import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 
+import Blogs from './views/Pages/Blogs/Blogs';
+import SingleBlog from './views/Pages/SingleBlog/SingleBolg'
 
 ReactDOM.render(
   <>
@@ -55,7 +57,7 @@ ReactDOM.render(
         <Switch>
           {/* <Route path="/about-us" component={AboutUsPage} />
           <Route path="/blog-post" component={BlogPostPage} />
-          <Route path="/blog-posts" component={BlogPostsPage} />
+          
           <Route path="/components" component={ComponentsPage} />
           <Route path="/contact-us" component={ContactUsPage} />
           <Route path="/ecommerce-page" component={EcommercePage} />
@@ -71,6 +73,8 @@ ReactDOM.render(
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
+          <Route path="/blogs" component={Blogs} />
+          <Route path="/blog/:id" component={SingleBlog} />
           <Route path="/" component={PresentationPage} />
         </Switch>
       </Router>
