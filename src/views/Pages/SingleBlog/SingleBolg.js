@@ -11,6 +11,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 // sections for this page
 import SectionText from "./Sections/SectionText.js";
+import SectionComments from "./Sections/SectionComments.js";
 import cardBlog4 from "assets/img/examples/card-blog4.jpg";
 
 import { get } from "functions/request";
@@ -62,6 +63,7 @@ export default function BlogPostPage(props) {
         <div className={classes.main}>
           <div className={classes.container}>
             <SectionText blog={blog} />
+            <SectionComments />
           </div>
         </div>
         <Footer />
