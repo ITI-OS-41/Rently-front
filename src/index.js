@@ -17,6 +17,7 @@ import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
+import MessengerPage from "./views/MessengerPage/MessengerPage";
 
 
 ReactDOM.render(
@@ -29,6 +30,7 @@ ReactDOM.render(
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
           <Route path="/search" component={SearchPage} />
+          <UserRoute path="/messenger" component={MessengerPage} />
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
           <Route path="/" component={HomePage} />
