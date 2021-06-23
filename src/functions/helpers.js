@@ -1,3 +1,6 @@
+import { CLOUDINARY_CLOUD_NAME } from "config";
+import { get, post } from "./request";
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -41,4 +44,16 @@ const stripHtml = (html) => {
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || "";
 }
-export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml}
+
+const uploadImage = async (image, folder) => {
+    console.log({ image });
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", `rently-upload-service-${folder}`);
+    data.append("cloud_name", CLOUDINARY_CLOUD_NAME);
+
+    return await post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data, 'image uploaded successfully!')
+
+}
+
+export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml,uploadImage}

@@ -63,11 +63,12 @@ const profilePageStyle = {
     right: "0",
   },
   followIcon: {
-    width: "20px",
-    height: "20px",
+    width: "2px",
+    height: "2px",
   },
   followButton: {
-    marginTop: "-28px !important",
+    marginTop: "-25px !important",
+
   },
   gridItem: {
     ...mlAuto,

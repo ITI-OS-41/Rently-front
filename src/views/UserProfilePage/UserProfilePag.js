@@ -15,7 +15,7 @@ import { get } from "functions/request";
 import GridItem from "components/Grid/GridItem.js";
 import NavPills from "components/NavPills/NavPills.js";
 import SectionInterested from "./Sections/SectionInterested";
-import Profile from "./Sections/Profile";
+import EditProfile from "./Sections/EditProfile";
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
@@ -23,6 +23,8 @@ import LoginForm from "components/forms/LoginForm";
 import Parallax from "components/Parallax/Parallax.js";
 import Button from "../../components/CustomButtons/Button";
 import {primaryColor} from "../../assets/jss/material-kit-pro-react";
+import Tooltip from "@material-ui/core/Tooltip";
+import Add from "@material-ui/icons/Add";
 
 profilePageStyle.isActive = {
   backgroundColor: "red"
@@ -55,12 +57,12 @@ export default function UserProfilePage(props) {
     {
       url: '/profile',
       name: 'Profile',
-      component: ()=>(<h1>Profile</h1>)
+      component: <EditProfile />
     },
     {
       url: '/profile/store',
       name: 'Store',
-      component: ()=>(<h1>Store</h1>)
+      component: <EditProfile/>
     },
   ]
 
@@ -78,17 +80,7 @@ export default function UserProfilePage(props) {
         <div style={{padding: '1rem 3rem'}}>
 
 
-          <div className={classes.profile} style={{marginLeft:'auto',marginRight:'auto',display:'block'}}>
-            <div>
-              <img src={user.photo} alt="..." className={imageClasses} style={{objectFit: 'cover', height: '100px', width: '100px'}}/>
-            </div>
-            <div className={classes.name}>
-              <h5 className={classes.title} style={{marginTop: '2rem'}}>
-                {user.name}
-              </h5>
-            </div>
-          </div>
-
+//!
 
           <GridContainer >
             <Grid item sm={2}>
@@ -103,12 +95,14 @@ export default function UserProfilePage(props) {
 
 
               <Switch>
-                {
+              {
                   links.map(link=>(
                     <Route exact={true} path={link.url} component={link.component}>
-                      {link.name}
-                    </Route>))
+                    {link.component}
+                    </Route>
+                    ))
                 }
+
               </Switch>
             </Grid>
           </GridContainer>
