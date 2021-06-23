@@ -39,4 +39,8 @@ instance.interceptors.response.use(function (response) {
 });
 
 
+
+const { get, post, put, delete: destroy } = instance;
+export { get, post, put, destroy };
+
 export default instance

@@ -88,8 +88,8 @@ export default function HeaderLinks(props) {
 
   const { dropdownHoverColor } = props;
   const classes = useStyles();
-  return (
-    <List className={classes.list + " " + classes.mlAuto}>
+  return (""
+    /*<List className={classes.list + " " + classes.mlAuto}>
       <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
@@ -256,7 +256,7 @@ export default function HeaderLinks(props) {
           <ShoppingCart className={classes.icons} /> buy now
         </Button>
       </ListItem>
-    </List>
+    </List>*/
   );
 }
 

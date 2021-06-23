@@ -18,6 +18,23 @@ const post = async (url, data, successMessage) =>
       throw new Error(errors);
     });
 
+const patch = async (url, data, successMessage) =>
+  await axios
+    .patch(url, data)
+    .then((response) => {
+      successMessage && toast.success(successMessage);
+      return response;
+    })
+    .catch((error) => {
+      const errors = error.response.data;
+      if (errors) {
+        for (const key in errors) {
+          toast.error(errors[key]);
+        }
+      }
+      throw new Error(errors);
+    });
+
 const get = async (url, successMessage) =>
   await axios
     .get(url)
@@ -52,4 +69,4 @@ const del = async (url, successMessage) =>
       throw new Error(errors);
     });
 
-export { post, get, del };
+export { post, get, del, patch };
