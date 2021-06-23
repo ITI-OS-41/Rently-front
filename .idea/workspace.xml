@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/forms/StoreForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/global/NoDataToShow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/global/SubmitButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Profile/ProfilePage/StoreHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/SearchFilter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StorePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreReviews.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/UserStorePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/LoadingContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/LoadingContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/UserProfilePag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/UserProfilePag.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +51,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/SearchPage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/Profile/StorePage" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -51,13 +66,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\UserProfilePage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\SearchPage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\HomePage\Sections" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\assets\vendors" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\HomePage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\ProfilePage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views" />
     </key>
   </component>
@@ -74,11 +91,15 @@
       <workItem from="1624093382493" duration="19131000" />
       <workItem from="1624123170730" duration="54000" />
       <workItem from="1624187137027" duration="19352000" />
-      <workItem from="1624309309811" duration="3798000" />
+      <workItem from="1624309309811" duration="5180000" />
+      <workItem from="1624381823895" duration="18764000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
