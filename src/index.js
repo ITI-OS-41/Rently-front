@@ -36,7 +36,7 @@ import LoginPage from "views/LoginPage/LoginPage.js";
 import PresentationPage from "views/PresentationPage/PresentationPage.js";
 import PricingPage from "views/PricingPage/PricingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import ProductPage from "views/ProductPage/ProductPage.js";
+import ItemPage from "views/ProductPage/ItemPage.js";
 import SectionsPage from "views/SectionsPage/SectionsPage.js";
 import ShoppingCartPage from "views/ShoppingCartPage/ShoppingCartPage.js";
 import SignupPage from "views/SignupPage/SignupPage.js";
@@ -69,9 +69,14 @@ ReactDOM.render(
           <Route path="/signup-page" component={SignupPage} />
           <Route path="/error-page" component={ErrorPage} />*/}
           <UserRoute path="/new" component={NewPage} />
+
+          <Route exact path="/items" component={EcommercePage} />
+          <Route exact path='/items/:id' component={ItemPage} />
+
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
           <Route path="/" component={PresentationPage} />
+
         </Switch>
       </Router>
     </ThemeProvider>

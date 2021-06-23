@@ -188,6 +188,9 @@ const productStyle = {
     height: "18px",
     position: "relative",
   },
+  CardText: {
+    textTransform: "capitalize",
+  },
 };
 
 export default productStyle;
