@@ -46,8 +46,10 @@ import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import BasicInfo from "views/ItemWizardPage/BasicInfo";
+import PostItem from "views/ItemWizardPage/PostItem";
 import PostingDetails from "views/ItemWizardPage/PostingDetails";
 import PricingAndProtection from "views/ItemWizardPage/PricingAndProtection";
+import PricingAndProtection from "views/ItemWizardPage/";
 
 ReactDOM.render(
   <>
@@ -71,8 +73,10 @@ ReactDOM.render(
           <Route path="/signup-page" component={SignupPage} />
           <Route path="/error-page" component={ErrorPage} />
           <Route path="/item-wizard" component={BasicInfo} />
+          <Route path="/post-item" component={PostItem} />
           <Route path="/PostingDetails" component={PostingDetails} />
           <Route path="/PricingAndProtection" component={PricingAndProtection} />
+          <Route path="/post-item-modified" component={} />
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
