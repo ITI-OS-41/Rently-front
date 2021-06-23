@@ -80,7 +80,6 @@ export default function HorizontalLinearStepper() {
             <div className={classes.root}>
               <Grid spacing={4}>
                 <Stepper alternativeLabel activeStep={activeStep}>
-                  {console.log(activeStep)}
                   {steps.map((label) => (
                     <Step key={label}>
                       <StepLabel>{label}</StepLabel>

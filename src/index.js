@@ -18,6 +18,7 @@ import PostItem from "views/ItemWizardPage/PostItem";
 import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
+import UserForm from "./views/ItemWizardPage/Sections/TestC/UserForm";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
 
 ReactDOM.render(
@@ -43,6 +44,7 @@ ReactDOM.render(
           {/* <Route path="/error-page" component={ErrorPage} /> */}
           <Route path="/item-wizard" component={BasicInfo} />
           <Route path="/post-item" component={PostItem} />
+          <Route path="/user-form" component={UserForm} />
 
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />

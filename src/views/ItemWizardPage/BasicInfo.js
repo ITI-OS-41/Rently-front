@@ -8,6 +8,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import { get } from "functions/request";
+import { Formik } from "formik";
+import * as yup from "yup";
 
 import {
   Typography,
@@ -20,14 +22,33 @@ import Checkbox from "@material-ui/core/Checkbox";
 const useStyles = makeStyles(presentationStyle);
 const conditions = ["perfect", "very good", "descent", "good", "fair"];
 
-export default function basicInfoCopy() {
+const validationSchema = yup.object().shape({
+  category: yup.string().nullable().required(`category is required`),
+  subCategory: yup.string().nullable().required(`sub category is required`),
+  condition: yup.string().nullable().required(`condition is required`),
+  item: yup
+    .string("Enter your item name")
+    .min(3, "item name should be of minimum 3 characters length")
+    .required("item name is required"),
+});
+
+const initialValues = {
+  category: "",
+  subCategory: "",
+  condition: "",
+  item: "",
+};
+
+export default function basicInfo() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategoryError, setSelectedCategoryError] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedCondition, setSelectedCondition] = useState(null);
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
 
   const [item, setItem] = useState({});
+  
   useEffect(() => {
     setItem((prevState) => ({
       ...prevState,

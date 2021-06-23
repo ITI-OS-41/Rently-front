@@ -88,7 +88,7 @@ export default function PostingDetails({ ...rest }) {
                 />
               </GridItem>
               <GridItem xs={12} sm={4} md={6}>
-                <Footer theme="dark">
+                <Footer>
                   <div className={classes.title}>
                     <h3>Description</h3>
                   </div>
