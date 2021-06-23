@@ -75,55 +75,39 @@ export default function PostingDetails({ ...rest }) {
   const classes = useStyles();
   return (
     <div>
-      
-      
-      <div
-        className={classes.pageHeader}
-        style={{
-          backgroundImage: "url(" + image + ")",
-          backgroundSize: "cover",
-          backgroundPosition: "top center",
-        }}
-      >
-        <div className={classes.container}>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={10} md={10}>
-              <Card className={classes.cardSignup}>
-                <CardBody>
-                  <GridContainer>
-                    <GridItem xs={12} sm={5} md={6}>
-                      <h4>Show renters your</h4>
-                      <ImageUpload
-                        addButtonProps={{ round: true }}
-                        changeButtonProps={{ round: true }}
-                        removeButtonProps={{ round: true, color: "danger" }}
-                      />
-                    </GridItem>
-                    <GridItem xs={12} sm={4} md={6}>
-                      <Footer theme="dark">
-                        <div className={classes.title}>
-                          <h3>Description</h3>
-                        </div>
-                        <CustomInput
-                          labelText="You can write your text here..."
-                          id="textarea-input"
-                          formControlProps={{
-                            fullWidth: true,
-                          }}
-                          inputProps={{
-                            multiline: true,
-                            rows: 5,
-                          }}
-                        />
-                      </Footer>
-                    </GridItem>
-                  </GridContainer>
-                </CardBody>
-              </Card>
-            </GridItem>
-          </GridContainer>
-        </div>
-        
+      <div className={classes.container}>
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={10} md={10}>
+            <GridContainer>
+              <GridItem xs={12} sm={5} md={6}>
+                <h4>Show renters your</h4>
+                <ImageUpload
+                  addButtonProps={{ round: true }}
+                  changeButtonProps={{ round: true }}
+                  removeButtonProps={{ round: true, color: "danger" }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={4} md={6}>
+                <Footer theme="dark">
+                  <div className={classes.title}>
+                    <h3>Description</h3>
+                  </div>
+                  <CustomInput
+                    labelText="You can write your text here..."
+                    id="textarea-input"
+                    formControlProps={{
+                      fullWidth: true,
+                    }}
+                    inputProps={{
+                      multiline: true,
+                      rows: 5,
+                    }}
+                  />
+                </Footer>
+              </GridItem>
+            </GridContainer>
+          </GridItem>
+        </GridContainer>
       </div>
     </div>
   );

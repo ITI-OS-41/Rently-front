@@ -64,6 +64,7 @@ export default function basicInfoCopy() {
             What are you posting?
           </InputLabel>
           <FormControl
+            style={{ margin: "1rem" }}
             variant="outlined"
             fullWidth
             className={classes.selectFormControl}
@@ -111,6 +112,7 @@ export default function basicInfoCopy() {
             SubCategory
           </InputLabel>
           <FormControl
+            style={{ margin: "1rem" }}
             variant="outlined"
             fullWidth
             className={classes.selectFormControl}
@@ -159,6 +161,7 @@ export default function basicInfoCopy() {
             What is your item name?
           </InputLabel>
           <TextField
+            style={{ margin: "1rem" }}
             variant="outlined"
             fullWidth
             id="username"
@@ -173,7 +176,7 @@ export default function basicInfoCopy() {
           <Grid container spacing={3}>
             <Grid item xs={6}>
               <InputLabel
-                style={{ margin: "1rem 0" }}
+                style={{ margin: "1rem" }}
                 htmlFor="simple-select"
                 className={classes.selectLabel}
               >
@@ -181,6 +184,7 @@ export default function basicInfoCopy() {
               </InputLabel>
 
               <FormControl
+                style={{ margin: "1rem" }}
                 variant="outlined"
                 fullWidth
                 className={classes.selectFormControl}
@@ -230,6 +234,7 @@ export default function basicInfoCopy() {
                 Total Available Quantity
               </InputLabel>
               <TextField
+                style={{ margin: "1rem" }}
                 variant="outlined"
                 fullWidth
                 id="username"
@@ -253,6 +258,7 @@ export default function basicInfoCopy() {
             Where will your item be when rented?
           </InputLabel>
           <TextField
+            style={{ margin: "1rem" }}
             variant="outlined"
             fullWidth
             id="username"
