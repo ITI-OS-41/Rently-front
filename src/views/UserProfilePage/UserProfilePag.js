@@ -23,6 +23,8 @@ import LoginForm from "components/forms/LoginForm";
 import Parallax from "components/Parallax/Parallax.js";
 import Button from "../../components/CustomButtons/Button";
 import {primaryColor} from "../../assets/jss/material-kit-pro-react";
+import Posting from './Sections/posting/Posting';
+import Rental from './Sections/Rental/Rental';
 
 profilePageStyle.isActive = {
   backgroundColor: "red"
@@ -55,12 +57,22 @@ export default function UserProfilePage(props) {
     {
       url: '/profile',
       name: 'Profile',
-      component: ()=>(<h1>Profile</h1>)
+      component: <Profile/>
     },
     {
       url: '/profile/store',
       name: 'Store',
       component: ()=>(<h1>Store</h1>)
+    },
+    {
+      url: '/profile/posting',
+      name: 'My Posting Requests',
+      component: <Posting/>
+    },
+    {
+      url: '/profile/renting',
+      name: 'My Rental Requests',
+      component: <Rental/>
     },
   ]
 
@@ -106,7 +118,7 @@ export default function UserProfilePage(props) {
                 {
                   links.map(link=>(
                     <Route exact={true} path={link.url} component={link.component}>
-                      {link.name}
+                      {link.component}
                     </Route>))
                 }
               </Switch>

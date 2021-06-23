@@ -53,6 +53,7 @@ export default function SectionPills() {
           />
           <div className={classes.tabSpace} />
         </GridItem>
+    
       </GridContainer>
       <GridContainer>
         <GridItem xs={12} sm={6} md={6}>
