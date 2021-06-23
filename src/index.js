@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Switch } from "react-router";
-import theme from 'assets/theme'
-import { ThemeProvider } from '@material-ui/core/styles';
+import theme from "assets/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
-import history from 'functions/history'
+import history from "functions/history";
 
 // pages for this product
 import LoginPage from "views/LoginPage/LoginPage.js";
@@ -15,10 +15,9 @@ import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
-import CategoryPage from './views/CategoryPage/CategoryPage';
-import SubCategoryPage from 'views/SubCategoryPage/SubCategoryPage';
+import CategoryPage from "./views/CategoryPage/CategoryPage";
+import SubCategoryPage from "views/SubCategoryPage/SubCategoryPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
-
 
 ReactDOM.render(
   <>
@@ -28,11 +27,8 @@ ReactDOM.render(
         <Switch>
           <UserRoute path="/new" component={NewPage} />
 
-
-
           <Route path="/category" component={CategoryPage} />
-          <Route path="/subcategory/:id" component={SubCategoryPage}/>
-          <Route path="/profile" component={UserProfilePage}/>
+          <Route path="/subcategory/:id" component={SubCategoryPage} />
           {/* <Route path="/profile/:id" component={UserProfilePage}/> */}
 
           <VisitorRoute path="/login" component={LoginPage} />
@@ -46,4 +42,3 @@ ReactDOM.render(
   </>,
   document.getElementById("root")
 );
-

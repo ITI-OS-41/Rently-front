@@ -1,34 +1,23 @@
 import React, { useState, useEffect } from "react";
-import {
-  Switch,
-  Route,
-  Link, NavLink,
-} from "react-router-dom";
+import { Switch, Route, Link, NavLink } from "react-router-dom";
 import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer.js";
 
-import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import { get } from "functions/request";
-import GridItem from "components/Grid/GridItem.js";
-import NavPills from "components/NavPills/NavPills.js";
-import SectionInterested from "./Sections/SectionInterested";
 import EditProfile from "./Sections/EditProfile";
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
-import LoginForm from "components/forms/LoginForm";
 import Parallax from "components/Parallax/Parallax.js";
 import Button from "../../components/CustomButtons/Button";
-import {primaryColor} from "../../assets/jss/material-kit-pro-react";
-import Tooltip from "@material-ui/core/Tooltip";
-import Add from "@material-ui/icons/Add";
+import { primaryColor } from "../../assets/jss/material-kit-pro-react";
 
 profilePageStyle.isActive = {
-  backgroundColor: "red"
-}
+  backgroundColor: "red",
+};
 
 const useStyles = makeStyles(profilePageStyle);
 
@@ -55,16 +44,16 @@ export default function UserProfilePage(props) {
 
   const links = [
     {
-      url: '/profile',
-      name: 'Profile',
-      component: <EditProfile />
+      url: "/profile",
+      name: "Profile",
+      component: <EditProfile />,
     },
     {
-      url: '/profile/store',
-      name: 'Store',
-      component: <EditProfile/>
+      url: "/profile/store",
+      name: "Store",
+      component: <EditProfile />,
     },
-  ]
+  ];
 
   return (
     <div>
@@ -77,32 +66,34 @@ export default function UserProfilePage(props) {
       />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div style={{padding: '1rem 3rem'}}>
-
-
-//!
-
-          <GridContainer >
+        <div style={{ padding: "1rem 3rem" }}>
+          <GridContainer>
             <Grid item sm={2}>
-              {
-                links.map(link=>(
-                  <Button component={NavLink} exact={true} activeStyle={{ backgroundColor: primaryColor[3] }} to={link.url} fullWidth round>{link.name}</Button>
-                ))
-              }
+              {links.map((link) => (
+                <Button
+                  component={NavLink}
+                  exact={true}
+                  activeStyle={{ backgroundColor: primaryColor[3] }}
+                  to={link.url}
+                  fullWidth
+                  round
+                >
+                  {link.name}
+                </Button>
+              ))}
             </Grid>
 
-            <Grid item sm={10} style={{padding: '1rem 3rem'}}>
-
-
+            <Grid item sm={10} style={{ padding: "1rem 3rem" }}>
               <Switch>
-              {
-                  links.map(link=>(
-                    <Route exact={true} path={link.url} component={link.component}>
+                {links.map((link) => (
+                  <Route
+                    exact={true}
+                    path={link.url}
+                    component={link.component}
+                  >
                     {link.component}
-                    </Route>
-                    ))
-                }
-
+                  </Route>
+                ))}
               </Switch>
             </Grid>
           </GridContainer>
