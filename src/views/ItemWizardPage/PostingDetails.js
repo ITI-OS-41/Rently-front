@@ -51,7 +51,7 @@ import image from "assets/img/bg7.jpg";
 
 const useStyles = makeStyles(signupPageStyle);
 
-export default function SignUpPage({ ...rest }) {
+export default function PostingDetails({ ...rest }) {
   const [checked, setChecked] = React.useState([1]);
   const [simpleSelect, setSimpleSelect] = React.useState("");
 

@@ -1,225 +1,168 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 import BasicInfo from "./BasicInfo";
+import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import PostingDetails from "./PostingDetails";
 import PricingAndProtection from "./PricingAndProtection";
-import signupPageStyle from "assets/jss/material-kit-pro-react/views/signupPageStyle.js";
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Footer from "components/Footer/Footer.js";
+import Footer from "components/global/Footer";
+import Header from "components/global/Header";
+import Parallax from "components/Parallax/Parallax.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import image from "assets/img/bg7.jpg";
-import Favorite from "@material-ui/icons/Favorite";
-import Box from "@material-ui/core/Box";
+import classNames from "classnames";
 
-const useStyles = makeStyles(signupPageStyle);
+const useStyles = makeStyles(presentationStyle);
 
-export default function PostIem({ ...rest }) {
-  const [checked, setChecked] = React.useState([1]);
-  const [simpleSelect, setSimpleSelect] = React.useState("");
+function getSteps() {
+  return ["Basic Info", "Posting Details", "Pricing And Protection"];
+}
 
-  const handleToggle = (value) => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-    setChecked(newChecked);
-  };
-  const handleSimple = (event) => {
-    setSimpleSelect(event.target.value);
-  };
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  });
-  const [activeStep, SetActiveStep] = useState(0);
-
-  function getSteps() {
-    return ["Basic Info", "Posting Details", "Pricing"];
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return <BasicInfo />;
+    case 1:
+      return "What is an ad group anyways?";
+    case 2:
+      return <PricingAndProtection />;
+    default:
+      return "Unknown step";
   }
-  const handleNext = () => {
-    SetActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-  const handlePrev = () => {
-    SetActiveStep((nextActiveStep) => nextActiveStep - 1);
-  };
-  const steps = getSteps();
-  function getStepsContent(stepIndex) {
-    switch (stepIndex) {
-      case 0:
-        return <BasicInfo />;
-      case 1:
-        return <PricingAndProtection />;
-        // return <PostingDetails />;
-      case 2:
-        return <PricingAndProtection />;
+}
 
-      default:
-        return "unknown";
-    }
-  }
+export default function HorizontalLinearStepper() {
   const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
+  const steps = getSteps();
+
+  const isStepOptional = (step) => {
+    return step === 1;
+  };
+
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+  //
+
+  //
   return (
     <div>
-      <Header
-        absolute
-        color="transparent"
-        brand="Material Kit PRO React"
-        links={<HeaderLinks dropdownHoverColor="rose" />}
-        {...rest}
-      />
-      <div
-        className={classes.pageHeader}
-        style={{
-          backgroundImage: "url(" + image + ")",
-          backgroundSize: "cover",
-          backgroundPosition: "top center",
-        }}
+      <Header />
+      <Parallax
+        image={require("assets/img/bg4.jpg").default}
+        className={classes.parallax}
       >
         <div className={classes.container}>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={10} md={10}>
-              <Card className={classes.cardSignup}>
-                <h2 className={classes.cardTitle}>Post Item</h2>
-                <GridContainer justify="center">
-                  <GridItem xs={12} sm={10} md={10}>
-                    <Stepper alternativeLabel activeStep={activeStep}>
-                      {console.log(activeStep)}
-                      {steps.map((label) => (
-                        <Step key={label}>
-                          <StepLabel>{label}</StepLabel>
-                        </Step>
-                      ))}
-                    </Stepper>
-                  </GridItem>
-                </GridContainer>
-                {/* item */}
-                <Box mt={2} p={2}>
-                  {/* <Button round color="default">
-                    Back
-                  </Button> */}
-                  {/* <div className={classes.textCenter}>
-                    {activeStep === steps.length ? (
-                      "The Steps completed"
-                    ) : (
-                      <>
-                        {getStepsContent(activeStep)}
-                        <Button round color="default" onClick={handlePrev}>
-                          {activeStep === steps.length ? "submit" : "next"}
-                        </Button>
-                      </>
-                    )}
-                  </div> */}
-                  {/* <div className="buttons">
-                    {page > 0 && (
-                      <button type="button" onClick={this.previous}>
-                        « Previous
-                      </button>
-                    )}
-                    {!isLastPage && <button type="submit">Next »</button>}
-                    {isLastPage && (
-                      <button type="submit" disabled={submitting}>
-                        Submit
-                      </button>
-                    )}
-                  </div> */}
-                </Box>
-              </Card>
+          <GridContainer>
+            <GridItem>
+              <div className={classes.brand}>
+                <h1>Post Your Item</h1>
+                <h3 className={classes.title}>
+                  A Badass Material-UI Kit based on Material Design.
+                </h3>
+              </div>
             </GridItem>
           </GridContainer>
         </div>
-        <Footer
-          content={
-            <div>
-              <div className={classes.left}>
-                <List className={classes.list}>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/?ref=mkpr-signup"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      Creative Tim
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/presentation?ref=mkpr-signup"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      About us
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="//blog.creative-tim.com/"
-                      className={classes.block}
-                    >
-                      Blog
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/license?ref=mkpr-signup"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      Licenses
-                    </a>
-                  </ListItem>
-                </List>
-              </div>
-              <div className={classes.right}>
-                &copy; {1900 + new Date().getYear()} , made with{" "}
-                <Favorite className={classes.icon} /> by{" "}
-                <a
-                  href="https://www.creative-tim.com?ref=mkpr-signup"
-                  target="_blank"
-                >
-                  Creative Tim
-                </a>{" "}
-                for a better web.
-              </div>
-            </div>
-          }
-        />
-      </div>
-    </div>
+      </Parallax>
+      <GridContainer container spacing={3}>
+        <div className={classNames(classes.main, classes.mainRaised)}>
+          <div className={classes.root}>
+            <Stepper alternativeLabel activeStep={activeStep}>
+              {console.log(activeStep)}
+              {steps.map((label) => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
 
-    // <div>
-    //   <Stepper alternativeLabel activeStep={activeStep}>
-    //     {console.log(activeStep)}
-    //     {steps.map((label) => (
-    //       <Step key={label}>
-    //         <StepLabel>{label}</StepLabel>
-    //       </Step>
-    //     ))}
-    //   </Stepper>
-    //   <>
-    //     {activeStep === steps.length ? (
-    //       "The Steps completed"
-    //     ) : (
-    //       <>
-    //         {getStepsContent(activeStep)}
-    //         <Button onClick={handleNext}>
-    //           {activeStep === steps.length ? "submit" : "next"}
-    //         </Button>
-    //       </>
-    //     )}
-    //   </>
-    // </div>
+            <div>
+              {activeStep === steps.length ? (
+                <div>
+                  <Typography className={classes.instructions}>
+                    All steps completed - you&apos;re finished
+                  </Typography>
+                  <Button onClick={handleReset} className={classes.button}>
+                    Reset
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Typography className={classes.instructions}>
+                    {getStepContent(activeStep)}
+                  </Typography>
+                  <div>
+                    <Grid container spacing={3} justify="center">
+                      <Grid item>
+                        <Button
+                          disabled={activeStep === 0}
+                          onClick={handleBack}
+                          className={classes.button}
+                        >
+                          Back
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={handleNext}
+                          className={classes.button}
+                        >
+                          {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </GridContainer>
+      <Footer />
+    </div>
   );
 }
