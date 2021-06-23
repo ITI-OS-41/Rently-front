@@ -29,7 +29,7 @@ export default function Rental(props) {
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <h3 className={classes.title + " " + classes.textCenter}>
-            My posting requests
+            My Rental Requests
           </h3>
           <NavPills
             alignCenter

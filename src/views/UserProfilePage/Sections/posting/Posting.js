@@ -23,25 +23,12 @@ const useStyles = makeStyles(profilePageStyle);
 export default function Posting(props) {
   const classes = useStyles();
 
-  //   const links = [
-  //     {
-  //       url: '/posting/request',
-  //       name: 'Requests',
-  //       component:  ()=>(<h1>request</h1>)
-  //     },
-  //     {
-  //         url: '/posting/confirmed',
-  //         name: 'confirmed',
-  //         component:  ()=>(<h1>confirmed</h1>)
-  //     },
-  //   ]
-
   return (
     <div style={{ padding: "1rem 3rem" }}>
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <h3 className={classes.title + " " + classes.textCenter}>
-            My posting requests
+            My Posting Requests
           </h3>
           <NavPills
             alignCenter
