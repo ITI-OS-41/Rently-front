@@ -13,6 +13,8 @@ import ListItem from "@material-ui/core/ListItem";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+
 
 // core components
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
@@ -103,7 +105,8 @@ export default function HeaderLinks(props) {
                             to="/messenger"
                             className={classes.dropdownLink}
                         >
-                            <ExitToAppOutlinedIcon className={classes.dropdownIcons} /> Messenger
+
+                            <ChatOutlinedIcon className={classes.dropdownIcons} /> Messenger
                         </Link>,
                         <Link
                             to="/#"
