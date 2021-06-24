@@ -7,13 +7,19 @@ import CustomInput from "../../../components/CustomInput/CustomInput";
 import Button from "../../../components/CustomButtons/Button";
 import Parallax from "../../../components/Parallax/Parallax";
 import React from "react";
-import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
+import presentationStyle from "../../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
+
 import {makeStyles} from "@material-ui/core";
+import headerStyle from "../../../assets/jss/material-kit-pro-react/components/headerStyle";
 
 
+
+const useStyles = makeStyles({
+  ...headerStyle,
+  ...presentationStyle
+});
 
 export default function MainPageParallax() {
-  const useStyles = makeStyles(presentationStyle);
   const classes = useStyles();
 
   return (
@@ -21,7 +27,7 @@ export default function MainPageParallax() {
       image={require("assets/img/bg6.jpg").default}
       className={classes.parallax}
     >
-      <div className={classes.conatinerHeader2}>
+      <div style={{display: 'block', margin: 'auto'}}>
         <GridContainer style={{justifyContent: 'center'}}>
           <GridItem
             xs={12}

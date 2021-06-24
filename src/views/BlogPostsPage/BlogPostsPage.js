@@ -59,6 +59,7 @@ export default function BlogPostsPage() {
       <div className={classes.main}>
         <div className={classes.container}>
           <SectionPills />
+          //!
           <SectionInterested />
         </div>
         <SectionImage />

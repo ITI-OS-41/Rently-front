@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom'
 import { Typography, Button, TextField, FormControlLabel } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -11,6 +11,7 @@ import { post } from '../../functions/request';
 import history from '../../functions/history'
 import LoadingCircle from '../global/LoadingCircle';
 import axios from '../../functions/axios'
+import {UserContext} from "../../Context";
 
 const validationSchema = yup.object().shape({
     email: yup
@@ -46,6 +47,7 @@ export default function LoginForm({ props }) {
     const classes = useStyles();
     const [isRequesting, setIsRequesting] = useState(false)
 
+    const {user,setUser} = useContext(UserContext);
 
     const submitForm = (values) => {
         setIsRequesting(true);
@@ -53,12 +55,20 @@ export default function LoginForm({ props }) {
         post('auth/login', values, "Login successfully!")
             .then(response => {
                 const token = response.data.token
+                const userid = response.data.user._id
+
+                const allData = {
+                    ...response.data.user,
+                    token
+                };
+
+                localStorage.setItem('rently-user', JSON.stringify(allData));
+
                 localStorage.setItem('rently-token', token);
+                localStorage.setItem('rently-userid', userid);
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
-                const userid = response.data.user._id
-                localStorage.setItem('rently-userid', userid);
-
+                setUser(allData);
 
                 history.push("/");
             })

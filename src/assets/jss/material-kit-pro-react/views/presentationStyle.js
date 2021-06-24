@@ -24,15 +24,6 @@ const presentationStyle = {
     ...container,
     zIndex: 1,
   },
-  conatinerHeader2: {
-    ...container,
-    zIndex: "2",
-    position: "relative",
-    "& h1, & h4, & h6": {
-      color: whiteColor,
-    },
-    paddingTop: "25vh",
-  },
   title: {
     ...title,
     color: whiteColor,
