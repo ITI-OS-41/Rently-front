@@ -4,20 +4,20 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // core components
-import Header from "components/global/Header";
-import Footer from "components/global/Footer";
-import Parallax from "components/Parallax/Parallax.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import Header from "../../../components/global/Header";
+import Footer from "../../../components/global/Footer";
+import Parallax from "../../../components/Parallax/Parallax.js";
+import GridContainer from "../../../components/Grid/GridContainer.js";
+import GridItem from "../../../components/Grid/GridItem.js";
 // sections for this page
 import SectionText from "./Sections/SectionText.js";
 import SectionComments from "./Sections/SectionComments.js";
-import cardBlog4 from "assets/img/examples/card-blog4.jpg";
+import cardBlog4 from "../../../assets/img/examples/card-blog4.jpg";
 
-import { get } from "functions/request";
+import { get } from "../../../functions/request";
 
 
-import blogPostPageStyle from "assets/jss/material-kit-pro-react/views/blogPostPageStyle.js";
+import blogPostPageStyle from "../../../assets/jss/material-kit-pro-react/views/blogPostPageStyle.js";
 
 const useStyles = makeStyles(blogPostPageStyle);
 

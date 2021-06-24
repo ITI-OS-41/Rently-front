@@ -20,10 +20,6 @@ const sectionInterestedStyle = {
   description: {
     color: grayColor[0],
   },
-  catimg:{
-    width:'50px',
-    borderRadius:'60%'
-  }
 };
 
 export default sectionInterestedStyle;

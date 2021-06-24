@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function SubCategoryPage(props) {
   const id = props.match.params.id;
-  console.log("log ", props);
 
   const classes = useStyles();
   const [subCategories, setSubCategory] = useState([]);

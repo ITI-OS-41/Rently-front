@@ -7,16 +7,26 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import NativeSelect from '@material-ui/core/NativeSelect';
 import FormControl from "@material-ui/core/FormControl";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import suit1 from "assets/img/examples/suit-1.jpg";
-import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/productsStyle.js";
+import Card from "../../components/Card/Card.js";
+import CardHeader from "../../components/Card/CardHeader.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardFooter from "../../components/Card/CardFooter.js";
+import suit1 from "../../assets/img/examples/suit-1.jpg";
+import styles from "../../assets/jss/material-kit-pro-react/views/ecommerceSections/productsStyle.js";
 import ItemRating from './ItemRating';
 
 
-const useStyles = makeStyles(styles);
+const customStyles = {
+  newClass:{
+    background: 'red'
+  }
+};
+
+const useStyles = makeStyles({
+  ...styles,
+  ...customStyles
+});
+
 
 export default function ItemCard(props) {
   const classes = useStyles();

@@ -11,6 +11,11 @@ const CAROUSEL_SETTINGS = {
   slidesToScroll: "auto",
 };
 
+const CLOUDINARY_URL = 'cloudinary://524458174797441:x2MQJicIN5bP7zZP2C_pAFBeLCM@rently-service'
+const CLOUDINARY_CLOUD_NAME = 'rently-service'
+const CLOUDINARY_API_KEY = '524458174797441'
+const CLOUDINARY_SECRET = 'x2MQJicIN5bP7zZP2C_pAFBeLCM'
+
 const SCROLLBAR_CONFIG = {
   autoHide: true,
   universal:true,
@@ -28,6 +33,5 @@ export {
   CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY,
   CLOUDINARY_SECRET,
-  UserProfile
   SCROLLBAR_CONFIG
 }

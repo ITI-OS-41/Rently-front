@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/MessengerPage/Conversations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/MessengerPage/MessengerPageParallax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/MessengerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/MessengerPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/blogPostsSections/sectionInterestedStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/blogPostsSections/sectionInterestedStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/ecommerceSections/productsStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/ecommerceSections/productsStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/presentationStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/presentationStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/productStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/productStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/profilePageStyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/jss/material-kit-pro-react/views/profilePageStyle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/EcommercePage/Sections/SectionItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/EcommercePage/Sections/SectionItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Pages/SingleBlog/SingleBolg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Pages/SingleBlog/SingleBolg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/EditProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/UserProfilePag.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/UserProfilePag.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,17 +68,17 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\ProfilePage" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\UserProfilePage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\SearchPage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\HomePage\Sections" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\ProfilePage" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -102,6 +112,7 @@
       <workItem from="1624309309811" duration="5180000" />
       <workItem from="1624381823895" duration="20001000" />
       <workItem from="1624439690903" duration="15127000" />
+      <workItem from="1624534209649" duration="4435000" />
     </task>
     <servers />
   </component>
@@ -112,9 +123,29 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1323" height="191" key="GridCell.Tab.0.bottom" timestamp="1624546622388">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
+    <state width="1323" height="191" key="GridCell.Tab.0.center" timestamp="1624546622388">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
+    <state width="1323" height="191" key="GridCell.Tab.0.left" timestamp="1624546622387">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1624546622387" />
+    <state width="1323" height="191" key="GridCell.Tab.0.right" timestamp="1624546622388">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
     <state x="-1024" y="-94" width="607" height="804" key="find.popup" timestamp="1624477878717">
       <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
     <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624477878717" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1624547165094">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1624547165094" />
   </component>
 </project>
