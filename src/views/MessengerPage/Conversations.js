@@ -42,20 +42,20 @@ export default function (props) {
 
 
     // get conversations
-    // useEffect(() => {
-    //     setIsLoading(false)
-    //
-    //     get('conversation')
-    //         .then(res => {
-    //             console.log(res)
-    //         })
-    //         .catch(e => {
-    //             console.log(e)
-    //         })
-    //         .finally(() => {
-    //             setIsLoading(false)
-    //         })
-    // }, [])
+    useEffect(() => {
+        setIsLoading(false)
+
+        get('conversation')
+            .then(res => {
+                console.log(res)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }, []);
 
 
     const handleChangeConversation = (conversation) => {
