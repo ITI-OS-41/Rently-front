@@ -24,7 +24,6 @@ export default function UserForm() {
       return (
         <>
           <RentHeader
-          label={"BasicInfo"}
             component={
               <FormPersonalDetails
                 formData={formData}
@@ -32,12 +31,6 @@ export default function UserForm() {
                 nextStep={nextStep}
                 prevStep={prevStep}
               />
-                /* <FormUserDetails
-                formData={formData}
-                setFormData={setFormData}
-                nextStep={nextStep}
-              />  */
-               
             }
           />
         </>
@@ -47,18 +40,14 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              //  <FormUserDetails
-              //   formData={formData}
-              //   setFormData={setFormData}
-              //   nextStep={nextStep}
-              // />
-              // <FormPersonalDetails
-              //   formData={formData}
-              //   setFormData={setFormData}
-              //   nextStep={nextStep}
-              //   prevStep={prevStep}
-              // />
-        <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
+              <FormUserDetails
+                formData={formData}
+                setFormData={setFormData}
+                nextStep={nextStep}
+                prevStep={prevStep}
+              />  
+               
+        // <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
 
             }
           />

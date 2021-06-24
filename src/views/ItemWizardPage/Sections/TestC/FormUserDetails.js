@@ -3,34 +3,66 @@ import PropTypes from "prop-types";
 import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import { Formik, Form, Field } from "formik";
 import { makeStyles } from "@material-ui/core/styles";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+
 import Headerr from "./RentHeader";
-import { FormHelperText, FormControl, InputLabel, Select, Typography, Button, TextField, FormControlLabel } from '@material-ui/core';
+import CustomInput from "components/CustomInput/CustomInput.js";
+import CustomFileInput from "components/CustomFileInput/CustomFileInput.js";
+import Layers from "@material-ui/icons/Layers";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CardHeader from "components/Card/CardHeader.js";
+
+import {
+  FormHelperText,
+  FormControl,
+  InputLabel,
+  Select,
+  Typography,
+  Button,
+  TextField,
+  FormControlLabel,
+} from "@material-ui/core";
 
 import * as yup from "yup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { get } from "functions/request";
 
-const useStyles = makeStyles(presentationStyle);
-const conditions = ["perfect", "very good", "descent", "good", "fair"];
+const useStyles = makeStyles((theme) => ({
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const validationSchema = yup.object({
   category: yup.string().required("Category is required!"),
   subCategory: yup.string().ensure().required("subCategory is required!"),
   itemName: yup.string().required("item name is required"),
-  condition: yup.string().nullable().required("item condition is required"),
   quantity: yup
     .number()
     .positive("quantity must be greater than zero")
     .required(`quantity is required`),
 });
 
-export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
+export const FormUserDetails = ({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedCondition, setSelectedCondition] = useState(null);
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
+  const { itemName } = formData;
 
   const [item, setItem] = useState({});
 
@@ -57,275 +89,122 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
   // }, [selectedCategory]);
   const classes = useStyles();
   return (
-    <div>
+    <>
       <Formik
         initialValues={formData}
         onSubmit={(values) => {
-          console.log("values ",values);
           setFormData(values);
-          nextStep();
+          direction === "back" ? prevStep() : nextStep();
         }}
         validationSchema={validationSchema}
       >
         {({ values, errors, touched, handleBlur, handleChange }) => (
           <Form className={classes.form}>
-            <Grid container spacing={2}>
-              <Grid item xs={6} md={7}>
-               
-                <InputLabel
-                  style={{ margin: "1rem" }}
-                  htmlFor="simple-select"
-                  className={classes.selectLabel}
-                >
-                  What are you posting?
-                </InputLabel>
-
-                 <FormControl
-                  error={touched.category && Boolean(errors.category)}
-
-                  style={{ margin: "1rem" }}
-                  variant="outlined"
-                  fullWidth
-                  className={classes.selectFormControl}
-                >
-
-                
-                  <Select
-                    name="category"
-                    id="category"
-                    // onBlur={handleBlur}
-                    onChange={handleChange}
-                    // error={touched.category && errors.category}
-                    // helperText={touched.category && errors.category}
-                    MenuProps={{
-                      className: classes.selectMenu,
+            <Grid container>
+              <Grid
+                item
+                xs={6}
+                md={6}
+                style={{ margin: "2rem 1rem 2rem 5rem" }}
+              >
+                {/* category */}
+                <div style={{ marginBottom: "2rem" }}>
+                  <h5>
+                    <strong>show renters your {itemName}</strong>
+                  </h5>
+                  <p>Adding quality photos can increase bookings by 45%.</p>
+                  <p>
+                   
+                    The first image will be set as your featured image. Drag
+                    images to reorder them.
+                  </p>
+                  <CustomFileInput
+                    multiple
+                    formControlProps={{
+                      fullWidth: true,
                     }}
-                    classes={{
-                      select: classes.select,
-                    }}
-                    value={item.category}
-                    // onChange={(e) => setSelectedCategory(e.target.value)}
-                  >
-                    <MenuItem
-                      disabled
-                      classes={{
-                        root: classes.selectMenuItem,
-                      }}
-                    >
-                      Category
-                    </MenuItem>
-                    {categories.map((category) => (
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelected,
-                        }}
-                        value={category._id}
-                        key={category._id}
-                      >
-                        {category.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                {touched.category && <FormHelperText>{errors.category}</FormHelperText>}
-
-                </FormControl>
-
-                {/* <InputLabel
-                  style={{ margin: "1rem" }}
-                  htmlFor="simple-select"
-                  className={classes.selectLabel}
-                >
-                  SubCategory
-                </InputLabel>
-                <FormControl
-                  style={{ margin: "1rem" }}
-                  variant="outlined"
-                  fullWidth
-                  className={classes.selectFormControl}
-                >
-                  <Select
-                    MenuProps={{
-                      className: classes.selectMenu,
-                    }}
-                    classes={{
-                      select: classes.select,
-                    }}
-                    value={item.subCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
                     inputProps={{
-                      name: "subCategory",
-                      id: "subCategory",
+                      placeholder: "upload your images",
                     }}
-                    // error={touched.subCategory && errors.subCategory}
-                    // helperText={touched.subCategory && errors.subCategory}
-                  >
-                    <MenuItem
-                      disabled
-                      classes={{
-                        root: classes.selectMenuItem,
-                      }}
-                    >
-                      Sub-Category
-                    </MenuItem>
-                    {subCategories.map((subcategory) => (
-                      <MenuItem
-                        classes={{
-                          root: classes.selectMenuItem,
-                          selected: classes.selectMenuItemSelected,
-                        }}
-                        value={subcategory._id}
-                        key={subcategory._id}
+                    endButton={{
+                      buttonProps: {
+                        round: true,
+                        color: "info",
+                        justIcon: true,
+                        fileButton: true,
+                      },
+                      icon: <Layers />,
+                    }}
+                  />
+                </div>
 
-                      >
-                        {subcategory.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl> */}
-                <InputLabel
-                  style={{ margin: "1rem" }}
-                  htmlFor="simple-select"
-                  className={classes.selectLabel}
-                >
-                  What is your item name?
-                </InputLabel>
-                <TextField
-                  margin="normal"
-                  style={{ margin: "1rem" }}
-                  variant="outlined"
-                  fullWidth
-                  id="itemName"
-                  name="itemName"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  error={touched.itemName && Boolean(errors.itemName)}
-                  helperText={touched.itemName && errors.itemName}
-                />
-                <Grid container spacing={3}>
-                  <Grid item xs={6}>
-                    {/* <InputLabel
-                      style={{ margin: "1rem" }}
-                      htmlFor="simple-select"
-                      className={classes.selectLabel}
-                    >
-                      Item Condition
-                    </InputLabel>
-
-                    <FormControl
-                      style={{ margin: "1rem" }}
-                      variant="outlined"
-                      fullWidth
-                      className={classes.selectFormControl}
-                    >
-                      <Select
-                        MenuProps={{
-                          className: classes.selectMenu,
-                        }}
-                        classes={{
-                          select: classes.select,
-                        }}
-                        // onBlur={handleBlur}
-                        onChange={(e) => setSelectedCondition(e.target.value)}
-                        // error={touched.condition && errors.condition}
-                        // helperText={touched.condition && errors.condition}
-                        value={item.condition}
-                        inputProps={{
-                          name: "condition",
-                          id: "condition",
-                        }}
-                      >
-                        <MenuItem
-                          disabled
-                          classes={{
-                            root: classes.selectMenuItem,
-                          }}
-                        >
-                          condition
-                        </MenuItem>
-                        {conditions.map((condition) => (
-                          <MenuItem
-                            classes={{
-                              root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
-                            }}
-                            value={condition}
-                        key={condition}
-
-                          >
-                            {condition}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <InputLabel
-                      style={{ margin: "1rem" }}
-                      htmlFor="simple-select"
-                      className={classes.selectLabel}
-                    >
-                      Total Available Quantity
-                    </InputLabel>
-                    <TextField
-                      style={{ margin: "1rem" }}
-                      variant="outlined"
-                      fullWidth
-                      id="quantity"
-                      name="quantity"
-                      type="number"
-                      // value={values.username}
-                      // onBlur={handleBlur}
-                      // onChange={handleChange}
-                      // error={touched.quantity && errors.quantity}
-                      // helperText={touched.quantity && errors.quantity}
-                    /> */}
-                  </Grid>
-                </Grid>
+                <Grid container spacing={3}></Grid>
               </Grid>
-              <Grid item xs={6} md={5}>
-                <InputLabel
-                  style={{ margin: "1rem" }}
-                  htmlFor="simple-select"
-                  className={classes.selectLabel}
-                >
-                  Where will your item be when rented?
-                </InputLabel>
-                <TextField
-                  style={{ margin: "1rem" }}
-                  variant="outlined"
-                  fullWidth
-                  id="address"
-                  name="address"
-                  // onBlur={handleBlur}
-                  // onChange={handleChange}
-                  // error={touched.username && Boolean(errors.username)}
-                  // helperText={touched.username && errors.username}
-                />
 
+              {/* second grid */}
+              <Grid
+                item
+                xs={6}
+                md={4}
+                style={{ margin: "2rem 5rem 2rem 1rem" }}
+              >
+                <div style={{ marginBottom: "2rem" }}>
+                  <Card>
+                    <CardHeader color="primary">
+                      <strong>Posting Description</strong>
+                    </CardHeader>
+
+                    <CardBody>
+                      <CustomInput
+                        variant="outlined"
+                        labelText="You can write your text here..."
+                        id="textarea-input"
+                        formControlProps={{
+                          fullWidth: true,
+                        }}
+                        inputProps={{
+                          multiline: true,
+                          rows: 5,
+                        }}
+                      />
+                    </CardBody>
+                  </Card>
+                </div>
                 <img
-                  style={{ margin: "1rem 0" }}
+                  style={{ margin: "1rem ", width: "100%", height: "50%" }}
                   src={
                     "https://images.unsplash.com/photo-1577086664693-894d8405334a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1533&q=80"
                   }
                   alt="..."
                   className={classes.imgRounded + " " + classes.imgFluid}
                 />
+                
               </Grid>
+            </Grid>
 
+            <div>
+              <Button
+                type="submit"
+                variant="contained"
+                className={classes.button}
+                onClick={() => setDirection("back")}
+              >
+                Back
+              </Button>
               <Button
                 type="submit"
                 variant="contained"
                 color="primary"
                 className={classes.button}
+                onClick={() => setDirection("forward")}
               >
                 Continue
               </Button>
-            </Grid>
+            </div>
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 
@@ -334,3 +213,116 @@ FormUserDetails.propTypes = {
   setFormData: PropTypes.func.isRequired,
   nextStep: PropTypes.func.isRequired,
 };
+{
+  /* <Formik
+        initialValues={formData}
+        onSubmit={(values) => {
+          console.log("values ", values);
+          setFormData(values);
+          nextStep();
+        }}
+        validationSchema={validationSchema}
+      >
+        {({ values, errors, touched, handleBlur, handleChange }) => (
+          <Form className={classes.form}>
+            <Grid container>
+              <Grid
+                item
+                xs={6}
+                md={10}
+                style={{ margin: "2rem 1rem 2rem 5rem" }}
+              >
+                {/* upload images */
+}
+//       <div style={{ marginBottom: "2rem" }}>
+//         <h3>show renters your {itemName}</h3>
+//         <CustomFileInput
+//           multiple
+//           formControlProps={{
+//             fullWidth: true,
+//           }}
+//           inputProps={{
+//             placeholder: "upload your images",
+//           }}
+//           endButton={{
+//             buttonProps: {
+//               round: true,
+//               color: "info",
+//               justIcon: true,
+//               fileButton: true,
+//             },
+//             icon: <Layers />,
+//           }}
+//         />
+//       </div>
+
+//       {/* item name */}
+
+//       <Grid container spacing={3}>
+//         <Grid item xs={6}></Grid>
+//       </Grid>
+//     </Grid>
+
+//     {/* second grid */}
+//     <Grid
+//       item
+//       xs={6}
+//       md={4}
+//       style={{ margin: "2rem 5rem 2rem 1rem" }}
+//     >
+//       <div style={{ marginBottom: "2rem" }}>
+//         <div className={classes.title}>
+//           <h3>Textarea</h3>
+//         </div>
+//         <Card>
+//           <CardHeader color="primary">
+//             <strong>Posting Description</strong>
+//           </CardHeader>
+
+//           <CardBody>
+//             <CustomInput
+//               variant="outlined"
+//               labelText="You can write your text here..."
+//               id="textarea-input"
+//               formControlProps={{
+//                 fullWidth: true,
+//               }}
+//               inputProps={{
+//                 multiline: true,
+//                 rows: 5,
+//               }}
+//             />
+//           </CardBody>
+//         </Card>
+
+//         {/* <TextareaAutosize
+//           aria-label="minimum height"
+//           rowsMin={5}
+//           placeholder="Minimum 5 rows"
+//         /> */}
+//       </div>
+//     </Grid>
+//   </Grid>
+
+//   <div>
+//     <Button
+//       type="submit"
+//       variant="contained"
+//       className={classes.button}
+//       onClick={() => setDirection("back")}
+//     >
+//       Back
+//     </Button>
+//     <Button
+//       type="submit"
+//       variant="contained"
+//       color="primary"
+//       className={classes.button}
+//       onClick={() => setDirection("forward")}
+//     >
+//       Continue
+//     </Button>
+//   </div>
+// </Form>
+// )}
+// </Formik> */}

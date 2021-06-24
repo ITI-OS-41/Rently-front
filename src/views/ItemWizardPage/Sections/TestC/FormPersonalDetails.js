@@ -71,39 +71,6 @@ export const FormPersonalDetails = ({
           <Form className={classes.form}>
             <Grid container >
               <Grid item xs={6} md={6} style={{ margin: "2rem 1rem 2rem 5rem" }}>
-                {/* <FormControl
-                  error={touched.category && Boolean(errors.category)}
-                  fullWidth
-                  variant="outlined"
-                >
-                  <InputLabel>category</InputLabel>
-                  <Select
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.category}
-                    label="category"
-                    inputProps={{
-                      name: "category",
-                    }}
-                  >
-                    <option value="" />
-
-                    {categories.map((category) => {
-                      return (
-                        <option
-                          key={category._id}
-                          aria-label={category.name}
-                          value={category._id}
-                        >
-                          {category.name}
-                        </option>
-                      );
-                    })}
-                  </Select>
-                  {touched.category && (
-                    <FormHelperText>{errors.category}</FormHelperText>
-                  )}
-                </FormControl> */}
                 {/* category */}
                 <div style={{ marginBottom: "2rem" }}>
                   <InputLabel

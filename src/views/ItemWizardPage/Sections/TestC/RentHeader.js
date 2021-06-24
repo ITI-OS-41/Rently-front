@@ -53,13 +53,7 @@ export default function RentHeader({component,label}) {
             <div className={classes.root}>
             <Grid container spacing={4}>
               <Grid item>
-              <Stepper alternativeLabel activeStep={activeStep}>
-                  {steps.map((label) => (
-                    <Step key={label}>
-                      <StepLabel>{label}</StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
+            
                 {component}
               </Grid>
             </Grid>
