@@ -19,6 +19,8 @@ import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 
+import Blogs from './views/Pages/Blogs/Blogs';
+import SingleBlog from './views/Pages/SingleBlog/SingleBolg'
 
 ReactDOM.render(
   <>
@@ -26,6 +28,8 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
+          <Route path="/blogs" component={Blogs} />
+          <Route path="/blog/:id" component={SingleBlog} />
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
