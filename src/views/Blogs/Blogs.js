@@ -22,7 +22,7 @@ import {
   main,
   whiteColor,
   mainRaised,
-} from "../../../assets/jss/material-kit-pro-react.js";
+} from "../../assets/jss/material-kit-pro-react.js";
 
 const blogPostsPageStyle = {
   container: {

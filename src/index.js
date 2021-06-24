@@ -26,8 +26,8 @@ import SubCategoryPage from "views/SubCategoryPage/SubCategoryPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
-import Blogs from './views/Pages/Blogs/Blogs';
-import SingleBlog from './views/Pages/SingleBlog/SingleBolg'
+import Blogs from './views/Blogs/Blogs';
+import SingleBlog from './views/SingleBlog/SingleBolg'
 import EcommercePage from "./views/EcommercePage/EcommercePage";
 
 ReactDOM.render(
@@ -46,7 +46,7 @@ ReactDOM.render(
           <Route path="/blog/:id" component={SingleBlog} />
           <UserRoute path="/new" component={NewPage} />
 
-           <Route path="/profile/:id" component={UserProfilePage}/>
+          <UserRoute path="/profile/:id" component={UserProfilePage}/>
 
           <Route exact path="/items" component={EcommercePage} />
           <Route exact path='/items/:id' component={ItemPage} />
@@ -58,6 +58,7 @@ ReactDOM.render(
           <UserRoute path="/messenger" component={MessengerPage} />
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
+
           <Route path="/" component={HomePage} />
 
         </Switch>
