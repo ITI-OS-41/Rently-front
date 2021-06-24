@@ -13,6 +13,7 @@ export default function UserForm() {
     // subCategory: "",
     // occupition: "",
     // quantity: "",
+    condition:"",
     itemName: "",
   });
   const nextStep = () => setStep((prev) => prev + 1);

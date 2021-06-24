@@ -36,6 +36,20 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               className={classes.textCenter}
             />
           </ListItem>
+           <ListItem>
+            <ListItemText
+              primary='condition'
+              secondary={condition}
+              className={classes.textCenter}
+            />
+          </ListItem>
+           <ListItem>
+            <ListItemText
+              primary='Item Name'
+              secondary={itemName}
+              className={classes.textCenter}
+            />
+          </ListItem>
          {/* <ListItem>
             <ListItemText
               primary='Item Name'
