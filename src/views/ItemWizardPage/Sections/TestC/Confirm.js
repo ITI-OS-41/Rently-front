@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import { List, ListItem, ListItemText } from '@material-ui/core/';
-import { Header } from './Header';
+import { Headerr } from './RentHeader';
 
 const useStyles = makeStyles(theme => ({
   textCenter: {
@@ -19,51 +19,45 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   const { firstName,category, lastName, email, occupation, city, bio } = formData;
   return (
     <>
-      <Header title='Confirm User Data' />
+      {/* <Headerr title='Confirm User Data' /> */}
       <div>
         <List>
           <ListItem>
             <ListItemText
-              primary='First Name'
-              secondary={firstName}
+              primary='Category'
+              secondary={category}
+              className={classes.textCenter}
+            />
+          </ListItem>
+          {/* <ListItem>
+            <ListItemText
+              primary='Sub Category'
+              secondary={subCategory}
               className={classes.textCenter}
             />
           </ListItem>
           <ListItem>
             <ListItemText
-              primary='Last Name'
-              secondary={lastName}
+              primary='Item Name'
+              secondary={itemName}
               className={classes.textCenter}
             />
           </ListItem>
           <ListItem>
             <ListItemText
-              primary='Email'
-              secondary={email}
+              primary='Condition'
+              secondary={condition}
               className={classes.textCenter}
             />
           </ListItem>
           <ListItem>
             <ListItemText
-              primary='Occupation'
-              secondary={occupation}
+              primary='Quantity'
+              secondary={quantity}
               className={classes.textCenter}
             />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary='City'
-              secondary={city}
-              className={classes.textCenter}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary='Bio'
-              secondary={bio}
-              className={classes.textCenter}
-            />
-          </ListItem>
+          </ListItem> */}
+      
         </List>
         <div className={classes.textCenter}>
           <Button
@@ -81,7 +75,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
             className={classes.button}
             onClick={() => nextStep()}
           >
-            Confirm & Continue
+            Submit & Review
           </Button>
         </div>
       </div>

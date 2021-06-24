@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Header } from './Header';
+// import { Header } from './Header';
 import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,6 @@ export const FormPersonalDetails = ({
   const [direction, setDirection] = useState('back');
   return (
     <>
-      <Header title='Enter Personal Details' />
       <Formik
         initialValues={formData}
         onSubmit={values => {
