@@ -1,3 +1,6 @@
+import axios from "axios";
+import {CLOUDINARY_CLOUD_NAME} from "../config";
+
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -36,5 +39,22 @@ const isAdmin = (token) => {
     return getUserType(token) === 'admin'
 }
 
+const stripHtml = (html) => {
+    let tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+}
 
-export { getUserType, isAdmin, checkTokenValidity ,getToken}
+
+const uploadImage = async (image, folder) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", `rently-upload-service-${folder}`);
+    data.append("cloud_name", CLOUDINARY_CLOUD_NAME);
+
+    return await axios.post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data)
+}
+
+
+
+export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml, uploadImage}
