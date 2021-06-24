@@ -1,22 +1,5 @@
-/*!
-
-=========================================================
-* Material Kit PRO React - v1.10.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router";
 import theme from 'assets/theme'
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -25,18 +8,10 @@ import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
 import history from 'functions/history'
 
 // pages for this product
-import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
-import BlogPostPage from "views/BlogPostPage/BlogPostPage.js";
-import BlogPostsPage from "views/BlogPostsPage/BlogPostsPage.js";
-import ComponentsPage from "views/ComponentsPage/ComponentsPage.js";
-import ContactUsPage from "views/ContactUsPage/ContactUsPage.js";
-import EcommercePage from "views/EcommercePage/EcommercePage.js";
-import LandingPage from "views/LandingPage/LandingPage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
-import PresentationPage from "views/PresentationPage/PresentationPage.js";
 import PricingPage from "views/PricingPage/PricingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
-import ProductPage from "views/ProductPage/ProductPage.js";
+import ItemPage from "views/ProductPage/ItemPage.js";
 import SectionsPage from "views/SectionsPage/SectionsPage.js";
 import ShoppingCartPage from "views/ShoppingCartPage/ShoppingCartPage.js";
 import SignupPage from "views/SignupPage/SignupPage.js";
@@ -47,6 +22,14 @@ import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import CategoryPage from 'views/CategoryPage/CategoryPage';
 import SubCategoryPage from 'views/SubCategoryPage/SubCategoryPage';
+import HomePage from "./views/HomePage/HomePage";
+import SearchPage from "./views/SearchPage/SearchPage";
+import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
+import userStorePage from "./views/Profile/StorePage/UserStorePage";
+import MessengerPage from "./views/MessengerPage/MessengerPage";
+
+import Blogs from './views/Pages/Blogs/Blogs';
+import SingleBlog from './views/Pages/SingleBlog/SingleBolg'
 
 ReactDOM.render(
   <>
@@ -75,13 +58,26 @@ ReactDOM.render(
 
           <Route path="/category" component={CategoryPage} />
           <Route path="/subcategory/:id" component={SubCategoryPage}/>
+          <Route path="/blogs" component={Blogs} />
+          <Route path="/blog/:id" component={SingleBlog} />
+          <UserRoute path="/new" component={NewPage} />
+
+          <Route exact path="/items" component={EcommercePage} />
+          <Route exact path='/items/:id' component={ItemPage} />
 
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
-          <Route path="/" component={PresentationPage} />
+
+          <Route path="/search" component={SearchPage} />
+          <UserRoute path="/messenger" component={MessengerPage} />
+          <UserRoute path="/profile" component={UserProfilePage} />
+          <UserRoute path="/user/:id" component={userStorePage} />
+          <Route path="/" component={HomePage} />
+
         </Switch>
       </Router>
     </ThemeProvider>
   </>,
   document.getElementById("root")
 );
+

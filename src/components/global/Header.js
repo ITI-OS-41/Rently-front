@@ -5,7 +5,7 @@ import HeaderLinks from "components/Header/HeaderLinks.js";
 export default () => {
   return (
     <Header
-      brand="Material Kit PRO React"
+      brand="Rently"
       links={<HeaderLinks dropdownHoverColor="info" />}
       fixed
       color="transparent"

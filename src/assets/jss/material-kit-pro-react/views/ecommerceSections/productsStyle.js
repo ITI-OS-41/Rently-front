@@ -16,7 +16,7 @@ const styles = {
   ...customCheckboxRadioSwitch,
   ...tooltipsStyle,
   checkRoot: {
-    padding: "14px",
+    padding: "0px",
     "&:hover": {
       backgroundColor: "unset !important",
     },
@@ -26,8 +26,12 @@ const styles = {
   mrAuto,
   cardTitle: {
     ...cardTitle,
-    textAlign: "center",
+    textAlign: "left",//modified
     marginBottom: "0px !important",
+    textTransform: "capitalize",//modified
+    color: "#3f3f3f",//modified
+
+
   },
   cardDescription: {
     color: grayColor[0],
@@ -36,8 +40,17 @@ const styles = {
   container: {
     ...container,
   },
-  description: {
-    color: grayColor[0],
+  description: {//All modified
+    color: "#3f3f3f!important",
+    textTransform: "capitalize",
+    width: "100%",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    display: "block",
+    textOverflow: "ellipsis",
+    fontWeight: "400",
+    margin: "0"
+
   },
   section: {
     ...section,
@@ -45,6 +58,8 @@ const styles = {
   },
   priceContainer: {
     display: "inline-flex",
+    textTransform: "capitalize",//modified
+
   },
   price: {
     fontSize: "18px",
@@ -66,9 +81,9 @@ const styles = {
       borderRadius: "6px",
       pointerEvents: "none",
     },
-    "& a": {
-      display: "block",
-    },
+    // "& a": {
+    //   display: "block",
+    // },
   },
   justifyContentBetween: {
     WebkitBoxPack: "justify!important",
@@ -94,6 +109,46 @@ const styles = {
   textLeft: {
     textAlign: "left",
   },
+  cardImage: {//created
+    objectFLit: "cover",
+    borderRadius: "0 0 5px 5px",
+    borderLeft: "1px solid #dee2e6",
+    borderRight: "1px solid #dee2e6",
+    borderBottom: "1px solid #dee2e6",
+    padding: "0px",
+    width: "100%"
+  },
+  formControl: {//created
+    display: "block",
+    width: "100%",
+    height: "calc(1.5em + .75rem + 2px)",
+    color: "#495057",
+    border: "1px solid #ced4da",
+    borderRadius: "3px",
+    padding: "0px",
+
+  },
+  selectText: {//created
+    width: "100%",
+    color: "#484848",
+    backgroundColor: "#ffffff",
+    textAlignLast: "center",
+    verticalAlign: "middle",
+    justifyContent: "center"
+  },
+  storeName: {//created
+    letterSpacing: "0",
+    textAlignLast: "left",
+    fontSize: "12px",
+    color: "#3f3f3f!important",
+    width: "100%",
+    fontWeight: "700!important"
+  },
+  cardLabel: {//created
+    border: "1px solid #ced4da",
+    borderRadius: "5px 5px 0 0",
+    textAlignLast: "right",
+  }
 };
 
 export default styles;
