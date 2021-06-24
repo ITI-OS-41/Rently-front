@@ -26,70 +26,53 @@ import MessageTextInput from "./MessageTextInput";
 import Card from "../../components/Card/Card.js";
 import CardBody from "../../components/Card/CardBody.js";
 import {Message} from "./Message";
+import MessengerPageParallax from "./MessengerPageParallax";
+import * as PropTypes from "prop-types";
+import Conversations from "./Conversations";
 
 
 const useStyles1 = makeStyles(profilePageStyle);
 
-const c = [
-    {
-        _id: 11,
-        photo: 'https://material-ui.com/static/images/avatar/1.jpg',
-        username: 'Remy Sharp',
-        isOnline: true
-    },
-    {
-        _id: 321,
-        photo: 'https://material-ui.com/static/images/avatar/1.jpg',
-        username: 'Remy Sharp',
-        isOnline: true
-    },
-    {
-        _id: 41,
-        photo: 'https://material-ui.com/static/images/avatar/1.jpg',
-        username: 'Remy Sharp',
-        isOnline: true
-    },
-];
 const m = [
     {
     _id: 512,
         message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
         timestamp: 'timestamp',
         isMine: true,
-        photo: c[0].photo,
-        displayName: c[0].username
+        photo: "https://material-ui.com/static/images/avatar/1.jpg",
+        displayName: 'Remy Sharp',
     },
     {
     _id: 3212,
         message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
         timestamp: 'timestamp',
         isMine: false,
-        photo: c[0].photo,
-        displayName: c[0].username
+        photo: "https://material-ui.com/static/images/avatar/1.jpg",
+        displayName: 'Remy Sharp',
     },
     {
         _id: 321,
         message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
         timestamp: 'timestamp',
         isMine: true,
-        photo: c[0].photo,
-        displayName: c[0].username
+        photo: "https://material-ui.com/static/images/avatar/1.jpg",
+        displayName: 'Remy Sharp',
     },
     {
         _id: 124,
         message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
         timestamp: 'timestamp',
         isMine: false,
-        photo: c[0].photo,
-        displayName: c[0].username
+        photo: "https://material-ui.com/static/images/avatar/1.jpg",
+        displayName: 'Remy Sharp',
     },
     {
         _id: 412,
         message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
         timestamp: 'timestamp',
         isMine: false,
-        photo: c[0].photo,
-        displayName: c[0].username
+        photo: "https://material-ui.com/static/images/avatar/1.jpg",
+        displayName: 'Remy Sharp',
     },
 ];
 
@@ -98,8 +81,6 @@ export default function MessengerPage(props) {
 
     const messagesScrollbar = useRef(null);
 
-
-    const [conversations, setConversations] = useState(c || []);
     const [messages, setMessages] = useState(m || []);
 
     const scrollToBottom = () => {
@@ -114,7 +95,6 @@ export default function MessengerPage(props) {
     };
 
     useEffect(()=>{
-        console.log("working")
         scrollToBottom()
     },[messages]);
 
@@ -135,34 +115,13 @@ export default function MessengerPage(props) {
         <div>
             <Header/>
 
-            <Parallax
-                image={require("assets/img/examples/city.jpg").default}
-                filter="dark"
-                style={{height: '14rem'}}
-            >
-                <h1 className={classes1.title} style={{color: 'white', textAlign: 'center'}}>Messages</h1>
-            </Parallax>
+            <MessengerPageParallax/>
 
             <div className={classNames(classes1.main, classes1.mainRaised)}>
                 <div style={{padding: '0 1rem'}}>
-                    <GridContainer style={{height: '65vh'}}>
+                    <GridContainer style={{height: '75vh'}}>
                         <Grid item sm={3} style={{height: '100%', overflowY: 'auto'}}>
-                            <Scrollbars  {...SCROLLBAR_CONFIG}>
-                                <List>
-                                    {
-                                        conversations.map(conversation => (
-                                            <ListItem button key={conversation._id}>
-                                                <ListItemIcon>
-                                                    <Avatar alt={conversation.name} src={conversation.photo}/>
-                                                </ListItemIcon>
-                                                <ListItemText primary="Remy Sharp">{conversation.name}</ListItemText>
-                                                {conversation.isOnline &&
-                                                <ListItemText secondary="online" align="right"/>}
-                                            </ListItem>
-                                        ))
-                                    }
-                                </List>
-                            </Scrollbars>
+                            <Conversations/>
 
                         </Grid>
 
@@ -175,10 +134,13 @@ export default function MessengerPage(props) {
                             }}>
                                 <Card style={{flexGrow: '1', margin: '0.5rem 0'}}>
                                     <CardBody style={{height: '100%'}}>
-                                        <Scrollbars ref={messagesScrollbar} {...SCROLLBAR_CONFIG} style={{height: '100%'}}>
+                                        <Scrollbars ref={messagesScrollbar} {...SCROLLBAR_CONFIG}
+                                                    style={{height: '100%'}}>
                                             {
                                                 messages.map(message => (
-                                                    <Message key={message._id}  photo={message.photo} displayName={message.displayName} message={message.message} timestamp={message.timestamp} isMine={message.isMine}/>
+                                                    <Message key={message._id} photo={message.photo}
+                                                             displayName={message.displayName} message={message.message}
+                                                             timestamp={message.timestamp} isMine={message.isMine}/>
                                                 ))
                                             }
                                         </Scrollbars>

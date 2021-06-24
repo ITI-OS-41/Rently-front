@@ -5,6 +5,9 @@ import { green } from "@material-ui/core/colors";
 import classNames from "classnames";
 
 
+const color1= '#cddc39';
+const color2= '#A8DDFD';
+
 const useStyles = makeStyles((theme) =>
     createStyles({
         messageRow: {
@@ -39,17 +42,17 @@ const useStyles = makeStyles((theme) =>
         },
         messageBlue: {
             marginLeft: "20px",
-            backgroundColor: "#A8DDFD",
-            borderColor: "#97C6E3",
+            backgroundColor: color2,
+            borderColor: color2,
             "&:after": {
-                borderTop: "15px solid #A8DDFD",
+                borderTop: `15px solid ${color2}`,
                 borderLeft: "15px solid transparent",
                 borderRight: "15px solid transparent",
                 top: "0",
                 left: "-15px"
             },
             "&:before": {
-                borderTop: "17px solid #97C6E3",
+                borderTop: `17px solid ${color2}`,
                 borderLeft: "16px solid transparent",
                 borderRight: "16px solid transparent",
                 top: "-1px",
@@ -58,17 +61,17 @@ const useStyles = makeStyles((theme) =>
         },
         messageOrange: {
             marginRight: "20px",
-            backgroundColor: "#f8e896",
-            borderColor: "#dfd087",
+            backgroundColor: `${color1}`,
+            borderColor: `${color1}`,
             "&:after": {
-                borderTop: "15px solid #f8e896",
+                borderTop: `15px solid ${color1}`,
                 borderLeft: "15px solid transparent",
                 borderRight: "15px solid transparent",
                 top: "0",
                 right: "-15px"
             },
             "&:before": {
-                borderTop: "17px solid #dfd087",
+                borderTop: `17px solid ${color1}`,
                 borderLeft: "16px solid transparent",
                 borderRight: "16px solid transparent",
                 top: "-1px",
@@ -79,14 +82,15 @@ const useStyles = makeStyles((theme) =>
         messageContent: {
             padding: 0,
             margin: 0,
-            fontSize: '1.1rem'
+            fontSize: '0.9rem'
         },
         textRight: {
             textAlign: 'right',
         },
         messageTimestamp:{
-            fontSize: '0.7rem',
-            margin: '0'
+            fontSize: '0.8rem',
+            margin: '0',
+            display: 'block'
         },
         orange: {
             color: theme.palette.getContrastText(green[500]),
@@ -107,43 +111,6 @@ const useStyles = makeStyles((theme) =>
 );
 
 
-//avatarが左にあるメッセージ（他人）
-// export const MessageLeft = (props) => {
-//     const {message,timestamp,...rest} = props;
-//     const classes = useStyles();
-//     return (
-//         <>
-//             <div className={classes.messageRow}>
-//                 <div>
-//                     <div className={classes.displayName}>{displayName}</div>
-//                     <div className={classes.messageBlue}>
-//                         <div>
-//                             <p className={classes.messageContent}>{message}</p>
-//                         </div>
-//                         <div className={classes.messageTimeStampRight}>{timestamp}</div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-//
-// //avatarが右にあるメッセージ（自分）
-// export const MessageRight = (props) => {
-//     const classes = useStyles();
-//     const message = props.message ? props.message : "no message";
-//     const timestamp = props.timestamp ? props.timestamp : "";
-//     return (
-//         <div className={classes.messageRowRight}>
-//             <div className={classes.messageOrange}>
-//                 <p className={classes.messageContent}>{message}</p>
-//                 <div className={classes.messageTimeStampRight}>{timestamp}</div>
-//             </div>
-//         </div>
-//     );
-// };
-
-
 export function Message(props) {
     const {message,timestamp,isMine,photo,name,...rest} = props;
     const classes = useStyles();
@@ -160,7 +127,7 @@ export function Message(props) {
             }
             <div className={`${classes.message} ${isMine?classes.messageOrange:classes.messageBlue}`}>
                 <p className={classes.messageContent}>{message}</p>
-                <span className={`${classes.messageTimestamp} ${isMine??classes.textRight}`} >{timestamp}</span>
+                <span className={`${classes.messageTimestamp} ${classes.textRight}`} >{timestamp}</span>
             </div>
         </div>
     )
