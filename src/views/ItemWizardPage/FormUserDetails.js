@@ -146,7 +146,7 @@ export const FormUserDetails = ({
 
               {/* second grid */}
               <Grid item xs={6} md={6}>
-                <div style={{ margin: "2rem 5rem 0rem 1rem" }}>
+                <div style={{ margin: "4rem 5rem 0rem 1rem" }}>
                   <Card>
                     <CardHeader color="primary">
                       <strong>Posting Description</strong>
@@ -156,7 +156,7 @@ export const FormUserDetails = ({
                       <TextField
                         fullWidth
                         multiline
-                        rowsMax={8}
+                        rows={5}
                         id="description"
                         name="description"
                         value={values.description}

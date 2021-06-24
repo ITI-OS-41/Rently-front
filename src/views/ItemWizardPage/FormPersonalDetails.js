@@ -48,10 +48,6 @@ export const FormPersonalDetails = ({
   prevStep,
 }) => {
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
-  const [selectedCondition, setSelectedCondition] = useState(null);
-  const [subCategories, setSubCategories] = useState([]);
   const { itemName } = formData;
 
   const [item, setItem] = useState({});
