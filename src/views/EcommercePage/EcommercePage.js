@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState, useEffect } from 'react';
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
@@ -16,6 +16,7 @@ import Footer from "components/Footer/Footer.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import SectionLatestOffers from "views/EcommercePage/Sections/SectionLatestOffers.js";
 import SectionProducts from "views/EcommercePage/Sections/SectionProducts.js";
+import SectionItems from "views/EcommercePage/Sections/SectionItems";
 import SectionBlog from "views/EcommercePage/Sections/SectionBlog.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,7 +25,6 @@ import ListItem from "@material-ui/core/ListItem";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui icons
 import Mail from "@material-ui/icons/Mail";
-
 import ecommerceHeader from "assets/img/examples/ecommerce-header.jpg";
 import face1 from "assets/img/faces/card-profile6-square.jpg";
 import face2 from "assets/img/faces/christian.jpg";
@@ -34,16 +34,40 @@ import face5 from "assets/img/faces/marc.jpg";
 import face6 from "assets/img/faces/kendall.jpg";
 import face7 from "assets/img/faces/card-profile5-square.jpg";
 import face8 from "assets/img/faces/card-profile2-square.jpg";
-
+import { get } from '../../functions/request';
 import styles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
 
 const useStyles = makeStyles(styles);
 
 export default function EcommercePage() {
-  React.useEffect(() => {
+  const [items, setItems] = useState([]);
+  const ITEMS_URL = "/item/";
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-  });
+
+    const getItems = async () => {
+      const itemsFromServer = await fetchItems()
+      setItems(itemsFromServer)
+    }
+    getItems()
+
+  }, []);
+
+  const fetchItems = async () => {
+    try {
+      const res = await get(ITEMS_URL);
+      const { data } = res;
+
+      console.log(data);
+      return data
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -74,11 +98,7 @@ export default function EcommercePage() {
               )}
             >
               <div className={classes.brand}>
-                <h1 className={classes.title}>Ecommerce Page!</h1>
-                <h4>
-                  Free global delivery for all products. Use coupon{" "}
-                  <b>25summer</b> for an extra 25% Off
-                </h4>
+                <h1 className={classes.title}>Rent anything from anyone!</h1>
               </div>
             </GridItem>
           </GridContainer>
@@ -86,10 +106,10 @@ export default function EcommercePage() {
       </Parallax>
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <SectionLatestOffers />
-        <SectionProducts />
+        {/* <SectionLatestOffers /> */}
+        <SectionItems items={items} />
       </div>
-      <SectionBlog />
+      {/* <SectionBlog /> */}
       <div
         className={classNames(
           classes.subscribeLine,
