@@ -24,6 +24,7 @@ export default function UserForm() {
       return (
         <>
           <RentHeader
+          label={"BasicInfo"}
             component={
               <FormPersonalDetails
                 formData={formData}

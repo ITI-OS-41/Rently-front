@@ -16,19 +16,13 @@ const useStyles = makeStyles(theme => ({
 
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const classes = useStyles();
-  const { category, subCategory, itemName, condition,quantity,occupation } = formData;
+  const { category, subCategory, itemName, condition,quantity } = formData;
   return (
     <>
       {/* <Headerr title='Confirm User Data' /> */}
       <div>
         <List>
-          <ListItem>
-            <ListItemText
-              primary='occupation'
-              secondary={occupation}
-              className={classes.textCenter}
-            />
-          </ListItem>
+
            <ListItem>
             <ListItemText
               primary='category'

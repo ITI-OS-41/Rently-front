@@ -13,13 +13,19 @@ import Grid from "@material-ui/core/Grid";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import classNames from "classnames";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
 
 function getSteps() {
-  return ["Basic Info", "Posting Details", "Pricing And Protection"];
+  return ["Basic Info", "Posting Details", "Pricing And Protection","Confirm"];
 }
 const useStyles = makeStyles(presentationStyle);
 
-export default function RentHeader({component}) {
+export default function RentHeader({component,label}) {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const steps = getSteps();
+ 
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -47,6 +53,13 @@ export default function RentHeader({component}) {
             <div className={classes.root}>
             <Grid container spacing={4}>
               <Grid item>
+              <Stepper alternativeLabel activeStep={activeStep}>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
                 {component}
               </Grid>
             </Grid>

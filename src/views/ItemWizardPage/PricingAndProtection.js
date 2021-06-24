@@ -14,7 +14,8 @@ import theme from "assets/theme";
 import outerTheme from "assets/theme";
 import Radio from "@material-ui/core/Radio";
 import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
-
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
 import {
   Typography,
   Button,
@@ -193,46 +194,48 @@ export default function basicInfoCopy() {
               classes.checkboxAndRadioHorizontal
             }
           >
-            <FormControlLabel
-              control={
-                <Radio
-                  checked={selectedEnabled === "a"}
-                  onChange={() => setSelectedEnabled("a")}
-                  value="a"
-                  name="radio button enabled"
-                  aria-label="A"
-                 
+            <Card>
+              <CardBody>
+                <FormControlLabel
+                  control={
+                    <Radio
+                      checked={selectedEnabled === "a"}
+                      onChange={() => setSelectedEnabled("a")}
+                      value="a"
+                      name="radio button enabled"
+                      aria-label="A"
+                      classes={{
+                        checked: classes.radio,
+                        root: classes.radioRoot,
+                      }}
+                    />
+                  }
                   classes={{
-                    checked: classes.radio,
-                    root: classes.radioRoot,
+                    label: classes.label,
+                    root: classes.labelRoot,
                   }}
+                  label="Insurance Policy"
                 />
-              }
-              classes={{
-                label: classes.label,
-                root: classes.labelRoot,
-              }}
-              label="Insurance Policy"
-            />
-            {selectedEnabled === "a" && (
-              <div>
-                <h4>
-                  <strong>Protection</strong>
-                </h4>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="username"
-                  name="username"
-                  // value={values.username}
-                  // onBlur={handleBlur}
-                  // onChange={handleChange}
-                  // error={touched.username && Boolean(errors.username)}
-                  // helperText={touched.username && errors.username}
-                />
-              </div>
-            )}
-            
+                {selectedEnabled === "a" && (
+                  <div>
+                    <h4>
+                      <strong>Protection</strong>
+                    </h4>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      id="username"
+                      name="username"
+                      // value={values.username}
+                      // onBlur={handleBlur}
+                      // onChange={handleChange}
+                      // error={touched.username && Boolean(errors.username)}
+                      // helperText={touched.username && errors.username}
+                    />
+                  </div>
+                )}
+              </CardBody>
+            </Card>
           </div>
           <div
             className={
@@ -302,13 +305,13 @@ export default function basicInfoCopy() {
               label="No Protection Needed"
             />
             {selectedEnabled === "c" && (
-            <div>
-              <p>
-                Having no coverage for your item is totally up to you. This
-                option is usually recommended for hard-to-damage items. Choose
-                this option if you are comfortable negotiating with renters.
-              </p>
-            </div>
+              <div>
+                <p>
+                  Having no coverage for your item is totally up to you. This
+                  option is usually recommended for hard-to-damage items. Choose
+                  this option if you are comfortable negotiating with renters.
+                </p>
+              </div>
             )}
           </div>
           <div
@@ -317,10 +320,7 @@ export default function basicInfoCopy() {
               " " +
               classes.checkboxAndRadioHorizontal
             }
-          >
-            
-          </div>
- 
+          ></div>
         </Grid>
       </Grid>
     </div>
