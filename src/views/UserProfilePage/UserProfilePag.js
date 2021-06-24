@@ -25,10 +25,8 @@ import Button from "../../components/CustomButtons/Button";
 import {primaryColor} from "../../assets/jss/material-kit-pro-react";
 import Posting from './Sections/posting/Posting';
 import Rental from './Sections/Rental/Rental';
+import StorePage from "../Profile/StorePage/StorePage";
 
-profilePageStyle.isActive = {
-  backgroundColor: "red"
-}
 
 const useStyles = makeStyles(profilePageStyle);
 
@@ -40,7 +38,7 @@ export default function UserProfilePage(props) {
     classes.imgFluid
   );
 
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const id = localStorage.getItem("rently-userid");
 
   useEffect(() => {
@@ -48,7 +46,6 @@ export default function UserProfilePage(props) {
       .then((response) => {
         let res = response.data;
         setUser(res);
-        console.log("current user data res--> ", res);
       })
       .catch((err) => {});
   }, []);
@@ -62,7 +59,7 @@ export default function UserProfilePage(props) {
     {
       url: '/profile/store',
       name: 'Store',
-      component: ()=>(<h1>Store</h1>)
+      component: ()=><StorePage/>
     },
     {
       url: '/profile/posting',
@@ -88,8 +85,6 @@ export default function UserProfilePage(props) {
 
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div style={{padding: '1rem 3rem'}}>
-
-
           <div className={classes.profile} style={{marginLeft:'auto',marginRight:'auto',display:'block'}}>
             <div>
               <img src={user.photo} alt="..." className={imageClasses} style={{objectFit: 'cover', height: '100px', width: '100px'}}/>
@@ -106,20 +101,16 @@ export default function UserProfilePage(props) {
             <Grid item sm={2}>
               {
                 links.map(link=>(
-                  <Button component={NavLink} exact={true} activeStyle={{ backgroundColor: primaryColor[3] }} to={link.url} fullWidth round>{link.name}</Button>
+                  <Button key={link.url} component={NavLink} exact={true} activeStyle={{ backgroundColor: primaryColor[3] }} to={link.url} fullWidth round>{link.name}</Button>
                 ))
               }
             </Grid>
 
             <Grid item sm={10} style={{padding: '1rem 3rem'}}>
-
-
               <Switch>
                 {
                   links.map(link=>(
-                    <Route exact={true} path={link.url} component={link.component}>
-                      {link.component}
-                    </Route>))
+                    <Route exact={true} path={link.url} component={link.component}/>))
                 }
               </Switch>
             </Grid>

@@ -16,7 +16,11 @@ import VisitorRoute from "functions/route-guards/VisitorRoute";
 import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
+import userStorePage from "./views/Profile/StorePage/UserStorePage";
+import MessengerPage from "./views/MessengerPage/MessengerPage";
 
+import Blogs from './views/Pages/Blogs/Blogs';
+import SingleBlog from './views/Pages/SingleBlog/SingleBolg'
 
 ReactDOM.render(
   <>
@@ -24,11 +28,15 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
+          <Route path="/blogs" component={Blogs} />
+          <Route path="/blog/:id" component={SingleBlog} />
           <UserRoute path="/new" component={NewPage} />
           <VisitorRoute path="/login" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
           <Route path="/search" component={SearchPage} />
+          <UserRoute path="/messenger" component={MessengerPage} />
           <UserRoute path="/profile" component={UserProfilePage} />
+          <UserRoute path="/user/:id" component={userStorePage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>
