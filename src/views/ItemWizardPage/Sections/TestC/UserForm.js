@@ -8,10 +8,10 @@ import RentHeader from "./RentHeader";
 export default function UserForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    firstName: "",
+    // firstName: "",
     category: "",
-    subCategory: "",
-    // condition: "",
+    // subCategory: "",
+    // occupition: "",
     // quantity: "",
     itemName: "",
   });
@@ -24,16 +24,18 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              // <FormUserDetails
-              //   formData={formData}
-              //   setFormData={setFormData}
-              //   nextStep={nextStep}
-              // />
-              <Confirm
+              <FormPersonalDetails
                 formData={formData}
+                setFormData={setFormData}
                 nextStep={nextStep}
                 prevStep={prevStep}
               />
+                /* <FormUserDetails
+                formData={formData}
+                setFormData={setFormData}
+                nextStep={nextStep}
+              />  */
+               
             }
           />
         </>
@@ -48,12 +50,14 @@ export default function UserForm() {
               //   setFormData={setFormData}
               //   nextStep={nextStep}
               // />
-              <FormPersonalDetails
-                formData={formData}
-                setFormData={setFormData}
-                nextStep={nextStep}
-                prevStep={prevStep}
-              />
+              // <FormPersonalDetails
+              //   formData={formData}
+              //   setFormData={setFormData}
+              //   nextStep={nextStep}
+              //   prevStep={prevStep}
+              // />
+        <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
+
             }
           />
         </>

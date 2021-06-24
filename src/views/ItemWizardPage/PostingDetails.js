@@ -36,17 +36,13 @@ import FormControl from "@material-ui/core/FormControl";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.js";
 import ImageUpload from "components/CustomUpload/ImageUpload.js";
 import ListItemText from "@material-ui/core/ListItemText";
-import face1 from "assets/img/faces/card-profile6-square.jpg";
-import face2 from "assets/img/faces/christian.jpg";
-import face3 from "assets/img/faces/card-profile4-square.jpg";
-import face4 from "assets/img/faces/card-profile1-square.jpg";
-import face5 from "assets/img/faces/marc.jpg";
-import face6 from "assets/img/faces/kendall.jpg";
-import face7 from "assets/img/faces/card-profile5-square.jpg";
-import face8 from "assets/img/faces/card-profile2-square.jpg";
+
 import signupPageStyle from "assets/jss/material-kit-pro-react/views/signupPageStyle.js";
 import classNames from "classnames";
-
+import AttachFile from "@material-ui/icons/AttachFile";
+import Layers from "@material-ui/icons/Layers";
+// core components
+import CustomFileInput from "components/CustomFileInput/CustomFileInput.js";
 import image from "assets/img/bg7.jpg";
 
 const useStyles = makeStyles(signupPageStyle);
@@ -81,11 +77,26 @@ export default function PostingDetails({ ...rest }) {
             <GridContainer>
               <GridItem xs={12} sm={5} md={6}>
                 <h4>Show renters your</h4>
-                <ImageUpload
-                  addButtonProps={{ round: true }}
-                  changeButtonProps={{ round: true }}
-                  removeButtonProps={{ round: true, color: "danger" }}
-                />
+                
+        
+        <CustomFileInput
+          multiple
+          formControlProps={{
+            fullWidth: true
+          }}
+          inputProps={{
+            placeholder: "upload your images"
+          }}
+          endButton={{
+            buttonProps: {
+              round: true,
+              color: "info",
+              justIcon: true,
+              fileButton: true
+            },
+            icon: <Layers />
+          }}
+        />
               </GridItem>
               <GridItem xs={12} sm={4} md={6}>
                 <Footer>

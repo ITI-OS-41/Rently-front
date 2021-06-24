@@ -12,6 +12,9 @@ import HelpIcon from "@material-ui/icons/Help";
 import { get } from "functions/request";
 import theme from "assets/theme";
 import outerTheme from "assets/theme";
+import Radio from "@material-ui/core/Radio";
+import FiberManualRecord from "@material-ui/icons/FiberManualRecord";
+
 import {
   Typography,
   Button,
@@ -24,12 +27,22 @@ const useStyles = makeStyles(presentationStyle);
 const conditions = ["perfect", "very good", "descent", "good", "fair"];
 
 export default function basicInfoCopy() {
+  const [selectedEnabled, setSelectedEnabled] = React.useState("b");
+  const [checkedA, setCheckedA] = React.useState(true);
+  const [checkedB, setCheckedB] = React.useState(false);
+  const [simpleSelect, setSimpleSelect] = React.useState("");
+  const [multipleSelect, setMultipleSelect] = React.useState([]);
+
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedCondition, setSelectedCondition] = useState(null);
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
+  const [status, setStatus] = React.useState(0); // 0: no show, 1: show yes, 2: show no.
 
+  const radioHandler = (status) => {
+    setStatus(status);
+  };
   const [item, setItem] = useState({});
   useEffect(() => {
     setItem((prevState) => ({
@@ -170,20 +183,144 @@ export default function basicInfoCopy() {
         </Grid>
 
         <Grid item xs={6} md={5}>
-          <h4>
-            <strong>Protection</strong>
-          </h4>
-          <TextField
-            variant="outlined"
-            fullWidth
-            id="username"
-            name="username"
-            // value={values.username}
-            // onBlur={handleBlur}
-            // onChange={handleChange}
-            // error={touched.username && Boolean(errors.username)}
-            // helperText={touched.username && errors.username}
-          />
+          <div className={classes.title}>
+            <h3>Radio Buttons</h3>
+          </div>
+          <div
+            className={
+              classes.checkboxAndRadio +
+              " " +
+              classes.checkboxAndRadioHorizontal
+            }
+          >
+            <FormControlLabel
+              control={
+                <Radio
+                  checked={selectedEnabled === "a"}
+                  onChange={() => setSelectedEnabled("a")}
+                  value="a"
+                  name="radio button enabled"
+                  aria-label="A"
+                 
+                  classes={{
+                    checked: classes.radio,
+                    root: classes.radioRoot,
+                  }}
+                />
+              }
+              classes={{
+                label: classes.label,
+                root: classes.labelRoot,
+              }}
+              label="Insurance Policy"
+            />
+            {selectedEnabled === "a" && (
+              <div>
+                <h4>
+                  <strong>Protection</strong>
+                </h4>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  id="username"
+                  name="username"
+                  // value={values.username}
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+                  // error={touched.username && Boolean(errors.username)}
+                  // helperText={touched.username && errors.username}
+                />
+              </div>
+            )}
+            
+          </div>
+          <div
+            className={
+              classes.checkboxAndRadio +
+              " " +
+              classes.checkboxAndRadioHorizontal
+            }
+          >
+            <FormControlLabel
+              control={
+                <Radio
+                  checked={selectedEnabled === "b"}
+                  onChange={() => setSelectedEnabled("b")}
+                  value="b"
+                  name="radio button enabled"
+                  aria-label="B"
+                  icon={
+                    <FiberManualRecord className={classes.radioUnchecked} />
+                  }
+                  checkedIcon={
+                    <FiberManualRecord className={classes.radioChecked} />
+                  }
+                  classes={{
+                    checked: classes.radio,
+                    root: classes.radioRoot,
+                  }}
+                />
+              }
+              classes={{
+                label: classes.label,
+                root: classes.labelRoot,
+              }}
+              label="Security Deposit"
+            />
+          </div>
+          <div
+            className={
+              classes.checkboxAndRadio +
+              " " +
+              classes.checkboxAndRadioHorizontal
+            }
+          >
+            <FormControlLabel
+              control={
+                <Radio
+                  checked={selectedEnabled === "c"}
+                  onChange={() => setSelectedEnabled("c")}
+                  value="c"
+                  name="radio button enabled"
+                  aria-label="C"
+                  // icon={
+                  //   <FiberManualRecord className={classes.radioUnchecked} />
+                  // }
+                  // checkedIcon={
+                  //   <FiberManualRecord className={classes.radioChecked} />
+                  // }
+                  classes={{
+                    checked: classes.radio,
+                    root: classes.radioRoot,
+                  }}
+                />
+              }
+              classes={{
+                label: classes.label,
+                root: classes.labelRoot,
+              }}
+              label="No Protection Needed"
+            />
+            {selectedEnabled === "c" && (
+            <div>
+              <p>
+                Having no coverage for your item is totally up to you. This
+                option is usually recommended for hard-to-damage items. Choose
+                this option if you are comfortable negotiating with renters.
+              </p>
+            </div>
+            )}
+          </div>
+          <div
+            className={
+              classes.checkboxAndRadio +
+              " " +
+              classes.checkboxAndRadioHorizontal
+            }
+          >
+            
+          </div>
+ 
         </Grid>
       </Grid>
     </div>

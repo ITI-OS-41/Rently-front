@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import { Formik, Form, Field } from "formik";
-import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Headerr from "./RentHeader";
-import { Button } from "@material-ui/core";
+import { FormHelperText, FormControl, InputLabel, Select, Typography, Button, TextField, FormControlLabel } from '@material-ui/core';
+
 import * as yup from "yup";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { get } from "functions/request";
@@ -18,7 +15,7 @@ const useStyles = makeStyles(presentationStyle);
 const conditions = ["perfect", "very good", "descent", "good", "fair"];
 
 const validationSchema = yup.object({
-  category: yup.string().ensure().required("Category is required!"),
+  category: yup.string().required("Category is required!"),
   subCategory: yup.string().ensure().required("subCategory is required!"),
   itemName: yup.string().required("item name is required"),
   condition: yup.string().nullable().required("item condition is required"),
@@ -30,7 +27,6 @@ const validationSchema = yup.object({
 
 export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedCategoryError, setSelectedCategoryError] = useState(null);
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   const [selectedCondition, setSelectedCondition] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -38,14 +34,14 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
 
   const [item, setItem] = useState({});
 
-  useEffect(() => {
-    setItem((prevState) => ({
-      ...prevState,
-      category: selectedCategory,
-      subcategory: selectedSubCategory,
-      condition: selectedCondition,
-    }));
-  }, [selectedCategory, selectedSubCategory, selectedCondition]);
+  // useEffect(() => {
+  //   setItem((prevState) => ({
+  //     ...prevState,
+  //     category: selectedCategory,
+  //     subcategory: selectedSubCategory,
+  //     condition: selectedCondition,
+  //   }));
+  // }, [selectedCategory, selectedSubCategory, selectedCondition]);
 
   useEffect(() => {
     get("category").then((res) => {
@@ -53,45 +49,84 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
     });
   }, []);
 
-  useEffect(() => {
-    selectedCategory &&
-      get(`subcategory?category=${selectedCategory}`).then((res) => {
-        setSubCategories(res.data);
-      });
-  }, [selectedCategory]);
+  // useEffect(() => {
+  //   selectedCategory &&
+  //     get(`subcategory?category=${selectedCategory}`).then((res) => {
+  //       setSubCategories(res.data);
+  //     });
+  // }, [selectedCategory]);
   const classes = useStyles();
   return (
     <div>
       <Formik
         initialValues={formData}
         onSubmit={(values) => {
+          console.log("values ",values);
           setFormData(values);
           nextStep();
         }}
         validationSchema={validationSchema}
       >
-        {({ errors, touched, handleBlur, handleChange }) => (
+        {({ values, errors, touched, handleBlur, handleChange }) => (
           <Form className={classes.form}>
             <Grid container spacing={2}>
               <Grid item xs={6} md={7}>
-                {/* <InputLabel
+                {/* <FormControl
+                  error={touched.category && Boolean(errors.category)}
+                  fullWidth
+                  variant="outlined"
+                >
+                  <InputLabel>category</InputLabel>
+                  <Select
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={values.category}
+                    label="category"
+                    inputProps={{
+                      name: "category",
+                    }}
+                  >
+                    <option value="" />
+
+                    {categories.map((category) => {
+                      return (
+                        <option
+                          key={category._id}
+                          aria-label={category.name}
+                          value={category._id}
+                        >
+                          {category.name}
+                        </option>
+                      );
+                    })}
+                  </Select>
+                  {touched.category && (
+                    <FormHelperText>{errors.category}</FormHelperText>
+                  )}
+                </FormControl> */}
+                <InputLabel
                   style={{ margin: "1rem" }}
                   htmlFor="simple-select"
                   className={classes.selectLabel}
                 >
                   What are you posting?
                 </InputLabel>
-                <FormControl
+
+                 <FormControl
+                  error={touched.category && Boolean(errors.category)}
+
                   style={{ margin: "1rem" }}
                   variant="outlined"
                   fullWidth
                   className={classes.selectFormControl}
                 >
+
+                
                   <Select
                     name="category"
                     id="category"
                     // onBlur={handleBlur}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                     // error={touched.category && errors.category}
                     // helperText={touched.category && errors.category}
                     MenuProps={{
@@ -101,7 +136,7 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
                       select: classes.select,
                     }}
                     value={item.category}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    // onChange={(e) => setSelectedCategory(e.target.value)}
                   >
                     <MenuItem
                       disabled
@@ -118,12 +153,15 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
                           selected: classes.selectMenuItemSelected,
                         }}
                         value={category._id}
+                        key={category._id}
                       >
                         {category.name}
                       </MenuItem>
                     ))}
                   </Select>
-                </FormControl> */}
+                {touched.category && <FormHelperText>{errors.category}</FormHelperText>}
+
+                </FormControl>
 
                 {/* <InputLabel
                   style={{ margin: "1rem" }}
@@ -169,6 +207,8 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
                           selected: classes.selectMenuItemSelected,
                         }}
                         value={subcategory._id}
+                        key={subcategory._id}
+
                       >
                         {subcategory.name}
                       </MenuItem>
@@ -191,7 +231,7 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
                   name="itemName"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={touched.itemName && errors.itemName}
+                  error={touched.itemName && Boolean(errors.itemName)}
                   helperText={touched.itemName && errors.itemName}
                 />
                 <Grid container spacing={3}>
@@ -242,6 +282,8 @@ export const FormUserDetails = ({ formData, setFormData, nextStep }) => {
                               selected: classes.selectMenuItemSelected,
                             }}
                             value={condition}
+                        key={condition}
+
                           >
                             {condition}
                           </MenuItem>

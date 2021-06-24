@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const classes = useStyles();
-  const { firstName,category, lastName, email, occupation, city, bio } = formData;
+  const { category, subCategory, itemName, condition,quantity,occupation } = formData;
   return (
     <>
       {/* <Headerr title='Confirm User Data' /> */}
@@ -24,19 +24,19 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
         <List>
           <ListItem>
             <ListItemText
-              primary='Category'
+              primary='occupation'
+              secondary={occupation}
+              className={classes.textCenter}
+            />
+          </ListItem>
+           <ListItem>
+            <ListItemText
+              primary='category'
               secondary={category}
               className={classes.textCenter}
             />
           </ListItem>
-          {/* <ListItem>
-            <ListItemText
-              primary='Sub Category'
-              secondary={subCategory}
-              className={classes.textCenter}
-            />
-          </ListItem>
-          <ListItem>
+         {/* <ListItem>
             <ListItemText
               primary='Item Name'
               secondary={itemName}
