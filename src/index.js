@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, Switch } from "react-router";
-import theme from 'assets/theme'
-import { ThemeProvider } from '@material-ui/core/styles';
+import theme from "assets/theme";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
-import history from 'functions/history'
+import history from "functions/history";
 
 // pages for this product
 import LoginPage from "views/LoginPage/LoginPage.js";
@@ -24,10 +24,11 @@ import CategoryPage from 'views/CategoryPage/CategoryPage';
 import SubCategoryPage from 'views/SubCategoryPage/SubCategoryPage';
 import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
+import CategoryPage from "./views/CategoryPage/CategoryPage";
+import SubCategoryPage from "views/SubCategoryPage/SubCategoryPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
-
 import Blogs from './views/Pages/Blogs/Blogs';
 import SingleBlog from './views/Pages/SingleBlog/SingleBolg'
 
@@ -62,6 +63,9 @@ ReactDOM.render(
           <Route path="/blog/:id" component={SingleBlog} />
           <UserRoute path="/new" component={NewPage} />
 
+          <Route path="/category" component={CategoryPage} />
+          <Route path="/subcategory/:id" component={SubCategoryPage} />
+          {/* <Route path="/profile/:id" component={UserProfilePage}/> */}
           <Route exact path="/items" component={EcommercePage} />
           <Route exact path='/items/:id' component={ItemPage} />
 
@@ -80,4 +84,3 @@ ReactDOM.render(
   </>,
   document.getElementById("root")
 );
-
