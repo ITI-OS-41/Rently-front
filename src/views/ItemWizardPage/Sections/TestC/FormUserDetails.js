@@ -42,13 +42,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validationSchema = yup.object({
-  category: yup.string().required("Category is required!"),
-  subCategory: yup.string().ensure().required("subCategory is required!"),
-  itemName: yup.string().required("item name is required"),
-  quantity: yup
-    .number()
-    .positive("quantity must be greater than zero")
-    .required(`quantity is required`),
+  // description: yup
+  // .string()
+  // .min(30, "Minimum 30 characters")
+  // .required("description is required!"),
 });
 
 export const FormUserDetails = ({
@@ -65,6 +62,8 @@ export const FormUserDetails = ({
   const { itemName } = formData;
 
   const [item, setItem] = useState({});
+  const [direction, setDirection] = useState("back");
+  const [description, setDescription] = useState("");
 
   // useEffect(() => {
   //   setItem((prevState) => ({
@@ -107,14 +106,13 @@ export const FormUserDetails = ({
                 md={6}
                 style={{ margin: "2rem 1rem 2rem 5rem" }}
               >
-                {/* category */}
+                {/* upload images */}
                 <div style={{ marginBottom: "2rem" }}>
                   <h5>
                     <strong>show renters your {itemName}</strong>
                   </h5>
                   <p>Adding quality photos can increase bookings by 45%.</p>
                   <p>
-                   
                     The first image will be set as your featured image. Drag
                     images to reorder them.
                   </p>
@@ -155,18 +153,27 @@ export const FormUserDetails = ({
                     </CardHeader>
 
                     <CardBody>
-                      <CustomInput
-                        variant="outlined"
-                        labelText="You can write your text here..."
-                        id="textarea-input"
-                        formControlProps={{
-                          fullWidth: true,
-                        }}
-                        inputProps={{
-                          multiline: true,
-                          rows: 5,
-                        }}
-                      />
+                  
+                        <CustomInput
+                          id="description"
+                          name="description"
+                          value={values.description}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          // onChange={(e) => setDescription(e.target.value)}
+                          labelText="Add a detailed description of your item..."
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          inputProps={{
+                            multiline: true,
+                            rows: 5,
+                          }}
+                          // error={touched.description && Boolean(errors.description)}
+                        />
+                        {/* {touched.description && (
+                          <FormHelperText>{errors.description}</FormHelperText>
+                        )} */}
                     </CardBody>
                   </Card>
                 </div>
@@ -178,7 +185,6 @@ export const FormUserDetails = ({
                   alt="..."
                   className={classes.imgRounded + " " + classes.imgFluid}
                 />
-                
               </Grid>
             </Grid>
 

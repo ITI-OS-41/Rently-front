@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FormUserDetails } from "./FormUserDetails";
 import { FormPersonalDetails } from "./FormPersonalDetails";
+import { PricingAndProtection } from "./PricingAndProtection";
 import { Confirm } from "./Confirm";
 import { Success } from "./Success";
 import RentHeader from "./RentHeader";
@@ -12,9 +13,14 @@ export default function UserForm() {
     category: "",
     // subCategory: "",
     // occupition: "",
-    // quantity: "",
-    condition:"",
+    quantity: "",
+    condition: "",
     itemName: "",
+    description: "",
+    daily: "",
+    weekly: "",
+    hourly: "",
+    monthly: "",
   });
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
@@ -45,17 +51,38 @@ export default function UserForm() {
                 setFormData={setFormData}
                 nextStep={nextStep}
                 prevStep={prevStep}
-              />  
-               
-        // <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
+              />
 
+              // <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
             }
           />
         </>
       );
     case 3:
       return (
-        <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
+        <>
+          <RentHeader
+            component={
+              <PricingAndProtection
+                formData={formData}
+                setFormData={setFormData}
+                nextStep={nextStep}
+                prevStep={prevStep}
+              />
+            }
+          />
+        </>
+        // <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
+      );
+    case 4:
+      return (
+        <>
+          <Confirm
+            formData={formData}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        </>
       );
     default:
       return <Success />;

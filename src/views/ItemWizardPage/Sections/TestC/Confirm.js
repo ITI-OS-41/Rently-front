@@ -1,50 +1,103 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import { List, ListItem, ListItemText } from '@material-ui/core/';
-import { Headerr } from './RentHeader';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { List, ListItem, ListItemText } from "@material-ui/core/";
+import { Headerr } from "./RentHeader";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   textCenter: {
-    textAlign: 'center'
+    textAlign: "center",
   },
   button: {
-    margin: theme.spacing(1)
-  }
+    margin: theme.spacing(1),
+  },
 }));
 
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const classes = useStyles();
-  const { category, subCategory, itemName, condition,quantity } = formData;
+  const {
+    category,
+    subCategory,
+    itemName,
+    condition,
+    quantity,
+    description,
+    daily,
+    weekly,
+    hourly,
+    monthly,
+  } = formData;
   return (
     <>
       {/* <Headerr title='Confirm User Data' /> */}
       <div>
         <List>
-
-           <ListItem>
+          <ListItem>
             <ListItemText
-              primary='category'
+              primary="category"
               secondary={category}
               className={classes.textCenter}
             />
           </ListItem>
-           <ListItem>
+          <ListItem>
             <ListItemText
-              primary='condition'
+              primary="condition"
               secondary={condition}
               className={classes.textCenter}
             />
           </ListItem>
-           <ListItem>
+          <ListItem>
             <ListItemText
-              primary='Item Name'
+              primary="Item Name"
               secondary={itemName}
               className={classes.textCenter}
             />
           </ListItem>
-         {/* <ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Item Description"
+              secondary={description}
+              className={classes.textCenter}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Quantity"
+              secondary={quantity}
+              className={classes.textCenter}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Hourly"
+              secondary={hourly}
+              className={classes.textCenter}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Daily"
+              secondary={daily}
+              className={classes.textCenter}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Weekly"
+              secondary={weekly}
+              className={classes.textCenter}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Monthly"
+              secondary={monthly}
+              className={classes.textCenter}
+            />
+          </ListItem>
+
+          {/* <ListItem>
             <ListItemText
               primary='Item Name'
               secondary={itemName}
@@ -65,12 +118,11 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               className={classes.textCenter}
             />
           </ListItem> */}
-      
         </List>
         <div className={classes.textCenter}>
           <Button
-            color='secondary'
-            variant='contained'
+            color="secondary"
+            variant="contained"
             className={classes.button}
             onClick={() => prevStep()}
           >
@@ -78,8 +130,8 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
           </Button>
 
           <Button
-            color='primary'
-            variant='contained'
+            color="primary"
+            variant="contained"
             className={classes.button}
             onClick={() => nextStep()}
           >
@@ -94,5 +146,5 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
 Confirm.propTypes = {
   formData: PropTypes.object.isRequired,
   prevStep: PropTypes.func.isRequired,
-  nextStep: PropTypes.func.isRequired
+  nextStep: PropTypes.func.isRequired,
 };

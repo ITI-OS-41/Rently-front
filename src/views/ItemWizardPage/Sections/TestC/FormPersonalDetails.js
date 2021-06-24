@@ -40,6 +40,7 @@ const validationSchema = yup.object({
   category: yup.string("Enter Category").required("Category is required!"),
   itemName: yup.string("Enter item name").required("Item Name is required!"),
   condition: yup.string().required("item condition is required"),
+  quantity: yup.number().positive().required("This field is requried"),
 });
 export const FormPersonalDetails = ({
   formData,
@@ -69,8 +70,13 @@ export const FormPersonalDetails = ({
       >
         {({ values, errors, touched, handleBlur, handleChange }) => (
           <Form className={classes.form}>
-            <Grid container >
-              <Grid item xs={6} md={6} style={{ margin: "2rem 1rem 2rem 5rem" }}>
+            <Grid container>
+              <Grid
+                item
+                xs={6}
+                md={6}
+                style={{ margin: "2rem 1rem 2rem 5rem" }}
+              >
                 {/* category */}
                 <div style={{ marginBottom: "2rem" }}>
                   <InputLabel
@@ -236,6 +242,11 @@ export const FormPersonalDetails = ({
                         name="quantity"
                         type="number"
                         InputProps={{ inputProps: { min: 1, max: 1000 } }}
+                        value={values.quantity}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        error={touched.quantity && Boolean(errors.quantity)}
+                        helperText={touched.quantity && errors.quantity}
                       />
                     </div>
                   </Grid>
@@ -253,7 +264,12 @@ export const FormPersonalDetails = ({
               </Grid>
 
               {/* second grid */}
-              <Grid item xs={6} md={4} style={{ margin: "2rem 5rem 2rem 1rem" }}>
+              <Grid
+                item
+                xs={6}
+                md={4}
+                style={{ margin: "2rem 5rem 2rem 1rem" }}
+              >
                 <div style={{ marginBottom: "2rem" }}>
                   <InputLabel
                     style={{ margin: "0.5rem 0" }}
