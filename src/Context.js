@@ -10,7 +10,7 @@ export const UserContext = createContext({});
 
      const {children,...rest} = props;
 
-     const [user, setUser] = useState( JSON.parse(localStorage.getItem('rently-user')));
+     const [user, setUser] = useState( JSON.parse(localStorage.getItem('rently-user')) || {});
 
      return (
         <UserContext.Provider value={{ user, setUser }}>
