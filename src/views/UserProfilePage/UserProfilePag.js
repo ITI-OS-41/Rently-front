@@ -18,6 +18,11 @@ import { primaryColor } from "../../assets/jss/material-kit-pro-react";
 profilePageStyle.isActive = {
   backgroundColor: "red",
 };
+import {primaryColor} from "../../assets/jss/material-kit-pro-react";
+import Posting from './Sections/posting/Posting';
+import Rental from './Sections/Rental/Rental';
+import StorePage from "../Profile/StorePage/StorePage";
+
 
 const useStyles = makeStyles(profilePageStyle);
 
@@ -29,7 +34,7 @@ export default function UserProfilePage(props) {
     classes.imgFluid
   );
 
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const id = localStorage.getItem("rently-userid");
 
   useEffect(() => {
@@ -37,7 +42,6 @@ export default function UserProfilePage(props) {
       .then((response) => {
         let res = response.data;
         setUser(res);
-        console.log("current user data res--> ", res);
       })
       .catch((err) => {});
   }, []);
@@ -53,6 +57,26 @@ export default function UserProfilePage(props) {
       name: "Store",
       component: <EditProfile />,
     },
+    {
+      url: '/profile',
+      name: 'Profile',
+      component: <Profile/>
+    },
+    {
+      url: '/profile/store',
+      name: 'Store',
+      component: ()=><StorePage/>
+    },
+    {
+      url: '/profile/posting',
+      name: 'My Posting Requests',
+      component: <Posting/>
+    },
+    {
+      url: '/profile/renting',
+      name: 'My Rental Requests',
+      component: <Rental/>
+    },
   ];
 
   return (
@@ -66,34 +90,34 @@ export default function UserProfilePage(props) {
       />
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div style={{ padding: "1rem 3rem" }}>
-          <GridContainer>
+        <div style={{padding: '1rem 3rem'}}>
+          <div className={classes.profile} style={{marginLeft:'auto',marginRight:'auto',display:'block'}}>
+            <div>
+              <img src={user.photo} alt="..." className={imageClasses} style={{objectFit: 'cover', height: '100px', width: '100px'}}/>
+            </div>
+            <div className={classes.name}>
+              <h5 className={classes.title} style={{marginTop: '2rem'}}>
+                {user.name}
+              </h5>
+            </div>
+          </div>
+
+
+          <GridContainer >
             <Grid item sm={2}>
-              {links.map((link) => (
-                <Button
-                  component={NavLink}
-                  exact={true}
-                  activeStyle={{ backgroundColor: primaryColor[3] }}
-                  to={link.url}
-                  fullWidth
-                  round
-                >
-                  {link.name}
-                </Button>
-              ))}
+              {
+                links.map(link=>(
+                  <Button key={link.url} component={NavLink} exact={true} activeStyle={{ backgroundColor: primaryColor[3] }} to={link.url} fullWidth round>{link.name}</Button>
+                ))
+              }
             </Grid>
 
-            <Grid item sm={10} style={{ padding: "1rem 3rem" }}>
+            <Grid item sm={10} style={{padding: '1rem 3rem'}}>
               <Switch>
-                {links.map((link) => (
-                  <Route
-                    exact={true}
-                    path={link.url}
-                    component={link.component}
-                  >
-                    {link.component}
-                  </Route>
-                ))}
+                {
+                  links.map(link=>(
+                    <Route exact={true} path={link.url} component={link.component}/>))
+                }
               </Switch>
             </Grid>
           </GridContainer>

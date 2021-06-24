@@ -95,5 +95,7 @@ export default function SectionText() {
         </GridItem>
       </GridContainer>
     </div>
+  
+  
   );
 }
