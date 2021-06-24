@@ -1,10 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "components/global/Header";
 import Parallax from "components/Parallax/Parallax.js";
@@ -18,14 +12,14 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 
 function getSteps() {
-  return ["Basic Info", "Posting Details", "Pricing And Protection","Confirm"];
+  return ["Basic Info", "Posting Details", "Pricing And Protection", "Confirm"];
 }
 const useStyles = makeStyles(presentationStyle);
 
-export default function RentHeader({component,label}) {
+export default function RentHeader({ component, label }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
- 
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -50,14 +44,7 @@ export default function RentHeader({component,label}) {
       <GridContainer container spacing={3}>
         <GridItem>
           <div className={classNames(classes.main, classes.mainRaised)}>
-            <div className={classes.root}>
-            <Grid container spacing={4}>
-              <Grid item>
-            
-                {component}
-              </Grid>
-            </Grid>
-            </div>
+            <div className={classes.root}>{component}</div>
           </div>
         </GridItem>
       </GridContainer>

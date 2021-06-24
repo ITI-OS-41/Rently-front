@@ -13,12 +13,10 @@ import NewPage from "views/NewPage/NewPage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
-import BasicInfo from "views/ItemWizardPage/BasicInfo";
-import PostItem from "views/ItemWizardPage/PostItem";
 import HomePage from "./views/HomePage/HomePage";
 import SearchPage from "./views/SearchPage/SearchPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
-import UserForm from "./views/ItemWizardPage/Sections/TestC/UserForm";
+import UserForm from "./views/ItemWizardPage/UserForm";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
 
 ReactDOM.render(
@@ -42,8 +40,6 @@ ReactDOM.render(
           {/* <Route path="/shopping-cart-page" component={ShoppingCartPage} /> */}
           {/* <Route path="/signup-page" component={SignupPage} /> */}
           {/* <Route path="/error-page" component={ErrorPage} /> */}
-          <Route path="/item-wizard" component={BasicInfo} />
-          <Route path="/post-item" component={PostItem} />
           <Route path="/user-form" component={UserForm} />
 
           <UserRoute path="/new" component={NewPage} />

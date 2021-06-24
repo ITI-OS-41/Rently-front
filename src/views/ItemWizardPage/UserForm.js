@@ -9,18 +9,18 @@ import RentHeader from "./RentHeader";
 export default function UserForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    // firstName: "",
     category: "",
     // subCategory: "",
-    // occupition: "",
-    quantity: "",
+    stock: "",
     condition: "",
-    itemName: "",
+    name: "",
     description: "",
-    daily: "",
-    weekly: "",
-    hourly: "",
-    monthly: "",
+    price: {
+      day: "",
+      week: "",
+      hour: "",
+      month: "",
+    },
   });
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
