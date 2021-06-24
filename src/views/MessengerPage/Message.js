@@ -2,9 +2,6 @@ import Avatar from "@material-ui/core/Avatar";
 import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { green,lightBlue } from "@material-ui/core/colors";
-import classNames from "classnames";
-
-console.log(lightBlue)
 
 const color1= '#e3e3e3';
 const color1darken = '#ccc';
