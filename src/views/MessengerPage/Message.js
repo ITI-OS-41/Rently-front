@@ -1,12 +1,15 @@
 import Avatar from "@material-ui/core/Avatar";
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { green,lightBlue } from "@material-ui/core/colors";
 import classNames from "classnames";
 
+console.log(lightBlue)
 
-const color1= '#cddc39';
+const color1= '#e3e3e3';
+const color1darken = '#ccc';
 const color2= '#A8DDFD';
+const color2darken= '#7ba8fd';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -43,7 +46,7 @@ const useStyles = makeStyles((theme) =>
         messageBlue: {
             marginLeft: "20px",
             backgroundColor: color2,
-            borderColor: color2,
+            borderColor: color2darken,
             "&:after": {
                 borderTop: `15px solid ${color2}`,
                 borderLeft: "15px solid transparent",
@@ -52,7 +55,7 @@ const useStyles = makeStyles((theme) =>
                 left: "-15px"
             },
             "&:before": {
-                borderTop: `17px solid ${color2}`,
+                borderTop: `17px solid ${color2darken}`,
                 borderLeft: "16px solid transparent",
                 borderRight: "16px solid transparent",
                 top: "-1px",
@@ -62,7 +65,7 @@ const useStyles = makeStyles((theme) =>
         messageOrange: {
             marginRight: "20px",
             backgroundColor: `${color1}`,
-            borderColor: `${color1}`,
+            borderColor: `${color1darken}`,
             "&:after": {
                 borderTop: `15px solid ${color1}`,
                 borderLeft: "15px solid transparent",
@@ -71,7 +74,7 @@ const useStyles = makeStyles((theme) =>
                 right: "-15px"
             },
             "&:before": {
-                borderTop: `17px solid ${color1}`,
+                borderTop: `17px solid ${color1darken}`,
                 borderLeft: "16px solid transparent",
                 borderRight: "16px solid transparent",
                 top: "-1px",
