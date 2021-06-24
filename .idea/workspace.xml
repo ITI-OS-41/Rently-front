@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Context.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/NoDataToShow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/NoDataToShow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Conversations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Conversations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/NewPage/NewPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/NewPage/NewPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +19,20 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -102,7 +121,7 @@
       <workItem from="1624309309811" duration="5180000" />
       <workItem from="1624381823895" duration="20001000" />
       <workItem from="1624439690903" duration="15127000" />
-      <workItem from="1624534209649" duration="14538000" />
+      <workItem from="1624534209649" duration="20645000" />
     </task>
     <servers />
   </component>
@@ -129,15 +148,16 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
-    <state x="395" y="28" width="607" height="683" key="find.popup" timestamp="1624558557893">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="-1024" y="-94" width="607" height="804" key="find.popup" timestamp="1624571072176">
+      <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
-    <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624477878717" />
+    <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624571072176" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624558557893" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624551403303" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1624547165094">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup" timestamp="1624573181431">
+      <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
+    <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624573181431" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1624547165094" />
   </component>
 </project>

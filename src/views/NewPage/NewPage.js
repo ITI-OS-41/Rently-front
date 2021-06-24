@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useContext} from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -27,32 +27,30 @@ export default function ErrorPage({ ...rest }) {
         document.body.scrollTop = 0;
     });
     const classes = useStyles();
-    return (
-        <div>
-            <Header
-                absolute
 
-                color="transparent"
-                brand="Material Kit PRO React"
-                links={<HeaderLinks dropdownHoverColor="dark" />}
-                {...rest}
-            />
-            <div
-                className={classes.pageHeader}
-                style={{
-                    backgroundImage: "url(" + image + ")",
-                    backgroundSize: "cover",
-                    backgroundPosition: "top center",
-                }}
-            >
-                <div className={classes.contentCenter}>
-                    <GridContainer>
-                        <GridItem md={12}>
-                            <h1 className={classes.title}>New Page</h1>
-                        </GridItem>
-                    </GridContainer>
+
+
+    return (
+
+            <div>
+                <div
+                    className={classes.pageHeader}
+                    style={{
+                        backgroundImage: "url(" + image + ")",
+                        backgroundSize: "cover",
+                        backgroundPosition: "top center",
+                    }}
+                >
+                    <div className={classes.contentCenter}>
+                        <GridContainer>
+                            <GridItem md={12}>
+                                <h1 className={classes.title}>
+                                    {user.name}
+                                </h1>
+                            </GridItem>
+                        </GridContainer>
+                    </div>
                 </div>
             </div>
-        </div>
     );
 }

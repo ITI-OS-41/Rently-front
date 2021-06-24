@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Route, Switch } from "react-router";
+import {Router, Route, Switch} from "react-router";
 import theme from "assets/theme";
-import { ThemeProvider } from "@material-ui/core/styles";
+import {ThemeProvider} from "@material-ui/core/styles";
 
 import "assets/scss/material-kit-pro-react.scss?v=1.10.0";
 import history from "functions/history";
@@ -29,41 +29,42 @@ import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from './views/Blogs/Blogs';
 import SingleBlog from './views/SingleBlog/SingleBolg'
 import EcommercePage from "./views/EcommercePage/EcommercePage";
+import Context from "./Context";
 
 ReactDOM.render(
-  <>
     <ThemeProvider theme={theme}>
-      <div id="snackbarhelper" />
-      <Router history={history}>
-        <Switch>
+        <Context>
+            <div id="snackbarhelper"/>
+            <Router history={history}>
+                <Switch>
 
-          <Route path="/error-page" component={ErrorPage} />
-          <UserRoute path="/new" component={NewPage} />
+                    <Route path="/error-page" component={ErrorPage}/>
+                    <UserRoute path="/new" component={NewPage}/>
 
-          <Route path="/category" component={CategoryPage} />
-          <Route path="/subcategory/:id" component={SubCategoryPage}/>
-          <Route path="/blogs" component={Blogs} />
-          <Route path="/blog/:id" component={SingleBlog} />
-          <UserRoute path="/new" component={NewPage} />
+                    <Route path="/category" component={CategoryPage}/>
+                    <Route path="/subcategory/:id" component={SubCategoryPage}/>
+                    <Route path="/blogs" component={Blogs}/>
+                    <Route path="/blog/:id" component={SingleBlog}/>
+                    <UserRoute path="/new" component={NewPage}/>
 
-          <UserRoute path="/profile/:id" component={UserProfilePage}/>
+                    <UserRoute path="/profile/:id" component={UserProfilePage}/>
 
-          <Route exact path="/items" component={EcommercePage} />
-          <Route exact path='/items/:id' component={ItemPage} />
+                    <Route exact path="/items" component={EcommercePage}/>
+                    <Route exact path='/items/:id' component={ItemPage}/>
 
-          <VisitorRoute path="/login" component={LoginPage} />
-          <VisitorRoute path="/register" component={RegisterPage} />
+                    <VisitorRoute path="/login" component={LoginPage}/>
+                    <VisitorRoute path="/register" component={RegisterPage}/>
 
-          <Route path="/search" component={SearchPage} />
-          <UserRoute path="/messenger" component={MessengerPage} />
-          <UserRoute path="/profile" component={UserProfilePage} />
-          <UserRoute path="/user/:id" component={userStorePage} />
+                    <Route path="/search" component={SearchPage}/>
+                    <UserRoute path="/messenger" component={MessengerPage}/>
+                    <UserRoute path="/profile" component={UserProfilePage}/>
+                    <UserRoute path="/user/:id" component={userStorePage}/>
 
-          <Route path="/" component={HomePage} />
+                    <Route path="/" component={HomePage}/>
 
-        </Switch>
-      </Router>
-    </ThemeProvider>
-  </>,
-  document.getElementById("root")
+                </Switch>
+            </Router>
+        </Context>
+    </ThemeProvider>,
+    document.getElementById("root")
 );

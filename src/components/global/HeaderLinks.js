@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, {useContext, useEffect} from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // react components for routing our app without refresh
@@ -20,6 +20,9 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 
 import styles from "../../assets/jss/material-kit-pro-react/components/headerLinksStyle.js";
+import {UserContext} from "../../Context";
+import axios from "../../functions/axios";
+import history from "../../functions/history";
 
 const useStyles = makeStyles(styles);
 
@@ -61,10 +64,24 @@ export default function HeaderLinks(props) {
         };
         animateScroll();
     };
-    var onClickSections = {};
 
     const {dropdownHoverColor} = props;
     const classes = useStyles();
+
+    const {user,setUser} = useContext(UserContext);
+
+
+    const handleLogout = () =>{
+        localStorage.removeItem('rently-user');
+        localStorage.removeItem('rently-token');
+        localStorage.removeItem('rently-userid');
+        axios.defaults.headers.common['Authorization'] = null
+
+        setUser({});
+
+        history.push("/");
+    }
+
     return (
         <List className={classes.list + " " + classes.mlAuto}>
 
@@ -82,7 +99,7 @@ export default function HeaderLinks(props) {
                     noLiPadding
                     navDropdown
                     hoverColor={dropdownHoverColor}
-                    buttonText="Mahmoud"
+                    buttonText={user.username}
                     buttonProps={{
                         className: classes.navLink,
                         color: "transparent",
@@ -111,7 +128,7 @@ export default function HeaderLinks(props) {
                         <Link
                             to="/#"
                             className={classes.dropdownLink}
-                            onClick={()=>{alert("need to handle logout")}}
+                            onClick={()=>{handleLogout()}}
                         >
                             <ExitToAppOutlinedIcon className={classes.dropdownIcons} />Logout
                         </Link>,
