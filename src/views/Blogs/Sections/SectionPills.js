@@ -24,6 +24,7 @@ import {
 } from "assets/jss/material-kit-pro-react.js";
 
 import tooltipsStyle from "assets/jss/material-kit-pro-react/tooltipsStyle.js";
+import {Link} from "react-router-dom";
 
 const sectionPillsStyle = {
   title,
@@ -75,16 +76,10 @@ export default function SectionPills() {
     get("/blog").then((response) => {
       let res = response.data;
       setBlog(res);
-      console.log("response: ", response);
-      console.log("res: ", res);
     });
   }, []);
   return (
     <div className={classes.section}>
-      <h3 className={classes.title + " " + classes.textCenter}>
-      Latest Posts From Rently
-      </h3>
-      <br />
       <GridContainer>
         {Blogs.map((blog) => (
           <GridItem key={blog._id} xs={12} sm={12} md={6}>
@@ -103,10 +98,11 @@ export default function SectionPills() {
                                 __html: blog.description
                               }}></div>
 
-                <Button round color="danger" onClick={() =>  history.push("/blog/"+blog._id)} >
-                  <FormatAlignLeft className={classes.icons} 
-                   /> Read article
+                <Link to={`/blog/${blog._id}`}>
+                <Button round color="danger" style={{marginTop: '3rem'}} >
+                  <FormatAlignLeft className={classes.icons}/> Read article
                 </Button>
+                </Link>
               </CardBody>
             </Card>
           </GridItem>

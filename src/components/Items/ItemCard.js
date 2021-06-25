@@ -84,9 +84,6 @@ export default function ItemCard(props) {
           </NativeSelect>
         </FormControl>
       </CardBody>
-      {/* <CardFooter plain className={classes.justifyContentBetween}>
-
-      </CardFooter> */}
     </Card>
   );
 }

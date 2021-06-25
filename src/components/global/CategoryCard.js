@@ -5,6 +5,7 @@ import CardBody from "../Card/CardBody";
 import React from "react";
 import blogsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/blogsStyle.js";
 import {makeStyles} from "@material-ui/core";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(blogsStyle);
 export default function CategoryCard(props) {
@@ -14,18 +15,18 @@ export default function CategoryCard(props) {
   return (
     <Card >
       <CardHeader   image>
-        <a href="#">
+        <Link to={`category/${category._id}`}>
           <img src={category.photo} style={{
             height: '250px',
             objectFit: 'cover'
           }} alt=""/>
-        </a>
+        </Link>
       </CardHeader>
       <CardBody plain>
         <h4 style={{textAlign: 'center'}} className={classes.cardTitle}>
-          <a href="#" >
+            <Link to={`category/${category._id}`}>
             {category.name}
-          </a>
+          </Link>
         </h4>
       </CardBody>
     </Card>

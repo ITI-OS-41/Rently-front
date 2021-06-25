@@ -85,9 +85,30 @@ export default function HeaderLinks(props) {
     return (
         <List className={classes.list + " " + classes.mlAuto}>
 
+            { !user.username &&
+                <>
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/login"
+                        className={classes.navLink}
+                    >
+                        Login
+                    </Link>
+                </ListItem>
+
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/register"
+                        className={classes.navLink}
+                    >
+                        Register
+                    </Link>
+                </ListItem>
+                </>
+            }
             <ListItem className={classes.listItem}>
                 <Link
-                    to="/blogs"
+                    to="/blog"
                     className={classes.navLink}
                 >
                     Blog

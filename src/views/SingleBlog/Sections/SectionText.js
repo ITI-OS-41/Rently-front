@@ -55,15 +55,13 @@ export default function SectionBlogs({ blog }) {
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={8} md={8}>
-          <h3 className={classes.title}>
-            The Post Content...
-          </h3>
           <div
+            style={{marginTop: '3rem'}}
             className={classes.description1}
             dangerouslySetInnerHTML={{
               __html: blog.description,
             }}
-          ></div>
+          />
           {blog.tags.map((tag) => (
             <Badge round color="info" className={classes.card}>
               {tag}

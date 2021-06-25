@@ -3,17 +3,17 @@ import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
-import Header from "components/global/Header";
+import Header from "../../components/global/Header";
 
-import Footer from "components/global/Footer";
+import Footer from "../../components/global/Footer";
 // sections for this page
 
-import SectionProducts from "views/SearchPage/Sections/SectionProducts.js";
+import SectionProducts from "./Sections/SectionProducts.js";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-import styles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
+import styles from "../../assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
 import SectionParallax from "./Sections/SectionParallax";
 
 const useStyles = makeStyles(styles);

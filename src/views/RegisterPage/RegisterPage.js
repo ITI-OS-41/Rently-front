@@ -11,21 +11,19 @@ import Email from "@material-ui/icons/Email";
 import Favorite from "@material-ui/icons/Favorite";
 import Face from "@material-ui/icons/Face";
 // core components
-import Header from "components/global/Header";
-import Footer from "components/global/Footer";
 
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Button from "../../components/CustomButtons/Button.js";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import CardHeader from "../../components/Card/CardHeader.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import loginPageStyle from "assets/jss/material-kit-pro-react/views/loginPageStyle.js";
+import loginPageStyle from "../../assets/jss/material-kit-pro-react/views/loginPageStyle.js";
 
-import image from "assets/img/bg7.jpg";
-import RegisterForm from "components/forms/RegisterForm";
+import image from "../../assets/img/bg7.jpg";
+import RegisterForm from "../../components/forms/RegisterForm";
 
 const useStyles = makeStyles(loginPageStyle);
 
@@ -54,7 +52,7 @@ export default function RegisterPage() {
                   color="primary"
                   className={classes.cardHeader}
                 >
-                  <h4 className={classes.cardTitle}>Login</h4>
+                  <h4 className={classes.cardTitle}>Register</h4>
                 </CardHeader>
                 <CardBody>
                   <RegisterForm />
