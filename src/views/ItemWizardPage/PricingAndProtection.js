@@ -96,15 +96,17 @@ export const PricingAndProtection = ({
                 {/* Accordion */}
                 <div style={{ marginBottom: "2rem" }}>
                   <Card>
-                    <Accordion
-                      activeColor="rose"
-                      collapses={[
-                        {
-                          title: `How do I determine my rates?`,
-                          content: `Daily rates are usually 10% or 15% of the item value.Weekly rates are usually 4x the daily rate.Don't set the monthly rate any higher than 50% of the item value when new.`,
-                        },
-                      ]}
-                    />
+                    <div style={{ padding: "0 1rem" }}>
+                      <Accordion
+                        activeColor="rose"
+                        collapses={[
+                          {
+                            title: `  How do I determine my rates?`,
+                            content: `Daily rates are usually 10% or 15% of the item value.Weekly rates are usually 4x the daily rate.Don't set the monthly rate any higher than 50% of the item value when new.`,
+                          },
+                        ]}
+                      />
+                    </div>
                   </Card>
                 </div>
 
@@ -355,10 +357,10 @@ export const PricingAndProtection = ({
                             you. This option is usually recommended for
                             hard-to-damage items.
                           </p>
-                          <p>
+                          <h6>
                             Choose this option if you are comfortable
                             negotiating with renters.
-                          </p>
+                          </h6>
                         </div>
                       )}
                     </CardBody>

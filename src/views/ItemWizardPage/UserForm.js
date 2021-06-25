@@ -3,6 +3,7 @@ import { PostingDetails } from "./PostingDetails";
 import { BasicInfo } from "./BasicInfo";
 import { PricingAndProtection } from "./PricingAndProtection";
 import { Confirm } from "./Confirm";
+import { CancellationAndDelivery } from "./CancellationAndDelivery";
 import { Success } from "./Success";
 import RentHeader from "./RentHeader";
 
@@ -21,6 +22,7 @@ export default function UserForm() {
       hour: "",
       month: "",
     },
+    cancellation:""
   });
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
@@ -72,9 +74,23 @@ export default function UserForm() {
             }
           />
         </>
-        // <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
       );
-    case 4:
+      case 4:
+      return (
+        <>
+          <RentHeader
+            component={
+              <CancellationAndDelivery
+                formData={formData}
+                setFormData={setFormData}
+                nextStep={nextStep}
+                prevStep={prevStep}
+              />
+            }
+          />
+        </>
+      );
+    case 5:
       return (
         <>
         <RentHeader

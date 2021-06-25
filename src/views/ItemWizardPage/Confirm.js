@@ -57,6 +57,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
     condition,
     stock,
     description,
+    cancellation,
     price: { day, hour, week, month },
   } = formData;
   return (
@@ -139,6 +140,13 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                 <ListItemText
                   primary="Monthly"
                   secondary={month}
+                  className={classes.textCenter}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="cancellation"
+                  secondary={cancellation}
                   className={classes.textCenter}
                 />
               </ListItem>

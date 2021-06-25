@@ -107,7 +107,7 @@ export const BasicInfo = ({
                         classes={{
                           select: classes.select,
                         }}
-                        value={values.category}
+                       
                         // onChange={(e) => setSelectedCategory(e.target.value)}
                       >
                         <MenuItem
