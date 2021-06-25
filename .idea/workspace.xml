@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="" />
+    <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemRating.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemRating.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/CategoryCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/CategoryCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/PostCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/PostCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/UserCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/BlogPostsPage/BlogPostsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/BlogPostsPage/BlogPostsPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Blogs/Blogs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Blogs/Blogs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Blogs/Sections/SectionPills.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Blogs/Sections/SectionPills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CategoryPage/Sections/SectionInterested.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CategoryPage/Sections/SectionInterested.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageParallax.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageParallax.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProductPage/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProductPage/ItemPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/RegisterPage/RegisterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/RegisterPage/RegisterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SearchPage/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SearchPage/SearchPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SearchPage/Sections/SectionProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SearchPage/Sections/SectionProducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SingleBlog/Sections/SectionText.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SingleBlog/Sections/SectionText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SingleBlog/SingleBolg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SingleBlog/SingleBolg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,14 +32,51 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1u3OEJLMNcVUHg9GQg6DBs8FrDv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Header" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -25,9 +84,40 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="ts.external.directory.path" value="D:\ITI\graduation project\Materialui - Client\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\ProfilePage" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\components\Header" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\UserProfilePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\SearchPage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="" />
@@ -36,10 +126,56 @@
       <option name="presentableId" value="Default" />
       <updated>1623890708050</updated>
       <workItem from="1623890715424" duration="278000" />
+      <workItem from="1623965531162" duration="2094000" />
+      <workItem from="1624093382493" duration="19131000" />
+      <workItem from="1624123170730" duration="54000" />
+      <workItem from="1624187137027" duration="19352000" />
+      <workItem from="1624309309811" duration="5180000" />
+      <workItem from="1624381823895" duration="20001000" />
+      <workItem from="1624439690903" duration="15127000" />
+      <workItem from="1624534209649" duration="23949000" />
+      <workItem from="1624607645936" duration="6678000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1323" height="191" key="GridCell.Tab.0.bottom" timestamp="1624581513475">
+      <screen x="-1440" y="-127" width="1440" height="870" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513475" />
+    <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
+    <state width="1323" height="191" key="GridCell.Tab.0.center" timestamp="1624581513474">
+      <screen x="-1440" y="-127" width="1440" height="870" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
+    <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
+    <state width="1323" height="191" key="GridCell.Tab.0.left" timestamp="1624581513474">
+      <screen x="-1440" y="-127" width="1440" height="870" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
+    <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1624546622387" />
+    <state width="1323" height="191" key="GridCell.Tab.0.right" timestamp="1624581513474">
+      <screen x="-1440" y="-127" width="1440" height="870" />
+    </state>
+    <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
+    <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
+    <state x="395" y="28" width="607" height="683" key="find.popup" timestamp="1624614130328">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624573917672" />
+    <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624614130328" />
+    <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624551403303" />
+    <state x="346" y="59" width="673" height="679" key="search.everywhere.popup" timestamp="1624609892625">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624577462207" />
+    <state x="346" y="59" width="673" height="679" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624609892625" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1624547165094" />
   </component>
 </project>

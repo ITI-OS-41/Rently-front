@@ -9,13 +9,12 @@ import ListItem from "@material-ui/core/ListItem";
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
+import Header from "../../components/global/Header.js";
+import Footer from "../../components/global/Footer.js";
+import Parallax from "../../components/Parallax/Parallax.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Button from "../../components/CustomButtons/Button.js";
 // sections for this page
 import SectionText from "./Sections/SectionText.js";
 import SectionBlogInfo from "./Sections/SectionBlogInfo.js";
@@ -34,16 +33,7 @@ export default function BlogPostPage() {
   const classes = useStyles();
   return (
     <div>
-      <Header
-        brand="Material Kit PRO React"
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        color="transparent"
-        changeColorOnScroll={{
-          height: 300,
-          color: "info",
-        }}
-      />
+      <Header/>
       <Parallax image={require("assets/img/bg5.jpg").default} filter="dark">
         <div className={classes.container}>
           <GridContainer justify="center">

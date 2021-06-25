@@ -10,10 +10,10 @@ const StyledRating = withStyles({
 })(Rating);
 
 const average = ratings => {
-    if (!ratings) {
+    if(!ratings){
         return 0
     }
-    return ratings.reduce((a, b) => (a + b), [0]) / ratings.length;
+    return ratings.reduce((a, b) => { (a + b) }, 0) / ratings.length;
 }
 
 export default function ItemRating(props) {

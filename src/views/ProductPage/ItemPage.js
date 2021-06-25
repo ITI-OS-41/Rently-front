@@ -17,12 +17,12 @@ import LocalShipping from "@material-ui/icons/LocalShipping";
 import VerifiedUser from "@material-ui/icons/VerifiedUser";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
+import Header from "../../components/global/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Footer from "components/Footer/Footer.js";
+import Footer from "../../components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import Accordion from "components/Accordion/Accordion.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
@@ -30,6 +30,7 @@ import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.j
 import ItemRating from 'components/Items/ItemRating';
 import ItemCancellation from 'components/Items/ItemCancellation';
 import { Divider } from "@material-ui/core";
+
 // images
 import product1 from "assets/img/examples/product1.jpg";
 import product2 from "assets/img/examples/product2.jpg";
@@ -207,8 +208,10 @@ export default function ItemPage(props) {
                         content: (
                           <p>
                             <strong>Owned by {item.owner.username}</strong> <br />
+
                             <small>{item.location.address}</small> <br />
                             <a href={`/items/${item._id}`} className={classes.storeName}>View my store</a>
+
                           </p>
                         ),
                       },
