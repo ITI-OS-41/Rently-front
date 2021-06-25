@@ -87,16 +87,16 @@ export default function SectionPills() {
               raised
               background
               style={{
-                backgroundImage: `url( ${blog.photo ? blog.photo : office2} )`,
+                backgroundImage: `url( ${blog.photo || office2} )`,
               }}
             >
               <CardBody background>
 
                 <h3 className={classes.cardTitle + " " + classes.limitText}>{blog.title}</h3>
 
-                <div className={classes.category + " " + classes.limitText} dangerouslySetInnerHTML={{
-                                __html: blog.description
-                              }}></div>
+                <div
+                    className={classes.category + " " + classes.limitText}
+                    dangerouslySetInnerHTML={{__html: blog.description}}/>
 
                 <Link to={`/blog/${blog._id}`}>
                 <Button round color="danger" style={{marginTop: '3rem'}} >
