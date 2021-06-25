@@ -22,13 +22,13 @@ import CardBody from "components/Card/CardBody.js";
 import Button from "components/CustomButtons/Button.js";
 import Clearfix from "components/Clearfix/Clearfix.js";
 
+import ItemCard from "components/Items/ItemCard";
 
 import color1 from "assets/img/examples/color1.jpg";
 import color3 from "assets/img/examples/color3.jpg";
 import color2 from "assets/img/examples/color2.jpg";
 import dg3 from "assets/img/dg3.jpg";
 import dg1 from "assets/img/dg1.jpg";
-import ItemCard from "../../../components/Items/ItemCard";
 import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/productsStyle.js";
 
 const useStyles = makeStyles(styles);

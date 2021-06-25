@@ -40,6 +40,7 @@ import styles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
 const useStyles = makeStyles(styles);
 
 export default function EcommercePage() {
+  
   const [items, setItems] = useState([]);
   const ITEMS_URL = "/item/";
 
