@@ -31,7 +31,7 @@ export default function MainPageAppRate({ ...rest }) {
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
-        const res = response.data
+        const res = response.data.res
         setItems(res)
       })
       .catch(err=>{
