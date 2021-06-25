@@ -77,11 +77,14 @@ export default function UserForm() {
     case 4:
       return (
         <>
-          <Confirm
-            formData={formData}
-            nextStep={nextStep}
-            prevStep={prevStep}
-          />
+        <RentHeader
+            component={
+              <Confirm
+                formData={formData}
+                nextStep={nextStep}
+                prevStep={prevStep}
+              />}
+            />
         </>
       );
    default:

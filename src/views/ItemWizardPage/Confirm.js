@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 import { List, ListItem, ListItemText } from "@material-ui/core/";
 import { Formik } from "formik";
 import { post } from "functions/request";
+import Header from "../../components/global/Header";
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {

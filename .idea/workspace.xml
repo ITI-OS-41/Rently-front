@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Blogs/Sections/SectionPills.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Blogs/Sections/SectionPills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/Confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/Confirm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/RentHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/RentHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/UserForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/UserForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +118,7 @@
       <workItem from="1624439690903" duration="15127000" />
       <workItem from="1624534209649" duration="23949000" />
       <workItem from="1624607645936" duration="8528000" />
-      <workItem from="1624619798303" duration="593000" />
+      <workItem from="1624619798303" duration="1368000" />
     </task>
     <servers />
   </component>
@@ -149,11 +149,11 @@
     </state>
     <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
     <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
-    <state x="395" y="28" width="607" height="683" key="find.popup" timestamp="1624614130328">
+    <state x="395" y="28" width="607" height="683" key="find.popup" timestamp="1624620775870">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624573917672" />
-    <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624614130328" />
+    <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624620775870" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624551403303" />
     <state x="346" y="59" width="673" height="679" key="search.everywhere.popup" timestamp="1624620033151">
       <screen x="0" y="0" width="1366" height="738" />

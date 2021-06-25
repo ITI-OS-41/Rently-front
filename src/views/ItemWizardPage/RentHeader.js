@@ -10,6 +10,7 @@ import classNames from "classnames";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
+import Footer from "../../components/global/Footer";
 
 function getSteps() {
   return ["Basic Info", "Posting Details", "Pricing And Protection", "Confirm"];
@@ -27,6 +28,7 @@ export default function RentHeader({ component, label }) {
       <Parallax
         image={require("assets/img/bg4.jpg").default}
         className={classes.parallax}
+        style={{height: '25rem'}}
       >
         <div className={classes.container}>
           <GridContainer>
@@ -34,7 +36,7 @@ export default function RentHeader({ component, label }) {
               <div className={classes.brand}>
                 <h1>Post Your Item</h1>
                 <h3 className={classes.title}>
-                  A Badass Material-UI Kit based on Material Design.
+                    Rent anything to anyone.
                 </h3>
               </div>
             </GridItem>
@@ -48,6 +50,7 @@ export default function RentHeader({ component, label }) {
           </div>
         </GridItem>
       </GridContainer>
+    <Footer/>
     </div>
   );
 }
