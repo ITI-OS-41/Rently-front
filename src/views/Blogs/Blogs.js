@@ -102,7 +102,7 @@ export default function Blogs() {
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
               <h2 className={classes.title}>
-                A Place for Entrepreneurs to Share and Discover New Stories
+                Latest Posts From Rently
               </h2>
             </GridItem>
           </GridContainer>

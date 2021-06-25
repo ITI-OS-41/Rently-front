@@ -8,6 +8,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { get } from "functions/request";
 import Grid from "@material-ui/core/Grid";
 import SectionInterested from "./Sections/SectionInterested.js";
+import NoDataToShow from "../../components/global/NoDataToShow";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -47,8 +48,11 @@ export default function SubCategoryPage(props) {
   const id = props.match.params.id;
 
   const classes = useStyles();
+
+  const [isLoading, setIsLoading] = useState(true)
   const [subCategories, setSubCategory] = useState([]);
   const [category, setCategory] = useState(null);
+
   useEffect(() => {
     get(`/subcategory?category=${id}`).then((response) => {
       let res = response.data;
@@ -70,7 +74,8 @@ export default function SubCategoryPage(props) {
           <div className={classes.container}>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8} className={classes.textCenter}>
-                <h1 className={classes.title} >{category.description}</h1>
+                <h1 className={classes.title} >{category.name}</h1>
+                <h5 className={classes.title} >{category.description}</h5>
               </GridItem>
             </GridContainer>
           </div>
@@ -81,11 +86,17 @@ export default function SubCategoryPage(props) {
       <div className={classes.main}>
         <div className={classes.container}>
           <Grid container spacing={6}>
-            {subCategories.map((cat) => (
-              <Grid item key={cat._id} xs={12} md={4} lg={4}>
-                <SectionInterested cat={cat} />
-              </Grid>
-            ))}
+            {
+              subCategories.length ?
+
+                  subCategories.map((cat) => (
+                      <Grid item key={cat._id} xs={12} md={4} lg={4}>
+                        <SectionInterested cat={cat} />
+                      </Grid>
+                  ))
+
+              : <NoDataToShow text={"No subcategories yet"}/>
+            }
           </Grid>
         </div>
       </div>

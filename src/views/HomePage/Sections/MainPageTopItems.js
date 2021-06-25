@@ -16,6 +16,7 @@ import CategoryCard from "../../../components/global/CategoryCard";
 import LoadingContainer from "../../../components/global/LoadingContainer";
 import Carousel from "nuka-carousel";
 import {CAROUSEL_SETTINGS} from "../../../config";
+import ItemCard from "../../../components/Items/ItemCard";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'item';
@@ -52,7 +53,7 @@ export default function MainPageItems({ ...rest }) {
             { items?
               (<Carousel {...CAROUSEL_SETTINGS}>
                 {items.map(item=>{
-                  return (<CategoryCard key={item._id} category={item} />)
+                  return (<ItemCard key={item._id} item={item} />)
                 })}
               </Carousel>)
               : <LoadingContainer/> }

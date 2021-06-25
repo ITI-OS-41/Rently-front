@@ -27,7 +27,7 @@ export default function MainPageParallax() {
       image={require("assets/img/bg6.jpg").default}
       className={classes.parallax}
     >
-      <div style={{display: 'block', margin: 'auto'}}>
+      <div className={classes.container}>
         <GridContainer style={{justifyContent: 'center'}}>
           <GridItem
             xs={12}

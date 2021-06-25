@@ -35,6 +35,7 @@ import Carousel from "nuka-carousel";
 import {CAROUSEL_SETTINGS} from "../../../config";
 import PostCard from "../../../components/global/PostCard";
 import LoadingContainer from "../../../components/global/LoadingContainer";
+import ItemCard from "../../../components/Items/ItemCard";
 
 const useStyles = makeStyles(styles);
 
@@ -300,7 +301,7 @@ export default function SectionProducts() {
                     items.map(item => {
                       return (
                         <GridItem md={4} sm={4} style={{marginBottom: '2rem'}}>
-                          <PostCard key={item._id} post={item}/>
+                            <ItemCard item={item}/>
                         </GridItem>
                       )
                     })

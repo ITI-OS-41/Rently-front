@@ -6,6 +6,7 @@ import React from "react";
 import teamStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/teamStyle.js";
 import {makeStyles} from "@material-ui/core";
 import CardAvatar from "../Card/CardAvatar";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(teamStyle);
 export default function UserCard(props) {
@@ -15,13 +16,13 @@ export default function UserCard(props) {
   return (
     <Card profile plain>
       <CardAvatar profile plain>
-        <a href="#">
+        <Link to={`user/${user._id}`}>
           <img src={user.photo} alt={user.name} className={classes.img} style={{
             width: '130px',
             height: '130px',
             objectFit: 'cover'
           }} />
-        </a>
+        </Link>
       </CardAvatar>
       <CardBody plain>
         <h4 className={classes.cardTitle}>{user.firstname} {user.lastname}</h4>

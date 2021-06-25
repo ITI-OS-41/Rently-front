@@ -6,6 +6,7 @@ import React from "react";
 import blogsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/blogsStyle.js";
 import {makeStyles} from "@material-ui/core";
 import {stripHtml} from "../../functions/helpers";
+import {Link} from "react-router-dom";
 
 const style = {
   ...blogsStyle,
@@ -24,18 +25,18 @@ export default function PostCard(props) {
   return (
     <Card >
       <CardHeader   image>
-        <a href="#">
+        <Link to={`blog/${post._id}`}>
           <img src={post.photo} style={{
             height: '250px',
             objectFit: 'cover'
           }} alt=""/>
-        </a>
+        </Link>
       </CardHeader>
       <CardBody plain>
         <h4 style={{textAlign: 'center'}} className={classes.cardTitle + ' ' + classes.oneLine} >
-          <a href="#" >
+          <Link to={`blog/${post._id}`}>
             {post.title}
-          </a>
+          </Link>
         </h4>
         <p className={classes.oneLine}>{stripHtml(post.description)}</p>
       </CardBody>
