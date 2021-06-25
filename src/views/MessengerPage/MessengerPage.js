@@ -1,24 +1,13 @@
-import React, {useState, useEffect, useRef, useContext} from "react";
-import {
-    Switch,
-    Route,
-    Link, NavLink,
-} from "react-router-dom";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer.js";
 
-import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
-import Parallax from "components/Parallax/Parallax.js";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
 import {Scrollbars} from 'react-custom-scrollbars';
 import {SCROLLBAR_CONFIG} from "../../config";
 import MessageTextInput from "./MessageTextInput";
@@ -27,7 +16,6 @@ import Card from "../../components/Card/Card.js";
 import CardBody from "../../components/Card/CardBody.js";
 import {Message} from "./Message";
 import MessengerPageParallax from "./MessengerPageParallax";
-import * as PropTypes from "prop-types";
 import Conversations from "./Conversations";
 import {get, post} from "../../functions/request";
 import LoadingContainer from "../../components/global/LoadingContainer";
@@ -39,6 +27,7 @@ const useStyles1 = makeStyles(profilePageStyle);
 
 
 export default function MessengerPage(props) {
+
     const classes1 = useStyles1();
     const {user} = useContext(UserContext);
 
@@ -69,23 +58,17 @@ export default function MessengerPage(props) {
         setTemp(temp+1)
     }, 5000);
 
+    
 
-        useEffect(()=>{
+    useEffect(()=>{
         if (activeConversation){
 
-            // setMessagesIsLoading(true)
-            get(`message/${activeConversation._id}`)
-                .then(res=>{
-                    if (messages.length !== res.data.length){
-                        setMessages(res.data)
-                    }
-                })
-                .catch(e=>{
-                    console.log(e)
-                })
-                .finally(_=>{
-                    // setMessagesIsLoading(false)
-                })
+        get(`message/${activeConversation._id}`)
+            .then(res=>{
+                if (messages.length !== res.data.length){
+                    setMessages(res.data)
+                }
+            })
         }
     },[activeConversation,temp]);
 
@@ -120,8 +103,7 @@ export default function MessengerPage(props) {
                 <div style={{padding: '0 1rem'}}>
                     <GridContainer style={{height: '75vh'}}>
                         <Grid item sm={3} style={{height: '100%', overflowY: 'auto'}}>
-                            <Conversations setConveration={c=>setActiveConversation(c)}/>
-
+                            <Conversations setConversation={c=>setActiveConversation(c)} {...props} />
                         </Grid>
 
                         <Grid item sm={9}>
@@ -154,9 +136,13 @@ export default function MessengerPage(props) {
                                     </CardBody>
                                 </Card>
 
-                                <MessageTextInput onSubmit={(text) => {
-                                    handleAddMessage(text)
-                                }}/>
+                                {
+                                    activeConversation && (
+                                        <MessageTextInput onSubmit={(text) => {
+                                            handleAddMessage(text)
+                                        }}/>
+                                    )
+                                }
                             </div>
 
 

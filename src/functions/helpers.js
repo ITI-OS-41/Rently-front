@@ -67,4 +67,9 @@ const dateTime = (datetime) =>{
     return dateObject.toLocaleString()
 }
 
-export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml, uploadImage, dateTime}
+
+const changeQueryParamsURL = (query) =>{
+    const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + query;
+    window.history.pushState({path:newURL},'',newURL);
+}
+export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml, uploadImage, dateTime,changeQueryParamsURL}

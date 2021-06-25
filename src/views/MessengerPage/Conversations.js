@@ -13,19 +13,24 @@ import LoadingContainer from "../../components/global/LoadingContainer";
 import CategoryCard from "../../components/global/CategoryCard";
 import NoDataToShow from "../../components/global/NoDataToShow";
 import {UserContext} from "../../Context";
+import {changeQueryParamsURL} from "../../functions/helpers";
 
 
 export default function (props) {
-    const {setConveration, ...rest} = props;
+
+
+    const {setConversation, ...rest} = props;
     const [isLoading, setIsLoading] = useState(true)
     const [conversations, setConversations] = useState([]);
-    const [activeConversation, setActiveConversation] = useState(conversations[0]);
+    const [activeConversation, setActiveConversation] = useState();
 
     const {user} = useContext(UserContext);
 
     // get conversations
     useEffect(() => {
         setIsLoading(true)
+
+
 
         get('conversation')
             .then(res => {
@@ -36,13 +41,42 @@ export default function (props) {
             })
             .finally(() => {
                 setIsLoading(false)
-            })
+                /*
+                    if (convId){
+                        conversations.forEach(con=>{
+                            console.log("inside convId")
+                            if(convId == con._id){
+                                setActiveConversation(con)
+                            }
+                        })
+                    } else {
+                        setActiveConversation(conversations[0])
+                    }
+                 */
+            });
     }, []);
 
 
+    useEffect(()=>{
+        const convId = rest?.location?.search.split('?')[1];
+        if (convId){
+            conversations.forEach(con=>{
+                if(convId == con._id){
+                    handleChangeConversation(con)
+                }
+            })
+        } else {
+            handleChangeConversation(conversations[0])
+        }
+    },[conversations]);
+
+
     const handleChangeConversation = (conversation) => {
-        setActiveConversation(conversation)
-        setConveration(conversation)
+        if (conversation){
+            setActiveConversation(conversation)
+            setConversation(conversation)
+            changeQueryParamsURL(`?${conversation._id}`)
+        }
     };
 
 
