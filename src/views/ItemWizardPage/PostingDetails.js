@@ -48,7 +48,7 @@ const validationSchema = yup.object({
     .required("description is required!"),
 });
 
-export const FormUserDetails = ({
+export const PostingDetails = ({
   formData,
   setFormData,
   nextStep,
@@ -62,11 +62,11 @@ export const FormUserDetails = ({
   const uploadPhotos = (photos) => {
     console.log(photos);
   };
-  useEffect(() => {
-    get("category").then((res) => {
-      setCategories(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   get("category").then((res) => {
+  //     setCategories(res.data);
+  //   });
+  // }, []);
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -199,7 +199,7 @@ export const FormUserDetails = ({
   );
 };
 
-FormUserDetails.propTypes = {
+PostingDetails.propTypes = {
   formData: PropTypes.object.isRequired,
   setFormData: PropTypes.func.isRequired,
   nextStep: PropTypes.func.isRequired,

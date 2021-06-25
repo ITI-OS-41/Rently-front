@@ -41,7 +41,7 @@ const validationSchema = yup.object({
   condition: yup.string().required("item condition is required"),
   stock: yup.number().positive().required("This field is requried"),
 });
-export const FormPersonalDetails = ({
+export const BasicInfo = ({
   formData,
   setFormData,
   nextStep,
@@ -320,7 +320,7 @@ export const FormPersonalDetails = ({
   );
 };
 
-FormPersonalDetails.propTypes = {
+BasicInfo.propTypes = {
   formData: PropTypes.object.isRequired,
   setFormData: PropTypes.func.isRequired,
   nextStep: PropTypes.func.isRequired,

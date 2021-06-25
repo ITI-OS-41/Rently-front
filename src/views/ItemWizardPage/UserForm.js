@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FormUserDetails } from "./FormUserDetails";
-import { FormPersonalDetails } from "./FormPersonalDetails";
+import { PostingDetails } from "./PostingDetails";
+import { BasicInfo } from "./BasicInfo";
 import { PricingAndProtection } from "./PricingAndProtection";
 import { Confirm } from "./Confirm";
 import { Success } from "./Success";
@@ -31,7 +31,7 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              <FormPersonalDetails
+              <BasicInfo
                 formData={formData}
                 setFormData={setFormData}
                 nextStep={nextStep}
@@ -46,7 +46,7 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              <FormUserDetails
+              <PostingDetails
                 formData={formData}
                 setFormData={setFormData}
                 nextStep={nextStep}
@@ -84,7 +84,7 @@ export default function UserForm() {
           />
         </>
       );
-    default:
-      return <Success />;
+   default:
+     return;
   }
 }

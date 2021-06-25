@@ -18,12 +18,28 @@ const useStyles = makeStyles((theme) => ({
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const [isRequesting, setIsRequesting] = useState(false);
 
-  const submitForm = (values) => {
+  const submitForm = (formData) => {
     setIsRequesting(true);
 
-    post("api/item", values, "Submitted successfully!")
+    let send = { ...formData };
+
+    send.location = {
+      type: "Point",
+      coordinates: [1, 2],
+      address: "asd",
+    };
+    send.subcategory = "60d23b41ebfe6a461c8c4b50",
+    send.owner = "60d0e7957af53611781c0e72",
+    send.photo = "2",
+    send.stock = send.stock.toString();
+    send.deposit = "2000"
+    send.status = "true"
+    send.deliverable = "true"
+
+
+    post("item", send, "Submitted successfully!")
       .then((response) => {
-        history.push("/login");
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -144,7 +160,6 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                 color="primary"
                 variant="contained"
                 className={classes.button}
-                onClick={() => nextStep()}
               >
                 Submit & Review
               </Button>

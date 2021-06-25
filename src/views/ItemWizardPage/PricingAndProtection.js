@@ -72,6 +72,13 @@ export const PricingAndProtection = ({
       <Formik
         initialValues={formData}
         onSubmit={(values) => {
+          values.price = {
+            hour: values.hour || "",
+            day: values.day || "",
+            week: values.week || "",
+            month: values.day || "",
+          };
+
           setFormData(values);
           direction === "back" ? prevStep() : nextStep();
         }}
