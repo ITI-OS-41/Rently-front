@@ -33,7 +33,7 @@ export default function StoreReviews(props) {
     get(`/itemrate`)
     .then(response => {
       let self = []
-      response.data.forEach(review=>{
+      response.data.res.forEach(review=>{
         if(review.item.owner._id === id){
           self.push(review)
         }

@@ -30,7 +30,7 @@ export default function MainPageCategories({...rest}) {
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
-        const res = response.data
+        const res = response.data.res
         setCategories(res)
       })
       .catch(err => {

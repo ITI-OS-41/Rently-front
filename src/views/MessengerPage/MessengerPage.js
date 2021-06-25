@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useContext} from "react";
 import {
     Switch,
     Route,
@@ -29,59 +29,26 @@ import {Message} from "./Message";
 import MessengerPageParallax from "./MessengerPageParallax";
 import * as PropTypes from "prop-types";
 import Conversations from "./Conversations";
+import {get, post} from "../../functions/request";
+import LoadingContainer from "../../components/global/LoadingContainer";
+import NoDataToShow from "../../components/global/NoDataToShow";
+import {UserContext} from "../../Context";
 
 
 const useStyles1 = makeStyles(profilePageStyle);
 
-const m = [
-    {
-    _id: 512,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: true,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-    _id: 3212,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: false,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-        _id: 321,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: true,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-        _id: 124,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: false,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-        _id: 412,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: false,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-];
 
 export default function MessengerPage(props) {
     const classes1 = useStyles1();
+    const {user} = useContext(UserContext);
 
+    const [messagesIsLoading, setMessagesIsLoading] = useState(false)
     const messagesScrollbar = useRef(null);
 
-    const [messages, setMessages] = useState(m || []);
+    const [messages, setMessages] = useState([]);
+
+    const [activeConversation, setActiveConversation] = useState();
+    const [temp, setTemp] = useState(1);
 
     const scrollToBottom = () => {
         if (!messagesScrollbar || !messagesScrollbar.current) {
@@ -98,15 +65,47 @@ export default function MessengerPage(props) {
         scrollToBottom()
     },[messages]);
 
+    setTimeout(()=>{
+        setTemp(temp+1)
+    }, 5000);
 
 
-    const handleAddMessage = (msg) => {
-        setMessages(previosState => (
-            [
-                ...previosState,
-                msg
-            ]
-        ));
+        useEffect(()=>{
+        if (activeConversation){
+
+            // setMessagesIsLoading(true)
+            get(`message/${activeConversation._id}`)
+                .then(res=>{
+                    if (messages.length !== res.data.length){
+                        setMessages(res.data)
+                    }
+                })
+                .catch(e=>{
+                    console.log(e)
+                })
+                .finally(_=>{
+                    // setMessagesIsLoading(false)
+                })
+        }
+    },[activeConversation,temp]);
+
+
+
+    const handleAddMessage = (text) => {
+        post(`message`,
+            {
+                "conversationId": activeConversation._id,
+                "sender": user._id,
+                text
+            })
+            .then(res=>{
+                let newMessage = res.data
+                newMessage.sender = user
+                setMessages([
+                    ...messages,
+                    newMessage
+                ])
+            })
     };
 
 
@@ -121,7 +120,7 @@ export default function MessengerPage(props) {
                 <div style={{padding: '0 1rem'}}>
                     <GridContainer style={{height: '75vh'}}>
                         <Grid item sm={3} style={{height: '100%', overflowY: 'auto'}}>
-                            <Conversations/>
+                            <Conversations setConveration={c=>setActiveConversation(c)}/>
 
                         </Grid>
 
@@ -137,18 +136,26 @@ export default function MessengerPage(props) {
                                         <Scrollbars ref={messagesScrollbar} {...SCROLLBAR_CONFIG}
                                                     style={{height: '100%'}}>
                                             {
-                                                messages.map(message => (
-                                                    <Message key={message._id} photo={message.photo}
-                                                             displayName={message.displayName} message={message.message}
-                                                             timestamp={message.timestamp} isMine={message.isMine}/>
-                                                ))
+                                                messagesIsLoading
+                                                    ?
+                                                    <LoadingContainer/>
+                                                    :
+                                                    messages.length
+                                                        ?
+
+
+                                                        messages.map(message => (
+                                                            <Message key={message._id} message={message}/>
+                                                        ))
+                                                        :
+                                                        <NoDataToShow text="No messages yet"/>
                                             }
                                         </Scrollbars>
                                     </CardBody>
                                 </Card>
 
-                                <MessageTextInput onSubmit={(msg) => {
-                                    handleAddMessage(msg)
+                                <MessageTextInput onSubmit={(text) => {
+                                    handleAddMessage(text)
                                 }}/>
                             </div>
 

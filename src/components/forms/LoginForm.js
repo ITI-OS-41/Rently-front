@@ -52,15 +52,12 @@ export default function LoginForm({ props }) {
     const submitForm = (values) => {
         setIsRequesting(true);
 
-        post('auth/login', values, "Login successfully!")
+        post('user/login', values, "Login successfully!")
             .then(response => {
-                const token = response.data.token
-                const userid = response.data.user._id
+                const token = response.data.token;
+                const userid = response.data._id;
 
-                const allData = {
-                    ...response.data.user,
-                    token
-                };
+                const allData = response.data;
 
                 localStorage.setItem('rently-user', JSON.stringify(allData));
 

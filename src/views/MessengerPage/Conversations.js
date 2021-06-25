@@ -1,7 +1,7 @@
 import {Scrollbars} from "react-custom-scrollbars";
 import {SCROLLBAR_CONFIG} from "../../config";
 import * as PropTypes from "prop-types";
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from "@material-ui/core/ListItem";
@@ -12,42 +12,24 @@ import {get} from "../../functions/request";
 import LoadingContainer from "../../components/global/LoadingContainer";
 import CategoryCard from "../../components/global/CategoryCard";
 import NoDataToShow from "../../components/global/NoDataToShow";
+import {UserContext} from "../../Context";
 
-
-const c = [
-    {
-        _id: 11,
-        photo: 'https://material-ui.com/static/images/avatar/1.jpg',
-        username: 'Remy Sharp',
-        isOnline: true
-    },
-    {
-        _id: 321,
-        photo: 'https://material-ui.com/static/images/avatar/1.jpg',
-        username: 'Remy Sharp',
-        isOnline: true
-    },
-    {
-        _id: 41,
-        photo: 'https://material-ui.com/static/images/avatar/1.jpg',
-        username: 'Remy Sharp',
-        isOnline: true
-    },
-];
 
 export default function (props) {
+    const {setConveration, ...rest} = props;
     const [isLoading, setIsLoading] = useState(true)
     const [conversations, setConversations] = useState([]);
     const [activeConversation, setActiveConversation] = useState(conversations[0]);
 
+    const {user} = useContext(UserContext);
 
     // get conversations
     useEffect(() => {
-        setIsLoading(false)
+        setIsLoading(true)
 
         get('conversation')
             .then(res => {
-                console.log(res)
+                setConversations(res.data)
             })
             .catch(e => {
                 console.log(e)
@@ -60,6 +42,7 @@ export default function (props) {
 
     const handleChangeConversation = (conversation) => {
         setActiveConversation(conversation)
+        setConveration(conversation)
     };
 
 
@@ -74,21 +57,27 @@ export default function (props) {
                     conversations.length
                         ?
                         conversations.map(conversation => (
-                            <ListItem
-                                onClick={() => {
-                                    handleChangeConversation(conversation)
-                                }}
-                                selected={activeConversation === conversation}
-                                button
-                                key={conversation._id}
-                            >
-                                <ListItemIcon>
-                                    <Badge color="primary" variant="dot" invisible={!conversation.isOnline}>
-                                        <Avatar alt={conversation.name} src={conversation.photo}/>
-                                    </Badge>
-                                </ListItemIcon>
-                                <ListItemText primary="Remy Sharp">{conversation.name}</ListItemText>
-                            </ListItem>
+                            conversation.members.map(member=>(
+                                (member._id !== user._id) && (
+
+                                    <ListItem
+                                        onClick={() => {
+                                            handleChangeConversation(conversation)
+                                        }}
+                                        selected={activeConversation === conversation}
+                                        button
+                                        key={conversation._id}
+                                    >
+                                        <ListItemIcon>
+                                            <Badge color="primary" variant="dot" invisible={!conversation.isOnline}>
+                                                <Avatar alt={member.username} src={member.photo}/>
+                                            </Badge>
+                                        </ListItemIcon>
+                                        <ListItemText primary={member.username}>{member.username}</ListItemText>
+                                    </ListItem>
+
+                                )
+                            ))
                         ))
                         :
                         <NoDataToShow text="No conversations yet"/>

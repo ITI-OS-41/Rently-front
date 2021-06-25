@@ -30,7 +30,7 @@ export default function StoreProducts() {
 
     get(`/item?${query}`)
       .then(response => {
-        setItems(response.data)
+        setItems(response.data.res)
       })
       .catch(err=>console.log(err))
       .finally(()=>{

@@ -57,14 +57,14 @@ export default function SectionProducts() {
   useEffect(() => {
     get('/category')
       .then(response => {
-        setCategorys(response.data)
+        setCategorys(response.data.res)
       })
   }, [])
 
   useEffect(() => {
     selectedCategory && get(`/subcategory?category=${selectedCategory}`)
       .then(response => {
-        setSubcategorys(response.data)
+        setSubcategorys(response.data.res)
       })
   }, [selectedCategory])
 
@@ -96,7 +96,7 @@ export default function SectionProducts() {
 
     get(`/item?${query}`)
       .then(response => {
-        setItems(response.data)
+        setItems(response.data.res)
       })
       .catch(err=>console.log(err))
       .finally(()=>{

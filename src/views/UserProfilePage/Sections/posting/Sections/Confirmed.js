@@ -9,7 +9,7 @@ export default function Confirmed() {
   useEffect(() => {
     get(`/rent?status=approved&owner=${id}`)
       .then((response) => {
-        let res = response.data;
+        let res = response.data.res;
         setRent(res);
         console.log("current possting approved data res----> ", res);
       })

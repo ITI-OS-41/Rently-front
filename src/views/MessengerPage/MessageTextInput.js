@@ -13,13 +13,7 @@ export default function (props) {
         if(!msg.length){
             return
         }
-        onSubmit({
-
-            message: msg,
-            timestamp: 'timestamp',
-            isMine: true,
-            _id: Date.now()
-        });
+        onSubmit(msg);
         setMsg('')
     };
 

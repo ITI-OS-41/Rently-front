@@ -3,9 +3,36 @@
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/Confirm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/Confirm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/RentHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/RentHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/UserForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/UserForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/RegisterForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Blogs/Sections/SectionPills.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Blogs/Sections/SectionPills.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageAppReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageAppReview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopCategories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopPosts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/BasicInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/BasicInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/PricingAndProtection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/PricingAndProtection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Conversations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Conversations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/MessageTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/MessageTextInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/MessengerPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/MessengerPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ProductPage/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProductPage/ItemPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/SearchFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/SearchFilter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreReviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreReviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/UserStorePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/UserStorePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SearchPage/Sections/SectionProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SearchPage/Sections/SectionProducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Confirmed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Confirmed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Confirmed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Confirmed.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +145,7 @@
       <workItem from="1624439690903" duration="15127000" />
       <workItem from="1624534209649" duration="23949000" />
       <workItem from="1624607645936" duration="8528000" />
-      <workItem from="1624619798303" duration="1368000" />
+      <workItem from="1624619798303" duration="15770000" />
     </task>
     <servers />
   </component>
@@ -129,31 +156,31 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1323" height="191" key="GridCell.Tab.0.bottom" timestamp="1624581513475">
+    <state width="1397" height="234" key="GridCell.Tab.0.bottom" timestamp="1624647547425">
       <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513475" />
+    <state width="1397" height="234" key="GridCell.Tab.0.bottom/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624647547425" />
     <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
-    <state width="1323" height="191" key="GridCell.Tab.0.center" timestamp="1624581513474">
+    <state width="1397" height="234" key="GridCell.Tab.0.center" timestamp="1624647547424">
       <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
+    <state width="1397" height="234" key="GridCell.Tab.0.center/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624647547424" />
     <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
-    <state width="1323" height="191" key="GridCell.Tab.0.left" timestamp="1624581513474">
+    <state width="1397" height="234" key="GridCell.Tab.0.left" timestamp="1624647547424">
       <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
+    <state width="1397" height="234" key="GridCell.Tab.0.left/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624647547424" />
     <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1624546622387" />
-    <state width="1323" height="191" key="GridCell.Tab.0.right" timestamp="1624581513474">
+    <state width="1397" height="234" key="GridCell.Tab.0.right" timestamp="1624647547424">
       <screen x="-1440" y="-127" width="1440" height="870" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624581513474" />
+    <state width="1397" height="234" key="GridCell.Tab.0.right/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624647547424" />
     <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1624546622388" />
-    <state x="395" y="28" width="607" height="683" key="find.popup" timestamp="1624620775870">
+    <state x="395" y="28" width="607" height="683" key="find.popup" timestamp="1624628771393">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624573917672" />
-    <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624620775870" />
+    <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624628771393" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624551403303" />
     <state x="346" y="59" width="673" height="679" key="search.everywhere.popup" timestamp="1624620033151">
       <screen x="0" y="0" width="1366" height="738" />

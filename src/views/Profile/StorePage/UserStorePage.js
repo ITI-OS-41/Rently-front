@@ -32,7 +32,7 @@ export default function userStorePage(props) {
   useEffect(() => {
     get(`/user/${id}`)
       .then((response) => {
-        setUser(response.data);
+        setUser(response.data.res);
       })
       .catch((err) => {});
   }, []);

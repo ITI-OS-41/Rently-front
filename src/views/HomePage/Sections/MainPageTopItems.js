@@ -33,7 +33,7 @@ export default function MainPageItems({ ...rest }) {
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
-        const res = response.data
+        const res = response.data.res
         setItems(res)
       })
       .catch(err=>{

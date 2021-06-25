@@ -33,7 +33,7 @@ export default function MainPageTopPosts({ ...rest }) {
   useEffect(() => {
     get(`/${modelName}`)
       .then(response => {
-        const res = response.data
+        const res = response.data.res
         setItems(res.splice(-2,4))
       })
       .catch(err=>{
