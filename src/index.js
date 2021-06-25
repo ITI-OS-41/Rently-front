@@ -19,6 +19,7 @@ import SearchPage from "./views/SearchPage/SearchPage";
 import CategoryPage from "./views/CategoryPage/CategoryPage";
 import SubCategoryPage from "views/SubCategoryPage/SubCategoryPage";
 import UserProfilePage from "./views/UserProfilePage/UserProfilePag";
+import UserForm from "./views/ItemWizardPage/UserForm";
 import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from './views/Blogs/Blogs';
@@ -36,6 +37,8 @@ ReactDOM.render(
                     <Route path="/error-page" component={ErrorPage}/>
                     <UserRoute path="/new" component={NewPage}/>
 
+
+                    <Route path="/create-item" component={UserForm}/>
                     <Route exact path="/category" component={CategoryPage}/>
                     <Route path="/category/:id" component={SubCategoryPage}/>
 
