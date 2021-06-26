@@ -16,7 +16,6 @@ import Footer from "components/Footer/Footer.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import SectionLatestOffers from "views/EcommercePage/Sections/SectionLatestOffers.js";
 import SectionProducts from "views/EcommercePage/Sections/SectionProducts.js";
-import SectionItems from "views/EcommercePage/Sections/SectionItems";
 import SectionBlog from "views/EcommercePage/Sections/SectionBlog.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -34,41 +33,12 @@ import face5 from "assets/img/faces/marc.jpg";
 import face6 from "assets/img/faces/kendall.jpg";
 import face7 from "assets/img/faces/card-profile5-square.jpg";
 import face8 from "assets/img/faces/card-profile2-square.jpg";
-import { get } from '../../functions/request';
 import styles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
 
 const useStyles = makeStyles(styles);
 
 export default function EcommercePage() {
   
-  const [items, setItems] = useState([]);
-  const ITEMS_URL = "/item/";
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-
-    const getItems = async () => {
-      const itemsFromServer = await fetchItems()
-      setItems(itemsFromServer)
-    }
-    getItems()
-
-  }, []);
-
-  const fetchItems = async () => {
-    try {
-      const res = await get(ITEMS_URL);
-      const { data } = res;
-
-      console.log(data);
-      return data
-
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const classes = useStyles();
   return (
     <div>
@@ -107,10 +77,9 @@ export default function EcommercePage() {
       </Parallax>
 
       <div className={classNames(classes.main, classes.mainRaised)}>
-        {/* <SectionLatestOffers /> */}
-        <SectionItems items={items} />
+        <SectionLatestOffers />
       </div>
-      {/* <SectionBlog /> */}
+      <SectionBlog />
       <div
         className={classNames(
           classes.subscribeLine,
