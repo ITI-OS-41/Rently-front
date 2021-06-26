@@ -10,7 +10,7 @@ import history from "functions/history";
 import ContactUsPage from "views/ContactUsPage/ContactUsPage.js";
 import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
-import ItemPage from "views/ProductPage/ItemPage.js";
+import ItemPage from "views/ItemPage/ItemPage.js";
 import ErrorPage from "views/ErrorPage/ErrorPage.js";
 import NewPage from "views/NewPage/NewPage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage";
@@ -26,10 +26,9 @@ import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
-import EcommercePage from "./views/EcommercePage/EcommercePage";
-import Legal from "./views/Legal/Legal";
-
+import ShoppingCart from "./views/ShoppingCartPage/ShoppingCartPage";
 import Context from "./Context";
+import Legal from "./views/Legal/Legal";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -37,22 +36,26 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
-          <Route path="/about-us" component={AboutUsPage} />
-          <Route path="/contact-us" component={ContactUsPage} />
           <Route path="/error-page" component={ErrorPage} />
           <UserRoute path="/new" component={NewPage} />
+
           <Route path="/create-item" component={UserForm} />
           <Route exact path="/category" component={CategoryPage} />
           <Route path="/category/:id" component={SubCategoryPage} />
+
           <Route path="/blog/:id" component={SingleBlog} />
           <Route path="/blog" component={Blogs} />
-          <Route exact path="/item" component={EcommercePage} />
-          <Route exact path="/item/:id" component={ItemPage} />
+
           <VisitorRoute exact path="/login" component={LoginPage} />
           <VisitorRoute path="/login/:activation_token" component={LoginPage} />
           <VisitorRoute path="/register" component={RegisterPage} />
+
           <Route path="/search" component={SearchPage} />
+          <Route path="/item/:id" component={ItemPage} />
+          <Route path="/cart" component={ShoppingCart} />
+
           <UserRoute path="/messenger" component={MessengerPage} />
+
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
 
