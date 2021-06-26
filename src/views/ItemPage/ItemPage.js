@@ -1,5 +1,6 @@
 /*eslint-disable*/
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+
 import { Link, useParams } from 'react-router-dom';
 import { get } from '../../functions/request';
 
@@ -9,8 +10,10 @@ import classNames from "classnames";
 import ImageGallery from "react-image-gallery";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
 // @material-ui/icons
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import LocalShipping from "@material-ui/icons/LocalShipping";
@@ -19,16 +22,21 @@ import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "../../components/global/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
+import Footer from "../../components/global/Footer.js";
+import LoadingContainer from "../../components/global/LoadingContainer";
+
 import Parallax from "components/Parallax/Parallax.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Footer from "../../components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import Accordion from "components/Accordion/Accordion.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
 import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
 import ItemRating from 'components/Items/ItemRating';
 import ItemCancellation from 'components/Items/ItemCancellation';
+import ItemRent from 'components/Items/ItemRent.js';
+import {UserContext} from "../../Context";
+
 import { Divider } from "@material-ui/core";
 
 // images
@@ -38,28 +46,40 @@ import product3 from "assets/img/examples/product3.jpg";
 import product4 from "assets/img/examples/product4.jpg";
 
 const customStyle = {
-  smallRateLabel: {
-    textAlign: "center!important",
-    fontSize: "16px",
-    padding: "0 2rem",
+  timeRateLabel: {
+    textAlignEnd: "center",
+    fontSize: "14px",
+    padding: "0 2.5rem",
 
   },
-  bigRateLabel: {
+  valueRateLabel: {
     fontSize: "18px",
     whiteSpace: "nowrap",
     overFlow: "hidden",
     textOverflow: "ellipsis",
-    fontWeight: "700!important",
-    padding: "0 .1rem",
+    fontWeight: "600!important",
+    padding: "0 .7rem",
     width: "100%"
 
 
   },
-  textColor: {
-
+  storeName: {
+    letterSpacing: "0",
+    textAlignLast: "left",
+    fontSize: "12px",
+    color: "#00acc1!important",
+    width: "100%",
+    fontWeight: "700!important"
   },
-
+  cartButton: {
+    width: "100%",
+    textTransform: "capitalize"
+  },
+  selectColor: {
+    color: "#00acc1",
+  },
 }
+
 const useStyles = makeStyles({
   ...productStyle,
   ...customStyle,
@@ -67,30 +87,31 @@ const useStyles = makeStyles({
 
 export default function ItemPage(props) {
 
-
+  const classes = useStyles();
   const id = props.match.params.id;
   const ITEM_URL = `/item/${id}`;
 
   const [item, setItem] = useState(null);
+  const [isLoading, setIsLoading] = useState(true)
+  const [priceSelect, setPriceSelect] = useState('');
+  const {user} = useContext(UserContext);
 
   useEffect(() => {
-    fetchItem();
+    get(ITEM_URL)
+      .then(response => {
+        const res = response.data
+        console.log(res);
+        setItem(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [])
 
-  }, []);
 
-  const fetchItem = async () => {
-    try {
-      const response = await get(ITEM_URL);
-      setItem(response.data.res)
-      // console.log(response)
-      console.log(response.data)
-
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const classes = useStyles();
   const images = [
     {
       original: product3,
@@ -111,40 +132,32 @@ export default function ItemPage(props) {
   ];
 
   return (
-    item && (
-      <div className={classes.productPage}>
 
-        <Header
-          brand="Material Kit PRO React"
-          links={<HeaderLinks dropdownHoverColor="info" />}
-          fixed
-          color="transparent"
-          changeColorOnScroll={{
-            height: 100,
-            color: "info",
-          }}
-        />
-        <Parallax
-          image={require("assets/img/examples/clark-street-merc.jpg").default}
-          filter="dark"
-          className={classes.pageHeader}
-        >
-          <div className={classes.container}>
-            <GridContainer className={classes.titleRow}>
-              <GridItem md={4} className={classes.mlAuto}>
-                <Button color="white" className={classes.floatRight}>
-                  <ShoppingCart /> 0 items
-                </Button>
-              </GridItem>
-            </GridContainer>
-          </div>
-        </Parallax>
+    <div className={classes.productPage}>
+
+      <Header />
+      <Parallax
+        image={require("assets/img/examples/clark-street-merc.jpg").default}
+        filter="dark"
+        className={classes.pageHeader}
+      >
+        <div className={classes.container}>
+          <GridContainer className={classes.titleRow}>
+            <GridItem md={4} className={classes.mlAuto}>
+              {/* <Button color="white" className={classes.floatRight}>
+                <ShoppingCart /> 0.00
+              </Button> */}
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
+      {item && (
 
         <div className={classNames(classes.section, classes.sectionGray)}>
           <div className={classes.container}>
 
-            <div className={classNames(classes.main, classes.mainRaised, classes.textCap)} key={item._id}>
-              <GridContainer>
+            <div className={classNames(classes.main, classes.mainRaised, classes.textCap)}>
+              {item ? (<GridContainer>
                 <GridItem md={6} sm={6}>
                   <ImageGallery
                     showFullscreenButton={false}
@@ -176,19 +189,21 @@ export default function ItemPage(props) {
                   <h1 className={classNames(classes.title, classes.CardText)}>{item.name}</h1>
                   <span className="prices"><small>{item.location.address}</small></span><br />
                   <small><ItemRating itemRate={item.itemRate} /></small>
-                  <GridContainer>
-
-                    {Object.entries(item.price).map((price, id) => {
-                      if (price[1] > 0) {
-                        return (
-                          <GridItem item key={id} md={3} sm={3}>
-                            <span className={classes.bigRateLabel}>EGP${price[1]}.00</span><Divider orientation="vertical" flexItem />
-                            <span className={classes.smallRateLabel}>{price[0]}</span>
-                          </GridItem>
-                        )
-                      }
-                    })}
-                  </GridContainer>
+                  <GridItem md={12} sm={6}>
+                    <GridContainer>
+                      {Object.entries(item.price).map((price, id) => {
+                        if (price[1] > 0) {
+                          return (
+                            <span key={id} >
+                              <span className={classes.valueRateLabel}>EGP${price[1]}.00</span>
+                              <Divider orientation="vertical" flexItem />
+                              <span className={classes.timeRateLabel}>{price[0]}</span>
+                            </span>
+                          )
+                        }
+                      })}
+                    </GridContainer>
+                  </GridItem>
 
                   <Accordion
                     active={0}
@@ -206,11 +221,9 @@ export default function ItemPage(props) {
                         title: `Owned by`,
                         content: (
                           <p>
-                            <strong>Owned by {item.owner.username}</strong> <br />
-
+                            <strong>{item.owner.username}</strong> <br />
                             <small>{item.location.address}</small> <br />
-                            <a href={`/items/${item._id}`} className={classes.storeName}>View my store</a>
-
+                            <Link to={`/user/${item.owner._id}`} className={classes.storeName}>View my store</Link>
                           </p>
                         ),
                       },
@@ -218,7 +231,6 @@ export default function ItemPage(props) {
                         title: "Pickup & Return Options",
                         content: (
                           <strong>{item.deliverable ? 'Delivery option is available.' : 'No Delivery Option.'}</strong>
-
                         ),
                       },
                       {
@@ -229,22 +241,50 @@ export default function ItemPage(props) {
                       },
                     ]}
                   />
-                  <small><em>Starting at EGP${Math.min(...Object.values(item.price))}.00</em></small>
+                  <GridContainer >
+                    <GridItem md={6} sm={6} >
+                      <small><em><strong>Starting at </strong>EGP${Math.min(...Object.values(item.price))}.00</em></small><br />
 
+                      <FormControl
+                        fullWidth
+                        className={classes.selectFormControl}
+                      >
+                        <Select
+                          MenuProps={{
+                            className: classes.selectMenu,
+                          }}
+                          classes={{
+                            select: classes.select,
+                          }}
+                          value={priceSelect}
+                          onChange={(event) => setPriceSelect(event.target.value)}
+                          inputProps={{
+                            name: "priceSelect",
+                            id: "price-select",
+                          }}
+                        >
+                          {Object.keys(item.price).map((time, timeIndex) => {
+                            return (<MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected,
+                              }}
+                              value={time}
+                              key={timeIndex}
 
-                  <GridContainer className={classes.pullRight}>
-                    <GridItem md={6} className={classes.mlAuto}>
-                      <Button round color="info">
-                        Set Dates and Times &nbsp; <i class="fas fa-stopwatch"></i>
-                      </Button>
-                      <Button round color="info">
-                        Request To Rent &nbsp; <ShoppingCart />
-                      </Button>
+                            >
+                              ${item.price[time]}.00 {`${time[0].charAt(0).toUpperCase() + time[0].slice(1)}`}
+                            </MenuItem>)
+                          })}
+                        </Select>
+                      </FormControl>
                     </GridItem>
-
+                    <GridItem md={6} sm={1}  >
+                      <ItemRent item={item} priceSelect={priceSelect>0?priceSelect:Math.min(...Object.values(item.price))} user={user._id}/>
+                    </GridItem>
                   </GridContainer>
                 </GridItem>
-              </GridContainer>
+              </GridContainer>) : <LoadingContainer />}
             </div>
 
 
@@ -281,61 +321,8 @@ export default function ItemPage(props) {
             </div>
 
           </div>
-        </div>
-        <Footer
-          content={
-            <div>
-              <div className={classes.left}>
-                <List className={classes.list}>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/?ref=mkpr-pricing"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      Creative Tim
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/presentation?ref=mkpr-pricing"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      About us
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a href="//blog.creative-tim.com/" className={classes.block}>
-                      Blog
-                    </a>
-                  </ListItem>
-                  <ListItem className={classes.inlineBlock}>
-                    <a
-                      href="https://www.creative-tim.com/license?ref=mkpr-pricing"
-                      target="_blank"
-                      className={classes.block}
-                    >
-                      Licenses
-                    </a>
-                  </ListItem>
-                </List>
-              </div>
-              <div className={classes.right}>
-                &copy; {1900 + new Date().getYear()} , made with{" "}
-                <Favorite className={classes.icon} /> by{" "}
-                <a
-                  href="https://www.creative-tim.com?ref=mkpr-pricing"
-                  target="_blank"
-                  className={classes.aClasses}
-                >
-                  Creative Tim
-                </a>{" "}
-                for a better web.
-              </div>
-            </div>
-          }
-        />
-      </div>
-    ));
+        </div>)}
+      <Footer />
+    </div>
+  );
 }
