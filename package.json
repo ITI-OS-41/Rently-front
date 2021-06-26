@@ -27,6 +27,7 @@
     "react-slick": "^0.28.1",
     "react-tagsinput": "3.19.0",
     "yup": "^0.32.9",
+    "swiper": "^6.7.1",
     "socket.io-client": "^4.0.1",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.0.1"
