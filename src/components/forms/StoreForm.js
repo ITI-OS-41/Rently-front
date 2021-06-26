@@ -62,11 +62,11 @@ export default function StoreForm(props) {
     }
 
     patch(
-      `${modelName}/${data?._id || ''}`,
+      `${modelName}/update`,
       {store: {...values}}, type === 'edit' ? `${modelName} edited successfully!` : `${modelName} added successfully!`
     )
       .then(response => {
-        history.push(`/admin/${modelName}`);
+        // history.push(`/admin/${modelName}`);
       })
       .catch(error => {
       })

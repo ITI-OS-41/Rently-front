@@ -28,7 +28,7 @@ export default function StoreProducts() {
       query += filters[property]?`${property}=${filters[property]}&`:""
     }
 
-    get(`/item?${query}`)
+    get(`/item?${query}isPublished=true`)
       .then(response => {
         setItems(response.data.res)
       })

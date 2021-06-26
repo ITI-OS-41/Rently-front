@@ -91,9 +91,9 @@ export default function EditProfileForm({ user }) {
         values.photo = res.data.url;
       });
     }
-    patch(`/user/${id}`, values, "User Updated successfully ♥ ")
+    patch(`/user/update`, values, "User Updated successfully ♥ ")
       .then((response) => {
-        history.push("/profile");
+        // history.push("/profile");
       })
       .catch((err) => {})
       .finally(() => {
