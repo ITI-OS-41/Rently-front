@@ -26,6 +26,7 @@ import Blogs from './views/Blogs/Blogs';
 import SingleBlog from './views/SingleBlog/SingleBolg'
 import EcommercePage from "./views/EcommercePage/EcommercePage";
 import Context from "./Context";
+import MapPage from "./views/MapPage/MapPage";
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
@@ -60,7 +61,11 @@ ReactDOM.render(
                     <UserRoute path="/profile" component={UserProfilePage}/>
                     <UserRoute path="/user/:id" component={userStorePage}/>
 
+                    <Route path="/map" component={MapPage}/>
+
+
                     <Route path="/" component={HomePage}/>
+                    
 
                 </Switch>
             </Router>
