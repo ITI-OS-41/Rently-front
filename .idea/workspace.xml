@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,18 +70,18 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
-      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\ProfilePage" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\ITI\graduation project\Materialui - Client\src\components\Header" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\UserProfilePage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\views\SearchPage" />
       <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\components\global" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\StorePage" />
+      <recent name="D:\ITI\graduation project\Materialui - Client\src\views\Profile\ProfilePage" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -117,7 +118,7 @@
       <workItem from="1624534209649" duration="23949000" />
       <workItem from="1624607645936" duration="8528000" />
       <workItem from="1624619798303" duration="21318000" />
-      <workItem from="1624695916565" duration="13541000" />
+      <workItem from="1624695916565" duration="15533000" />
     </task>
     <servers />
   </component>

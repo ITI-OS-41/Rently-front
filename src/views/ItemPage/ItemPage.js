@@ -21,20 +21,21 @@ import VerifiedUser from "@material-ui/icons/VerifiedUser";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "../../components/global/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
+import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import Footer from "../../components/global/Footer.js";
 import LoadingContainer from "../../components/global/LoadingContainer";
 
-import Parallax from "components/Parallax/Parallax.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import Accordion from "components/Accordion/Accordion.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
+import Parallax from "../../components/Parallax/Parallax.js";
+import GridContainer from "../../components/Grid/GridContainer.js";
+import GridItem from "../../components/Grid/GridItem.js";
+import Button from "../../components/CustomButtons/Button.js";
+import Accordion from "../../components/Accordion/Accordion.js";
+import InfoArea from "../../components/InfoArea/InfoArea.js";
 import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
-import ItemRating from 'components/Items/ItemRating';
-import ItemCancellation from 'components/Items/ItemCancellation';
-import ItemRent from 'components/Items/ItemRent.js';
+import presentationStyle from "../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
+import ItemRating from '../../components/Items/ItemRating';
+import ItemCancellation from '../../components/Items/ItemCancellation';
+import ItemRent from '../../components/Items/ItemRent.js';
 import {UserContext} from "../../Context";
 
 import { Divider } from "@material-ui/core";
@@ -44,6 +45,7 @@ import product1 from "assets/img/examples/product1.jpg";
 import product2 from "assets/img/examples/product2.jpg";
 import product3 from "assets/img/examples/product3.jpg";
 import product4 from "assets/img/examples/product4.jpg";
+import NoDataToShow from "../../components/global/NoDataToShow";
 
 const customStyle = {
   timeRateLabel: {
@@ -81,6 +83,7 @@ const customStyle = {
 }
 
 const useStyles = makeStyles({
+  ...presentationStyle,
   ...productStyle,
   ...customStyle,
 });
@@ -89,7 +92,6 @@ export default function ItemPage(props) {
 
   const classes = useStyles();
   const id = props.match.params.id;
-  const ITEM_URL = `/item/${id}`;
 
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true)
@@ -97,7 +99,8 @@ export default function ItemPage(props) {
   const {user} = useContext(UserContext);
 
   useEffect(() => {
-    get(ITEM_URL)
+    setIsLoading(true);
+    get(`/item/${id}`)
       .then(response => {
         const res = response.data
         console.log(res);
@@ -112,58 +115,27 @@ export default function ItemPage(props) {
   }, [])
 
 
-  const images = [
-    {
-      original: product3,
-      thumbnail: product3,
-    },
-    {
-      original: product4,
-      thumbnail: product4,
-    },
-    {
-      original: product1,
-      thumbnail: product1,
-    },
-    {
-      original: product2,
-      thumbnail: product2,
-    },
-  ];
-
   return (
 
     <div className={classes.productPage}>
 
       <Header />
       <Parallax
-        image={require("assets/img/examples/clark-street-merc.jpg").default}
+        image={require("../../assets/img/examples/clark-street-merc.jpg").default}
         filter="dark"
         className={classes.pageHeader}
+        style={{height: '16rem'}}
       >
-        <div className={classes.container}>
-          <GridContainer className={classes.titleRow}>
-            <GridItem md={4} className={classes.mlAuto}>
-              {/* <Button color="white" className={classes.floatRight}>
-                <ShoppingCart /> 0.00
-              </Button> */}
-            </GridItem>
-          </GridContainer>
-        </div>
       </Parallax>
-      {item && (
+          <div className={classNames(classes.main, classes.mainRaised)} style={{margin: '-300px 30px 0px'}}>
+              {isLoading ? <LoadingContainer /> : ( <GridContainer>
 
-        <div className={classNames(classes.section, classes.sectionGray)}>
-          <div className={classes.container}>
-
-            <div className={classNames(classes.main, classes.mainRaised, classes.textCap)}>
-              {item ? (<GridContainer>
-                <GridItem md={6} sm={6}>
-                  <ImageGallery
+                 <GridItem md={4} sm={6}>
+                   {item.photo.length ? ( <ImageGallery
                     showFullscreenButton={false}
                     showPlayButton={false}
                     startIndex={3}
-                    items={item.image ? item.image : images}
+                    items={item.photo || images}
                     showThumbnails={true}
                     renderLeftNav={(onClick, disabled) => {
                       return (
@@ -183,9 +155,9 @@ export default function ItemPage(props) {
                         />
                       );
                     }}
-                  />
+                  /> ) : <NoDataToShow text="No photos for this product"/> }
                 </GridItem>
-                <GridItem md={6} sm={6}>
+                <GridItem md={8} sm={6}>
                   <h1 className={classNames(classes.title, classes.CardText)}>{item.name}</h1>
                   <span className="prices"><small>{item.location.address}</small></span><br />
                   <small><ItemRating itemRate={item.itemRate} /></small>
@@ -223,7 +195,7 @@ export default function ItemPage(props) {
                           <p>
                             <strong>{item.owner.username}</strong> <br />
                             <small>{item.location.address}</small> <br />
-                            <Link to={`/user/${item.owner._id}`} className={classes.storeName}>View my store</Link>
+                            <Link to={`/user/${item.owner._id}`} className={classes.storeName}>View store</Link>
                           </p>
                         ),
                       },
@@ -241,87 +213,49 @@ export default function ItemPage(props) {
                       },
                     ]}
                   />
-                  <GridContainer >
-                    <GridItem md={6} sm={6} >
-                      <small><em><strong>Starting at </strong>EGP${Math.min(...Object.values(item.price))}.00</em></small><br />
 
-                      <FormControl
-                        fullWidth
-                        className={classes.selectFormControl}
-                      >
-                        <Select
-                          MenuProps={{
-                            className: classes.selectMenu,
-                          }}
-                          classes={{
-                            select: classes.select,
-                          }}
-                          value={priceSelect}
-                          onChange={(event) => setPriceSelect(event.target.value)}
-                          inputProps={{
-                            name: "priceSelect",
-                            id: "price-select",
-                          }}
+                  <small><em><strong>Starting at </strong>EGP${Math.min(...Object.values(item.price))}.00</em></small><br />
+
+                  <FormControl
+                      fullWidth
+                      className={classes.selectFormControl}
+                  >
+                    <Select
+                        MenuProps={{
+                          className: classes.selectMenu,
+                        }}
+                        classes={{
+                          select: classes.select,
+                        }}
+                        value={priceSelect}
+                        onChange={(event) => setPriceSelect(event.target.value)}
+                        inputProps={{
+                          name: "priceSelect",
+                          id: "price-select",
+                        }}
+                    >
+                      {Object.keys(item.price).map((time, timeIndex) => {
+                        return (<MenuItem
+                            classes={{
+                              root: classes.selectMenuItem,
+                              selected: classes.selectMenuItemSelected,
+                            }}
+                            value={time}
+                            key={timeIndex}
+
                         >
-                          {Object.keys(item.price).map((time, timeIndex) => {
-                            return (<MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected,
-                              }}
-                              value={time}
-                              key={timeIndex}
+                          ${item.price[time]}.00 {`${time[0].charAt(0).toUpperCase() + time[0].slice(1)}`}
+                        </MenuItem>)
+                      })}
+                    </Select>
+                  </FormControl>
 
-                            >
-                              ${item.price[time]}.00 {`${time[0].charAt(0).toUpperCase() + time[0].slice(1)}`}
-                            </MenuItem>)
-                          })}
-                        </Select>
-                      </FormControl>
-                    </GridItem>
-                    <GridItem md={6} sm={1}  >
-                      <ItemRent item={item} priceSelect={priceSelect>0?priceSelect:Math.min(...Object.values(item.price))} user={user._id}/>
-                    </GridItem>
-                  </GridContainer>
+                  <ItemRent item={item} priceSelect={priceSelect>0?priceSelect:Math.min(...Object.values(item.price))} user={user._id}/>
+
                 </GridItem>
-              </GridContainer>) : <LoadingContainer />}
+
+              </GridContainer> )}
             </div>
-
-
-            <div className={classNames(classes.features, classes.textCenter)}>
-              <GridContainer>
-                <GridItem md={4} sm={4}>
-                  <InfoArea
-                    title="Delivery"
-                    description="If delivery option is available. Please provide your location to see the estimated delivery cost."
-                    icon={LocalShipping}
-                    iconColor="info"
-                    vertical
-                  />
-                </GridItem>
-                <GridItem md={4} sm={4}>
-                  <InfoArea
-                    title="Verified User"
-                    description="Rently verifies all postings to ensure you have the best experience!"
-                    icon={VerifiedUser}
-                    iconColor="success"
-                    vertical
-                  />
-                </GridItem>
-                <GridItem md={4} sm={4}>
-                  <InfoArea
-                    title="Keep in Mind"
-                    description="You remain fully liable to the Owner for any damage, loss, or theft of the item during the rental period."
-                    icon={Favorite}
-                    iconColor="rose"
-                    vertical
-                  />
-                </GridItem>
-              </GridContainer>
-            </div>
-
-          </div>
-        </div>)}
       <Footer />
     </div>
   );
