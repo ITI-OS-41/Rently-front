@@ -62,7 +62,7 @@ export const PricingAndProtection = ({
   const [direction, setDirection] = useState("back");
   useEffect(() => {
     get("/category").then((response) => {
-      setCategories(response.data);
+      setCategories(response.data.res);
     });
   }, []);
 

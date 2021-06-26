@@ -26,7 +26,10 @@
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
     "react-tagsinput": "3.19.0",
-    "yup": "^0.32.9"
+    "yup": "^0.32.9",
+    "socket.io-client": "^4.0.1",
+    "timeago.js": "^4.0.2",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

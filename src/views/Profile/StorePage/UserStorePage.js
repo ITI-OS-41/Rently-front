@@ -53,16 +53,15 @@ export default function userStorePage(props) {
           <>
             {
               user ?
-                (
+
                 <>
                   <StoreHeader user={user}/>
-
                   <Switch>
                     <Route exact={true} path='/user/:id/' component={()=>(<StoreProducts/>)} />
                     <Route path='/user/:id/reviews' component={()=>(<StoreReviews id={id}/>)} />
                   </Switch>
                 </>
-              )
+
                 :
                 <LoadingContainer/>
             }

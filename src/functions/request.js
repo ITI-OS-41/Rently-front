@@ -18,6 +18,23 @@ const post = async (url, data, successMessage) => await axios.post(url, data)
         throw new Error(errors)
     })
 
+
+const put = async (url, data, successMessage) => await axios.put(url, data)
+    .then(response => {
+        successMessage && toast.success(successMessage)
+        return response
+    })
+    .catch((error) => {
+        const errors = error.response.data
+        if (errors) {
+            for (const key in errors) {
+                toast.error(errors[key])
+            }
+        }
+        // return errors
+        throw new Error(errors)
+    })
+
 const patch = async (url, data, successMessage) => await axios.patch(url, data)
     .then(response => {
         successMessage && toast.success(successMessage)
@@ -67,4 +84,4 @@ const del = async (url, successMessage) => await axios.delete(url)
         throw new Error(errors)
     })
 
-export { post,patch, get, del }
+export { post,patch, get, del, put }

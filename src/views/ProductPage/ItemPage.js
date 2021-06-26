@@ -45,7 +45,6 @@ const customStyle = {
 
   },
   bigRateLabel: {
-    fontWeight: "400",
     fontSize: "18px",
     whiteSpace: "nowrap",
     overFlow: "hidden",
@@ -82,7 +81,7 @@ export default function ItemPage(props) {
   const fetchItem = async () => {
     try {
       const response = await get(ITEM_URL);
-      setItem(response.data)
+      setItem(response.data.res)
       // console.log(response)
       console.log(response.data)
 

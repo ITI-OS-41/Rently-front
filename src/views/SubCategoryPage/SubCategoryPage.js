@@ -55,13 +55,13 @@ export default function SubCategoryPage(props) {
 
   useEffect(() => {
     get(`/subcategory?category=${id}`).then((response) => {
-      let res = response.data;
+      let res = response.data.res;
       setSubCategory(res);
     });
   }, []);
   useEffect(() => {
     get(`/category/${id}`).then((response) => {
-      let res = response.data;
+      let res = response.data.res;
       setCategory(res);
     });
   }, []);

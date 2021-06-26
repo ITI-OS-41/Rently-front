@@ -34,18 +34,6 @@ export default function UserProfilePage(props) {
     classes.imgFluid
   );
 
-  const [user, setUser] = useState({});
-  const id = localStorage.getItem("rently-userid");
-
-  useEffect(() => {
-    get(`/user/${id}`)
-      .then((response) => {
-        let res = response.data;
-        setUser(res);
-      })
-      .catch((err) => {});
-  }, []);
-
   const links = [
     {
       url: "/profile",

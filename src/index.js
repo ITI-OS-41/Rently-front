@@ -37,7 +37,7 @@ ReactDOM.render(
                     <Route path="/error-page" component={ErrorPage}/>
                     <UserRoute path="/new" component={NewPage}/>
 
- 
+
                     <Route path="/create-item" component={UserForm}/>
                     <Route exact path="/category" component={CategoryPage}/>
                     <Route path="/category/:id" component={SubCategoryPage}/>
@@ -49,7 +49,8 @@ ReactDOM.render(
                     <Route exact path="/item" component={EcommercePage}/>
                     <Route exact path='/item/:id' component={ItemPage}/>
 
-                    <VisitorRoute path="/login" component={LoginPage}/>
+                    <VisitorRoute exact path="/login" component={LoginPage}/>
+                    <VisitorRoute path="/login/:activation_token" component={LoginPage}/>
                     <VisitorRoute path="/register" component={RegisterPage}/>
 
                     <Route path="/search" component={SearchPage}/>

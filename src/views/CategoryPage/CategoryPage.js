@@ -49,7 +49,7 @@ export default function CategoryPage() {
   const [categories, setCategory] = useState([]);
   useEffect(() => {
     get("/category").then((response) => {
-      let res = response.data;
+      let res = response.data.res;
       setCategory(res);
       console.log("response-00-> ", response);
       console.log("res-00-> ", res);
