@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
 
-import presentationStyle from "assets/jss/material-kit-pro-react/views/presentationStyle.js";
+import presentationStyle from "../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
 
 // core components
 import MainPageParallax from "./Sections/MainPageParallax";

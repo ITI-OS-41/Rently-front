@@ -62,6 +62,14 @@ const uploadImage = async (image, folder) => {
     return await axios.post(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, data)
 }
 
+const dateTime = (datetime) =>{
+    const dateObject = new Date(datetime);
+    return dateObject.toLocaleString()
+}
 
 
-export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml, uploadImage}
+const changeQueryParamsURL = (query) =>{
+    const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + query;
+    window.history.pushState({path:newURL},'',newURL);
+}
+export { getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml, uploadImage, dateTime,changeQueryParamsURL}

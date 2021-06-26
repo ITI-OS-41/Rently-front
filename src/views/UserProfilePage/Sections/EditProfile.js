@@ -17,15 +17,14 @@ export default function EditProfile() {
   const classes = useStyles();
   const classes2 = useStyles2();
 
-  const [userr, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const id = localStorage.getItem("rently-userid");
 
   useEffect(() => {
-    get(`/user/${id}`)
+    get(`user/infor`)
       .then((response) => {
         let res = response.data;
         setUser(res);
-        console.log("current user data res--> ", res);
       })
       .catch((err) => {});
   }, []);
@@ -36,7 +35,7 @@ export default function EditProfile() {
         <Card blog className={classes.card}>
           <CardHeader image/>
           <CardBody>
-            <EditProfileForm type="edit" user={userr} />
+            <EditProfileForm type="edit" user={user} />
           </CardBody>
         </Card>
       </GridContainer>

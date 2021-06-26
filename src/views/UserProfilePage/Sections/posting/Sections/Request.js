@@ -9,7 +9,7 @@ export default function Request() {
   useEffect(() => {
     get(`/rent?status=pending&owner=${id}`)
       .then((response) => {
-        let res = response.data;
+        let res = response.data.res;
         setRent(res);
         console.log("current posting Request data res----> ", res);
       })

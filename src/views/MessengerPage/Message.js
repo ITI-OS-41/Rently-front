@@ -1,7 +1,9 @@
 import Avatar from "@material-ui/core/Avatar";
-import React from "react";
+import React, {useContext} from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { green,lightBlue } from "@material-ui/core/colors";
+import {UserContext} from "../../Context";
+import {dateTime} from "../../functions/helpers";
 
 const color1= '#e3e3e3';
 const color1darken = '#ccc';
@@ -112,9 +114,12 @@ const useStyles = makeStyles((theme) =>
 
 
 export function Message(props) {
-    const {message,timestamp,isMine,photo,name,...rest} = props;
+    const {message,...rest} = props;
     const classes = useStyles();
 
+    const {user} = useContext(UserContext);
+
+    let isMine = message.sender._id === user._id;
 
     return (
         <div className={isMine?classes.messageRowRight:classes.messageRow}>
@@ -122,12 +127,13 @@ export function Message(props) {
                 !isMine && <Avatar
                     alt={name}
                     className={classes.orange}
-                    src={photo}
+                    src={message.sender.photo}
                 />
             }
+            {isMine}
             <div className={`${classes.message} ${isMine?classes.messageOrange:classes.messageBlue}`}>
-                <p className={classes.messageContent}>{message}</p>
-                <span className={`${classes.messageTimestamp} ${classes.textRight}`} >{timestamp}</span>
+                <p  dir="auto" className={classes.messageContent}>{message.text}</p>
+                <span className={`${classes.messageTimestamp} `} >{dateTime(message.createdAt)}</span>
             </div>
         </div>
     )

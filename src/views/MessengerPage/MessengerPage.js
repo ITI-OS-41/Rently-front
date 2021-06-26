@@ -1,24 +1,13 @@
-import React, {useState, useEffect, useRef} from "react";
-import {
-    Switch,
-    Route,
-    Link, NavLink,
-} from "react-router-dom";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer.js";
 
-import {makeStyles, useTheme} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
 import Footer from "components/global/Footer";
 import Header from "components/global/Header";
-import Parallax from "components/Parallax/Parallax.js";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import List from "@material-ui/core/List";
 import {Scrollbars} from 'react-custom-scrollbars';
 import {SCROLLBAR_CONFIG} from "../../config";
 import MessageTextInput from "./MessageTextInput";
@@ -27,61 +16,28 @@ import Card from "../../components/Card/Card.js";
 import CardBody from "../../components/Card/CardBody.js";
 import {Message} from "./Message";
 import MessengerPageParallax from "./MessengerPageParallax";
-import * as PropTypes from "prop-types";
 import Conversations from "./Conversations";
+import {get, post} from "../../functions/request";
+import LoadingContainer from "../../components/global/LoadingContainer";
+import NoDataToShow from "../../components/global/NoDataToShow";
+import {UserContext} from "../../Context";
 
 
 const useStyles1 = makeStyles(profilePageStyle);
 
-const m = [
-    {
-    _id: 512,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: true,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-    _id: 3212,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: false,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-        _id: 321,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: true,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-        _id: 124,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: false,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-    {
-        _id: 412,
-        message: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-        timestamp: 'timestamp',
-        isMine: false,
-        photo: "https://material-ui.com/static/images/avatar/1.jpg",
-        displayName: 'Remy Sharp',
-    },
-];
 
 export default function MessengerPage(props) {
-    const classes1 = useStyles1();
 
+    const classes1 = useStyles1();
+    const {user} = useContext(UserContext);
+
+    const [messagesIsLoading, setMessagesIsLoading] = useState(false)
     const messagesScrollbar = useRef(null);
 
-    const [messages, setMessages] = useState(m || []);
+    const [messages, setMessages] = useState([]);
+
+    const [activeConversation, setActiveConversation] = useState();
+    const [temp, setTemp] = useState(1);
 
     const scrollToBottom = () => {
         if (!messagesScrollbar || !messagesScrollbar.current) {
@@ -98,15 +54,41 @@ export default function MessengerPage(props) {
         scrollToBottom()
     },[messages]);
 
+    setTimeout(()=>{
+        setTemp(temp+1)
+    }, 5000);
+
+    
+
+    useEffect(()=>{
+        if (activeConversation){
+
+        get(`message/${activeConversation._id}`)
+            .then(res=>{
+                if (messages.length !== res.data.length){
+                    setMessages(res.data)
+                }
+            })
+        }
+    },[activeConversation,temp]);
 
 
-    const handleAddMessage = (msg) => {
-        setMessages(previosState => (
-            [
-                ...previosState,
-                msg
-            ]
-        ));
+
+    const handleAddMessage = (text) => {
+        post(`message`,
+            {
+                "conversationId": activeConversation._id,
+                "sender": user._id,
+                text
+            })
+            .then(res=>{
+                let newMessage = res.data
+                newMessage.sender = user
+                setMessages([
+                    ...messages,
+                    newMessage
+                ])
+            })
     };
 
 
@@ -121,8 +103,7 @@ export default function MessengerPage(props) {
                 <div style={{padding: '0 1rem'}}>
                     <GridContainer style={{height: '75vh'}}>
                         <Grid item sm={3} style={{height: '100%', overflowY: 'auto'}}>
-                            <Conversations/>
-
+                            <Conversations setConversation={c=>setActiveConversation(c)} {...props} />
                         </Grid>
 
                         <Grid item sm={9}>
@@ -137,19 +118,31 @@ export default function MessengerPage(props) {
                                         <Scrollbars ref={messagesScrollbar} {...SCROLLBAR_CONFIG}
                                                     style={{height: '100%'}}>
                                             {
-                                                messages.map(message => (
-                                                    <Message key={message._id} photo={message.photo}
-                                                             displayName={message.displayName} message={message.message}
-                                                             timestamp={message.timestamp} isMine={message.isMine}/>
-                                                ))
+                                                messagesIsLoading
+                                                    ?
+                                                    <LoadingContainer/>
+                                                    :
+                                                    messages.length
+                                                        ?
+
+
+                                                        messages.map(message => (
+                                                            <Message key={message._id} message={message}/>
+                                                        ))
+                                                        :
+                                                        <NoDataToShow text="No messages yet"/>
                                             }
                                         </Scrollbars>
                                     </CardBody>
                                 </Card>
 
-                                <MessageTextInput onSubmit={(msg) => {
-                                    handleAddMessage(msg)
-                                }}/>
+                                {
+                                    activeConversation && (
+                                        <MessageTextInput onSubmit={(text) => {
+                                            handleAddMessage(text)
+                                        }}/>
+                                    )
+                                }
                             </div>
 
 

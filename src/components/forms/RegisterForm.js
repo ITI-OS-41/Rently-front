@@ -76,7 +76,7 @@ export default function RegisterForm({ props }) {
   const submitForm = (values) => {
     setIsRequesting(true);
 
-    post("auth/register", values, "Registered successfully!")
+    post("user/register", values, "Registered successfully! check your email to activate your accound first")
       .then((response) => {
         history.push("/login");
       })

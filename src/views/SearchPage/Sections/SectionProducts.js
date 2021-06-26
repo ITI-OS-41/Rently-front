@@ -57,14 +57,14 @@ export default function SectionProducts() {
   useEffect(() => {
     get('/category')
       .then(response => {
-        setCategorys(response.data)
+        setCategorys(response.data.res)
       })
   }, [])
 
   useEffect(() => {
     selectedCategory && get(`/subcategory?category=${selectedCategory}`)
       .then(response => {
-        setSubcategorys(response.data)
+        setSubcategorys(response.data.res)
       })
   }, [selectedCategory])
 
@@ -96,7 +96,7 @@ export default function SectionProducts() {
 
     get(`/item?${query}`)
       .then(response => {
-        setItems(response.data)
+        setItems(response.data.res)
       })
       .catch(err=>console.log(err))
       .finally(()=>{
@@ -126,6 +126,8 @@ export default function SectionProducts() {
   const classes = useStyles();
   return (
     <div className={classes.section}>
+    <div className={classes.container}>
+      <h2>Find what you need</h2>
       <GridContainer>
           <GridItem md={3} sm={3}>
             <Card plain>
@@ -296,19 +298,30 @@ export default function SectionProducts() {
             </Card>
           </GridItem>
           <GridItem md={9} sm={9}>
-            <GridContainer>
-              { items ?
-                    items.map(item => {
-                      return (
-                        <GridItem md={4} sm={4} style={{marginBottom: '2rem'}}>
-                            <ItemCard item={item}/>
-                        </GridItem>
-                      )
-                    })
-                : <LoadingContainer/> }
-            </GridContainer>
+            {items ?
+              (<GridContainer>
+                {items.map(item => {
+                  return (
+                    <GridItem key={item._id} md={4} sm={4}>
+                      <ItemCard item={item} />
+                    </GridItem>
+                  )
+                })}
+              </GridContainer>)
+              : <LoadingContainer />}
+            <GridItem
+              md={3}
+              sm={3}
+              className={classNames(classes.mlAuto, classes.mrAuto)}
+            >
+              <Button round color="rose">
+                Load more...
+              </Button>
+            </GridItem>
           </GridItem>
         </GridContainer>
-    </div>
+      </div>
+      </div>
+
   );
 }

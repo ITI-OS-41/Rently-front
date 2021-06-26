@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, {useState} from "react";
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
 // @material-ui/icons
@@ -15,14 +15,31 @@ import loginPageStyle from "../../assets/jss/material-kit-pro-react/views/loginP
 
 import image from "../../assets/img/bg7.jpg";
 import LoginForm from "../../components/forms/LoginForm";
+import {get, post} from "../../functions/request";
 
 const useStyles = makeStyles(loginPageStyle);
 
-export default function LoginPage() {
+export default function LoginPage(props) {
     React.useEffect(() => {
         window.scrollTo(0, 0);
         document.body.scrollTop = 0;
     });
+
+    useState(()=>{
+        const activation_token = props.match.params.activation_token
+
+        if(!activation_token) return;
+
+        post('user/activation', {activation_token}, "Email Activated successfully")
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch(e=>{
+                console.log(e)
+            })
+    }),[];
+
+
     const classes = useStyles();
     return (
         <div>

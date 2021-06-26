@@ -31,7 +31,7 @@ export default function MainPageUsers({ ...rest }) {
 
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}/top`)
       .then(response => {
         const res = response.data
         setItems(res)
