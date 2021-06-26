@@ -11,9 +11,10 @@ export default function UserForm() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     category: "",
-    // subCategory: "",
+    subcategory: "",
     stock: "",
     condition: "",
+    deposit:"",
     name: "",
     description: "",
     price: {
@@ -22,7 +23,8 @@ export default function UserForm() {
       hour: "",
       month: "",
     },
-    cancellation:""
+    cancellation:"",
+    isDeliverable:"",
   });
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);

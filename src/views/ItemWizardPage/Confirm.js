@@ -33,7 +33,6 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
     send.owner = "60d0e7957af53611781c0e72",
     send.photo = "2",
     send.stock = send.stock.toString();
-    send.deposit = "2000"
     send.status = "true"
     send.deliverable = "true"
 
@@ -52,12 +51,14 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   const classes = useStyles();
   const {
     category,
-    subCategory,
+    subcategory,
     name,
     condition,
     stock,
     description,
     cancellation,
+    isDeliverable,
+    deposit,
     price: { day, hour, week, month },
   } = formData;
   return (
@@ -89,6 +90,13 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               </ListItem>
               <ListItem>
                 <ListItemText
+                  primary="subcategory"
+                  secondary={subcategory}
+                  className={classes.textCenter}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
                   primary="condition"
                   secondary={condition}
                   className={classes.textCenter}
@@ -112,6 +120,13 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                 <ListItemText
                   primary="Quantity"
                   secondary={stock}
+                  className={classes.textCenter}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Deposit"
+                  secondary={deposit}
                   className={classes.textCenter}
                 />
               </ListItem>
@@ -147,6 +162,13 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                 <ListItemText
                   primary="cancellation"
                   secondary={cancellation}
+                  className={classes.textCenter}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="isDeliverable"
+                  secondary={isDeliverable}
                   className={classes.textCenter}
                 />
               </ListItem>

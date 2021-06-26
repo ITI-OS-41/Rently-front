@@ -54,7 +54,7 @@ export const PostingDetails = ({
   nextStep,
   prevStep,
 }) => {
-  const { itemName } = formData;
+  const { name } = formData;
   const [imagePreview, setImagePreview] = useState(null);
   const [item, setItem] = useState({});
   const [direction, setDirection] = useState("back");
@@ -62,11 +62,7 @@ export const PostingDetails = ({
   const uploadPhotos = (photos) => {
     console.log(photos);
   };
-  // useEffect(() => {
-  //   get("category").then((res) => {
-  //     setCategories(res.data);
-  //   });
-  // }, []);
+
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -99,7 +95,7 @@ export const PostingDetails = ({
                 {/* upload images */}
                 <div style={{ margin: "2rem 1rem 0rem 5rem" }}>
                   <h5>
-                    <strong>show renters your {itemName}</strong>
+                    <strong>show renters your {name}</strong>
                   </h5>
                   <p>Adding quality photos can increase bookings by 45%.</p>
                   <p>

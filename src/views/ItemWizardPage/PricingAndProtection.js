@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const validationSchema = yup.object({
+  deposit: yup.number().positive().required("deposit is required"),
   hour: yup.number().positive(),
   day: yup.number().positive().required("This field is required"),
   month: yup.number().positive(),
@@ -278,7 +279,7 @@ export const PricingAndProtection = ({
                   </h4>
                   <Card>
                     <CardBody>
-                      <FormControlLabel
+                      {/* <FormControlLabel
                         control={
                           <Radio
                             checked={selectedEnabled === "a"}
@@ -297,8 +298,8 @@ export const PricingAndProtection = ({
                           root: classes.labelRoot,
                         }}
                         label="Security Deposit"
-                      />
-                      {selectedEnabled === "a" && (
+                      /> */}
+                      {/* {selectedEnabled === "a" && (
                         <div>
                           <p>
                             <strong>Deposits </strong>are great for low value
@@ -325,16 +326,42 @@ export const PricingAndProtection = ({
                             // helperText={touched.deposit && errors.deposit}
                           />
                         </div>
-                      )}
+                      )} */}
+                      <div>
+                          <p>
+                            <strong>Deposits </strong>are great for low value
+                            items under $100. Collect a security deposit to help
+                            minimize your loss in the event of theft or damage.
+                          </p>
+                          <TextField
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  EGP
+                                </InputAdornment>
+                              ),
+                            }}
+                            size="small"
+                            variant="outlined"
+                            id="deposit"
+                            name="deposit"
+                            type="number"
+                            value={values.deposit}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            error={touched.deposit && Boolean(errors.deposit)}
+                            helperText={touched.deposit && errors.deposit}
+                          />
+                        </div>
                     </CardBody>
                   </Card>
-                  <Card>
+                  {/* <Card>
                     <CardBody>
                       <FormControlLabel
                         control={
                           <Radio
-                            checked={selectedEnabled === "b"}
-                            onChange={() => setSelectedEnabled("b")}
+                            checked={values.stock === "easygoing"}
+                            onChange={handleChange}
                             value="b"
                             name="radio button enabled"
                             aria-label="B"
@@ -364,7 +391,7 @@ export const PricingAndProtection = ({
                         </div>
                       )}
                     </CardBody>
-                  </Card>
+                  </Card> */}
                 </div>
               </Grid>
             </Grid>

@@ -45,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const validationSchema = yup.object({
-  // cancellation: yup.string().required("cancellation policy is required"),
-  // isDeliverable: yup.string().required("delivery option is required"),
+  cancellation: yup.string().required("cancellation policy is required"),
+  isDeliverable: yup.string().required("delivery option is required"),
 });
 export const CancellationAndDelivery = ({
   formData,
@@ -54,16 +54,9 @@ export const CancellationAndDelivery = ({
   nextStep,
   prevStep,
 }) => {
-  const [categories, setCategories] = React.useState([]);
-  const [delivery, setDelivery] = React.useState("b");
-  const [cancellation, setCancellation] = React.useState("a");
-
+  const [delivery, setDelivery] = useState("b");
+  const [cancellation, setCancellation] = useState("a");
   const [direction, setDirection] = useState("back");
-  useEffect(() => {
-    get("/category").then((response) => {
-      setCategories(response.data);
-    });
-  }, []);
 
   const classes = useStyles();
   return (
@@ -92,10 +85,7 @@ export const CancellationAndDelivery = ({
                   </h4>
                 </div>
                 {/*  */}
-                <Grid
-                  container
-                  spacing={2}
-                >
+                <Grid container spacing={2}>
                   <Grid item xs={6} md={4}>
                     <div style={{ marginBottom: "2rem" }}>
                       {/* easy going */}
@@ -104,11 +94,11 @@ export const CancellationAndDelivery = ({
                           <FormControlLabel
                             control={
                               <Radio
-                                checked={cancellation === "a"}
-                                onChange={() => setCancellation("a")}
-                                value="a"
-                                name="radio button enabled"
-                                aria-label="A"
+                                checked={values.cancellation === "easygoing"}
+                                onChange={handleChange}
+                                value="easygoing"
+                                name="cancellation"
+                                aria-label="Easygoing"
                                 classes={{
                                   checked: classes.radio,
                                   root: classes.radioRoot,
@@ -139,11 +129,11 @@ export const CancellationAndDelivery = ({
                           <FormControlLabel
                             control={
                               <Radio
-                                checked={cancellation === "b"}
-                                onChange={() => setCancellation("b")}
-                                value="b"
-                                name="radio button enabled"
-                                aria-label="B"
+                                checked={values.cancellation === "reasonable"}
+                                value="reasonable"
+                                onChange={handleChange}
+                                name="cancellation"
+                                aria-label="Reasonable"
                                 classes={{
                                   checked: classes.radio,
                                   root: classes.radioRoot,
@@ -175,11 +165,11 @@ export const CancellationAndDelivery = ({
                           <FormControlLabel
                             control={
                               <Radio
-                                checked={cancellation === "c"}
-                                onChange={() => setCancellation("c")}
-                                value="c"
-                                name="radio button enabled"
-                                aria-label="C"
+                                checked={values.cancellation === "strict"}
+                                onChange={handleChange}
+                                value="strict"
+                                name="cancellation"
+                                aria-label="Strict"
                                 classes={{
                                   checked: classes.radio,
                                   root: classes.radioRoot,
@@ -204,10 +194,9 @@ export const CancellationAndDelivery = ({
                     </div>
                   </Grid>
                 </Grid>
-                {console.log(cancellation)}
-                {/* {touched.cancellation && (
+                {!values.cancellation && (
                   <FormHelperText>{errors.cancellation}</FormHelperText>
-                )} */}
+                )}
               </Grid>
 
               {/* second grid */}
@@ -234,11 +223,11 @@ export const CancellationAndDelivery = ({
                       <FormControlLabel
                         control={
                           <Radio
-                            checked={delivery === "a"}
-                            onChange={() => setDelivery("a")}
-                            value="a"
-                            name="radio button enabled"
-                            aria-label="A"
+                            checked={values.isDeliverable === "yes"}
+                            onChange={handleChange}
+                            value="yes"
+                            name="isDeliverable"
+                            aria-label="Yes"
                             classes={{
                               checked: classes.radio,
                               root: classes.radioRoot,
@@ -258,11 +247,11 @@ export const CancellationAndDelivery = ({
                       <FormControlLabel
                         control={
                           <Radio
-                            checked={delivery === "b"}
-                            onChange={() => setDelivery("b")}
-                            value="b"
-                            name="radio button enabled"
-                            aria-label="B"
+                            checked={values.isDeliverable === "no"}
+                            onChange={handleChange}
+                            value="no"
+                            name="isDeliverable"
+                            aria-label="No"
                             classes={{
                               checked: classes.radio,
                               root: classes.radioRoot,
@@ -279,12 +268,9 @@ export const CancellationAndDelivery = ({
                   </Card>
                 </div>
 
-                <Grid container spacing={3}>
-                  <Grid item xs={6}>
-                    {/* quantity */}
-                    <div style={{ marginBottom: "2rem" }}></div>
-                  </Grid>
-                </Grid>
+                {!values.isDeliverable && (
+                  <FormHelperText>{errors.isDeliverable}</FormHelperText>
+                )}
               </Grid>
             </Grid>
 
@@ -315,8 +301,8 @@ export const CancellationAndDelivery = ({
 };
 
 CancellationAndDelivery.propTypes = {
-  formData: PropTypes.object,
-  setFormData: PropTypes.func,
-  nextStep: PropTypes.func,
-  prevStep: PropTypes.func,
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
+  prevStep: PropTypes.func.isRequired,
 };
