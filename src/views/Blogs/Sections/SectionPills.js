@@ -74,7 +74,7 @@ export default function SectionPills() {
   const [Blogs, setBlog] = useState([]);
   useEffect(() => {
     get("/blog").then((response) => {
-      let res = response.data;
+      let res = response.data.res;
       setBlog(res);
     });
   }, []);

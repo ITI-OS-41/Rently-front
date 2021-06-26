@@ -63,8 +63,8 @@ export default function BlogPostPage(props) {
               </Parallax>
               <div className={classes.main}>
                 <div className={classes.container}>
-                  <SectionText blog={blog} />
-                  <SectionComments />
+                  <SectionText blog={blog}{...props} />
+                  <SectionComments {...props}/>
                 </div>
               </div>
             </>
