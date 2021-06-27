@@ -28,11 +28,8 @@ import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
 import ShoppingCart from "./views/ShoppingCartPage/ShoppingCartPage";
 import Context from "./Context";
-<<<<<<< HEAD
 import MapPage from "./views/MapPage/MapPage";
-=======
 import Legal from "./views/Legal/Legal";
->>>>>>> 305cbc0f33638da485a83c66e516c996942db59c
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -65,27 +62,21 @@ ReactDOM.render(
 
           <VisitorRoute path="/legal" component={Legal} />
 
+          <Route path="/search" component={SearchPage} />
+          <Route path="/item/:id" component={ItemPage} />
+          <Route path="/cart" component={ShoppingCart} />
 
-                    <Route path="/search" component={SearchPage}/>
-                    <Route path='/item/:id' component={ItemPage}/>
-                    <Route path="/cart" component={ShoppingCart}/>
+          <UserRoute path="/messenger" component={MessengerPage} />
 
-                    <UserRoute path="/messenger" component={MessengerPage}/>
+          <UserRoute path="/profile" component={UserProfilePage} />
+          <UserRoute path="/user/:id" component={userStorePage} />
 
-                    <UserRoute path="/profile" component={UserProfilePage}/>
-                    <UserRoute path="/user/:id" component={userStorePage}/>
+          <Route path="/map" component={MapPage} />
 
-                    <Route path="/map" component={MapPage}/>
-
-
-                    <Route path="/" component={HomePage}/>
-                    
-
-                </Switch>
-            </Router>
-        </Context>
-    </ThemeProvider>,
-    document.getElementById("root")
-
-      
+          <Route path="/" component={HomePage} />
+        </Switch>
+      </Router>
+    </Context>
+  </ThemeProvider>,
+  document.getElementById("root")
 );
