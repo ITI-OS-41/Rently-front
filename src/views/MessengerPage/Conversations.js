@@ -1,6 +1,5 @@
 import {Scrollbars} from "react-custom-scrollbars";
 import {SCROLLBAR_CONFIG} from "../../config";
-import * as PropTypes from "prop-types";
 import React, {useContext, useEffect, useState} from "react";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -10,7 +9,6 @@ import List from "@material-ui/core/List";
 import Badge from "@material-ui/core/Badge";
 import {get} from "../../functions/request";
 import LoadingContainer from "../../components/global/LoadingContainer";
-import CategoryCard from "../../components/global/CategoryCard";
 import NoDataToShow from "../../components/global/NoDataToShow";
 import {UserContext} from "../../Context";
 import {changeQueryParamsURL} from "../../functions/helpers";
@@ -28,9 +26,7 @@ export default function (props) {
 
     // get conversations
     useEffect(() => {
-        setIsLoading(true)
-
-
+        setIsLoading(true);
 
         get('conversation')
             .then(res => {
@@ -41,18 +37,6 @@ export default function (props) {
             })
             .finally(() => {
                 setIsLoading(false)
-                /*
-                    if (convId){
-                        conversations.forEach(con=>{
-                            console.log("inside convId")
-                            if(convId == con._id){
-                                setActiveConversation(con)
-                            }
-                        })
-                    } else {
-                        setActiveConversation(conversations[0])
-                    }
-                 */
             });
     }, []);
 

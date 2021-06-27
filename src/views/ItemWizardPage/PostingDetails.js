@@ -61,17 +61,13 @@ export const PostingDetails = ({
   const [item, setItem] = useState({});
   const [direction, setDirection] = useState("back");
 
-  const uploadPhotos = (photos) => {
-    console.log(photos);
-  };
-
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-let x=[]
+
   const classes = useStyles();
   return (
     <>
@@ -79,6 +75,7 @@ let x=[]
         initialValues={formData}
         onSubmit={(values) => {
           setFormData(values);
+          console.log(values.photo);
           direction === "back" ? prevStep() : nextStep();
         }}
         validationSchema={validationSchema}
@@ -95,7 +92,7 @@ let x=[]
             <Grid container>
               <Grid item xs={6} md={6}>
                 {/* upload images */}
-                <div style={{ margin: "2rem 1rem 0rem 5rem" }}>
+                <div style={{ margin: "3rem 1rem 0rem 3rem" }}>
                   <h4>
                     <strong>show renters your {name}</strong>
                   </h4>
@@ -107,43 +104,25 @@ let x=[]
                   <Card>
                     <div style={{ padding: "0.5rem 1rem " }}>
                       <UploadImages
-                        setFieldValue={setFieldValue}
-                        onChange={handleChange}
-                        value={ values.photo}
-                     
+                        submitPhotos={(arr) => {
+                          setFieldValue("photo", arr);
+                        }}
                       />
-                      {
-                        
-                         values.photo.map((file) => ({
-                        filename: file.name,
-                      })),
-                      console.log(x)
-                      
-                      }
-                    
+                      {values.photo.map((photo) => {
+                        <p>{photo.name}</p>;
+                      })}
 
                       {!values.photo && (
                         <FormHelperText>{errors.photo}</FormHelperText>
                       )}
                     </div>
                   </Card>
-                  {/* <input
-                    multiple
-                    id="photo"
-                    name="photo"
-                    type="file"
-                    onChange={(event) => {
-                      console.log(event.currentTarget.files);
-                      setFieldValue("photo", event.currentTarget.files);
-                      setImage(event);
-                    }}
-                  /> */}
                 </div>
               </Grid>
 
               {/* second grid */}
               <Grid item xs={6} md={6}>
-                <div style={{ margin: "4rem 5rem 0rem 1rem" }}>
+                <div style={{ margin: "3rem 3rem 0rem 3rem" }}>
                   <Card>
                     <CardHeader color="primary">
                       <strong>Posting Description</strong>
@@ -153,7 +132,7 @@ let x=[]
                       <TextField
                         fullWidth
                         multiline
-                        rows={5}
+                        rows={9}
                         id="description"
                         name="description"
                         value={values.description}
@@ -170,7 +149,7 @@ let x=[]
               </Grid>
             </Grid>
 
-            <div>
+            <div style={{ marginBottom: "3rem" }}>
               <Button
                 type="submit"
                 variant="contained"

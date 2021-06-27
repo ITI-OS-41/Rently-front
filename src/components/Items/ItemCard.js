@@ -104,15 +104,15 @@ export default function ItemCard(props) {
     <Card plain product>
       <CardBody plain>
         <div className={classes.cardLabel}><small>.67 km</small></div>
-        <Link to={`/items/${item._id}`}  onClick={() => history.push("/items/" + item._id)}>
-          <img className={classes.cardImage} src={suit1} alt=".." />
+        <Link to={`/item/${item._id}`} onClick={() => history.push("/item/" + item._id)}>
+          <img className={classes.cardImage} src={suit1} alt={item.name} />
         </Link>
         <h5 className={classNames(classes.cardTitle, classes.itemTitle)}>
-          <Link to={`/items/${item._id}`}>{item.name}</Link>
+          <Link to={`/item/${item._id}`}>{item.name}</Link>
         </h5>
         <div>
           <p className={classes.cardDescription}>Assem {item.description}</p>
-          <Link to={`/items/${item._id}`} className={classes.storeName} onClick={() => history.push("/items/" + item._id)}>Owner: {username}</Link><br />
+          <Link to={`/item/${item._id}`} className={classes.storeName} onClick={() => history.push("/item/" + item._id)}>Owner: {username}</Link><br />
           <ItemRating itemRate={item.itemRate} />
         </div>
         <FormControl className={classes.formControl}>

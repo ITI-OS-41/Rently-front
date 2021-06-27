@@ -13,7 +13,7 @@ export default function StorePage() {
   const [isRequesting, setIsRequesting] = useState(true)
 
   useEffect(() => {
-    get(`/user/${id}`)
+    get(`/user/infor`)
       .then((response) => {
         setUser(response.data);
       })
@@ -26,13 +26,13 @@ export default function StorePage() {
       <>
       <StoreForm data={user} type="update"/>
 
-        <div style={{textAlign: 'center'}}>
-          <Button
-            round
-            variant="contained"
-            color="primary"
-            component={Link} to={`/user/${user._id}`}>Go to store</Button>
-        </div>
+    <div style={{textAlign: 'center'}}>
+      <Button
+        round
+        variant="contained"
+        color="primary"
+        component={Link} to={`/user/${user._id}`}>Go to store</Button>
+    </div>
 
       </>
       :

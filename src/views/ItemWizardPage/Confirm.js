@@ -6,6 +6,11 @@ import { List, ListItem, ListItemText } from "@material-ui/core/";
 import { Formik } from "formik";
 import { post } from "functions/request";
 import Header from "../../components/global/Header";
+import history from "../../functions/history";
+import Grid from "@material-ui/core/Grid";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
+import { uploadImage } from "functions/helpers";
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {
@@ -14,33 +19,34 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  inline: {
+    display: "inline",
+    padding: "1rem 0.2rem",
+  },
 }));
 
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const [isRequesting, setIsRequesting] = useState(false);
 
-  const submitForm = (formData) => {
+  const submitForm = async (formData) => {
     setIsRequesting(true);
 
     let send = { ...formData };
 
-    send.location = {
-      type: "Point",
-      coordinates: [1, 2],
-      address: "asd",
-    };
-    send.subcategory = "60d23b41ebfe6a461c8c4b50",
-    send.owner = "60d0e7957af53611781c0e72",
-    send.photo = "2",
-    send.stock = send.stock.toString();
-    send.deposit = "2000"
-    send.status = "true"
-    send.deliverable = "true"
+    send.isAvailable = "true";
+    send.isSubmitted = "true";
+    send.isPublished = "false";
 
+    console.log("send", send);
+    for (let i = 0; i < send.photo.length; i++) {
+      await uploadImage(send.photo[i], "item").then((res) => {
+        send.photo[i] = res.data.url;
+      });
+    }
 
     post("item", send, "Submitted successfully!")
       .then((response) => {
-        console.log(response);
+        history.push("/profile");
       })
       .catch((error) => {
         console.log(error);
@@ -52,11 +58,14 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   const classes = useStyles();
   const {
     category,
-    subCategory,
+    subcategory,
     name,
     condition,
     stock,
     description,
+    cancellation,
+    isDeliverable,
+    deposit,
     price: { day, hour, week, month },
   } = formData;
   return (
@@ -78,72 +87,99 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary="category"
-                  secondary={category}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="condition"
-                  secondary={condition}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Item Name"
-                  secondary={name}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Item Description"
-                  secondary={description}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Quantity"
-                  secondary={stock}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Hourly"
-                  secondary={hour}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Daily"
-                  secondary={day}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Weekly"
-                  secondary={week}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Monthly"
-                  secondary={month}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-            </List>
-            <div className={classes.textCenter}>
+            <Grid container spacing={2}>
+              <Grid item xs={6} md={12}>
+                <div style={{ margin: "2rem" }}>
+                  <Card style={{ width: "100%", margin: "auto" }}>
+                    <CardHeader color="info">Basic Info</CardHeader>
+                    <List>
+                      <ListItem>
+                        <ListItemText primary="Category" secondary={category} />
+                        <ListItemText
+                          primary="Sub-Category"
+                          secondary={subcategory}
+                        />
+                      </ListItem>
+                      <ListItem></ListItem>
+                      <ListItem>
+                        <ListItemText primary="Item Name" secondary={name} />
+                        <ListItemText
+                          primary="Condition"
+                          secondary={condition}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText primary="Quantity" secondary={stock} />
+                        <ListItemText></ListItemText>
+                      </ListItem>
+                      <ListItem></ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Grid>
+
+              <Grid item xs={6} md={6}>
+                <div style={{ margin: "2rem" }}>
+                  <Card
+                    style={{ width: "100%", margin: "auto", height: "17rem" }}
+                  >
+                    <CardHeader color="success">
+                      Pricing And Protection
+                    </CardHeader>
+                    <List component="nav">
+                      <ListItem>
+                        <ListItemText
+                          primary="Hourly"
+                          secondary={`${hour} EGP`}
+                        />
+                        <ListItemText
+                          primary="Daily"
+                          secondary={`${day} EGP`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText
+                          primary="Weekly"
+                          secondary={`${week} EGP`}
+                        />
+                        <ListItemText
+                          primary="Monthly"
+                          secondary={`${month} EGP`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText primary="Deposit" secondary={deposit} />
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Grid>
+              <Grid item xs={6} md={6}>
+                <div style={{ margin: "2rem" }}>
+                  <Card
+                    style={{ width: "100%", margin: "auto", height: "17rem" }}
+                  >
+                    <CardHeader color="danger">Cancellation Policy</CardHeader>
+                    <List component="nav">
+                      <ListItem>
+                        <ListItemText
+                          primary="Cancellation"
+                          secondary={cancellation}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText
+                          primary="Item Delivery"
+                          secondary={`${isDeliverable ? "yes" : "no"}`}
+                        />
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Grid>
+            </Grid>
+
+            <div className={classes.textCenter} style={{marginBottom:"3rem"}}>
               <Button
                 color="secondary"
                 variant="contained"

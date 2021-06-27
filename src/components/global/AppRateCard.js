@@ -28,10 +28,10 @@ export default function AppRateCard(props) {
         <p className={classes.cardDescription}>{rate.comment}</p>
         <div >
           <span style={{color: 'gold'}}>
-            {Array(rate.rating).fill(0).map((_, i) => <StarIcon/>)}
+            {Array(rate.rating).fill(0).map((_, i) => <StarIcon key={ i}/>)}
           </span>
           <span className={classes.cardDescription}>
-            {Array(5-rate.rating).fill(0).map((_, i) => <StarIcon/>)}
+            {Array(5-rate.rating).fill(0).map((_, i) => <StarIcon key={ i} />)}
           </span>
         </div>
       </CardBody>
