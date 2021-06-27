@@ -22,10 +22,11 @@ export default function RentHeader({ component, label }) {
     <div className={classes.root}>
       <Header />
       <Parallax
-        image={require("assets/img/bg4.jpg").default}
+        image={("https://cdn.dribbble.com/users/487766/screenshots/15590116/media/79774fe0cf35bdd66fb09c365767598f.png?compress=1&resize=1600x1200")}
         className={classes.parallax}
         style={{ height: "25rem" }}
       >
+
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
