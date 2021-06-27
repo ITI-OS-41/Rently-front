@@ -84,7 +84,8 @@ export default function HeaderLinks(props) {
     }
 
     return (
-        <List className={classes.list + " " + classes.mlAuto}>
+        <List
+            className={classes.list + " " + classes.mlAuto}>
 
             { !user.username &&
             <>
