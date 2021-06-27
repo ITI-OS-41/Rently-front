@@ -8,7 +8,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
-// core components 
+// core components
 import Header from "components/Header/Header.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
@@ -45,7 +45,7 @@ export default function AboutUsPage() {
         }}
       />
       <Parallax
-        image={require("assets/img/about.jpg").default}
+        image={require("assets/img/bg9.jpg").default}
         filter="dark"
         small
       >
@@ -60,11 +60,10 @@ export default function AboutUsPage() {
                 classes.textCenter
               )}
             >
-              <h1 className={classes.title}>ABOUT US</h1>
+              <h1 className={classes.title}>About Us</h1>
               <h4>
-                Rently was created to reduce the destructive environmental
-                impact of traditional systems of production by keeping products
-                and equipment in use for longer.
+                Meet the amazing team behind this project and find out more
+                about how we work.
               </h4>
             </GridItem>
           </GridContainer>
@@ -74,12 +73,68 @@ export default function AboutUsPage() {
         <div className={classes.container}>
           <SectionDescription />
           <SectionTeam />
-          {/* <SectionServices /> */}
+          <SectionServices />
           <SectionOffice />
           <SectionContact />
         </div>
       </div>
-      <Footer />
+      <Footer
+        content={
+          <div>
+            <div className={classes.left}>
+              <List className={classes.list}>
+                <ListItem className={classes.inlineBlock}>
+                  <a
+                    href="https://www.creative-tim.com/?ref=mkpr-about-us"
+                    className={classes.block}
+                    target="_blank"
+                  >
+                    Creative Tim
+                  </a>
+                </ListItem>
+                <ListItem className={classes.inlineBlock}>
+                  <a
+                    href="https://www.creative-tim.com/presentation?ref=mkpr-about-us"
+                    className={classes.block}
+                    target="_blank"
+                  >
+                    About us
+                  </a>
+                </ListItem>
+                <ListItem className={classes.inlineBlock}>
+                  <a
+                    href="//blog.creative-tim.com/"
+                    className={classes.block}
+                    target="_blank"
+                  >
+                    Blog
+                  </a>
+                </ListItem>
+                <ListItem className={classes.inlineBlock}>
+                  <a
+                    href="https://www.creative-tim.com/license?ref=mkpr-about-us"
+                    className={classes.block}
+                    target="_blank"
+                  >
+                    Licenses
+                  </a>
+                </ListItem>
+              </List>
+            </div>
+            <div className={classes.right}>
+              &copy; {1900 + new Date().getYear()} , made with{" "}
+              <Favorite className={classes.icon} /> by{" "}
+              <a
+                href="https://www.creative-tim.com?ref=mkpr-about-us"
+                target="_blank"
+              >
+                Creative Tim
+              </a>{" "}
+              for a better web.
+            </div>
+          </div>
+        }
+      />
     </div>
   );
 }

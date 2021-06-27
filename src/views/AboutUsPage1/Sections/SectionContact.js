@@ -35,11 +35,9 @@ export default function SectionContact() {
             Want to work with us?
           </h2>
           <h4 className={classNames(classes.description, classes.textCenter)}>
-            Are you interested in being part of a global movement? Send us a
-            resume and cover letter explaining why you would be a great fit. We
-            value unique talents and perspectives so don’t be afraid to tell us
-            what you’re all about! Additionally, we would love to see your
-            RuckifyStore! Don’t forget to attach a link when you apply.
+            Divide details about your product or agency work into parts. Write a
+            few lines about each one and contact us about any further
+            collaboration. We will get back to you in a couple of hours.
           </h4>
           <form>
             <GridContainer>
@@ -97,7 +95,7 @@ export default function SectionContact() {
                       }}
                       value="1"
                     >
-                      I{"'"}m a Developer
+                      I{"'"}m a Designer
                     </MenuItem>
                     <MenuItem
                       classes={{
@@ -106,7 +104,7 @@ export default function SectionContact() {
                       }}
                       value="2"
                     >
-                      I{"'"}m an Owner
+                      I{"'"}m a Developer
                     </MenuItem>
                     <MenuItem
                       classes={{
@@ -115,7 +113,7 @@ export default function SectionContact() {
                       }}
                       value="3"
                     >
-                      I{"'"}m a Designer
+                      I{"'"}m a Hero
                     </MenuItem>
                   </Select>
                 </FormControl>

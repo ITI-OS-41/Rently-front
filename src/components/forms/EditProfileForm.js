@@ -226,15 +226,12 @@ export default function EditProfileForm({ user }) {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    disabled
                     variant="outlined"
                     fullWidth
                     id="email"
                     name="email"
                     value={values.email}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    error={touched.email && Boolean(errors.email)}
-                    helperText={touched.email && errors.email}
                   />
                 </Grid>
                 <Grid item xs={12}>

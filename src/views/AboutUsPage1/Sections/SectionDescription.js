@@ -22,14 +22,11 @@ export default function SectionDescription() {
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
           <h5 className={classes.description}>
-            Rently was created to reduce the destructive environmental impact
-            of traditional systems of production by keeping products and
-            equipment in use for longer. Rently is committed to making it easy
-            for people to connect on a single community-based platform to rent
-            and reuse instead of buying new. Pushing the change in global
-            consumer behaviors toward a more sustainable way of living will
-            reduce overall waste and help encourage the bold and decisive
-            actions necessary to meet the Paris Agreement global warming limit.
+            This is the paragraph where you can write more details about your
+            product. Keep you user engaged by providing meaningful information.
+            Remember that by this time, the user is curious, otherwise he wouldn
+            {"'"}t scroll to get here. Add a button if you want the user to see
+            more.
           </h5>
         </GridItem>
       </GridContainer>
