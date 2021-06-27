@@ -70,7 +70,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   } = formData;
   return (
     <>
-      {/* <Headerr title='Confirm User Data' /> */}
+ 
       {console.log(formData)}
       <Formik
         initialValues={formData}

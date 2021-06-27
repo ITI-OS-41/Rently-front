@@ -8,6 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
+import Map from "../../components/Map/Map";
 
 import {
   FormHelperText,
@@ -44,7 +45,14 @@ const validationSchema = yup.object({
   condition: yup.string().required("item condition is required"),
   stock: yup.number().positive().required("This field is required"),
 });
-export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
+export const BasicInfo = ({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+  address,
+  coordinates,
+}) => {
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const { itemName } = formData;
@@ -59,15 +67,6 @@ export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
   };
   let [formValues, setFormValues] = useState(initialValues);
 
-  function onChange(e) {
-    const targetEl = e.target;
-    const fieldName = targetEl.name;
-    setFormValues({
-      ...formData,
-      [fieldName]: targetEl.value,
-    });
-    return handleChange(e);
-  }
   useEffect(() => {
     get("/category?model=item&limit=9999").then((response) => {
       setCategories(response.data.res);
@@ -380,19 +379,17 @@ export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
                         // helperText={touched.username && errors.username}
                       />
                     </div>
-                    <img
-                      style={{ width: "100%", height: "50%" }}
-                      src={
-                        "https://images.unsplash.com/photo-1577086664693-894d8405334a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1533&q=80"
+
+                    <Map
+                      changeCoordinates={(pos, address) =>
+                        console.log({ pos }, { address })
                       }
-                      alt="..."
-                      className={classes.imgRounded + " " + classes.imgFluid}
                     />
                   </div>
                 </Grid>
               </Grid>
 
-              <div style={{marginBottom:"3rem"}}>
+              <div style={{ marginBottom: "3rem" }}>
                 <Button
                   disabled
                   type="submit"
