@@ -28,6 +28,7 @@ import * as yup from "yup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { get } from "functions/request";
+import UploadImages from "./UploadImages";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -46,6 +47,7 @@ const validationSchema = yup.object({
     .string()
     .min(30, "Minimum 30 characters")
     .required("description is required!"),
+  photo: yup.mixed().required("Photo is required"),
 });
 
 export const PostingDetails = ({
@@ -54,7 +56,7 @@ export const PostingDetails = ({
   nextStep,
   prevStep,
 }) => {
-  const { itemName } = formData;
+  const { name } = formData;
   const [imagePreview, setImagePreview] = useState(null);
   const [item, setItem] = useState({});
   const [direction, setDirection] = useState("back");
@@ -62,18 +64,14 @@ export const PostingDetails = ({
   const uploadPhotos = (photos) => {
     console.log(photos);
   };
-  // useEffect(() => {
-  //   get("category").then((res) => {
-  //     setCategories(res.data);
-  //   });
-  // }, []);
+
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-
+let x=[]
   const classes = useStyles();
   return (
     <>
@@ -98,39 +96,38 @@ export const PostingDetails = ({
               <Grid item xs={6} md={6}>
                 {/* upload images */}
                 <div style={{ margin: "2rem 1rem 0rem 5rem" }}>
-                  <h5>
-                    <strong>show renters your {itemName}</strong>
-                  </h5>
+                  <h4>
+                    <strong>show renters your {name}</strong>
+                  </h4>
                   <p>Adding quality photos can increase bookings by 45%.</p>
                   <p>
                     The first image will be set as your featured image. Drag
                     images to reorder them.
                   </p>
-                  {/* <CustomFileInput
-                    onFileChange={(e) => console.log(e.target.value)}
-                    id="photos"
-                    name="photos"
-                    value={values.photos}
-                    onBlur={handleBlur}
-                    onChange={(e) => console.log(values.photos)}
-                    multiple
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                    inputProps={{
-                      placeholder: "upload your images",
-                    }}
-                    endButton={{
-                      buttonProps: {
-                        round: true,
-                        color: "info",
-                        justIcon: true,
-                        fileButton: true,
-                      },
-                      icon: <Layers />,
-                    }}
-                  /> */}
-                  <input
+                  <Card>
+                    <div style={{ padding: "0.5rem 1rem " }}>
+                      <UploadImages
+                        setFieldValue={setFieldValue}
+                        onChange={handleChange}
+                        value={ values.photo}
+                     
+                      />
+                      {
+                        
+                         values.photo.map((file) => ({
+                        filename: file.name,
+                      })),
+                      console.log(x)
+                      
+                      }
+                    
+
+                      {!values.photo && (
+                        <FormHelperText>{errors.photo}</FormHelperText>
+                      )}
+                    </div>
+                  </Card>
+                  {/* <input
                     multiple
                     id="photo"
                     name="photo"
@@ -140,7 +137,7 @@ export const PostingDetails = ({
                       setFieldValue("photo", event.currentTarget.files);
                       setImage(event);
                     }}
-                  />
+                  /> */}
                 </div>
               </Grid>
 

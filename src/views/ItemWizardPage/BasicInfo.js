@@ -37,28 +37,47 @@ const useStyles = makeStyles((theme) => ({
 }));
 const validationSchema = yup.object({
   category: yup.string("Enter Category").required("Category is required!"),
+  subcategory: yup.string("Enter Sub-Category").required("sub-Category is required!"),
   name: yup.string("Enter item name").required("Item Name is required!"),
   condition: yup.string().required("item condition is required"),
   stock: yup.number().positive().required("This field is requried"),
 });
-export const BasicInfo = ({
-  formData,
-  setFormData,
-  nextStep,
-  prevStep,
-}) => {
+export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
   const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
   const { itemName } = formData;
 
   const [item, setItem] = useState({});
-  const [description, setDescription] = useState("");
 
   const [direction, setDirection] = useState("back");
+
+  const initialValues = {
+    ...formData,
+    subcategory: formData?.subcategory?._id,
+  };
+  let [formValues, setFormValues] = useState(initialValues);
+
+  function onChange(e) {
+    const targetEl = e.target;
+    const fieldName = targetEl.name;
+    setFormValues({
+      ...formData,
+      [fieldName]: targetEl.value,
+    });
+    return handleChange(e);
+  }
   useEffect(() => {
-    get("/category").then((response) => {
+    get("/category?model=item&limit=9999").then((response) => {
       setCategories(response.data.res);
     });
   }, []);
+
+  useEffect(() => {
+    console.log("subcategory use effect");
+    get(`/subcategory?category=${formValues.category}`).then((response) => {
+      setSubcategories(response.data.res);
+    });
+  }, [formValues]);
 
   const classes = useStyles();
   return (
@@ -71,240 +90,326 @@ export const BasicInfo = ({
         }}
         validationSchema={validationSchema}
       >
-        {({ values, errors, touched, handleBlur, handleChange }) => (
-          <Form className={classes.form}>
-            <Grid container>
-              <Grid item xs={6} md={6}>
-                <div style={{ margin: "3rem 2rem 1rem 3rem" }}>
-                  {/* category */}
-                  <div style={{ marginBottom: "2rem" }}>
-                    <InputLabel
-                      style={{ margin: "0.5rem 0" }}
-                      htmlFor="simple-select"
-                      className={classes.selectLabel}
-                    >
-                      <strong>What are you posting?</strong>
-                    </InputLabel>
-
-                    <FormControl
-                      error={touched.category && Boolean(errors.category)}
-                      fullWidth
-                      size="small"
-                      variant="outlined"
-                      className={classes.selectFormControl}
-                    >
-                      <Select
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.category}
-                        inputProps={{
-                          name: "category",
-                        }}
-                        id="category"
-                        MenuProps={{
-                          className: classes.selectMenu,
-                        }}
-                        classes={{
-                          select: classes.select,
-                        }}
-                        value={values.category}
-                        // onChange={(e) => setSelectedCategory(e.target.value)}
+        {(props) => {
+          const {
+            values,
+            touched,
+            errors,
+            isSubmitting,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            setFieldValue,
+          } = props;
+          const onChange = (e) => {
+            const targetEl = e.target;
+            const fieldName = targetEl.name;
+            setFormValues({
+              ...formValues,
+              [fieldName]: targetEl.value,
+            });
+            return handleChange(e);
+          };
+          return (
+            <Form className={classes.form}>
+              <Grid container>
+                <Grid item xs={6} md={6}>
+                  <div style={{ margin: "3rem 2rem 1rem 3rem" }}>
+                    {/* category */}
+                    <div style={{ marginBottom: "2rem" }}>
+                      <InputLabel
+                        style={{ margin: "0.5rem 0" }}
+                        htmlFor="simple-select"
+                        className={classes.selectLabel}
                       >
-                        <MenuItem
-                          disabled
-                          classes={{
-                            root: classes.selectMenuItem,
+                        <strong>What are you posting?</strong>
+                      </InputLabel>
+
+                      <FormControl
+                        error={touched.category && Boolean(errors.category)}
+                        fullWidth
+                        size="small"
+                        variant="outlined"
+                        className={classes.selectFormControl}
+                      >
+                        <Select
+                          onBlur={handleBlur}
+                          onChange={onChange}
+                          value={values.category}
+                          inputProps={{
+                            name: "category",
                           }}
+                          id="category"
+                          MenuProps={{
+                            className: classes.selectMenu,
+                          }}
+                          classes={{
+                            select: classes.select,
+                          }}
+
+                          // onChange={(e) => setSelectedCategory(e.target.value)}
                         >
-                          Category
-                        </MenuItem>
-                        {categories.map((category) => (
                           <MenuItem
+                            disabled
                             classes={{
                               root: classes.selectMenuItem,
-                              selected: classes.selectMenuItemSelected,
                             }}
-                            value={category._id}
-                            key={category._id}
                           >
-                            {category.name}
+                            Category
                           </MenuItem>
-                        ))}
-                      </Select>
-                      {touched.category && (
-                        <FormHelperText>{errors.category}</FormHelperText>
-                      )}
-                    </FormControl>
-                  </div>
-
-                  {/* item name */}
-                  <div style={{ marginBottom: "2rem" }}>
-                    <InputLabel
-                      style={{ margin: "0.5rem 0" }}
-                      htmlFor="simple-select"
-                      className={classes.selectLabel}
-                    >
-                      <strong>What is your item name?</strong>
-                    </InputLabel>
-                    <TextField
-                      variant="outlined"
-                      fullWidth
-                      size="small"
-                      id="name"
-                      name="name"
-                      value={values.name}
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      error={touched.name && Boolean(errors.name)}
-                      helperText={touched.name && errors.name}
-                    />
-                  </div>
-
-                  <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                      {/* item Condition */}
-                      <div style={{ marginBottom: "2rem" }}>
-                        <InputLabel
-                          style={{ margin: "0.5rem 0" }}
-                          htmlFor="simple-select"
-                          className={classes.selectLabel}
-                        >
-                          <strong>Item Condition</strong>
-                        </InputLabel>
-
-                        <FormControl
-                          error={touched.condition && Boolean(errors.condition)}
-                          variant="outlined"
-                          fullWidth
-                          size="small"
-                          className={classes.selectFormControl}
-                        >
-                          <Select
-                            MenuProps={{
-                              className: classes.selectMenu,
-                            }}
-                            classes={{
-                              select: classes.select,
-                            }}
-                            onChange={handleChange}
-                            value={values.condition}
-                            inputProps={{
-                              name: "condition",
-                              id: "condition",
-                            }}
-                          >
+                          {categories.map((category) => (
                             <MenuItem
-                              disabled
                               classes={{
                                 root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected,
                               }}
+                              value={category._id}
+                              key={category._id}
                             >
-                              condition
+                              {category.name}
                             </MenuItem>
-                            {conditions.map((condition) => (
-                              <MenuItem
-                                classes={{
-                                  root: classes.selectMenuItem,
-                                  selected: classes.selectMenuItemSelected,
-                                }}
-                                value={condition}
-                                key={condition}
-                              >
-                                {condition}
-                              </MenuItem>
-                            ))}
-                          </Select>
-                          {touched.condition && (
-                            <FormHelperText>{errors.condition}</FormHelperText>
-                          )}
-                        </FormControl>
-                      </div>
-                    </Grid>
-                    <Grid item xs={6}>
-                      {/* quantity */}
-                      <div style={{ marginBottom: "2rem" }}>
-                        <InputLabel
-                          style={{ margin: "0.5rem 0" }}
-                          htmlFor="simple-select"
-                          className={classes.selectLabel}
-                        >
-                          <strong>Total Available Quantity</strong>
-                        </InputLabel>
-                        <TextField
-                          variant="outlined"
-                          fullWidth
-                          size="small"
-                          id="stock"
-                          name="stock"
-                          type="number"
-                          InputProps={{ inputProps: { min: 1, max: 1000 } }}
-                          value={values.stock}
+                          ))}
+                        </Select>
+                        {touched.category && (
+                          <FormHelperText>{errors.category}</FormHelperText>
+                        )}
+                      </FormControl>
+                    </div>
+
+                    {/* subCategory */}
+                    <div style={{ marginBottom: "2rem" }}>
+                      <InputLabel
+                        style={{ margin: "0.5rem 0" }}
+                        htmlFor="simple-select"
+                        className={classes.selectLabel}
+                      >
+                        <strong>Select Sub-Category</strong>
+                      </InputLabel>
+
+                      <FormControl
+                        error={
+                          touched.subcategory && Boolean(errors.subcategory)
+                        }
+                        fullWidth
+                        size="small"
+                        variant="outlined"
+                        className={classes.selectFormControl}
+                      >
+                        <Select
+                          disabled={!values.category.length}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          error={touched.stock && Boolean(errors.stock)}
-                          helperText={touched.stock && errors.stock}
-                        />
-                      </div>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Grid>
+                          value={values.subcategory}
+                          inputProps={{
+                            name: "subcategory",
+                          }}
+                          id="subcategory"
+                          MenuProps={{
+                            className: classes.selectMenu,
+                          }}
+                          classes={{
+                            select: classes.select,
+                          }}
+                        >
+                          <MenuItem
+                            disabled
+                            classes={{
+                              root: classes.selectMenuItem,
+                            }}
+                          >
+                            subcategory
+                          </MenuItem>
+                          {subcategories.map((subcategory) => (
+                            <MenuItem
+                              classes={{
+                                root: classes.selectMenuItem,
+                                selected: classes.selectMenuItemSelected,
+                              }}
+                              value={subcategory._id}
+                              key={subcategory._id}
+                            >
+                              {subcategory.name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                        {touched.subcategory && (
+                          <FormHelperText>{errors.subcategory}</FormHelperText>
+                        )}
+                      </FormControl>
+                    </div>
 
-              {/* second grid */}
-              <Grid item xs={6} md={5}>
-                <div style={{ margin: "3rem 0rem 1rem 3rem" }}>
-                  <div style={{ marginBottom: "2rem" }}>
-                    <InputLabel
-                      style={{ margin: "0.5rem 0" }}
-                      htmlFor="simple-select"
-                      className={classes.selectLabel}
-                    >
-                      <strong>Where will your item be when rented?</strong>
-                    </InputLabel>
-                    <TextField
-                      variant="outlined"
-                      fullWidth
-                      size="small"
-                      id="address"
-                      name="address"
-                      // onBlur={handleBlur}
-                      // onChange={handleChange}
-                      // error={touched.username && Boolean(errors.username)}
-                      // helperText={touched.username && errors.username}
+                    {/* item name */}
+                    <div style={{ marginBottom: "2rem" }}>
+                      <InputLabel
+                        style={{ margin: "0.5rem 0" }}
+                        htmlFor="simple-select"
+                        className={classes.selectLabel}
+                      >
+                        <strong>What is your item name?</strong>
+                      </InputLabel>
+                      <TextField
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                        id="name"
+                        name="name"
+                        value={values.name}
+                        onBlur={handleBlur}
+                        onChange={handleChange}
+                        error={touched.name && Boolean(errors.name)}
+                        helperText={touched.name && errors.name}
+                      />
+                    </div>
+
+                    <Grid container spacing={3}>
+                      <Grid item xs={6}>
+                        {/* item Condition */}
+                        <div style={{ marginBottom: "2rem" }}>
+                          <InputLabel
+                            style={{ margin: "0.5rem 0" }}
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                            <strong>Item Condition</strong>
+                          </InputLabel>
+
+                          <FormControl
+                            error={
+                              touched.condition && Boolean(errors.condition)
+                            }
+                            variant="outlined"
+                            fullWidth
+                            size="small"
+                            className={classes.selectFormControl}
+                          >
+                            <Select
+                              MenuProps={{
+                                className: classes.selectMenu,
+                              }}
+                              classes={{
+                                select: classes.select,
+                              }}
+                              onChange={handleChange}
+                              value={values.condition}
+                              inputProps={{
+                                name: "condition",
+                                id: "condition",
+                              }}
+                            >
+                              <MenuItem
+                                disabled
+                                classes={{
+                                  root: classes.selectMenuItem,
+                                }}
+                              >
+                                condition
+                              </MenuItem>
+                              {conditions.map((condition) => (
+                                <MenuItem
+                                  classes={{
+                                    root: classes.selectMenuItem,
+                                    selected: classes.selectMenuItemSelected,
+                                  }}
+                                  value={condition}
+                                  key={condition}
+                                >
+                                  {condition}
+                                </MenuItem>
+                              ))}
+                            </Select>
+                            {touched.condition && (
+                              <FormHelperText>
+                                {errors.condition}
+                              </FormHelperText>
+                            )}
+                          </FormControl>
+                        </div>
+                      </Grid>
+                      <Grid item xs={6}>
+                        {/* quantity */}
+                        <div style={{ marginBottom: "2rem" }}>
+                          <InputLabel
+                            style={{ margin: "0.5rem 0" }}
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                          >
+                            <strong>Total Available Quantity</strong>
+                          </InputLabel>
+                          <TextField
+                            variant="outlined"
+                            fullWidth
+                            size="small"
+                            id="stock"
+                            name="stock"
+                            type="number"
+                            InputProps={{ inputProps: { min: 1, max: 1000 } }}
+                            value={values.stock}
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            error={touched.stock && Boolean(errors.stock)}
+                            helperText={touched.stock && errors.stock}
+                          />
+                        </div>
+                      </Grid>
+                    </Grid>
+                  </div>
+                </Grid>
+
+                {/* second grid */}
+                <Grid item xs={6} md={5}>
+                  <div style={{ margin: "3rem 0rem 1rem 3rem" }}>
+                    <div style={{ marginBottom: "2rem" }}>
+                      <InputLabel
+                        style={{ margin: "0.5rem 0" }}
+                        htmlFor="simple-select"
+                        className={classes.selectLabel}
+                      >
+                        <strong>Where will your item be when rented?</strong>
+                      </InputLabel>
+                      <TextField
+                        variant="outlined"
+                        fullWidth
+                        size="small"
+                        id="address"
+                        name="address"
+                        // onBlur={handleBlur}
+                        // onChange={handleChange}
+                        // error={touched.username && Boolean(errors.username)}
+                        // helperText={touched.username && errors.username}
+                      />
+                    </div>
+                    <img
+                      style={{ width: "100%", height: "50%" }}
+                      src={
+                        "https://images.unsplash.com/photo-1577086664693-894d8405334a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1533&q=80"
+                      }
+                      alt="..."
+                      className={classes.imgRounded + " " + classes.imgFluid}
                     />
                   </div>
-                  <img
-                    style={{ width: "100%", height: "50%" }}
-                    src={
-                      "https://images.unsplash.com/photo-1577086664693-894d8405334a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1533&q=80"
-                    }
-                    alt="..."
-                    className={classes.imgRounded + " " + classes.imgFluid}
-                  />
-                </div>
+                </Grid>
               </Grid>
-            </Grid>
 
-            <div>
-              <Button
-                disabled
-                type="submit"
-                variant="contained"
-                className={classes.button}
-                onClick={() => setDirection("back")}
-              >
-                Back
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.button}
-                onClick={() => setDirection("forward")}
-              >
-                Continue
-              </Button>
-              {/* <Button
+              <div>
+                <Button
+                  disabled
+                  type="submit"
+                  variant="contained"
+                  className={classes.button}
+                  onClick={() => setDirection("back")}
+                >
+                  Back
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => setDirection("forward")}
+                >
+                  Continue
+                </Button>
+                {/* <Button
                 type="submit"
                 variant="contained"
                 color="primary"
@@ -312,9 +417,10 @@ export const BasicInfo = ({
               >
                 Continue
               </Button> */}
-            </div>
-          </Form>
-        )}
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
     </>
   );
