@@ -61,6 +61,8 @@ ReactDOM.render(
           <UserRoute path="/user/:id" component={userStorePage} />
 
           <VisitorRoute path="/legal" component={Legal} />
+          <VisitorRoute path="/about-us" component={AboutUsPage} />
+          <VisitorRoute path="/contact-us" component={ContactUsPage} />
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
