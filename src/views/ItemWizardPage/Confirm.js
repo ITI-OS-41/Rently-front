@@ -6,7 +6,10 @@ import { List, ListItem, ListItemText } from "@material-ui/core/";
 import { Formik } from "formik";
 import { post } from "functions/request";
 import Header from "../../components/global/Header";
-import history from '../../functions/history'
+import history from "../../functions/history";
+import Grid from "@material-ui/core/Grid";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {
@@ -14,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     margin: theme.spacing(1),
+  },
+  inline: {
+    display: "inline",
+    padding: "1rem 0.2rem",
   },
 }));
 
@@ -74,99 +81,94 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
-            <List>
-              <ListItem>
-                <ListItemText
-                  primary="category"
-                  secondary={category}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="subcategory"
-                  secondary={subcategory}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="condition"
-                  secondary={condition}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Item Name"
-                  secondary={name}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Item Description"
-                  secondary={description}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Quantity"
-                  secondary={stock}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Deposit"
-                  secondary={deposit}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Hourly"
-                  secondary={hour}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Daily"
-                  secondary={day}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Weekly"
-                  secondary={week}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="Monthly"
-                  secondary={month}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="cancellation"
-                  secondary={cancellation}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-              <ListItem>
-                <ListItemText
-                  primary="isDeliverable"
-                  secondary={isDeliverable}
-                  className={classes.textCenter}
-                />
-              </ListItem>
-            </List>
+            <Grid container spacing={2}>
+              <Grid item xs={6} md={12}>
+                <div style={{ margin: "2rem" }}>
+                  <Card style={{ width: "100%", margin: "auto" }}>
+                    <CardHeader color="info">Basic Info</CardHeader>
+                    <List>
+                      <ListItem>
+                        <ListItemText primary="Category" secondary={category} />
+                        <ListItemText
+                          primary="Sub-Category"
+                          secondary={subcategory}
+                        />
+                      </ListItem>
+                      <ListItem></ListItem>
+                      <ListItem>
+                        <ListItemText primary="Item Name" secondary={name} />
+                        <ListItemText
+                          primary="Condition"
+                          secondary={condition}
+                        />
+                      </ListItem>
+                      <ListItem >
+                        <ListItemText primary="Quantity" secondary={stock} />
+                        <ListItemText></ListItemText>
+                      </ListItem>
+                      <ListItem></ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Grid>
+
+              <Grid item xs={6} md={6}>
+                <div style={{ margin: "2rem" }}>
+                  <Card style={{ width: "100%", margin: "auto",height:"17rem" }}>
+                    <CardHeader color="success">
+                      Pricing And Protection
+                    </CardHeader>
+                    <List component="nav">
+                      <ListItem>
+                        <ListItemText
+                          primary="Hourly"
+                          secondary={`${hour} EGP`}
+                        />
+                        <ListItemText
+                          primary="Daily"
+                          secondary={`${day} EGP`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText
+                          primary="Weekly"
+                          secondary={`${week} EGP`}
+                        />
+                        <ListItemText
+                          primary="Monthly"
+                          secondary={`${month} EGP`}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText primary="Deposit" secondary={deposit} />
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Grid>
+              <Grid item xs={6} md={6}>
+                <div style={{ margin: "2rem" }}>
+                  <Card style={{ width: "100%", margin: "auto",height:"17rem" }}>
+                    <CardHeader color="danger">Cancellation Policy</CardHeader>
+                    <List component="nav">
+                      <ListItem>
+                        <ListItemText
+                          primary="Cancellation"
+                          secondary={cancellation}
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <ListItemText
+                          primary="Item Delivery"
+                          secondary={`${isDeliverable ? "yes" : "no"}`}
+                        />
+                      </ListItem>
+                    </List>
+                  </Card>
+                </div>
+              </Grid>
+            </Grid>
+
             <div className={classes.textCenter}>
               <Button
                 color="secondary"

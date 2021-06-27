@@ -96,9 +96,9 @@ let x=[]
               <Grid item xs={6} md={6}>
                 {/* upload images */}
                 <div style={{ margin: "2rem 1rem 0rem 5rem" }}>
-                  <h5>
+                  <h4>
                     <strong>show renters your {name}</strong>
-                  </h5>
+                  </h4>
                   <p>Adding quality photos can increase bookings by 45%.</p>
                   <p>
                     The first image will be set as your featured image. Drag
