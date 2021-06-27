@@ -8,12 +8,12 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Favorite from "@material-ui/icons/Favorite";
-// core components 
-import Header from "components/Header/Header.js";
+// core components
+import Header from "../../components/global/Header.js";
+import Footer from "../../components/global/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
-import Footer from "components/Footer/Footer.js";
 // sections for this page
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import SectionDescription from "views/AboutUsPage/Sections/SectionDescription.js";
@@ -34,16 +34,7 @@ export default function AboutUsPage() {
   const classes = useStyles();
   return (
     <div>
-      <Header
-        brand="Material Kit PRO React"
-        links={<HeaderLinks dropdownHoverColor="info" />}
-        fixed
-        color="transparent"
-        changeColorOnScroll={{
-          height: 300,
-          color: "info",
-        }}
-      />
+      <Header/>
       <Parallax
         image={require("assets/img/about.jpg").default}
         filter="dark"
