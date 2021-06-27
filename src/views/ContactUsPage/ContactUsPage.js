@@ -11,6 +11,9 @@ import Favorite from "@material-ui/icons/Favorite";
 import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
 import BusinessCenter from "@material-ui/icons/BusinessCenter";
+import Parallax from "components/Parallax/Parallax.js";
+import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
+
 // core components
 import Header from "components/Header/Header.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
@@ -20,112 +23,12 @@ import InfoArea from "components/InfoArea/InfoArea.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 import Footer from "components/Footer/Footer.js";
+import Grid from '@material-ui/core/Grid';
 
 import contactUsStyle from "assets/jss/material-kit-pro-react/views/contactUsStyle.js";
 
-const CustomSkinMap = () => {
-  const mapRef = React.useRef(null);
-  React.useEffect(() => {
-    let google = window.google;
-    let map = mapRef.current;
-    let lat = "44.43353";
-    let lng = "26.093928";
-    const myLatlng = new google.maps.LatLng(lat, lng);
-    const mapOptions = {
-      zoom: 14,
-      center: myLatlng,
-      scrollwheel: false,
-      zoomControl: true,
-      styles: [
-        {
-          featureType: "water",
-          stylers: [{ saturation: 43 }, { lightness: -11 }, { hue: "#0088ff" }],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.fill",
-          stylers: [
-            { hue: "#ff0000" },
-            { saturation: -100 },
-            { lightness: 99 },
-          ],
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#808080" }, { lightness: 54 }],
-        },
-        {
-          featureType: "landscape.man_made",
-          elementType: "geometry.fill",
-          stylers: [{ color: "#ece2d9" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry.fill",
-          stylers: [{ color: "#ccdca1" }],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [{ color: "#767676" }],
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.stroke",
-          stylers: [{ color: "#ffffff" }],
-        },
-        { featureType: "poi", stylers: [{ visibility: "off" }] },
-        {
-          featureType: "landscape.natural",
-          elementType: "geometry.fill",
-          stylers: [{ visibility: "on" }, { color: "#b8cb93" }],
-        },
-        { featureType: "poi.park", stylers: [{ visibility: "on" }] },
-        {
-          featureType: "poi.sports_complex",
-          stylers: [{ visibility: "on" }],
-        },
-        { featureType: "poi.medical", stylers: [{ visibility: "on" }] },
-        {
-          featureType: "poi.business",
-          stylers: [{ visibility: "simplified" }],
-        },
-      ],
-    };
 
-    map = new google.maps.Map(map, mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      animation: google.maps.Animation.DROP,
-      title: "Material Kit PRO React!",
-    });
-
-    const contentString =
-      '<div class="info-window-content"><h2>Material Kit PRO React</h2>' +
-      "<p>A premium Kit for React, Material-UI, and React Hooks.</p></div>";
-
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-    });
-
-    google.maps.event.addListener(marker, "click", function () {
-      infowindow.open(map, marker);
-    });
-  });
-  return (
-    <>
-      <div
-        style={{ height: `100%`, borderRadius: "6px", overflow: "hidden" }}
-        ref={mapRef}
-      ></div>
-    </>
-  );
-};
-
-const useStyles = makeStyles(contactUsStyle);
+const useStyles = makeStyles(aboutUsStyle);
 
 export default function ContactUsPage() {
   React.useEffect(() => {
@@ -141,13 +44,36 @@ export default function ContactUsPage() {
         fixed
         color="dark"
       />
-      <div className={classes.bigMap}>
-        <CustomSkinMap />
-      </div>
+      <Parallax
+        image={require("assets/img/about.jpg").default}
+        filter="dark"
+        small
+      >
+        <div className={classes.container}>
+          <GridContainer justify="center">
+            <GridItem
+              md={8}
+              sm={8}
+              className={classNames(
+                classes.mlAuto,
+                classes.mrAuto,
+                classes.textCenter
+              )}
+            >
+              <h1 className={classes.title}>ABOUT US</h1>
+              <h4>
+                Rently was created to reduce the destructive environmental
+                impact of traditional systems of production by keeping products
+                and equipment in use for longer.
+              </h4>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.contactContent}>
           <div className={classes.container}>
-            <h2 className={classes.title}>Send us a message</h2>
+            <h2 style={{paddingTop:"15px"}}>Send us a message</h2>
             <GridContainer>
               <GridItem md={6} sm={6}>
                 <p>
@@ -239,57 +165,7 @@ export default function ContactUsPage() {
         </div>
       </div>
       <Footer
-        content={
-          <div>
-            <div className={classes.left}>
-              <List className={classes.list}>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/?ref=mkpr-contact-us"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Creative Tim
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/presentation?ref=mkpr-contact-us"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    About us
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a href="//blog.creative-tim.com/" className={classes.block}>
-                    Blog
-                  </a>
-                </ListItem>
-                <ListItem className={classes.inlineBlock}>
-                  <a
-                    href="https://www.creative-tim.com/license?ref=mkpr-contact-us"
-                    target="_blank"
-                    className={classes.block}
-                  >
-                    Licenses
-                  </a>
-                </ListItem>
-              </List>
-            </div>
-            <div className={classes.right}>
-              &copy; {1900 + new Date().getYear()} , made with{" "}
-              <Favorite className={classes.icon} /> by{" "}
-              <a
-                href="https://www.creative-tim.com?ref=mkpr-contact-us"
-                target="_blank"
-              >
-                Creative Tim
-              </a>{" "}
-              for a better web.
-            </div>
-          </div>
-        }
+        
       />
     </div>
   );
