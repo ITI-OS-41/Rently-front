@@ -28,6 +28,7 @@ import * as yup from "yup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { get } from "functions/request";
+import UploadImages from "./UploadImages";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -46,6 +47,7 @@ const validationSchema = yup.object({
     .string()
     .min(30, "Minimum 30 characters")
     .required("description is required!"),
+  photo: yup.mixed().required("Photo is required"),
 });
 
 export const PostingDetails = ({
@@ -54,19 +56,11 @@ export const PostingDetails = ({
   nextStep,
   prevStep,
 }) => {
-  const { itemName } = formData;
+  const { name } = formData;
   const [imagePreview, setImagePreview] = useState(null);
   const [item, setItem] = useState({});
   const [direction, setDirection] = useState("back");
 
-  const uploadPhotos = (photos) => {
-    console.log(photos);
-  };
-  // useEffect(() => {
-  //   get("category").then((res) => {
-  //     setCategories(res.data);
-  //   });
-  // }, []);
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -81,6 +75,7 @@ export const PostingDetails = ({
         initialValues={formData}
         onSubmit={(values) => {
           setFormData(values);
+          console.log(values.photo);
           direction === "back" ? prevStep() : nextStep();
         }}
         validationSchema={validationSchema}
@@ -97,56 +92,37 @@ export const PostingDetails = ({
             <Grid container>
               <Grid item xs={6} md={6}>
                 {/* upload images */}
-                <div style={{ margin: "2rem 1rem 0rem 5rem" }}>
-                  <h5>
-                    <strong>show renters your {itemName}</strong>
-                  </h5>
+                <div style={{ margin: "3rem 1rem 0rem 3rem" }}>
+                  <h4>
+                    <strong>show renters your {name}</strong>
+                  </h4>
                   <p>Adding quality photos can increase bookings by 45%.</p>
                   <p>
                     The first image will be set as your featured image. Drag
                     images to reorder them.
                   </p>
-                  {/* <CustomFileInput
-                    onFileChange={(e) => console.log(e.target.value)}
-                    id="photos"
-                    name="photos"
-                    value={values.photos}
-                    onBlur={handleBlur}
-                    onChange={(e) => console.log(values.photos)}
-                    multiple
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                    inputProps={{
-                      placeholder: "upload your images",
-                    }}
-                    endButton={{
-                      buttonProps: {
-                        round: true,
-                        color: "info",
-                        justIcon: true,
-                        fileButton: true,
-                      },
-                      icon: <Layers />,
-                    }}
-                  /> */}
-                  <input
-                    multiple
-                    id="photo"
-                    name="photo"
-                    type="file"
-                    onChange={(event) => {
-                      console.log(event.currentTarget.files);
-                      setFieldValue("photo", event.currentTarget.files);
-                      setImage(event);
-                    }}
-                  />
+                  <Card>
+                    <div style={{ padding: "0.5rem 1rem " }}>
+                      <UploadImages
+                        submitPhotos={(arr) => {
+                          setFieldValue("photo", arr);
+                        }}
+                      />
+                      {values.photo.map((photo) => {
+                        <p>{photo.name}</p>;
+                      })}
+
+                      {!values.photo && (
+                        <FormHelperText>{errors.photo}</FormHelperText>
+                      )}
+                    </div>
+                  </Card>
                 </div>
               </Grid>
 
               {/* second grid */}
               <Grid item xs={6} md={6}>
-                <div style={{ margin: "4rem 5rem 0rem 1rem" }}>
+                <div style={{ margin: "3rem 3rem 0rem 3rem" }}>
                   <Card>
                     <CardHeader color="primary">
                       <strong>Posting Description</strong>
@@ -156,7 +132,7 @@ export const PostingDetails = ({
                       <TextField
                         fullWidth
                         multiline
-                        rows={5}
+                        rows={9}
                         id="description"
                         name="description"
                         value={values.description}
@@ -173,7 +149,7 @@ export const PostingDetails = ({
               </Grid>
             </Grid>
 
-            <div>
+            <div style={{ marginBottom: "3rem" }}>
               <Button
                 type="submit"
                 variant="contained"
