@@ -54,8 +54,6 @@ export const CancellationAndDelivery = ({
   nextStep,
   prevStep,
 }) => {
-  const [delivery, setDelivery] = useState("b");
-  const [cancellation, setCancellation] = useState("a");
   const [direction, setDirection] = useState("back");
 
   const classes = useStyles();
@@ -223,11 +221,11 @@ export const CancellationAndDelivery = ({
                       <FormControlLabel
                         control={
                           <Radio
-                            checked={values.isDeliverable === "yes"}
+                            checked={values.isDeliverable === "true"}
                             onChange={handleChange}
-                            value="yes"
+                            value="true"
                             name="isDeliverable"
-                            aria-label="Yes"
+                            aria-label="True"
                             classes={{
                               checked: classes.radio,
                               root: classes.radioRoot,
@@ -247,11 +245,11 @@ export const CancellationAndDelivery = ({
                       <FormControlLabel
                         control={
                           <Radio
-                            checked={values.isDeliverable === "no"}
+                            checked={values.isDeliverable === "false"}
                             onChange={handleChange}
-                            value="no"
+                            value="false"
                             name="isDeliverable"
-                            aria-label="No"
+                            aria-label="False"
                             classes={{
                               checked: classes.radio,
                               root: classes.radioRoot,

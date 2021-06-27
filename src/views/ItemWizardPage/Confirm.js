@@ -6,6 +6,7 @@ import { List, ListItem, ListItemText } from "@material-ui/core/";
 import { Formik } from "formik";
 import { post } from "functions/request";
 import Header from "../../components/global/Header";
+import history from '../../functions/history'
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {
@@ -24,22 +25,15 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
 
     let send = { ...formData };
 
-    send.location = {
-      type: "Point",
-      coordinates: [1, 2],
-      address: "asd",
-    };
-    send.subcategory = "60d23b41ebfe6a461c8c4b50",
-    send.owner = "60d0e7957af53611781c0e72",
-    send.photo = "2",
-    send.stock = send.stock.toString();
-    send.status = "true"
-    send.deliverable = "true"
+    (send.photo = "2"), (send.isAvailable = "true");
+    send.isSubmitted = "true";
+    send.isPublished = "false";
 
+    console.log("send", send);
 
     post("item", send, "Submitted successfully!")
       .then((response) => {
-        console.log(response);
+        history.push("/profile");
       })
       .catch((error) => {
         console.log(error);

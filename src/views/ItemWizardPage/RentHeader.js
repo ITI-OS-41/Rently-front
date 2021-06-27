@@ -12,14 +12,10 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Footer from "../../components/global/Footer";
 
-function getSteps() {
-  return ["Basic Info", "Posting Details", "Pricing And Protection", "Confirm"];
-}
 const useStyles = makeStyles(presentationStyle);
 
 export default function RentHeader({ component, label }) {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
+
 
   const classes = useStyles();
   return (
@@ -28,16 +24,14 @@ export default function RentHeader({ component, label }) {
       <Parallax
         image={require("assets/img/bg4.jpg").default}
         className={classes.parallax}
-        style={{height: '25rem'}}
+        style={{ height: "25rem" }}
       >
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
                 <h1>Post Your Item</h1>
-                <h3 className={classes.title}>
-                    Rent anything to anyone.
-                </h3>
+                <h3 className={classes.title}>Rent anything to anyone.</h3>
               </div>
             </GridItem>
           </GridContainer>
@@ -46,11 +40,12 @@ export default function RentHeader({ component, label }) {
       <GridContainer container spacing={3}>
         <GridItem>
           <div className={classNames(classes.main, classes.mainRaised)}>
+            
             <div className={classes.root}>{component}</div>
           </div>
         </GridItem>
       </GridContainer>
-    <Footer/>
+      <Footer />
     </div>
   );
 }

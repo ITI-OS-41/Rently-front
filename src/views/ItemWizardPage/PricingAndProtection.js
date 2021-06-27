@@ -47,9 +47,10 @@ const useStyles = makeStyles((theme) => ({
 const validationSchema = yup.object({
   deposit: yup.number().positive().required("deposit is required"),
   hour: yup.number().positive(),
-  day: yup.number().positive().required("This field is required"),
+  day: yup.number().positive().required("daily is required"),
   month: yup.number().positive(),
   week: yup.number().positive(),
+  // price: yup.number().required("price is required"),
 });
 export const PricingAndProtection = ({
   formData,
@@ -77,7 +78,7 @@ export const PricingAndProtection = ({
             hour: values.hour || "",
             day: values.day || "",
             week: values.week || "",
-            month: values.day || "",
+            month: values.month || "",
           };
 
           setFormData(values);
@@ -111,7 +112,7 @@ export const PricingAndProtection = ({
                   </Card>
                 </div>
 
-                {/* item name */}
+                {/* pricing */}
                 <div style={{ marginBottom: "2rem" }}>
                   <h4>
                     <strong>Rental Rates</strong>
@@ -244,6 +245,13 @@ export const PricingAndProtection = ({
                         helperText={touched.month && errors.month}
                       />
                     </Grid>
+                    
+                      {/* {values.day=="" && values.hour=="" && values.week=="" && values.month==""
+                       && (
+                        <FormHelperText>{errors.price}</FormHelperText>
+                      )}
+                       */}
+                    
                   </Grid>
                 </div>
 

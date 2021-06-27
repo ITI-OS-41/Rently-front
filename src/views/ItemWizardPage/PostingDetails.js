@@ -28,6 +28,7 @@ import * as yup from "yup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { get } from "functions/request";
+import UploadImages from "./UploadImages";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -46,6 +47,7 @@ const validationSchema = yup.object({
     .string()
     .min(30, "Minimum 30 characters")
     .required("description is required!"),
+  photo: yup.mixed().required("Photo is required"),
 });
 
 export const PostingDetails = ({
@@ -69,7 +71,7 @@ export const PostingDetails = ({
       setImagePreview(URL.createObjectURL(file));
     }
   };
-
+let x=[]
   const classes = useStyles();
   return (
     <>
@@ -102,31 +104,30 @@ export const PostingDetails = ({
                     The first image will be set as your featured image. Drag
                     images to reorder them.
                   </p>
-                  {/* <CustomFileInput
-                    onFileChange={(e) => console.log(e.target.value)}
-                    id="photos"
-                    name="photos"
-                    value={values.photos}
-                    onBlur={handleBlur}
-                    onChange={(e) => console.log(values.photos)}
-                    multiple
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                    inputProps={{
-                      placeholder: "upload your images",
-                    }}
-                    endButton={{
-                      buttonProps: {
-                        round: true,
-                        color: "info",
-                        justIcon: true,
-                        fileButton: true,
-                      },
-                      icon: <Layers />,
-                    }}
-                  /> */}
-                  <input
+                  <Card>
+                    <div style={{ padding: "0.5rem 1rem " }}>
+                      <UploadImages
+                        setFieldValue={setFieldValue}
+                        onChange={handleChange}
+                        value={ values.photo}
+                     
+                      />
+                      {
+                        
+                         values.photo.map((file) => ({
+                        filename: file.name,
+                      })),
+                      console.log(x)
+                      
+                      }
+                    
+
+                      {!values.photo && (
+                        <FormHelperText>{errors.photo}</FormHelperText>
+                      )}
+                    </div>
+                  </Card>
+                  {/* <input
                     multiple
                     id="photo"
                     name="photo"
@@ -136,7 +137,7 @@ export const PostingDetails = ({
                       setFieldValue("photo", event.currentTarget.files);
                       setImage(event);
                     }}
-                  />
+                  /> */}
                 </div>
               </Grid>
 

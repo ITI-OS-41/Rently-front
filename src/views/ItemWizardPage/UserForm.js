@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { PostingDetails } from "./PostingDetails";
 import { BasicInfo } from "./BasicInfo";
 import { PricingAndProtection } from "./PricingAndProtection";
@@ -6,15 +6,17 @@ import { Confirm } from "./Confirm";
 import { CancellationAndDelivery } from "./CancellationAndDelivery";
 import { Success } from "./Success";
 import RentHeader from "./RentHeader";
+import Stepper from "./Stepper";
 
 export default function UserForm() {
   const [step, setStep] = useState(1);
+  // const [stepper, setStepper] = useContext(Stepper);
   const [formData, setFormData] = useState({
     category: "",
     subcategory: "",
     stock: "",
     condition: "",
-    deposit:"",
+    deposit: "",
     name: "",
     description: "",
     price: {
@@ -23,8 +25,9 @@ export default function UserForm() {
       hour: "",
       month: "",
     },
-    cancellation:"",
-    isDeliverable:"",
+    cancellation: "",
+    isDeliverable: "",
+    photo:[]
   });
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
@@ -32,7 +35,7 @@ export default function UserForm() {
   switch (step) {
     case 1:
       return (
-        <>
+       
           <RentHeader
             component={
               <BasicInfo
@@ -43,11 +46,11 @@ export default function UserForm() {
               />
             }
           />
-        </>
+
       );
     case 2:
       return (
-        <>
+      
           <RentHeader
             component={
               <PostingDetails
@@ -56,11 +59,8 @@ export default function UserForm() {
                 nextStep={nextStep}
                 prevStep={prevStep}
               />
-
-              // <Confirm formData={formData} nextStep={nextStep} prevStep={prevStep} />
             }
           />
-        </>
       );
     case 3:
       return (
@@ -77,7 +77,7 @@ export default function UserForm() {
           />
         </>
       );
-      case 4:
+    case 4:
       return (
         <>
           <RentHeader
@@ -95,17 +95,18 @@ export default function UserForm() {
     case 5:
       return (
         <>
-        <RentHeader
+          <RentHeader
             component={
               <Confirm
                 formData={formData}
                 nextStep={nextStep}
                 prevStep={prevStep}
-              />}
-            />
+              />
+            }
+          />
         </>
       );
-   default:
-     return;
+    default:
+      return;
   }
 }
