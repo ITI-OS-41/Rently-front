@@ -64,7 +64,7 @@ export default function SectionComments(props) {
              comments.length && (
                comments.map(comment=>(
                 <Media
-                avatar={comment.commenter.profilePhoto}
+                avatar={comment.commenter.photo}
                 title={
                   <span>
                     {comment.commenter.username} <small> {dateTime(comment.createdAt)}</small>

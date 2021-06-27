@@ -22,6 +22,7 @@ import Posting from './Sections/posting/Posting';
 import Rental from './Sections/Rental/Rental';
 import StorePage from "../Profile/StorePage/StorePage";
 import MessengerPage from "../MessengerPage/MessengerPage";
+import MyPosting from "./Sections/MyPostings/MyPosting";
 
 
 const useStyles = makeStyles(profilePageStyle);
@@ -44,6 +45,11 @@ export default function UserProfilePage(props) {
       url: '/profile/store',
       name: 'Store',
       component: <StorePage/>
+    },
+    {
+      url: '/profile/my-postings',
+      name: 'My Postings',
+      component: <MyPosting/>
     },
     {
       url: '/profile/posting',
