@@ -8,12 +8,13 @@ const post = async (url, data, successMessage) => await axios.post(url, data)
         return response
     })
     .catch((error) => {
-        const errors = error.response.data
+        const errors = error?.response?.data;
         if (errors) {
             for (const key in errors) {
                 toast.error(errors[key])
             }
         }
+
         // return errors
         throw new Error(errors)
     })
@@ -25,7 +26,7 @@ const put = async (url, data, successMessage) => await axios.put(url, data)
         return response
     })
     .catch((error) => {
-        const errors = error.response.data
+        const errors = error?.response?.data;
         if (errors) {
             for (const key in errors) {
                 toast.error(errors[key])
@@ -41,7 +42,7 @@ const patch = async (url, data, successMessage) => await axios.patch(url, data)
         return response
     })
     .catch((error) => {
-        const errors = error.response.data
+        const errors = error?.response?.data;
         if (errors) {
             for (const key in errors) {
                 toast.error(errors[key])
@@ -57,7 +58,7 @@ const get = async (url, successMessage) => await axios.get(url)
         return response
     })
     .catch((error) => {
-        const errors = error.response.data
+        const errors = error?.response?.data;
         if (errors) {
             for (const key in errors) {
                 toast.error(errors[key])
@@ -74,7 +75,7 @@ const del = async (url, successMessage) => await axios.delete(url)
         return response
     })
     .catch((error) => {
-        const errors = error.response.data
+        const errors = error?.response?.data;
         if (errors) {
             for (const key in errors) {
                 toast.error(errors[key])
