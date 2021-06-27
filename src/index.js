@@ -61,6 +61,8 @@ ReactDOM.render(
 
           <VisitorRoute path="/legal" component={Legal} />
 
+          <Route path="/about-us" component={AboutUsPage} />
+
           <Route path="/" component={HomePage} />
         </Switch>
       </Router>
