@@ -1,23 +1,30 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css";
+
+// import "./styles.css";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardAvatar from "components/Card/CardAvatar.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
 import Button from "components/CustomButtons/Button.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
+import Conan from "assets/img/conan.png";
+import Dexter from "assets/img/dexter.png";
+import Atef from "assets/img/atef.jpg";
+import Ghada from "assets/img/ghada.jpeg";
+import Cat from "assets/img/cat.jpg";
+import Cactus from "assets/img/cactus.png";
 import teamStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/teamStyle.js";
 
-import FaceMarc from "assets/img/faces/marc.jpg";
-import FaceChristian from "assets/img/faces/christian.jpg";
-import FaceKendall from "assets/img/faces/kendall.jpg";
-import FaceAvatar from "assets/img/faces/avatar.jpg";
+// import Swiper core and required modules
+import SwiperCore, { Pagination } from "swiper/core";
+
+// install Swiper modules
+SwiperCore.use([Pagination]);
 
 const useStyles = makeStyles(teamStyle);
 
@@ -37,134 +44,148 @@ export default function SectionTeam() {
         >
           <h2 className={classes.title}>We are nerd rockstars</h2>
           <h5 className={classes.description}>
-            This is the paragraph where you can write more details about your
-            team. Keep you user engaged by providing meaningful information.
+            "We are passionate about giving everyone the opportunity to rent
+            anything they can think of, and to start their own rental businesses
+            while helping the environment. Ruckifying instead of buying helps
+            lower our carbon footprint, and in the four years since we started,
+            we’re seeing how the sharing economy can have a profound, positive
+            impact on our planet and communities."
           </h5>
         </GridItem>
       </GridContainer>
-      <GridContainer>
-        <GridItem md={3} sm={3}>
-          <Card profile plain>
-            <CardAvatar profile plain>
-              <a href="#pablo">
-                <img src={FaceMarc} alt="profile-pic" className={classes.img} />
-              </a>
-            </CardAvatar>
-            <CardBody plain>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <h6 className={classes.textMuted}>CEO / Co-Founder</h6>
-              <p className={classes.cardDescription}>
-                And I love you like Kanye loves Kanye. We need to restart the
-                human foundation.
-              </p>
-            </CardBody>
-            <CardFooter className={classes.justifyContent}>
-              <Button href="#pablo" justIcon simple color="twitter">
-                <i className="fab fa-twitter" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="facebook">
-                <i className="fab fa-facebook" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="google">
-                <i className="fab fa-google" />
-              </Button>
-            </CardFooter>
-          </Card>
+
+      <Swiper pagination={true} slidesPerView={2}>
+        <GridItem md={4} sm={4}>
+          <SwiperSlide style={{ textAlign: "center" }}>
+            <img src={Conan} style={{ borderRadius: "50%", width: "200px" }} />
+            <h3>Muhammed Abdurahmman</h3>
+            <h5>SOFTWARE ENGINEER</h5>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+              fuga?
+            </p>
+            <Button href="#pablo" justIcon simple color="twitter">
+              <i className="fab fa-twitter" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="facebook">
+              <i className="fab fa-facebook" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="google">
+              <i className="fab fa-google" />
+            </Button>
+          </SwiperSlide>
         </GridItem>
-        <GridItem md={3} sm={3}>
-          <Card profile plain>
-            <CardAvatar profile plain>
-              <a href="#pablo">
-                <img
-                  src={FaceKendall}
-                  alt="profile-pic"
-                  className={classes.img}
-                />
-              </a>
-            </CardAvatar>
-            <CardBody plain>
-              <h4 className={classes.cardTitle}>Tania Andrew</h4>
-              <h6 className={classes.textMuted}>DESIGNER</h6>
-              <p className={classes.cardDescription}>
-                Don{"'"}t be scared of the truth because we need to restart the
-                human foundation. And I love you like Kanye loves Kanye.
-              </p>
-            </CardBody>
-            <CardFooter className={classes.justifyContent}>
-              <Button href="#pablo" justIcon simple color="twitter">
-                <i className="fab fa-twitter" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="dribbble">
-                <i className="fab fa-dribbble" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="linkedin">
-                <i className="fab fa-linkedin-in" />
-              </Button>
-            </CardFooter>
-          </Card>
+        <GridItem md={4} sm={4}>
+          <SwiperSlide style={{ textAlign: "center" }}>
+            <img src={Dexter} style={{ borderRadius: "50%", width: "275px" }} />
+            <h3>Mahmoud Hassan</h3>
+            <h5>SOFTWARE ENGINEER</h5>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+              fuga?
+            </p>
+            <Button href="#pablo" justIcon simple color="twitter">
+              <i className="fab fa-twitter" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="facebook">
+              <i className="fab fa-facebook" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="google">
+              <i className="fab fa-google" />
+            </Button>
+          </SwiperSlide>
         </GridItem>
-        <GridItem md={3} sm={3}>
-          <Card profile plain>
-            <CardAvatar profile plain>
-              <a href="#pablo">
-                <img
-                  src={FaceChristian}
-                  alt="profile-pic"
-                  className={classes.img}
-                />
-              </a>
-            </CardAvatar>
-            <CardBody plain>
-              <h4 className={classes.cardTitle}>Christian Mike</h4>
-              <h6 className={classes.textMuted}>Web Developer</h6>
-              <p className={classes.cardDescription}>
-                I love you like Kanye loves Kanye. Don{"'"}t be scared of the
-                truth because we need to restart the human foundation.
-              </p>
-            </CardBody>
-            <CardFooter className={classes.justifyContent}>
-              <Button href="#pablo" justIcon simple color="facebook">
-                <i className="fab fa-facebook" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="dribbble">
-                <i className="fab fa-dribbble" />
-              </Button>
-            </CardFooter>
-          </Card>
+        <GridItem md={4} sm={4}>
+          <SwiperSlide style={{ textAlign: "center" }}>
+            <img src={Atef} style={{ borderRadius: "50%", width: "300px" }} />
+            <h3>Assem Gamal</h3>
+            <h5>SOFTWARE ENGINEER</h5>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+              fuga?
+            </p>
+            <Button href="#pablo" justIcon simple color="twitter">
+              <i className="fab fa-twitter" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="facebook">
+              <i className="fab fa-facebook" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="google">
+              <i className="fab fa-google" />
+            </Button>
+          </SwiperSlide>
         </GridItem>
-        <GridItem md={3} sm={3}>
-          <Card profile plain>
-            <CardAvatar profile plain>
-              <a href="#pablo">
-                <img
-                  src={FaceAvatar}
-                  alt="profile-pic"
-                  className={classes.img}
-                />
-              </a>
-            </CardAvatar>
-            <CardBody plain>
-              <h4 className={classes.cardTitle}>Rebecca Stormvile</h4>
-              <h6 className={classes.textMuted}>WEB DEVELOPER</h6>
-              <p className={classes.cardDescription}>
-                And I love you like Kanye loves Kanye. We really need to restart
-                the human foundation.
-              </p>
-            </CardBody>
-            <CardFooter className={classes.justifyContent}>
-              <Button href="#pablo" justIcon simple color="google">
-                <i className="fab fa-google" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="twitter">
-                <i className="fab fa-twitter" />
-              </Button>
-              <Button href="#pablo" justIcon simple color="dribbble">
-                <i className="fab fa-dribbble" />
-              </Button>
-            </CardFooter>
-          </Card>
+        <GridItem md={4} sm={4}>
+          <SwiperSlide style={{ textAlign: "center" }}>
+            <img
+              src={Ghada}
+              style={{ borderRadius: "50%", height: "300px", width: "300px" }}
+            />
+            <h3>Alaa Ahmed</h3>
+            <h5>SOFTWARE ENGINEER</h5>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+              fuga?
+            </p>
+            <Button href="#pablo" justIcon simple color="twitter">
+              <i className="fab fa-twitter" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="facebook">
+              <i className="fab fa-facebook" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="google">
+              <i className="fab fa-google" />
+            </Button>
+          </SwiperSlide>
         </GridItem>
-      </GridContainer>
+        <GridItem md={4} sm={4}>
+          <SwiperSlide style={{ textAlign: "center" }}>
+            <img
+              src={Cat}
+              style={{ borderRadius: "50%", height: "300px", width: "300px" }}
+            />
+            <h3>Nada Ahmed</h3>
+            <h5>SOFTWARE ENGINEER</h5>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+              fuga?
+            </p>
+            <Button href="#pablo" justIcon simple color="twitter">
+              <i className="fab fa-twitter" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="facebook">
+              <i className="fab fa-facebook" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="google">
+              <i className="fab fa-google" />
+            </Button>
+          </SwiperSlide>
+        </GridItem>
+
+        <GridItem md={4} sm={4}>
+          <SwiperSlide style={{ textAlign: "center" }}>
+            <img
+              src={Cactus}
+              style={{ borderRadius: "50%", height: "300px", width: "300px" }}
+            />
+            <h3>Omnia Soliman</h3>
+            <h5>SOFTWARE ENGINEER</h5>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto,
+              fuga?
+            </p>
+            <Button href="#pablo" justIcon simple color="twitter">
+              <i className="fab fa-twitter" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="facebook">
+              <i className="fab fa-facebook" />
+            </Button>
+            <Button href="#pablo" justIcon simple color="google">
+              <i className="fab fa-google" />
+            </Button>
+          </SwiperSlide>
+        </GridItem>
+      </Swiper>
     </div>
   );
 }

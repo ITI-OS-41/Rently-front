@@ -30,7 +30,9 @@ export default function (props) {
 
         get('conversation')
             .then(res => {
-                setConversations(res.data)
+                if(res.data.length){
+                    setConversations(res.data)
+                }
             })
             .catch(e => {
                 console.log(e)
