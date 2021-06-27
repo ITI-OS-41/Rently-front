@@ -70,209 +70,202 @@ export const CancellationAndDelivery = ({
         {({ values, errors, touched, handleBlur, handleChange }) => (
           <Form className={classes.form}>
             <Grid container>
-              <Grid
-                item
-                xs={6}
-                md={6}
-                style={{ margin: "2rem 2rem 2rem 2rem" }}
-              >
-                <div style={{ marginBottom: "2rem" }}>
-                  <h4>
-                    <strong>Cancellation Policy</strong>
-                    <hr />
-                  </h4>
+              <Grid item xs={6} md={6}>
+                <div style={{ margin: "3rem 2rem 1rem 3rem" }}>
+                  <div>
+                    <h4>
+                      <strong>Cancellation Policy</strong>
+                      <hr />
+                    </h4>
+                  </div>
+                  {/*  */}
+                  <Grid container spacing={2}>
+                    <Grid item xs={6} md={4}>
+                      <div style={{ marginBottom: "2rem" }}>
+                        {/* easy going */}
+                        <Card>
+                          <CardBody>
+                            <FormControlLabel
+                              control={
+                                <Radio
+                                  checked={values.cancellation === "easygoing"}
+                                  onChange={handleChange}
+                                  value="easygoing"
+                                  name="cancellation"
+                                  aria-label="Easygoing"
+                                  classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot,
+                                  }}
+                                />
+                              }
+                              classes={{
+                                label: classes.label,
+                                root: classes.labelRoot,
+                              }}
+                              label="Easy-Going"
+                            />
+                            <div>
+                              <p>
+                                Full refund will be issued if cancelled greater
+                                than 2 days before
+                              </p>
+                            </div>
+                          </CardBody>
+                        </Card>
+                      </div>
+                    </Grid>
+                    <Grid item xs={6} md={4}>
+                      {/* reasonable */}
+                      <div style={{ marginBottom: "2rem" }}>
+                        <Card>
+                          <CardBody>
+                            <FormControlLabel
+                              control={
+                                <Radio
+                                  checked={values.cancellation === "reasonable"}
+                                  value="reasonable"
+                                  onChange={handleChange}
+                                  name="cancellation"
+                                  aria-label="Reasonable"
+                                  classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot,
+                                  }}
+                                />
+                              }
+                              classes={{
+                                label: classes.label,
+                                root: classes.labelRoot,
+                              }}
+                              label="Reasonable"
+                            />
+
+                            <div>
+                              <p>
+                                Full refund will be issued if cancelled greater
+                                than 4 days before
+                              </p>
+                            </div>
+                          </CardBody>
+                        </Card>
+                      </div>
+                    </Grid>
+                    <Grid item xs={6} md={4}>
+                      {/* strict */}
+                      <div style={{ marginBottom: "2rem" }}>
+                        <Card style={{ height: "11rem" }}>
+                          <CardBody>
+                            <FormControlLabel
+                              control={
+                                <Radio
+                                  checked={values.cancellation === "strict"}
+                                  onChange={handleChange}
+                                  value="strict"
+                                  name="cancellation"
+                                  aria-label="Strict"
+                                  classes={{
+                                    checked: classes.radio,
+                                    root: classes.radioRoot,
+                                  }}
+                                />
+                              }
+                              classes={{
+                                label: classes.label,
+                                root: classes.labelRoot,
+                              }}
+                              label="Strict"
+                            />
+
+                            <div>
+                              <p>
+                                50% will be refunded if cancelled greater than 7
+                                days before
+                              </p>
+                            </div>
+                          </CardBody>
+                        </Card>
+                      </div>
+                    </Grid>
+                  </Grid>
+                  {!values.cancellation && (
+                    <FormHelperText>{errors.cancellation}</FormHelperText>
+                  )}
                 </div>
-                {/*  */}
-                <Grid container spacing={2}>
-                  <Grid item xs={6} md={4}>
-                    <div style={{ marginBottom: "2rem" }}>
-                      {/* easy going */}
-                      <Card>
-                        <CardBody>
-                          <FormControlLabel
-                            control={
-                              <Radio
-                                checked={values.cancellation === "easygoing"}
-                                onChange={handleChange}
-                                value="easygoing"
-                                name="cancellation"
-                                aria-label="Easygoing"
-                                classes={{
-                                  checked: classes.radio,
-                                  root: classes.radioRoot,
-                                }}
-                              />
-                            }
-                            classes={{
-                              label: classes.label,
-                              root: classes.labelRoot,
-                            }}
-                            label="Easy-Going"
-                          />
-                          <div>
-                            <p>
-                              Full refund will be issued if cancelled greater
-                              than 2 days before
-                            </p>
-                          </div>
-                        </CardBody>
-                      </Card>
-                    </div>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    {/* reasonable */}
-                    <div style={{ marginBottom: "2rem" }}>
-                      <Card>
-                        <CardBody>
-                          <FormControlLabel
-                            control={
-                              <Radio
-                                checked={values.cancellation === "reasonable"}
-                                value="reasonable"
-                                onChange={handleChange}
-                                name="cancellation"
-                                aria-label="Reasonable"
-                                classes={{
-                                  checked: classes.radio,
-                                  root: classes.radioRoot,
-                                }}
-                              />
-                            }
-                            classes={{
-                              label: classes.label,
-                              root: classes.labelRoot,
-                            }}
-                            label="Reasonable"
-                          />
-
-                          <div>
-                            <p>
-                              Full refund will be issued if cancelled greater
-                              than 4 days before
-                            </p>
-                          </div>
-                        </CardBody>
-                      </Card>
-                    </div>
-                  </Grid>
-                  <Grid item xs={6} md={4}>
-                    {/* strict */}
-                    <div style={{ marginBottom: "2rem" }}>
-                      <Card>
-                        <CardBody>
-                          <FormControlLabel
-                            control={
-                              <Radio
-                                checked={values.cancellation === "strict"}
-                                onChange={handleChange}
-                                value="strict"
-                                name="cancellation"
-                                aria-label="Strict"
-                                classes={{
-                                  checked: classes.radio,
-                                  root: classes.radioRoot,
-                                }}
-                              />
-                            }
-                            classes={{
-                              label: classes.label,
-                              root: classes.labelRoot,
-                            }}
-                            label="Strict"
-                          />
-
-                          <div>
-                            <p>
-                              50% will be refunded if cancelled greater than 7
-                              days before
-                            </p>
-                          </div>
-                        </CardBody>
-                      </Card>
-                    </div>
-                  </Grid>
-                </Grid>
-                {!values.cancellation && (
-                  <FormHelperText>{errors.cancellation}</FormHelperText>
-                )}
               </Grid>
-
               {/* second grid */}
-              <Grid
-                item
-                xs={6}
-                md={4}
-                style={{ margin: "2rem 2rem 2rem 2rem" }}
-              >
+              <Grid item xs={6} md={6}>
                 {/* delivery */}
-                <div style={{ marginBottom: "2rem" }}>
-                  <h4>
-                    <strong>Delivery</strong>
-                  </h4>
-                  <hr />
+                <div style={{ margin: "3rem 3rem 1rem 3rem" }}>
+                  <div>
+                    <h4>
+                      <strong>Delivery</strong>
+                    </h4>
+                    <hr />
+                  </div>
+
+                  {/* item name */}
+                  <div style={{ marginBottom: "2rem" }}>
+                    <strong> Can you deliver this item?</strong>
+
+                    <Card>
+                      <CardBody>
+                        <FormControlLabel
+                          control={
+                            <Radio
+                              checked={values.isDeliverable === "true"}
+                              onChange={handleChange}
+                              value="true"
+                              name="isDeliverable"
+                              aria-label="True"
+                              classes={{
+                                checked: classes.radio,
+                                root: classes.radioRoot,
+                              }}
+                            />
+                          }
+                          classes={{
+                            label: classes.label,
+                            root: classes.labelRoot,
+                          }}
+                          label="yes"
+                        />
+                      </CardBody>
+                    </Card>
+                    <Card>
+                      <CardBody>
+                        <FormControlLabel
+                          control={
+                            <Radio
+                              checked={values.isDeliverable === "false"}
+                              onChange={handleChange}
+                              value="false"
+                              name="isDeliverable"
+                              aria-label="False"
+                              classes={{
+                                checked: classes.radio,
+                                root: classes.radioRoot,
+                              }}
+                            />
+                          }
+                          classes={{
+                            label: classes.label,
+                            root: classes.labelRoot,
+                          }}
+                          label="No"
+                        />
+                      </CardBody>
+                    </Card>
+                  </div>
+
+                  {!values.isDeliverable && (
+                    <FormHelperText>{errors.isDeliverable}</FormHelperText>
+                  )}
                 </div>
-
-                {/* item name */}
-                <div style={{ marginBottom: "2rem" }}>
-                  <strong> Can you deliver this item?</strong>
-
-                  <Card>
-                    <CardBody>
-                      <FormControlLabel
-                        control={
-                          <Radio
-                            checked={values.isDeliverable === "true"}
-                            onChange={handleChange}
-                            value="true"
-                            name="isDeliverable"
-                            aria-label="True"
-                            classes={{
-                              checked: classes.radio,
-                              root: classes.radioRoot,
-                            }}
-                          />
-                        }
-                        classes={{
-                          label: classes.label,
-                          root: classes.labelRoot,
-                        }}
-                        label="yes"
-                      />
-                    </CardBody>
-                  </Card>
-                  <Card>
-                    <CardBody>
-                      <FormControlLabel
-                        control={
-                          <Radio
-                            checked={values.isDeliverable === "false"}
-                            onChange={handleChange}
-                            value="false"
-                            name="isDeliverable"
-                            aria-label="False"
-                            classes={{
-                              checked: classes.radio,
-                              root: classes.radioRoot,
-                            }}
-                          />
-                        }
-                        classes={{
-                          label: classes.label,
-                          root: classes.labelRoot,
-                        }}
-                        label="No"
-                      />
-                    </CardBody>
-                  </Card>
-                </div>
-
-                {!values.isDeliverable && (
-                  <FormHelperText>{errors.isDeliverable}</FormHelperText>
-                )}
               </Grid>
             </Grid>
 
-            <div>
+            <div style={{ marginBottom: "3rem" }}>
               <Button
                 type="submit"
                 variant="contained"

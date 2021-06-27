@@ -10,6 +10,7 @@ import history from "../../functions/history";
 import Grid from "@material-ui/core/Grid";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
+import { uploadImage } from "functions/helpers";
 
 const useStyles = makeStyles((theme) => ({
   textCenter: {
@@ -27,16 +28,21 @@ const useStyles = makeStyles((theme) => ({
 export const Confirm = ({ formData, prevStep, nextStep }) => {
   const [isRequesting, setIsRequesting] = useState(false);
 
-  const submitForm = (formData) => {
+  const submitForm = async (formData) => {
     setIsRequesting(true);
 
     let send = { ...formData };
 
-    (send.photo = "2"), (send.isAvailable = "true");
+    send.isAvailable = "true";
     send.isSubmitted = "true";
     send.isPublished = "false";
 
     console.log("send", send);
+    for (let i = 0; i < send.photo.length; i++) {
+      await uploadImage(send.photo[i], "item").then((res) => {
+        send.photo[i] = res.data.url;
+      });
+    }
 
     post("item", send, "Submitted successfully!")
       .then((response) => {
@@ -102,7 +108,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                           secondary={condition}
                         />
                       </ListItem>
-                      <ListItem >
+                      <ListItem>
                         <ListItemText primary="Quantity" secondary={stock} />
                         <ListItemText></ListItemText>
                       </ListItem>
@@ -114,7 +120,9 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
 
               <Grid item xs={6} md={6}>
                 <div style={{ margin: "2rem" }}>
-                  <Card style={{ width: "100%", margin: "auto",height:"17rem" }}>
+                  <Card
+                    style={{ width: "100%", margin: "auto", height: "17rem" }}
+                  >
                     <CardHeader color="success">
                       Pricing And Protection
                     </CardHeader>
@@ -148,7 +156,9 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               </Grid>
               <Grid item xs={6} md={6}>
                 <div style={{ margin: "2rem" }}>
-                  <Card style={{ width: "100%", margin: "auto",height:"17rem" }}>
+                  <Card
+                    style={{ width: "100%", margin: "auto", height: "17rem" }}
+                  >
                     <CardHeader color="danger">Cancellation Policy</CardHeader>
                     <List component="nav">
                       <ListItem>
@@ -169,7 +179,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               </Grid>
             </Grid>
 
-            <div className={classes.textCenter}>
+            <div className={classes.textCenter} style={{marginBottom:"3rem"}}>
               <Button
                 color="secondary"
                 variant="contained"

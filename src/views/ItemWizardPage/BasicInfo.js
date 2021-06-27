@@ -37,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 const validationSchema = yup.object({
   category: yup.string("Enter Category").required("Category is required!"),
-  subcategory: yup.string("Enter Sub-Category").required("sub-Category is required!"),
+  subcategory: yup
+    .string("Enter Sub-Category")
+    .required("sub-Category is required!"),
   name: yup.string("Enter item name").required("Item Name is required!"),
   condition: yup.string().required("item condition is required"),
   stock: yup.number().positive().required("This field is requried"),
@@ -356,8 +358,8 @@ export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
                 </Grid>
 
                 {/* second grid */}
-                <Grid item xs={6} md={5}>
-                  <div style={{ margin: "3rem 0rem 1rem 3rem" }}>
+                <Grid item xs={6} md={6}>
+                  <div style={{ margin: "3rem 3rem 1rem 3rem" }}>
                     <div style={{ marginBottom: "2rem" }}>
                       <InputLabel
                         style={{ margin: "0.5rem 0" }}
@@ -390,7 +392,7 @@ export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
                 </Grid>
               </Grid>
 
-              <div>
+              <div style={{marginBottom:"3rem"}}>
                 <Button
                   disabled
                   type="submit"
@@ -409,14 +411,6 @@ export const BasicInfo = ({ formData, setFormData, nextStep, prevStep }) => {
                 >
                   Continue
                 </Button>
-                {/* <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.button}
-              >
-                Continue
-              </Button> */}
               </div>
             </Form>
           );

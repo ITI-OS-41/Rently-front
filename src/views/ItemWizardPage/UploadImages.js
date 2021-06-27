@@ -31,17 +31,16 @@ const img = {
   width: "auto",
   height: "100%",
 };
-// onChange={(event) => {
-//     console.log(event.currentTarget.files);
-//     setFieldValue("photo", event.currentTarget.files);
-//     setImage(event);
-//   }}
 
-export default function UploadImages({ formData }) {
+export default function UploadImages({ formData, submitPhotos }) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
+      if (acceptedFiles.length != 0) {
+        submitPhotos(acceptedFiles);
+      }
+
       setFiles(
         acceptedFiles.map((file) =>
           Object.assign(file, {
@@ -66,7 +65,7 @@ export default function UploadImages({ formData }) {
     },
     [files]
   );
-  console.log(files);
+
   return (
     <section className="container">
       <div {...getRootProps({ className: "dropzone" })}>
