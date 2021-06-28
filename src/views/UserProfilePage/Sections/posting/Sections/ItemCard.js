@@ -56,7 +56,7 @@ export default function SectionInterested({ rent }) {
             <Card plain blog className={classes.styling}>
               <CardBody plain>
                 <h4 style={{textAlign: 'center'}}>
-                  <b style={{color: 'teal'}}>{rent.item.name}</b>
+                  <b style={{color: 'teal'}}>{rent?.item?.name}</b>
                 </h4>
                 <div className={classes.cardTitle}>
                   <p><b style={{color: 'teal'}}>owner: </b> {rent.owner.name}.</p>

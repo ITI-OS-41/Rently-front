@@ -76,6 +76,7 @@ ReactDOM.render(
           <Route path="/map" component={MapPage} />
 
           <Route path="/" component={HomePage} />
+       
         </Switch>
       </Router>
     </Context>

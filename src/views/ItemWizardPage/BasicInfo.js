@@ -9,7 +9,8 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Map from "../../components/Map/Map";
-
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import {
   FormHelperText,
   FormControl,
@@ -23,7 +24,11 @@ import {
 import { get } from "functions/request";
 
 import * as yup from "yup";
+import CheckoutForm from "components/Checkout/CheckoutForm";
 const conditions = ["perfect", "very good", "descent", "good", "fair"];
+const promise = loadStripe(
+  "pk_test_51J72gVH4P1CollSvrHWgJ2OyJNqEdMQlk88ALoMM1SkrZtVrcgtKJt4uc2eOxrtbumeCSIDxbqymaeu5bgxotVlf00Fjhgz1hc"
+);
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -385,6 +390,9 @@ export const BasicInfo = ({
                         console.log({ pos }, { address })
                       }
                     />
+                    {/* <Elements stripe={promise}>
+                      <CheckoutForm />
+                    </Elements> */}
                   </div>
                 </Grid>
               </Grid>
