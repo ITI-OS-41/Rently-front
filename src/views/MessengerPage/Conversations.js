@@ -12,17 +12,21 @@ import LoadingContainer from "../../components/global/LoadingContainer";
 import NoDataToShow from "../../components/global/NoDataToShow";
 import {UserContext} from "../../Context";
 import {changeQueryParamsURL} from "../../functions/helpers";
+import { TextField } from '@material-ui/core';
+import Grid from "@material-ui/core/Grid";
 
 
 export default function (props) {
+    const {user} = useContext(UserContext);
 
 
     const {setConversation, ...rest} = props;
     const [isLoading, setIsLoading] = useState(true)
     const [conversations, setConversations] = useState([]);
+    const [filteredConversations, setFilteredConversations] = useState([]);
     const [activeConversation, setActiveConversation] = useState();
+    const [search,setSeatch]=useState('');
 
-    const {user} = useContext(UserContext);
 
     // get conversations
     useEffect(() => {
@@ -32,6 +36,7 @@ export default function (props) {
             .then(res => {
                 if(res.data.length){
                     setConversations(res.data)
+                    setFilteredConversations(res.data)
                 }
             })
             .catch(e => {
@@ -57,6 +62,26 @@ export default function (props) {
     },[conversations]);
 
 
+    // filter conversations
+    useEffect(()=>{
+        if(!search){
+            setFilteredConversations(conversations)
+         }
+        else {
+            let res = conversations.filter(conversation=>{
+                for (let i=0;i<conversation.members.length;i++){
+                    if(conversation.members[i].username !== user.username) {
+                        let u = conversation.members[i]
+                        let regex = new RegExp(`${u.username}|${u.firstname}|${u.lastname}`,'gi');
+                        return regex.test(search)
+                    }
+                }
+            })
+            setFilteredConversations(res)
+        }
+    },[search]);
+
+
     const handleChangeConversation = (conversation) => {
         if (conversation){
             setActiveConversation(conversation)
@@ -68,18 +93,26 @@ export default function (props) {
 
     return <Scrollbars  {...SCROLLBAR_CONFIG}>
         <List>
-
+            <ListItem>
+                <TextField
+                    variant="outlined"
+                    fullWidth
+                    label="Search"
+                    margin="dense"
+                    value={search}
+                    onChange={e=>setSeatch(e.target.value)}
+                />
+            </ListItem>
             {
                 isLoading
                     ?
                     <LoadingContainer/>
                     :
-                    conversations.length
+                    filteredConversations.length
                         ?
-                        conversations.map(conversation => (
+                        filteredConversations.map(conversation => (
                             conversation.members.map(member=>(
                                 (member._id !== user._id) && (
-
                                     <ListItem
                                         onClick={() => {
                                             handleChangeConversation(conversation)

@@ -61,6 +61,7 @@ export default function SectionInterested() {
               </p>
             </CardBody>
           </Card>
+        
         </GridItem>
         <GridItem xs={12} sm={4} md={4} lg={4} xl={4}>
           <Card plain blog>

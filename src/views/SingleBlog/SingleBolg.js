@@ -16,7 +16,7 @@ import SectionComments from "./Sections/SectionComments.js";
 import cardBlog4 from "../../assets/img/examples/card-blog4.jpg";
 
 import { get } from "../../functions/request";
-
+import { dateTime } from 'functions/helpers'
 
 import blogPostPageStyle from "../../assets/jss/material-kit-pro-react/views/blogPostPageStyle.js";
 
@@ -54,7 +54,7 @@ export default function BlogPostPage(props) {
                         <b>
                           {blog.author.firstname} {blog.author.lastname}{" "}
                         </b>
-                        , {blog.createdAt}.
+                        , {dateTime(blog.createdAt)}.
                       </h4>
 
                     </GridItem>
@@ -63,8 +63,8 @@ export default function BlogPostPage(props) {
               </Parallax>
               <div className={classes.main}>
                 <div className={classes.container}>
-                  <SectionText blog={blog} />
-                  <SectionComments />
+                  <SectionText blog={blog}{...props} />
+                  <SectionComments {...props}/>
                 </div>
               </div>
             </>

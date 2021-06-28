@@ -6,21 +6,17 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-// @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
-// core components
 import Header from "../../components/global/Header.js";
 import Footer from "../../components/global/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax/Parallax.js";
 // sections for this page
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import SectionDescription from "views/AboutUsPage/Sections/SectionDescription.js";
-import SectionTeam from "views/AboutUsPage/Sections/SectionTeam.js";
-import SectionServices from "views/AboutUsPage/Sections/SectionServices.js";
-import SectionOffice from "views/AboutUsPage/Sections/SectionOffice.js";
-import SectionContact from "views/AboutUsPage/Sections/SectionContact.js";
+import SectionDescription from "../../views/AboutUsPage/Sections/SectionDescription.js";
+import SectionTeam from "../../views/AboutUsPage/Sections/SectionTeam.js";
+import SectionServices from "../../views/AboutUsPage/Sections/SectionServices.js";
+import SectionOffice from "../../views/AboutUsPage/Sections/SectionOffice.js";
+import SectionContact from "../../views/AboutUsPage/Sections/SectionContact.js";
 
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
 
@@ -33,7 +29,7 @@ export default function AboutUsPage() {
   });
   const classes = useStyles();
   return (
-    <div>
+    <>
       <Header/>
       <Parallax
         image={require("assets/img/about.jpg").default}
@@ -71,6 +67,6 @@ export default function AboutUsPage() {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }

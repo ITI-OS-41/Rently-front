@@ -14,23 +14,15 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
-// @material-ui/icons
-import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import LocalShipping from "@material-ui/icons/LocalShipping";
-import VerifiedUser from "@material-ui/icons/VerifiedUser";
-import Favorite from "@material-ui/icons/Favorite";
 // core components
 import Header from "../../components/global/Header.js";
-import HeaderLinks from "../../components/Header/HeaderLinks.js";
 import Footer from "../../components/global/Footer.js";
 import LoadingContainer from "../../components/global/LoadingContainer";
 
 import Parallax from "../../components/Parallax/Parallax.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
 import GridItem from "../../components/Grid/GridItem.js";
-import Button from "../../components/CustomButtons/Button.js";
 import Accordion from "../../components/Accordion/Accordion.js";
-import InfoArea from "../../components/InfoArea/InfoArea.js";
 import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
 import presentationStyle from "../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import ItemRating from '../../components/Items/ItemRating';
@@ -40,11 +32,6 @@ import {UserContext} from "../../Context";
 
 import { Divider } from "@material-ui/core";
 
-// images
-import product1 from "assets/img/examples/product1.jpg";
-import product2 from "assets/img/examples/product2.jpg";
-import product3 from "assets/img/examples/product3.jpg";
-import product4 from "assets/img/examples/product4.jpg";
 import NoDataToShow from "../../components/global/NoDataToShow";
 
 const customStyle = {
