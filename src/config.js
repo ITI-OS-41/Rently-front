@@ -11,7 +11,7 @@ const CAROUSEL_SETTINGS = {
   scrollMode: "remainder",
   slidesToScroll: "auto",
 };
-
+const HTTPS=true
 const CLOUDINARY_URL = 'cloudinary://524458174797441:x2MQJicIN5bP7zZP2C_pAFBeLCM@rently-service'
 const CLOUDINARY_CLOUD_NAME = 'rently-service'
 const CLOUDINARY_API_KEY = '524458174797441'
@@ -34,5 +34,6 @@ export {
   CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_API_KEY,
   CLOUDINARY_SECRET,
-  SCROLLBAR_CONFIG
+  SCROLLBAR_CONFIG,
+  HTTPS
 }

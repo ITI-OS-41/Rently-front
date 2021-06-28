@@ -385,14 +385,14 @@ export const BasicInfo = ({
                       />
                     </div>
 
-                    <Map
+                    {/* <Map
                       changeCoordinates={(pos, address) =>
                         console.log({ pos }, { address })
                       }
-                    />
-                    {/* <Elements stripe={promise}>
+                    /> */}
+                    <Elements stripe={promise}>
                       <CheckoutForm />
-                    </Elements> */}
+                    </Elements>
                   </div>
                 </Grid>
               </Grid>
