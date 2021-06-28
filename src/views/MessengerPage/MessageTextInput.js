@@ -13,6 +13,7 @@ export default function (props) {
         if(!msg.length){
             return
         }
+        setMsg(msg.replace(/\n\r?/g, '<br />'))
         onSubmit(msg);
         setMsg('')
     };
@@ -20,6 +21,8 @@ export default function (props) {
     return (
         <form  autoComplete="off" onSubmit={handleSubmit} style={{display: 'flex', margin: '0.5rem 0'}}>
             <TextField
+                multiline
+                rows={3}
                 value={msg}
                 label="Message"
                 onChange={e=>{setMsg(e.target.value)}}

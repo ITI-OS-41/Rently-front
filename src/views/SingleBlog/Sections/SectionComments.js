@@ -61,9 +61,10 @@ export default function SectionComments(props) {
             <h3 className={classes.title}>Comments</h3>
            
            {
-             comments.length && (
+             comments && (
                comments.map(comment=>(
                 <Media
+                    key={comment._id}
                 avatar={comment.commenter.photo}
                 title={
                   <span>

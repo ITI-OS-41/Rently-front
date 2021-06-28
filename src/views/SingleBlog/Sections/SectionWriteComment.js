@@ -70,7 +70,7 @@ export default function SectionWriteComment(props) {
                 onSubmit={submitComment}
             >
             <Media
-                avatar={user.profilePhoto || ''}
+                avatar={user.photo || ''}
                 body={
                     <TextField
                     variant="outlined"
