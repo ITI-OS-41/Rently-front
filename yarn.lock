@@ -13783,7 +13783,14 @@
   "resolved" "https://registry.npmjs.org/time-stamp/-/time-stamp-1.1.0.tgz"
   "version" "1.1.0"
 
-"timeago.js@^4.0.2":
+"timeago-react@^3.0.2":
+  "integrity" "sha512-K+NqoRcE13xv7lrmHtZmy7G+yXF8ZxmuwRK/EGKyT1chpI3zmV6YnB5o9+slnOCq1dXuQJknr/hWjINyP7C9LA=="
+  "resolved" "https://registry.npmjs.org/timeago-react/-/timeago-react-3.0.2.tgz"
+  "version" "3.0.2"
+  dependencies:
+    "timeago.js" "^4.0.0"
+
+"timeago.js@^4.0.0":
   "integrity" "sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w=="
   "resolved" "https://registry.npmjs.org/timeago.js/-/timeago.js-4.0.2.tgz"
   "version" "4.0.2"

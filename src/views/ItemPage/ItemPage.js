@@ -107,13 +107,7 @@ export default function ItemPage(props) {
     <div className={classes.productPage}>
 
       <Header />
-      <Parallax
-        image={require("../../assets/img/examples/clark-street-merc.jpg").default}
-        filter="dark"
-        className={classes.pageHeader}
-        style={{height: '16rem'}}
-      >
-      </Parallax>
+     
           <div className={classNames(classes.main, classes.mainRaised)} style={{margin: '-300px 30px 0px'}}>
               {isLoading ? <LoadingContainer /> : ( <GridContainer>
 
