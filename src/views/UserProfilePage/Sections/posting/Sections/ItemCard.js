@@ -56,14 +56,15 @@ export default function SectionInterested({ rent }) {
             <Card plain blog className={classes.styling}>
               <CardBody plain>
                 <h4 style={{textAlign: 'center'}}>
-                  <b style={{color: 'teal'}}>{rent?.item?.name || ''}</b>
+                  <b style={{color: 'teal'}}>{rent?.item?.name}</b>
                 </h4>
                 <div className={classes.cardTitle}>
-                  <p><b style={{color: 'teal'}}>owner: </b> {rent.owner.name || rent.owner.username}.</p>
-                  <p><b style={{color: 'teal'}}>renter: </b> {rent.renter.name || rent.renter.username}.</p>
-                  <p><b style={{color: 'teal'}}>status: </b> {rent.status}.</p>
-                  <p><b style={{color: 'teal'}}>insurance: </b> {rent.insurance}.</p>
-                  <p><b style={{color: 'teal'}}>price: </b> {rent.price}$.</p>
+                  <p><b style={{color: 'teal'}}>owner: </b> {rent?.owner?.name}.</p>
+                  <p><b style={{color: 'teal'}}>renter: </b> {rent?.renter?.name}.</p>
+                  <p><b style={{color: 'teal'}}>status: </b> {rent?.status}.</p>
+                  <p><b style={{color: 'teal'}}>insurance: </b> {rent?.insurance}.</p>
+                  <p><b style={{color: 'teal'}}>price: </b> {rent?.price}$.</p>
+                  <b style={{color: 'teal'}}>{rent?.item?.name || ''}</b>
                 </div>
               </CardBody>
             </Card>
