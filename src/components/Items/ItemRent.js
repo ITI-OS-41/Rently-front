@@ -119,7 +119,7 @@ export default function ItemRent(props) {
     return (
         <div>
             <StyledButton round onClick={handleClickOpen}  >
-                Set Dates &nbsp;
+                Set Dates
             </StyledButton>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>

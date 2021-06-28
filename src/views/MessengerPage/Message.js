@@ -4,8 +4,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { green,lightBlue } from "@material-ui/core/colors";
 import {UserContext} from "../../Context";
 import {dateTime} from "../../functions/helpers";
-import TimeAgo from 'timeago-react'; // var TimeAgo = require('timeago-react');
-
+import TimeAgo from 'timeago-react';
 
 const color2= '#e3e3e3';
 const color2darken = '#ccc';
@@ -134,11 +133,9 @@ export function Message(props) {
             }
             {isMine}
             <div className={`${classes.message} ${isMine?classes.messageOrange:classes.messageBlue}`}>
-                <p  dangerouslySetInnerHTML={{__html: message.text}} className={classes.messageContent}/>
+                <p  dangerouslySetInnerHTML={{__html: message.text.replace('\n', '<br/>')}} className={classes.messageContent}/>
                 <span className={`${classes.messageTimestamp} `} >
-                    <TimeAgo
-                        datetime={message.createdAt}
-                    />
+                    <TimeAgo datetime={message.createdAt}/>
                 </span>
             </div>
         </div>
