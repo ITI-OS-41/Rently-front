@@ -16,6 +16,7 @@ import styles from "../../assets/jss/material-kit-pro-react/views/ecommerceSecti
 import ItemRating from './ItemRating';
 import history from "functions/history";
 
+import defaultImage from '../../assets/img/noimagelarge.png';
 
 const customStyle = {
   cardImage: {
@@ -103,15 +104,15 @@ export default function ItemCard(props) {
   return (
     <Card plain product>
       <CardBody plain>
-        <div className={classes.cardLabel}><small>.67 km</small></div>
+        {/*<div className={classes.cardLabel}><small>.67 km</small></div>*/}
         <Link to={`/item/${item._id}`} onClick={() => history.push("/item/" + item._id)}>
-          <img className={classes.cardImage} src={suit1} alt={item.name} />
+          <img className={classes.cardImage} src={item.photo[0]||defaultImage} alt={item.name} />
         </Link>
         <h5 className={classNames(classes.cardTitle, classes.itemTitle)}>
           <Link to={`/item/${item._id}`}>{item.name}</Link>
         </h5>
         <div>
-          <p className={classes.cardDescription}>Assem {item.description}</p>
+          <p className={classes.cardDescription}>{item.description}</p>
           <Link to={`/item/${item._id}`} className={classes.storeName} onClick={() => history.push("/item/" + item._id)}>Owner: {username}</Link><br />
           <ItemRating itemRate={item.itemRate} />
         </div>

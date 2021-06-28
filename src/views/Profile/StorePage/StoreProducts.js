@@ -8,6 +8,7 @@ import LoadingContainer from "../../../components/global/LoadingContainer";
 import Grid from "@material-ui/core/Grid";
 import SearchFilters from "./SearchFilter";
 import NoDataToShow from "../../../components/global/NoDataToShow";
+import ItemCard from "../../../components/Items/ItemCard";
 
 
 const modelName = 'item';
@@ -60,7 +61,7 @@ return (
                 items.map(item => {
                   return (
                     <Grid item md={3} sm={6} xs={12}>
-                      <CategoryCard key={item._id} category={item}/>
+                      <ItemCard  key={item._id} item={item}/>
                     </Grid>
                   )
                 })

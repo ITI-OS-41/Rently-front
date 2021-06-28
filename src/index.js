@@ -26,10 +26,10 @@ import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
-import ShoppingCart from "./views/ShoppingCartPage/ShoppingCartPage";
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
+import CartPage from "./views/CartPage/CartPage";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -53,7 +53,6 @@ ReactDOM.render(
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
-          <Route path="/cart" component={ShoppingCart} />
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
@@ -66,7 +65,6 @@ ReactDOM.render(
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
-          <Route path="/cart" component={ShoppingCart} />
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
@@ -74,6 +72,7 @@ ReactDOM.render(
           <UserRoute path="/user/:id" component={userStorePage} />
 
           <Route path="/map" component={MapPage} />
+          <Route path="/cart" component={CartPage} />
 
           <Route path="/about-us" component={AboutUsPage} />
 
