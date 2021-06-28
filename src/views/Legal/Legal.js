@@ -36,7 +36,7 @@ export default function Legal() {
 
   const links = [
     {
-      url: "/legal",
+      url: "/legal/terms-of-service",
       name: "Terms of Service",
       component: <TermsOfService />,
     },
@@ -46,18 +46,18 @@ export default function Legal() {
       component: <PrivacyPolicy />,
     },
     {
-      url: "/legal/payment",
+      url: "/legal/payment-payout-policy",
       name: "Payment & Payout policy",
       component: <PaymentPayoutPolicy />,
     },
     {
-      url: "/legal/insurance",
+      url: "/legal/insurance-policy",
       name: "Insurance Policy",
       component: <InsurancePolicy />,
     },
     {
-      url: "/legal/cancelation",
-      name: "Cancelation Policy",
+      url: "/legal/cancellation-policy",
+      name: "Cancellation Policy",
       component: <CancellationPolicy />,
     },
   ];

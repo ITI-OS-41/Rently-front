@@ -98,6 +98,9 @@ export default function ItemRent(props) {
                 let response = res.data
                 console.log(response)
             })
+            .catch(e=>{
+                console.log(e)
+            })
     };
     console.log(props)
     const handleClickOpen = () => {

@@ -15,7 +15,6 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 
-
 // core components
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
 
@@ -23,6 +22,8 @@ import styles from "../../assets/jss/material-kit-pro-react/components/headerLin
 import {UserContext} from "../../Context";
 import axios from "../../functions/axios";
 import history from "../../functions/history";
+import Button from "@material-ui/core/Button";
+import {NotificationNavbar} from "./NotificationNavbar";
 
 const useStyles = makeStyles(styles);
 
@@ -83,7 +84,8 @@ export default function HeaderLinks(props) {
     }
 
     return (
-        <List className={classes.list + " " + classes.mlAuto}>
+        <List
+            className={classes.list + " " + classes.mlAuto}>
 
             { !user.username &&
             <>
@@ -114,6 +116,15 @@ export default function HeaderLinks(props) {
                     Blog
                 </Link>
             </ListItem>
+
+            {user.username &&
+            <>
+                <ListItem className={classes.listItem}>
+                    <NotificationNavbar dropdownHoverColor={dropdownHoverColor}/>
+                </ListItem>
+            </>
+            }
+
             <ListItem className={classes.listItem}>
 
                 <CustomDropdown

@@ -35,8 +35,8 @@ export default function InsurancePolicy() {
       </p>
       <br />
       <p>
-        “Ruckify Protection” means Ruckify’s policy in respect of claims valued
-        at less than $5,000CDN.
+        “Rently Protection” means Rently’s policy in respect of claims valued at
+        less than $5,000CDN.
       </p>
       <br />
       <h3>Eligibility:</h3>
@@ -201,8 +201,8 @@ export default function InsurancePolicy() {
         partners take fraud and illegal activities very seriously; if you are
         suspected of such activities we will report you to the local authorities
         with proof. All determinations and solutions made by Rently and our
-        partners are final and will be made in accordance with Ruckify’s terms
-        or service and any applicable insurance policies.
+        partners are final and will be made in accordance with Rently’s terms or
+        service and any applicable insurance policies.
       </p>
     </div>
   );

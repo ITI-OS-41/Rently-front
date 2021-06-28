@@ -28,7 +28,7 @@ export default function SectionOffice() {
           sm={8}
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
-          <h2 className={classes.title}>Our office is our second home</h2>
+          <h2 className={classes.title}>Our office is our second home (المعهد يعني)</h2>
           <h4 className={classes.description}>
             Here are some pictures from our office. You can see the place looks
             like a palace and is fully equiped with everything you need to get

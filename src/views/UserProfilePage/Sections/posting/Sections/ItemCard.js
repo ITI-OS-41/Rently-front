@@ -64,6 +64,7 @@ export default function SectionInterested({ rent }) {
                   <p><b style={{color: 'teal'}}>status: </b> {rent?.status}.</p>
                   <p><b style={{color: 'teal'}}>insurance: </b> {rent?.insurance}.</p>
                   <p><b style={{color: 'teal'}}>price: </b> {rent?.price}$.</p>
+                  <b style={{color: 'teal'}}>{rent?.item?.name || ''}</b>
                 </div>
               </CardBody>
             </Card>
