@@ -74,10 +74,10 @@ export function NotificationNavbar(props) {
             }}
             buttonIcon={NotificationsActiveOutlinedIcon}
             dropdownList={[
-                notifications.map((notification) => (
+                notifications.length ? notifications.map((notification) => (
                     <Link
                         key={notification._id}
-                        to={notification.type === 'rent' ? '/profile/renting' : '/messenger'}
+                        to={notification.type === 'rent' ? '/profile/posting' : '/messenger'}
                         className={classes.dropdownLink}
                     >
                         {
@@ -89,7 +89,7 @@ export function NotificationNavbar(props) {
 
                         {notification.content}
                     </Link>
-                ))
+                )) : <h6 className={classes.dropdownLink} style={{padding: '0 1rem'}}>You don't have any notifications</h6>
 
                 // <Link
                 //     to="/profile/store"

@@ -5,10 +5,10 @@ import { green,lightBlue } from "@material-ui/core/colors";
 import {UserContext} from "../../Context";
 import {dateTime} from "../../functions/helpers";
 
-const color1= '#e3e3e3';
-const color1darken = '#ccc';
-const color2= '#A8DDFD';
-const color2darken= '#7ba8fd';
+const color2= '#e3e3e3';
+const color2darken = '#ccc';
+const color1= '#A8DDFD';
+const color1darken= '#7ba8fd';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
