@@ -134,7 +134,7 @@ export function Message(props) {
             }
             {isMine}
             <div className={`${classes.message} ${isMine?classes.messageOrange:classes.messageBlue}`}>
-                <p  dangerouslySetInnerHTML={{__html: message.text}} className={classes.messageContent}/>
+                <p  dangerouslySetInnerHTML={{__html: message.text.replace('\n', '<br/>')}} className={classes.messageContent}/>
                 <span className={`${classes.messageTimestamp} `} >
                     <TimeAgo
                         datetime={message.createdAt}

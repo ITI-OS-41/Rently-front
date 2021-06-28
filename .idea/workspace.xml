@@ -4,11 +4,7 @@
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/MessageTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/MessageTextInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/SingleBlog/Sections/SectionComments.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SingleBlog/Sections/SectionComments.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/SingleBlog/Sections/SectionWriteComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SingleBlog/Sections/SectionWriteComment.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +120,7 @@
       <workItem from="1624619798303" duration="21318000" />
       <workItem from="1624695916565" duration="17001000" />
       <workItem from="1624783881229" duration="5622000" />
-      <workItem from="1624866726153" duration="8446000" />
+      <workItem from="1624866726153" duration="9001000" />
     </task>
     <servers />
   </component>
