@@ -39,15 +39,15 @@ const customStyle = {
   timeRateLabel: {
     textAlignEnd: "center",
     fontSize: "14px",
-    padding: "0 2.5rem",
+    padding: "0",
   },
   valueRateLabel: {
-    fontSize: "18px",
+    fontSize: "20px",
     whiteSpace: "nowrap",
     overFlow: "hidden",
     textOverflow: "ellipsis",
     fontWeight: "600!important",
-    padding: "0 .7rem",
+    paddingRight: ".7rem",
     width: "100%",
   },
   storeName: {
@@ -195,27 +195,79 @@ export default function ItemPage(props) {
                 {Object.entries(item?.price).map((price, id) => {
                   if (price[1] > 0) {
                     return (
-                      <span key={id}>
-                        <span className={classes.valueRateLabel}>
-                          EGP${price[1]}.00
-                        </span>
-                        <Divider orientation="vertical" flexItem />
-                        <span className={classes.timeRateLabel}>
-                          {price[0]}
-                        </span>
+                      <span className={classes.valueRateLabel}>
+                        EGP${price[1]}.00
                       </span>
                     );
                   }
                 })}
               </Grid>
-              <small>
-                <em>
-                  <strong>Starting at </strong>EGP$
-                  {Math.min(...Object.values(item.price))}.00
-                </em>
-              </small>
+              <Grid>
+                <small>
+                  <em>
+                    <strong>Starting at </strong>EGP$
+                    {Math.min(...Object.values(item.price))}.00
+                  </em>
+                </small>
 
+                <hr />
+                <div>
+                  <h2 className={classes.storeName}>
+                    {item?.name} -{" "}
+                    <span className={classes.title}>{item?.condition}</span>
+                  </h2>
+                  <p>
+                    <p>{item?.description}</p>
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  <Grid container>
+                    <Grid item>
+                      <div style={{ paddingRight: "2rem" }}>
+                        <img
+                          src={item?.owner?.photo}
+                          className={imageClasses}
+                          style={{
+                            objectFit: "cover",
+                            height: "100px",
+                            width: "100px",
+                            display: "inline-block",
+                          }}
+                        />
+                      </div>
+                    </Grid>
+                    <Grid item>
+                      <h5>{item.owner.username}</h5>
+                      <small>{item?.location?.address}</small>
+                      <br />
+                      <small>
+                        <ItemRating itemRate={item?.itemRate} />
+                      </small>
+                      <br />
+                      <Link
+                        to={`/user/${item.owner._id}`}
+                        className={classes.storeName}
+                      >
+                        View store
+                      </Link>
+                    </Grid>
+                  </Grid>
+                  <hr />
+                </div>
+              </Grid>
+              <Grid>
+                <span className={classes.storeName}>Keep in Mind</span>
+                <p>
+                  You remain fully liable to the Owner for any damage, loss, or
+                  theft of the item during the rental period.
+                </p>
+              </Grid>
               <hr />
+              <Grid>
+              <span className={classes.storeName}>Cancellation</span>
+              <ItemCancellation itemPolicy={item.cancellation} />
+              </Grid>
             </Grid>
 
             <Grid item>
@@ -272,56 +324,14 @@ export default function ItemPage(props) {
                 </CardBody>
               </Card>
             </Grid>
-            {/* <small>
-              <em>
-                <strong>Starting at </strong>EGP$
-                {Math.min(...Object.values(item.price))}.00
-              </em>
-            </small>
-            <br />
-            <hr />
+            {/* 
 
-            <div>
-              <h2 className={classes.storeName}>
-                {item?.name} -{" "}
-                <span className={classes.title}>{item?.condition}</span>
-              </h2>
-              <p>
-                <p>{item?.description}</p>
-              </p>
-            </div>
-            <hr />
-            <div>
-              <p>
-                <img
-                  src={item?.owner?.photo}
-                  className={imageClasses}
-                  style={{
-                    objectFit: "cover",
-                    height: "100px",
-                    width: "100px",
-                    display: "inline-block",
-                  }}
-                />
-                <strong>{item.owner.username}</strong> <br />
-                <small>{item?.location?.address}</small> <br />
-                <Link
-                  to={`/user/${item.owner._id}`}
-                  className={classes.storeName}
-                >
-                  View store
-                </Link>
-              </p>
-            </div>
-
+           
             <Accordion
               active={0}
               activeColor="info"
               collapses={[
-                {
-                  title: `Owned by`,
-                  content: <p>f</p>,
-                },
+               
                 {
                   title: "Pickup & Return Options",
                   content: (
