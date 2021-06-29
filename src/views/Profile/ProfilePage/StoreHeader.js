@@ -54,7 +54,7 @@ export default function StoreHeader(props) {
       <Grid item md={6} sm={12}>
         <div style={{display: 'flex', alignItems: 'center'}}>
           <img
-            src={user.store.photo}
+            src={user?.store?.photo}
             className={imageClasses}
             style={{objectFit: 'cover', height: '100px', width: '100px', display: 'inline-block'}}
           />
