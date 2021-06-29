@@ -75,4 +75,12 @@ const changeQueryParamsURL = (query) =>{
 const currency = (amount) =>{
     return `$ ${amount}`;
 }
+
+
+
+
+
+
+
+
 export { currency, getUserType, isAdmin, checkTokenValidity ,getToken, stripHtml, uploadImage, dateTime,changeQueryParamsURL}
