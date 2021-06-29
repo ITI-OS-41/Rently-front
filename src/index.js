@@ -77,6 +77,7 @@ ReactDOM.render(
           <Route path="/about-us" component={AboutUsPage} />
 
           <Route path="/" component={HomePage} />
+       
         </Switch>
       </Router>
     </Context>

@@ -121,44 +121,13 @@ export const PricingAndProtection = ({
                           htmlFor="simple-select"
                           className={classes.selectLabel}
                         >
-                          Hourly
-                        </InputLabel>
-                      </Grid>
-                      <Grid item xs={3}>
-                        <TextField
-                          InputProps={{
-                            inputProps: { min: 1, max: 1000 },
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                EGP
-                              </InputAdornment>
-                            ),
-                          }}
-                          size="small"
-                          variant="outlined"
-                          id="hour"
-                          name="hour"
-                          type="number"
-                          value={values.hour}
-                          onBlur={handleBlur}
-                          onChange={handleChange}
-                          error={touched.hour && Boolean(errors.hour)}
-                          helperText={touched.hour && errors.hour}
-                        />
-                      </Grid>
-                      <Grid item xs={2}>
-                        <InputLabel
-                          style={{ margin: "1rem" }}
-                          htmlFor="simple-select"
-                          className={classes.selectLabel}
-                        >
                           Daily
                         </InputLabel>
                       </Grid>
                       <Grid item xs={3}>
                         <TextField
                           InputProps={{
-                            inputProps: { min: 1, max: 1000 },
+                            inputProps: { min: 1, max: 10000 },
                             startAdornment: (
                               <InputAdornment position="start">
                                 EGP
@@ -177,9 +146,7 @@ export const PricingAndProtection = ({
                           helperText={touched.day && errors.day}
                         />
                       </Grid>
-                    </Grid>
-                    <Grid container spacing={4}>
-                      <Grid item xs={3}>
+                      <Grid item xs={2}>
                         <InputLabel
                           style={{ margin: "1rem" }}
                           htmlFor="simple-select"
@@ -191,7 +158,7 @@ export const PricingAndProtection = ({
                       <Grid item xs={3}>
                         <TextField
                           InputProps={{
-                            inputProps: { min: 1, max: 1000 },
+                            inputProps: { min: 1, max: 10000 },
                             startAdornment: (
                               <InputAdornment position="start">
                                 EGP
@@ -210,7 +177,9 @@ export const PricingAndProtection = ({
                           helperText={touched.week && errors.week}
                         />
                       </Grid>
-                      <Grid item xs={2}>
+                    </Grid>
+                    <Grid container spacing={4}>
+                      <Grid item xs={3}>
                         <InputLabel
                           style={{ margin: "1rem" }}
                           htmlFor="simple-select"
@@ -241,6 +210,8 @@ export const PricingAndProtection = ({
                           helperText={touched.month && errors.month}
                         />
                       </Grid>
+                      
+                   
                     </Grid>
                   </div>
 
