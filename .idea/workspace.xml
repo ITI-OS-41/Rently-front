@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/img/noimagelarge.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CartPage/CartPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CartPage/CartPageParallax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemRent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemRent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/SubmitButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/SubmitButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MessengerPage/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/ProfilePage/StoreHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/ProfilePage/StoreHeader.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +121,8 @@
       <workItem from="1624619798303" duration="21318000" />
       <workItem from="1624695916565" duration="17001000" />
       <workItem from="1624783881229" duration="5622000" />
-      <workItem from="1624866726153" duration="22579000" />
+      <workItem from="1624866726153" duration="22684000" />
+      <workItem from="1624980626080" duration="4813000" />
     </task>
     <servers />
   </component>
@@ -181,13 +173,13 @@
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1624909409045" />
     <state x="-1365" y="-155" width="854" height="972" key="find.popup/0.0.1366.738/-1920.-195.1920.1050@-1920.-195.1920.1050" timestamp="1624707124708" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1624879635757" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1624909070551">
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1625000183578">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624577462207" />
     <state x="346" y="59" width="673" height="679" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624620033151" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1624909070551" />
     <state x="-1434" y="-111" width="946" height="967" key="search.everywhere.popup/0.0.1366.738/-1920.-195.1920.1050@-1920.-195.1920.1050" timestamp="1624718162818" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1624879585580" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625000183578" />
   </component>
 </project>

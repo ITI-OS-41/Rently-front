@@ -14,6 +14,9 @@ import history from "../../../functions/history";
 
 const useStyles = makeStyles(profilePageStyle);
 
+import defaultImage from '../../../assets/img/noimagelarge.png'
+
+
 export default function StoreHeader(props) {
   const classes = useStyles();
   const imageClasses = classNames(
@@ -54,7 +57,7 @@ export default function StoreHeader(props) {
       <Grid item md={6} sm={12}>
         <div style={{display: 'flex', alignItems: 'center'}}>
           <img
-            src={user.store.photo}
+            src={user?.store?.photo || defaultImage}
             className={imageClasses}
             style={{objectFit: 'cover', height: '100px', width: '100px', display: 'inline-block'}}
           />
