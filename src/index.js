@@ -30,7 +30,7 @@ import ShoppingCart from "./views/ShoppingCartPage/ShoppingCartPage";
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
-
+import ReadMore from './views/ReadMore/ReadMore';
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Context>
@@ -63,6 +63,7 @@ ReactDOM.render(
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
           <Route path="/contact-us" component={ContactUsPage} />
+          <Route path="/read-more" component={ReadMore} />
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
