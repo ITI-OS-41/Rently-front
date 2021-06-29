@@ -70,6 +70,13 @@ const customStyle = {
     fontWeight: 400,
     textTransform: "capitalize",
   },
+  imgClass: {
+    "& > div > div > img": {
+      height: "300px",
+      width: "auto",
+      objectFit: "contain",
+    },
+  },
 };
 
 const useStyles = makeStyles({
@@ -106,6 +113,8 @@ export default function ItemPage(props) {
               i.push({
                 original: photo,
                 thumbnail: photo,
+                // originalClass: classes.imgClass,
+                originalHeight: 300,
               });
               // alert(photo)
             });
@@ -156,9 +165,10 @@ export default function ItemPage(props) {
                   <ItemRating itemRate={item?.itemRate} />
                 </small>
               </div>
-              <div style={{ display: "block", margin: "auto" }}>
+              <div style={{ height: "30rem" }}>
                 {images.length ? (
                   <ImageGallery
+                    originalClass={classes.imgClass}
                     showFullscreenButton={false}
                     showPlayButton={false}
                     startIndex={0}
@@ -195,9 +205,19 @@ export default function ItemPage(props) {
                 {Object.entries(item?.price).map((price, id) => {
                   if (price[1] > 0) {
                     return (
-                      <span className={classes.valueRateLabel}>
-                        EGP${price[1]}.00
-                      </span>
+                      <>
+                        <span className={classes.valueRateLabel}>
+                          EGP${price[1]}.00
+                        </span>
+                        <span
+                          style={{
+                            display: "inline-block",
+                            paddingRight: "2rem",
+                          }}
+                        >
+                          {price[0]}
+                        </span>
+                      </>
                     );
                   }
                 })}
@@ -205,8 +225,9 @@ export default function ItemPage(props) {
               <Grid>
                 <small>
                   <em>
-                    <strong>Starting at </strong>EGP$
-                    {Math.min(...Object.values(item.price))}.00
+                    <strong>Starting at </strong>EGP
+                    {Math.min(...Object.values(item.price))}
+                    .00
                   </em>
                 </small>
 
@@ -265,8 +286,8 @@ export default function ItemPage(props) {
               </Grid>
               <hr />
               <Grid>
-              <span className={classes.storeName}>Cancellation</span>
-              <ItemCancellation itemPolicy={item.cancellation} />
+                <span className={classes.storeName}>Cancellation</span>
+                <ItemCancellation itemPolicy={item.cancellation} />
               </Grid>
             </Grid>
 
@@ -276,8 +297,8 @@ export default function ItemPage(props) {
                   <FormControl
                     size="small"
                     variant="outlined"
-                    style={{ width: "20%" }}
                     className={classes.selectFormControl}
+                    fullWidth
                   >
                     <Select
                       MenuProps={{

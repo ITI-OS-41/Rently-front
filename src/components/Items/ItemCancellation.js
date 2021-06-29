@@ -13,7 +13,7 @@ export default function ItemCancellation(props) {
     return (
       <div>
         <p>
-          Cancellation policy is <strong color="warning">Reasonable.</strong>
+          Cancellation policy is <strong color="info">Reasonable.</strong>
         </p>
         <p>
           Full refund will be issued if cancelled greater than 4 days before
