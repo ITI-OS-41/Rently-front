@@ -60,9 +60,8 @@ const sectionInterestedStyle = {
 const useStyles = makeStyles(sectionInterestedStyle);
 const modelName = "item";
 
-export default function SectionPills({ items }) {
+export default function SectionPills({ items ,onDelete}) {
   const classes = useStyles();
-  const [dummy, setDemmy] = useState(0);
 
   const handleDeleteNotification = (id) => {
     const conf = window.confirm(
@@ -71,9 +70,12 @@ export default function SectionPills({ items }) {
     if (!conf) {
       return;
     }
-    del(`${modelName}/${id}`, `${modelName} deleted successfully!`).then(() => {
-      history.push("/profile/my-postings");
-      setDemmy((prevState) => prevState + 1);
+    del(`${modelName}/${id}`, `${modelName} deleted successfully!`)
+    .then(() => {
+      onDelete()
+    })
+    .catch(e=>{
+      console.log(e)
     });
   };
 

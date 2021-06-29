@@ -9,6 +9,8 @@ import DraftCard from "./DraftCard";
 
 export default function DraftItems(props) {
   const id = localStorage.getItem("rently-userid");
+  const [dummy, setDemmy] = useState(0);
+
   console.log("id-----", id);
   const [items, setItem] = useState([]);
   useEffect(() => {
@@ -21,13 +23,13 @@ export default function DraftItems(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [dummy]);
 
 
   return (
       <div>
         {items.length ? (
-          <DraftCard key={items._id} items={items} />
+          <DraftCard onDelete={()=>{setDemmy((prevState) => prevState + 1)}} key={items._id} items={items} />
         ) : (
           <h4
             style={{
