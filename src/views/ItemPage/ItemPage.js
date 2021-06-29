@@ -424,7 +424,7 @@ export default function ItemPage(props) {
                   />
                 </CardBody>
               </Card>
-              <p>{item.owner.store.name || item.owner.username}</p>
+              <p>{item?.owner?.store?.name || item?.owner?.username}</p>
               <div>
                 {loggedInUser._id !== item.owner._id && (
                   <Button
