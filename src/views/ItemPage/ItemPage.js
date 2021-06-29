@@ -19,6 +19,7 @@ import LoadingContainer from "../../components/global/LoadingContainer";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import history from "functions/history";
+import Button from "../../components/CustomButtons/Button";
 
 import Parallax from "../../components/Parallax/Parallax.js";
 import GridContainer from "../../components/Grid/GridContainer.js";
@@ -31,9 +32,11 @@ import ItemCancellation from "../../components/Items/ItemCancellation";
 import ItemRent from "../../components/Items/ItemRent.js";
 import { UserContext } from "../../Context";
 import Grid from "@material-ui/core/Grid";
-
+import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import { Divider } from "@material-ui/core";
 import defaultImage from "../../assets/img/noimagelarge.png";
+import Map from "components/Map/Map";
+import { post } from "../../functions/request";
 
 const customStyle = {
   timeRateLabel: {
@@ -93,39 +96,51 @@ export default function ItemPage(props) {
     classes.imgFluid
   );
   const id = props.match.params.id;
+  const { user: loggedInUser } = useContext(UserContext);
 
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [priceSelect, setPriceSelect] = useState("");
   const { user } = useContext(UserContext);
   const [images, setImages] = useState([]);
-
+  const handleStartConversation = (userId) => {
+    // create conversation between two users
+    post(
+      `conversation`,
+      {
+        receiver: userId,
+      },
+      null,
+      false
+    )
+      .then((res) => {
+        history.push(`/messenger?${res.data._id}`);
+      })
+      .catch((error) => {});
+  };
   useEffect(() => {
     setIsLoading(true);
     get(`/item/${id}`)
       .then((response) => {
-        if (response.status == 200) {
-          const res = response.data;
-          setItem(res);
-          let i = [];
-          if (res.photo.length) {
-            res.photo.forEach((photo) => {
-              i.push({
-                original: photo,
-                thumbnail: photo,
-                // originalClass: classes.imgClass,
-                originalHeight: 300,
-              });
-              // alert(photo)
+        const res = response.data;
+        setItem(res);
+        let i = [];
+        if (res.photo.length) {
+          res.photo.forEach((photo) => {
+            i.push({
+              original: photo,
+              thumbnail: photo,
+              // originalClass: classes.imgClass,
+              originalHeight: 300,
             });
-          }
-          setImages(i);
-        } else {
-          history.push("/");
+            // alert(photo)
+          });
         }
+        setImages(i);
       })
       .catch((err) => {
         console.log(err);
+        history.push("/");
       })
       .finally(() => {
         setIsLoading(false);
@@ -226,7 +241,9 @@ export default function ItemPage(props) {
                 <small>
                   <em>
                     <strong>Starting at </strong>EGP
-                    {Math.min(...Object.values(item.price))}
+                    {Math.min(
+                      ...Object.values(item.price).filter((item) => item > 0)
+                    )}
                     .00
                   </em>
                 </small>
@@ -244,7 +261,7 @@ export default function ItemPage(props) {
                 <hr />
                 <div>
                   <Grid container>
-                    <Grid item>
+                    <Grid item md={2}>
                       <div style={{ paddingRight: "2rem" }}>
                         <img
                           src={item?.owner?.photo}
@@ -258,9 +275,14 @@ export default function ItemPage(props) {
                         />
                       </div>
                     </Grid>
-                    <Grid item>
-                      <h5>{item.owner.username}</h5>
-                      <small>{item?.location?.address}</small>
+                    <Grid item md={4}>
+                      <h5 style={{ padding: "0" }}>
+                        Owned by: {item.owner.username}
+                      </h5>
+                      <small>
+                        {item?.location?.address}
+                        Cairo,Egypt
+                      </small>
                       <br />
                       <small>
                         <ItemRating itemRate={item?.itemRate} />
@@ -273,10 +295,56 @@ export default function ItemPage(props) {
                         View store
                       </Link>
                     </Grid>
+                    <Grid item md={5}>
+                      <Card style={{ margin: "0" }}>
+                        <Grid container>
+                          <Grid item md={1}>
+                            <div
+                              style={{
+                                position: "relative",
+                                top: "50%",
+                                left: "50%",
+                                transform: "translate(-50%,-50%)",
+                                paddingLeft: ".5rem",
+                              }}
+                            >
+                              <VerifiedUserIcon style={{ fontSize: 30 }} />
+                            </div>
+                          </Grid>
+                          <Grid item md={11}>
+                            <p style={{ padding: "1rem" }}>
+                              Rently verifies all postings to ensure you have
+                              the best experience!
+                            </p>
+                          </Grid>
+                        </Grid>
+                      </Card>
+                    </Grid>
                   </Grid>
                   <hr />
                 </div>
               </Grid>
+              <Grid>
+                <span className={classes.storeName}>
+                  Pickup & Return Options
+                </span>
+                <p>
+                  Delivery option is available. Provide your location to see the
+                  estimated delivery cost.
+                </p>
+                <div>
+                  <Map
+                    changeCoordinates={(pos, address) =>
+                      console.log({ pos }, { address })
+                    }
+                  />
+                </div>
+                <hr />
+              </Grid>
+              <Grid>
+                <span className={classes.storeName}>Available Times</span>
+              </Grid>
+              <hr />
               <Grid>
                 <span className={classes.storeName}>Keep in Mind</span>
                 <p>
@@ -300,6 +368,16 @@ export default function ItemPage(props) {
                     className={classes.selectFormControl}
                     fullWidth
                   >
+                    <p>
+                      EGP{" "}
+                      {priceSelect
+                        ? priceSelect
+                        : Math.min(
+                            ...Object.values(item.price).filter(
+                              (item) => item > 0
+                            )
+                          )}
+                    </p>
                     <Select
                       MenuProps={{
                         className: classes.selectMenu,
@@ -314,14 +392,16 @@ export default function ItemPage(props) {
                         id: "price-select",
                       }}
                     >
+                      {console.log("item price ", item.price)}
                       {Object.keys(item.price).map((time, timeIndex) => {
+                        console.log("item ", item.price[time]);
                         return (
                           <MenuItem
                             classes={{
                               root: classes.selectMenuItem,
                               selected: classes.selectMenuItemSelected,
                             }}
-                            value={time}
+                            value={item.price[time]}
                             key={timeIndex}
                           >
                             $ {item.price[time]}.00{" "}
@@ -344,72 +424,23 @@ export default function ItemPage(props) {
                   />
                 </CardBody>
               </Card>
+              <p>{item.owner.store.name || item.owner.username}</p>
+              <div>
+                {loggedInUser._id !== item.owner._id && (
+                  <Button
+                    onClick={() => handleStartConversation(item.owner._id)}
+                    style={{ marginLeft: "0.5rem" }}
+                    round
+                  >
+                    Message
+                  </Button>
+                )}
+              </div>
             </Grid>
-            {/* 
-
-           
-            <Accordion
-              active={0}
-              activeColor="info"
-              collapses={[
-               
-                {
-                  title: "Pickup & Return Options",
-                  content: (
-                    <strong>
-                      {item.deliverable
-                        ? "Delivery option is available."
-                        : "No Delivery Option."}
-                    </strong>
-                  ),
-                },
-                {
-                  title: "Cancellation",
-                  content: <ItemCancellation itemPolicy={item.cancellation} />,
-                },
-              ]}
-            /> */}
           </Grid>
         )}
       </div>
       <Footer />
     </div>
   );
-}
-{
-  /* <GridItem md={4} sm={6}>
-              {images.length ? (
-                <ImageGallery
-                  showFullscreenButton={false}
-                  showPlayButton={false}
-                  startIndex={0}
-                  items={images}
-                  showThumbnails={true}
-                  renderLeftNav={(onClick, disabled) => {
-                    return (
-                      <button
-                        className="image-gallery-left-nav"
-                        disabled={disabled}
-                        onClick={onClick}
-                      />
-                    );
-                  }}
-                  renderRightNav={(onClick, disabled) => {
-                    return (
-                      <button
-                        className="image-gallery-right-nav"
-                        disabled={disabled}
-                        onClick={onClick}
-                      />
-                    );
-                  }}
-                />
-              ) : (
-                <img
-                  src={defaultImage}
-                  style={{ width: "100%", height: "auto" }}
-                  alt={item?.name}
-                />
-              )}
-            </GridItem> */
 }

@@ -88,6 +88,7 @@ export default function ItemRent(props) {
   ]);
   const handleRentRequest = () => {
     console.log(selectedDate);
+    console.log(priceSelect);
     post(`/rent/`, {
       owner: item.owner._id,
       renter: user,
@@ -124,7 +125,11 @@ export default function ItemRent(props) {
     <div>
       <Grid>
         <Grid>
-          <Button style={{width:"16rem"}} color="info" onClick={handleClickOpen}>
+          <Button
+            style={{ width: "16rem" }}
+            color="info"
+            onClick={handleClickOpen}
+          >
             Set Dates
           </Button>
           <Dialog
@@ -153,7 +158,7 @@ export default function ItemRent(props) {
         </Grid>
         <Grid>
           <Button
-          style={{width:"16rem"}}
+            style={{ width: "16rem" }}
             disabled={!(selectedDate[0].startDate && selectedDate[0].endDate)}
             onClick={handleClickOpenRent && handleRentRequest}
           >

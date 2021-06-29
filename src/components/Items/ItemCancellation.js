@@ -2,8 +2,19 @@ import React, { useEffect, useState } from "react";
 import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
 import { makeStyles } from "@material-ui/core/styles";
 import presentationStyle from "../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
+import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles(presentationStyle);
+const customStyle = {
+  cancellation:{
+    fontWeight:"bold",
+    color:"#f44336"
+  }
+}
+const useStyles = makeStyles({
+  ...presentationStyle,
+  ...customStyle,
+
+});
 
 export default function ItemCancellation(props) {
   const itemPolicy = props.itemPolicy;
@@ -13,7 +24,7 @@ export default function ItemCancellation(props) {
     return (
       <div>
         <p>
-          Cancellation policy is <strong color="info">Reasonable.</strong>
+          Cancellation policy is <strong className={classes.cancellation} color="warning">Reasonable.</strong>
         </p>
         <p>
           Full refund will be issued if cancelled greater than 4 days before
@@ -48,7 +59,7 @@ export default function ItemCancellation(props) {
     return (
       <div>
         <p>
-          Cancellation policy is <strong color="warning">Strict.</strong>
+          Cancellation policy is <strong className={classes.cancellation}>Strict.</strong>
         </p>
         <p>
           Full refund will be issued if cancelled greater than 7 days before
