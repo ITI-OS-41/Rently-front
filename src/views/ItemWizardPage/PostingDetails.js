@@ -47,8 +47,19 @@ const validationSchema = yup.object({
     .string()
     .min(30, "Minimum 30 characters")
     .required("description is required!"),
-  photo: yup.mixed().required("Photo is required"),
+    photo: yup.mixed().required("photo is required")
+  
 });
+function nameLengthValidator(values) {
+  if (values.photo.length == 0) {
+    return {
+      code: "required",
+      message: `photo is required`,
+    };
+  }
+
+  return null;
+}
 
 export const PostingDetails = ({
   formData,
@@ -75,7 +86,6 @@ export const PostingDetails = ({
         initialValues={formData}
         onSubmit={(values) => {
           setFormData(values);
-          console.log(values.photo);
           direction === "back" ? prevStep() : nextStep();
         }}
         validationSchema={validationSchema}
@@ -108,12 +118,12 @@ export const PostingDetails = ({
                           setFieldValue("photo", arr);
                         }}
                       />
-                      {values.photo.map((photo) => {
-                        <p>{photo.name}</p>;
-                      })}
-
+                    
+                      {console.log("f", values.photo.length == 0)}
                       {!values.photo && (
-                        <FormHelperText>{errors.photo}</FormHelperText>
+                        
+                          <FormHelperText>{errors.photo}</FormHelperText>
+                       
                       )}
                     </div>
                   </Card>

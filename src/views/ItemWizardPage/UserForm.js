@@ -4,13 +4,16 @@ import { BasicInfo } from "./BasicInfo";
 import { PricingAndProtection } from "./PricingAndProtection";
 import { Confirm } from "./Confirm";
 import { CancellationAndDelivery } from "./CancellationAndDelivery";
-import { Success } from "./Success";
 import RentHeader from "./RentHeader";
-import Stepper from "./Stepper";
+// import Stepper from "./Stepper/Stepper";
+// import { useStepper } from "./context";
+// import { StepperProvider } from "./context";
 
 export default function UserForm() {
   const [step, setStep] = useState(1);
   // const [stepper, setStepper] = useContext(Stepper);
+  // const { incrementCurrentStep, decrementCurrentStep } = useStepper();
+
   const [formData, setFormData] = useState({
     category: "",
     subcategory: "",
@@ -27,8 +30,7 @@ export default function UserForm() {
     },
     cancellation: "",
     isDeliverable: "",
-    photo:[],
-    
+    photo: "",
   });
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
@@ -36,32 +38,29 @@ export default function UserForm() {
   switch (step) {
     case 1:
       return (
-       
-          <RentHeader
-            component={
-              <BasicInfo
-                formData={formData}
-                setFormData={setFormData}
-                nextStep={nextStep}
-                prevStep={prevStep}
-              />
-            }
-          />
-
+        <RentHeader
+          component={
+            <BasicInfo
+              formData={formData}
+              setFormData={setFormData}
+              nextStep={nextStep}
+              prevStep={prevStep}
+            />
+          }
+        />
       );
     case 2:
       return (
-      
-          <RentHeader
-            component={
-              <PostingDetails
-                formData={formData}
-                setFormData={setFormData}
-                nextStep={nextStep}
-                prevStep={prevStep}
-              />
-            }
-          />
+        <RentHeader
+          component={
+            <PostingDetails
+              formData={formData}
+              setFormData={setFormData}
+              nextStep={nextStep}
+              prevStep={prevStep}
+            />
+          }
+        />
       );
     case 3:
       return (

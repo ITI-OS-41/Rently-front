@@ -163,18 +163,22 @@ export const BasicInfo = ({
                           >
                             Category
                           </MenuItem>
-                          {categories.map((category) => (
-                            <MenuItem
-                              classes={{
-                                root: classes.selectMenuItem,
-                                selected: classes.selectMenuItemSelected,
-                              }}
-                              value={category._id}
-                              key={category._id}
-                            >
-                              {category.name}
-                            </MenuItem>
-                          ))}
+                          {categories
+                            .filter(
+                              (category) => category.subcategory.length > 0
+                            )
+                            .map((category) => (
+                              <MenuItem
+                                classes={{
+                                  root: classes.selectMenuItem,
+                                  selected: classes.selectMenuItemSelected,
+                                }}
+                                value={category._id}
+                                key={category._id}
+                              >
+                                {category.name}
+                              </MenuItem>
+                            ))}
                         </Select>
                         {touched.category && (
                           <FormHelperText>{errors.category}</FormHelperText>

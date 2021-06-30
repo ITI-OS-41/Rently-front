@@ -70,7 +70,6 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
   } = formData;
   return (
     <>
- 
       {console.log(formData)}
       <Formik
         initialValues={formData}
@@ -94,6 +93,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                     <CardHeader color="info">Basic Info</CardHeader>
                     <List>
                       <ListItem>
+                      {console.log(category)}
                         <ListItemText primary="Category" secondary={category} />
                         <ListItemText
                           primary="Sub-Category"
@@ -128,23 +128,20 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                     </CardHeader>
                     <List component="nav">
                       <ListItem>
-                        <ListItemText
-                          primary="Hourly"
-                          secondary={`${hour} EGP`}
-                        />
+                        
                         <ListItemText
                           primary="Daily"
-                          secondary={`${day} EGP`}
+                          secondary={`${day?`${day} EGP`:`0.00`}` }
+                        />
+                        <ListItemText
+                          primary="Weekly"
+                          secondary={`${week?`${week} EGP`:`0.00`}` }
                         />
                       </ListItem>
                       <ListItem>
                         <ListItemText
-                          primary="Weekly"
-                          secondary={`${week} EGP`}
-                        />
-                        <ListItemText
                           primary="Monthly"
-                          secondary={`${month} EGP`}
+                          secondary={`${month?`${month} EGP`:`0.00`}` }
                         />
                       </ListItem>
                       <ListItem>
@@ -170,7 +167,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                       <ListItem>
                         <ListItemText
                           primary="Item Delivery"
-                          secondary={`${isDeliverable ? "yes" : "no"}`}
+                          secondary={`${isDeliverable==="true"?"yes":"no"}`}
                         />
                       </ListItem>
                     </List>
@@ -179,7 +176,10 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               </Grid>
             </Grid>
 
-            <div className={classes.textCenter} style={{marginBottom:"3rem"}}>
+            <div
+              className={classes.textCenter}
+              style={{ marginBottom: "3rem" }}
+            >
               <Button
                 color="secondary"
                 variant="contained"
