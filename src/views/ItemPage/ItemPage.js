@@ -33,7 +33,8 @@ import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import defaultImage from "../../assets/img/noimagelarge.png";
 import Map from "components/Map/Map";
 import GridContainer from "../../components/Grid/GridContainer";
-import GridItem from "../../components/Grid/GridItem";
+import ItemReview from "./Sections/ItemReview";
+import GridItem from "components/Grid/GridItem.js";
 
 const customStyle = {
     timeRateLabel: {
@@ -145,6 +146,9 @@ export default function ItemPage(props) {
             });
     }, []);
 
+   
+  
+  
     return (
         <div className={classes.productPage}>
             <Header/>
@@ -429,7 +433,10 @@ export default function ItemPage(props) {
                         </GridItem>
                     </GridContainer>
                 )}
+                 <ItemReview     />
             </div>
+
+           
             <Footer/>
         </div>
     );
