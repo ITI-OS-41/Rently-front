@@ -63,7 +63,7 @@ const links = [
 export default function Links() {
   const classes = useStyles();
   return (
-    <div className={classes.root} style={{padding: "30px"}} >
+    <div className={classes.root} style={{padding: "30px 30px 10px 30px"}} >
       <Grid container>
         <Grid item xs={12} sm={2}></Grid>
 
