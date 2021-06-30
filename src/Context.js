@@ -1,4 +1,6 @@
-import React, {createContext, useCallback, useState} from "react";
+import React, {createContext, useCallback, useEffect, useState} from "react";
+import {patch, post} from "./functions/request";
+import Geocode from "react-geocode";
 
 
 export const UserContext = createContext({});
@@ -8,9 +10,55 @@ export const UserContext = createContext({});
 
  function Context(props) {
 
+
+
+
+
      const {children,...rest} = props;
 
      const [user, setUser] = useState( JSON.parse(localStorage.getItem('rently-user')) || {});
+
+     //get user location and save it to profile
+     useEffect(() => {
+         if (user.username){
+
+             if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition((position) => {
+                     console.log(position.coords.latitude,position.coords.longitude)
+
+                     // get real address
+                     Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+                         (response) => {
+                            const location = {
+                                 type: 'Point',
+                                     coordinates: [position.coords.latitude,position.coords.longitude],
+                                     address: response.results[0].formatted_address
+                             };
+                             // update user location
+                             patch('/user/update',{
+                                 location
+                             })
+                                 .then(res=>{
+                                     setUser({
+                                         ...user,
+                                         location
+                                     })
+                                 })
+                         },
+                         (error) => {
+                             console.error(error);
+                         }
+                     );
+
+
+
+                 });
+             } else {
+                 alert("Geolocation is not supported by this browser!");
+             }
+         }
+     }, [user]);
+
 
      return (
         <UserContext.Provider value={{ user, setUser }}>
