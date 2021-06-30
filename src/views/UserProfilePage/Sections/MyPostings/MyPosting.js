@@ -1,72 +1,49 @@
-import React, { useEffect, useState } from "react";
-// @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-// core components
+import React, { useState, useEffect } from "react";
+import { Switch, Route, Link, NavLink } from "react-router-dom";
+import classNames from "classnames";
 import GridContainer from "components/Grid/GridContainer.js";
+
+import ListItemText from "@material-ui/core/ListItemText";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+
 import GridItem from "components/Grid/GridItem.js";
-import { get } from "functions/request";
-import ItemCard from "./Sections/ItemCard";
+import NavPills from "components/NavPills/NavPills.js";
+import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
+import PostedItems from "./Sections/PostedItem";
+import DraftItems from './Sections/DraftItems';
 
-import {
-  title,
-  cardTitle,
-  coloredShadow,
-  grayColor,
-} from "assets/jss/material-kit-pro-react.js";
-
-const sectionInterestedStyle = {
-  title,
-  cardTitle,
-  coloredShadow,
-  textCenter: {
-    textAlign: "center",
-  },
-  section: {
-    backgroundPosition: "50%",
-    backgroundSize: "cover",
-    padding: "0",
-  },
-  description: {
-    color: grayColor[0],
-  },
-  styling: {
-    padding: "0",
-    margin: "0",
-  },
+profilePageStyle.isActive = {
+  backgroundColor: "red",
 };
-const useStyles = makeStyles(sectionInterestedStyle);
 
-export default function MyPosting(props) {
-  const id = localStorage.getItem("rently-userid");
-  console.log("id-----",id);
-  const [items, setItem] = useState([]);
-  useEffect(() => {
-    get(`/item/?isPublished=false&owner=${id}`)
-      .then((response) => {
-        let res = response.data.res;
-        setItem(res);
-        console.log("published item---> ", res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+const useStyles = makeStyles(profilePageStyle);
 
+export default function Posting(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.section}>
-      <h3 className={classes.title + " " + classes.textCenter}>Draft items</h3>
-      <br />
+    <div style={{ padding: "1rem 3rem" }}>
       <GridContainer>
-        {items.map((item) => {
-            console.log("item photo ", item.photo)
-          return (
-            <GridItem xs={12} sm={4} md={4} lg={4} xl={4}>
-              <ItemCard key={item._id} item={item} />
-            </GridItem>
-          );
-        })}
+        <GridItem xs={12} sm={12} md={12}>
+          <h3 className={classes.title + " " + classes.textCenter}>
+            My Postings
+          </h3>
+          <NavPills
+            alignCenter
+            tabs={[
+              {
+                tabButton: "Posted items",
+                tabContent: <PostedItems/>,
+              },
+              {
+                tabButton: "Draft items",
+                tabContent: <DraftItems />,
+              },
+            ]}
+          />
+          <div className={classes.tabSpace} />
+        </GridItem>
       </GridContainer>
     </div>
   );

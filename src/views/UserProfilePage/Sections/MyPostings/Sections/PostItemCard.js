@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import Info from "components/Typography/Info.js";
-import { del } from "functions/request";
+import { post } from "functions/request";
 import history from "functions/history";
 
 import {
@@ -15,6 +17,7 @@ import {
   coloredShadow,
   grayColor,
 } from "assets/jss/material-kit-pro-react.js";
+import PostItemCard from "./PostItemCard";
 
 const sectionInterestedStyle = {
   title,
@@ -22,6 +25,11 @@ const sectionInterestedStyle = {
   coloredShadow,
   textCenter: {
     textAlign: "center",
+  },
+  section: {
+    backgroundPosition: "50%",
+    backgroundSize: "cover",
+    padding: "0",
   },
   description: {
     color: grayColor[0],
@@ -43,7 +51,7 @@ const sectionInterestedStyle = {
     borderRadius: "5px",
     cursor: "pointer",
   },
-  delete: {
+  Nap: {
     backgroundColor: "#f44336",
   },
   edit: {
@@ -53,26 +61,31 @@ const sectionInterestedStyle = {
 const useStyles = makeStyles(sectionInterestedStyle);
 const modelName = "item";
 
-export default function SectionPills({ item }) {
-  const classes = useStyles();
-  const [dummy, setDemmy] = useState(0);
+export default function (props) {
+  const { item, ...rest } = props;
 
-  const handleDeleteNotification = (id) => {
-    const conf = window.confirm(
-      `are you sure you want to delete this ${modelName}?`
-    );
-    if (!conf) {
-      return;
-    }
-    del(`${modelName}/${id}`, `${modelName} deleted successfully!`).then(() => {
-      history.push("/profile/my-postings");
-      setDemmy((prevState) => prevState + 1);
-      
-    });
+  const classes = useStyles();
+  const [currentItem, setCurrentItem] = useState(item);
+   
+  const handleEditItem = (id) => {
+      console.log("currentItem---->", currentItem) ;
+    post(
+      `${modelName}/${id}`,
+      {
+          ...currentItem ,
+          isAvailable: !currentItem.isAvailable
+      },
+      `Your${modelName} is not avilable for renting`
+    ).then(res => {
+        setCurrentItem(res.data)
+    })
+    .catch(e=>{
+        console.log(e)
+    })
   };
 
   return (
-    <Card plain blog className={classes.styling}>
+    <Card {...rest} plain blog className={classes.styling}>
       <CardHeader image plain>
         <a href="#pablo">
           <img
@@ -80,14 +93,14 @@ export default function SectionPills({ item }) {
               borderBottomLeftRadius: "0px",
               borderBottomRightRadius: "0px",
             }}
-            src={item.photo[0]}
+            src={currentItem.photo[0]}
             alt="..."
           />
         </a>
         <div
           // className={classes.coloredShadow}
           style={{
-            backgroundImage: `url(${item.photo[0]})`,
+            backgroundImage: `url(${currentItem.photo[0]})`,
             opacity: "1",
           }}
         />
@@ -95,22 +108,22 @@ export default function SectionPills({ item }) {
       <CardBody plain>
         <Info>
           <h4 style={{ margin: "0px", padding: "0px" }}>
-            {item.subcategory.name}
+            {currentItem.subcategory.name}
           </h4>
         </Info>
-        <h5 className={classes.cardTitle}> {item.name} </h5>
+        <h5 className={classes.cardTitle}> {currentItem.name} </h5>
 
-        <h5>owner: {item.owner.name} </h5>
-        <div className={classes.description}>{item.description}</div>
+        <h5>owner: {currentItem.owner.name} </h5>
+        <div className={classes.description}>{currentItem.description}</div>
         <div>
           <button className={classes.button + " " + classes.edit}>edit</button>
           <button
-            className={classes.button + " " + classes.delete}
+            className={classes.button + " " + classes.Nap}
             onClick={() => {
-              handleDeleteNotification(item._id);
+              handleEditItem(currentItem._id);
             }}
           >
-            delete
+            {currentItem.isAvailable ? "Nap" : "Un nap"}
           </button>
         </div>
       </CardBody>
