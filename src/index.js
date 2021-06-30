@@ -26,10 +26,16 @@ import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
-import ShoppingCart from "./views/ShoppingCartPage/ShoppingCartPage";
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
+
+import ReadMore from './views/ReadMore/ReadMore';
+import Nonprofit from './views/NonprofitPage/Nonprofit';
+import Careers from './views/CareersPage/Careers'
+
+import CartPage from "./views/CartPage/CartPage";
+  
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -53,7 +59,6 @@ ReactDOM.render(
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
-          <Route path="/cart" component={ShoppingCart} />
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
@@ -63,10 +68,12 @@ ReactDOM.render(
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
           <Route path="/contact-us" component={ContactUsPage} />
+          <Route path="/read-more" component={ReadMore} />
+          <Route path="/nonprofit" component={Nonprofit} />
+          <Route path="/careers" component={Careers} />
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
-          <Route path="/cart" component={ShoppingCart} />
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
@@ -74,10 +81,12 @@ ReactDOM.render(
           <UserRoute path="/user/:id" component={userStorePage} />
 
           <Route path="/map" component={MapPage} />
+          <Route path="/cart" component={CartPage} />
 
           <Route path="/about-us" component={AboutUsPage} />
 
           <Route path="/" component={HomePage} />
+       
         </Switch>
       </Router>
     </Context>

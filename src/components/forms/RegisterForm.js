@@ -56,7 +56,7 @@ const initialValues = {
   email: "da7doom@gmail.com",
   password: "123123123",
   confirmPassword: "123123123",
-  terms: true,
+  terms: true
 };
 
 const useStyles = makeStyles((theme) => ({

@@ -7,7 +7,6 @@ import GridItem from "components/Grid/GridItem.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
-import officeStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/officeStyle.js";
 
 // office
 import office1 from "assets/img/examples/office1.jpg";
@@ -16,7 +15,44 @@ import office3 from "assets/img/examples/office3.jpg";
 import office4 from "assets/img/examples/office4.jpg";
 import office5 from "assets/img/examples/office5.jpg";
 
-const useStyles = makeStyles(officeStyle);
+
+import {
+  title,
+  description,
+  mrAuto,
+  mlAuto,
+} from "assets/jss/material-kit-pro-react.js";
+import imagesStyles from "assets/jss/material-kit-pro-react/imagesStyles.js";
+
+const imgRaised = imagesStyles.imgRaised;
+const rounded = imagesStyles.imgRounded;
+const imgFluid = imagesStyles.imgFluid;
+
+const servicesStyle = {
+  title,
+  mrAuto,
+  mlAuto,
+  textCenter: {
+    textAlign: "center!important",
+  },
+  description: {
+    ...description,
+    color: "#000",
+  },
+  office: {
+    "& img": {
+      margin: "20px 0px",
+    },
+  },
+  color: {
+    color: "#038C7F",
+  },
+  imgRaised,
+  rounded,
+  imgFluid,
+};
+const useStyles = makeStyles( servicesStyle);
+
 
 export default function SectionOffice() {
   const classes = useStyles();
@@ -28,7 +64,7 @@ export default function SectionOffice() {
           sm={8}
           className={classNames(classes.mrAuto, classes.mlAuto)}
         >
-          <h2 className={classes.title}>Our office is our second home (المعهد يعني)</h2>
+          <h3 className={classes.title + " " + classes.color}>Our office is our second home</h3>
           <h4 className={classes.description}>
             Here are some pictures from our office. You can see the place looks
             like a palace and is fully equiped with everything you need to get

@@ -4,9 +4,10 @@ import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import LoadingCircle from './LoadingCircle';
 
 export default (props) => {
-    const { isRequesting, type } = props;
+    const { isRequesting, type, ...rest } = props;
     return (
         <Button
+            {...rest}
             className="mt-5"
             disabled={isRequesting}
             type="submit"

@@ -122,8 +122,6 @@ export default function HeaderLinks(props) {
                 <ListItem className={classes.listItem}>
                     <NotificationNavbar dropdownHoverColor={dropdownHoverColor}/>
                 </ListItem>
-            </>
-            }
 
             <ListItem className={classes.listItem}>
 
@@ -167,6 +165,9 @@ export default function HeaderLinks(props) {
                     ]}
                 />
             </ListItem>
+            </>
+            }
+
         </List>
     );
 }
