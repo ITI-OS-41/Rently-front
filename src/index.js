@@ -31,6 +31,9 @@ import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReadMore from './views/ReadMore/ReadMore';
+import Nonprofit from './views/NonprofitPage/Nonprofit';
+import Careers from './views/CareersPage/Careers'
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Context>
@@ -64,6 +67,8 @@ ReactDOM.render(
           <Route path="/about-us" component={AboutUsPage} />
           <Route path="/contact-us" component={ContactUsPage} />
           <Route path="/read-more" component={ReadMore} />
+          <Route path="/nonprofit" component={Nonprofit} />
+          <Route path="/careers" component={Careers} />
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />

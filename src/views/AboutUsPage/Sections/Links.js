@@ -41,10 +41,10 @@ export default function Links() {
           <h2 className={classes.paper}><Link href="/contact-us" className={classes.link}>Contact Us</Link></h2>
         </Grid>
         <Grid item xs={12} sm={2}>
-          <h2 className={classes.paper}><Link href="#" className={classes.link}>Nonprofit</Link></h2>
+          <h2 className={classes.paper}><Link href="/nonprofit" className={classes.link}>Nonprofit</Link></h2>
         </Grid>
         <Grid item xs={12} sm={2}>
-          <h2 className={classes.paper}><Link href="#" className={classes.link}>Careers</Link></h2>
+          <h2 className={classes.paper}><Link href="/careers" className={classes.link}>Careers</Link></h2>
         </Grid>
         <Grid item xs={12} sm={2}>
         </Grid>
