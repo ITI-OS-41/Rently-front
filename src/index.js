@@ -30,6 +30,7 @@ import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import CartPage from "./views/CartPage/CartPage";
+import FavoritePage from "./views/FavoritePage/FavoritePage";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -73,11 +74,11 @@ ReactDOM.render(
 
           <Route path="/map" component={MapPage} />
           <Route path="/cart" component={CartPage} />
+          <Route path="/favorite" component={FavoritePage} />
 
           <Route path="/about-us" component={AboutUsPage} />
 
           <Route path="/" component={HomePage} />
-       
         </Switch>
       </Router>
     </Context>

@@ -179,11 +179,11 @@ export default function ShoppingCartPage() {
                                             <h4 style={{fontWeight: 'bold'}}>
                                                 Order Total
                                                 <span style={{float: 'right'}}>{currency(
-                                                    (user.wallet - getTotalPrice()) >= 0 ? 0: ((getTotalPrice() - user.wallet))
+                                                    (user.wallet - getTotalPrice()) >= 0 ? 0: ((getTotalPrice() - (user.wallet || 0)))
                                                 )}</span>
                                             </h4>
 
-                                            <h1>Payment Form here ya nada</h1>
+                                            {/* <h1>Payment Form here ya nada</h1> */}
 
                                             <SubmitButton style={{marginTop: '2rem'}} color="primary" fullWidth onClick={()=>{handleCheckout()}} isRequesting={isCheckingOut} type={"Checkout"}/>
 
