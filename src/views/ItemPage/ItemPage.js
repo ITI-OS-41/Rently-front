@@ -9,9 +9,6 @@ import classNames from "classnames";
 import ImageGallery from "react-image-gallery";
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 // core components
 import Header from "../../components/global/Header.js";
 import Footer from "../../components/global/Footer.js";
@@ -34,6 +31,7 @@ import defaultImage from "../../assets/img/noimagelarge.png";
 import Map from "components/Map/Map";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
+import Share from "../../components/global/Share";
 
 const customStyle = {
     timeRateLabel: {
@@ -168,7 +166,7 @@ export default function ItemPage(props) {
 
                         <GridItem md={8} sm={6}>
                             <div style={{display: "block", marginBottom: "2rem"}}>
-                                <h2 className={classNames(classes.title, classes.CardText)}>
+                                <h2 className={classNames(classes.title, classes.CardText)} style={{marginTop: '0'}}>
                                     {item?.name}
                                 </h2>
                                 <span className="prices">
@@ -354,66 +352,17 @@ export default function ItemPage(props) {
 
                         </GridItem>
                         <GridItem md={4} sm={6}>
+                            <Share/>
+
                             <Card>
                                 <CardBody>
 
-                                    {/*<FormControl
-                                        size="small"
-                                        variant="outlined"
-                                        className={classes.selectFormControl}
-                                        fullWidth
-                                    >
-                                        <p>
-                                            EGP{" "}
-                                            {priceSelect
-                                                ? priceSelect
-                                                : Math.min(
-                                                    ...Object.values(item.price).filter(
-                                                        (item) => item > 0
-                                                    )
-                                                )}
-                                        </p>
-                                        <Select
-                                            MenuProps={{
-                                                className: classes.selectMenu,
-                                            }}
-                                            classes={{
-                                                select: classes.select,
-                                            }}
-                                            value={priceSelect}
-                                            onChange={(event) => setPriceSelect(event.target.value)}
-                                            inputProps={{
-                                                name: "priceSelect",
-                                                id: "price-select",
-                                            }}
-                                        >
-                                            {console.log("item price ", item.price)}
-                                            {Object.keys(item.price).map((time, timeIndex) => {
-                                                console.log("item ", item.price[time]);
-                                                return (
-                                                    <MenuItem
-                                                        classes={{
-                                                            root: classes.selectMenuItem,
-                                                            selected: classes.selectMenuItemSelected,
-                                                        }}
-                                                        value={item.price[time]}
-                                                        key={timeIndex}
-                                                    >
-                                                        $ {item.price[time]}.00{" "}
-                                                        {`${
-                                                            time[0].charAt(0).toUpperCase() + time[0].slice(1)
-                                                        }`}
-                                                    </MenuItem>
-                                                );
-                                            })}
-                                        </Select>
-                                    </FormControl>*/}
                                     {
                                         user._id !== item.owner._id && (
                                             <ItemRent item={item}/>
                                         )
                                     }
-<hr/>
+                                    <hr/>
                                     <div>
                                         <Button
                                             fullWidth
