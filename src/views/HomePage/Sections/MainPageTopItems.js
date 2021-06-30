@@ -31,7 +31,7 @@ export default function MainPageItems({ ...rest }) {
 
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?isPublished=true&isAvailable=true`)
       .then(response => {
         const res = response.data.res
         setItems(res)

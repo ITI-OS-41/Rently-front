@@ -25,6 +25,8 @@ const useStyles2 = makeStyles(profilePageStyle);
 // import Button from "components/CustomButtons/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import Add from "@material-ui/icons/Add";
+
+import defaultImage from '../../assets/img/noimagelarge.png';
 // import { patch } from "functions/request";
 const modelName = "user";
 
@@ -132,18 +134,17 @@ export default function EditProfileForm({ user }) {
                   display: "block",
                 }}
               >
-                {(imagePreview || values.photo) && (
-                  <img
-                    src={imagePreview || values.photo || ""}
-                    alt="..."
-                    className={imageClasses}
-                    style={{
-                      objectFit: "cover",
-                      height: "100px",
-                      width: "100px",
-                    }}
-                  />
-                )}
+                <img
+                  src={imagePreview || values.photo || defaultImage}
+                  alt="..."
+                  className={imageClasses}
+                  style={{
+                    objectFit: "cover",
+                    height: "100px",
+                    width: "100px",
+                  }}
+                />
+
 
                 <div className={classes.name}>
                   <Tooltip
@@ -218,10 +219,7 @@ export default function EditProfileForm({ user }) {
                     id="username"
                     name="username"
                     value={values.username}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    error={touched.username && Boolean(errors.username)}
-                    helperText={touched.username && errors.username}
+                    disabled
                   />
                 </Grid>
                 <Grid item xs={12}>

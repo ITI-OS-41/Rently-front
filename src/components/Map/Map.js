@@ -25,7 +25,6 @@ const MapWithAMarker = compose(
   const [address, setAddress] = useState("");
 
   useEffect(() => {
-      
     Geocode.fromLatLng(pos.lat, pos.lng).then(
       (response) => {
         console.log(response);
@@ -83,8 +82,8 @@ export default function Map(props) {
         {...props}
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyABicyLIdgzNEFYqLFEjXdzKnXM0TlysaM&v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `300px` }} />}
+        mapElement={<div style={{ height: `100%`, width: "70%" }} />}
       />
     </>
   );
