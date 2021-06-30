@@ -29,6 +29,11 @@ import SingleBlog from "./views/SingleBlog/SingleBolg";
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
+
+import ReadMore from './views/ReadMore/ReadMore';
+import Nonprofit from './views/NonprofitPage/Nonprofit';
+import Careers from './views/CareersPage/Careers'
+
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
 
@@ -63,6 +68,9 @@ ReactDOM.render(
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
           <Route path="/contact-us" component={ContactUsPage} />
+          <Route path="/read-more" component={ReadMore} />
+          <Route path="/nonprofit" component={Nonprofit} />
+          <Route path="/careers" component={Careers} />
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />

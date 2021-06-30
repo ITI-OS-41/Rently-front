@@ -21,8 +21,17 @@ export default function Request() {
       {rent.length ? (
         <ItemCard rent={rent} />
       ) : (
-      <h4 style={{textAlign: 'center', backgroundColor:"tomato", padding: '10px 0px', borderRadius: "5px"}}>You do not have any availability-check requests</h4>
-    )}
-  </div>
-  );                                     
+        <h4
+          style={{
+            textAlign: "center",
+            backgroundColor: "tomato",
+            padding: "10px 0px",
+            borderRadius: "5px",
+          }}
+        >
+          You do not have any availability-check requests.
+        </h4>
+      )}
+    </div>
+  );
 }

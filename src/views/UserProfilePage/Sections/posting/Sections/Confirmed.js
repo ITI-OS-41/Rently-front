@@ -21,7 +21,16 @@ export default function Confirmed() {
       {rent.length ? (
         <ItemCard rent={rent} />
       ) : (
-        <h4 style={{textAlign: 'center', backgroundColor:"tomato", padding: '10px 0px', borderRadius: "5px"}}>You do not have any confirmed item yet</h4>
+        <h4
+          style={{
+            textAlign: "center",
+            backgroundColor: "tomato",
+            padding: "10px 0px",
+            borderRadius: "5px",
+          }}
+        >
+          You do not have any confirmed item yet.
+        </h4>
       )}
     </div>
   );
