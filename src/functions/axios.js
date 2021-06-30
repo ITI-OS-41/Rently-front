@@ -4,7 +4,6 @@ import { checkTokenValidity } from './helpers';
 
 
 // check if token if expired or not, and delete it if expired
-checkTokenValidity()
 
 
 const instance = axios.create({
@@ -16,6 +15,7 @@ const TOKEN = localStorage.getItem('rently-token') || ''
 
 if (TOKEN) {
     instance.defaults.headers.common['Authorization'] = `Bearer ${TOKEN}`;
+    checkTokenValidity()
 }
 
 instance.defaults.headers.post['Content-Type'] = 'application/json';
