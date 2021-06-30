@@ -29,7 +29,7 @@ export default function Confirmed() {
             borderRadius: "5px",
           }}
         >
-          You do not have any confirmed item yet
+          You do not have any confirmed item yet.
         </h4>
       )}
     </div>
