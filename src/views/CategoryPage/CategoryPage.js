@@ -48,12 +48,17 @@ export default function CategoryPage() {
   const classes = useStyles();
   const [categories, setCategory] = useState([]);
   useEffect(() => {
-    get("/category").then((response) => {
-      let res = response.data.res;
-      setCategory(res);
-      console.log("response-00-> ", response);
-      console.log("res-00-> ", res);
-    });
+    get("/category")
+        .then((response) => {
+          let res = response.data.res;
+          setCategory(res);
+          console.log("response-00-> ", response);
+          console.log("res-00-> ", res);
+        })
+        .catch(e=>{
+          console.log(e)
+        })
+
   }, []);
   return (
     <div>

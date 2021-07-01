@@ -77,7 +77,7 @@ const StyledButton = withStyles({
 export default function ItemRent(props) {
     const {user} = useContext(UserContext);
     const [open, setOpen] = React.useState(false);
-    const {item, priceSelect, ...rest} = props;
+    const {item, priceSelect,deliveryPrice, ...rest} = props;
     const [paymentType, setPaymentType] = useState('');
     const [rent, setRent] = useState({
         owner: item.owner._id,
@@ -212,8 +212,9 @@ export default function ItemRent(props) {
                 {
                     (rent.totalPrice > 0 && paymentType) && (
                         <>
-                            <h3>{paymentType} @ {item.price[paymentType]}$</h3>
-                            <h3>Total price: {rent.totalPrice}$</h3>
+                            <h4>{paymentType} <span style={{float: 'right'}}>{item.price[paymentType]}$</span></h4>
+                            <h4>Delivery Price: <span style={{float: 'right'}}>{deliveryPrice}$</span></h4>
+                            <h4 style={{fontWeight: 'bold'}}>Total price: <span style={{float: 'right'}}>{rent.totalPrice + deliveryPrice}$</span></h4>
                             <hr/>
                         </>
                     )

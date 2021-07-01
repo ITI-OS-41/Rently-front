@@ -11,13 +11,13 @@ import {UserContext} from "../../Context";
 const VisitorRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
-    const {user} = useContext(UserContext)
+    const token = JSON.parse(localStorage.getItem('rently-token'))
 
     return (
         <Route
             {...rest}
             render={props =>
-                !user.token ? (
+                !token ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to={{ pathname: '/', state: { from: props.location } }} />
