@@ -26,7 +26,7 @@ export default function PostCard(props) {
     <Card >
       <CardHeader   image>
         <Link to={`blog/${post._id}`}>
-          <img src={post.photo} style={{
+          <img src={post.headerPhoto} style={{
             height: '250px',
             objectFit: 'cover'
           }} alt=""/>

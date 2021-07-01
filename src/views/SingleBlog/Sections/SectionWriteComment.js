@@ -45,7 +45,7 @@ export default function SectionWriteComment(props) {
     const [text, setText] = useState('');
     const { user } = useContext(UserContext)
 
-    
+     
     const submitComment = (e) =>{
         e.preventDefault();
 

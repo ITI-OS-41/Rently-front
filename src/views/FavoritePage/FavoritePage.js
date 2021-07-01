@@ -41,6 +41,9 @@ export default function FavoriteItemsPage() {
   const [items, setItems] = useState([]);
   const [temp, setTemp] = useState(0);
 
+
+  console.log({user})
+
   useEffect(() => {
     get(`item?owner=${user._id}&isFavorite=true`)
       .then((res) => {
