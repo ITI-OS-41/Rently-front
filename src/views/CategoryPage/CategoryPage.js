@@ -61,13 +61,17 @@ export default function CategoryPage() {
   const cardsPerPage = 12;
   const TotalPageNum = Math.ceil(categoriesCount / cardsPerPage);
   useEffect(() => {
-    get("/category?model=item").then((response) => {
-      let res = response.data.res;
-      setCategory(res);
-      console.log("response-00-> ", response);
-      console.log("res-00-> ", res);
-      setCategoryCount(res.length);
-    });
+
+    get("/category")
+        .then((response) => {
+          let res = response.data.res;
+          setCategory(res);
+          console.log("response-00-> ", response);
+          console.log("res-00-> ", res);
+        })
+        .catch(e=>{
+          console.log(e)
+        })
   }, []);
 
   const pagesVisited = pageNumber * cardsPerPage;

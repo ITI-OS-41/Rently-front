@@ -58,7 +58,7 @@ ReactDOM.render(
           <VisitorRoute path="/register" component={RegisterPage} />
 
           <Route path="/search" component={SearchPage} />
-          <Route path="/item/:id" component={ItemPage} />
+          <UserRoute path="/item/:id" component={ItemPage} />
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
