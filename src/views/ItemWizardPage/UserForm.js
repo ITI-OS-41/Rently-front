@@ -5,15 +5,22 @@ import { PricingAndProtection } from "./PricingAndProtection";
 import { Confirm } from "./Confirm";
 import { CancellationAndDelivery } from "./CancellationAndDelivery";
 import RentHeader from "./RentHeader";
-import Stepper from "./Stepper/Stepper";
-// import { useStepper } from "./context";
-import { StepperProvider } from "./context";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
 
+function getSteps() {
+  return [
+    "Basic Info",
+    "Posting Details",
+    "Pricing And Protection",
+    "Cancellation Policy",
+    "Confirm",
+  ];
+}
 export default function UserForm() {
+  const steps = getSteps();
   const [step, setStep] = useState(1);
-  // const [stepper, setStepper] = useContext(Stepper);
-  // const { incrementCurrentStep, decrementCurrentStep } = useStepper();
-
   const [formData, setFormData] = useState({
     category: "",
     subcategory: "",
@@ -39,27 +46,47 @@ export default function UserForm() {
   switch (step) {
     case 1:
       return (
-        <RentHeader
-          component={
-            <BasicInfo
-              formData={formData}
-              setFormData={setFormData}
-              nextStep={nextStep}
-              prevStep={prevStep}
-            />
-          }
-        />
+        <>
+          <RentHeader
+            component={
+              <>
+                <Stepper activeStep={0} alternativeLabel>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+                <BasicInfo
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              </>
+            }
+          />
+        </>
       );
     case 2:
       return (
         <RentHeader
           component={
-            <PostingDetails
-              formData={formData}
-              setFormData={setFormData}
-              nextStep={nextStep}
-              prevStep={prevStep}
-            />
+            <>
+              <Stepper activeStep={1} alternativeLabel>
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+              <PostingDetails
+                formData={formData}
+                setFormData={setFormData}
+                nextStep={nextStep}
+                prevStep={prevStep}
+              />
+            </>
           }
         />
       );
@@ -68,12 +95,21 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              <PricingAndProtection
-                formData={formData}
-                setFormData={setFormData}
-                nextStep={nextStep}
-                prevStep={prevStep}
-              />
+              <>
+                <Stepper activeStep={2} alternativeLabel>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+                <PricingAndProtection
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              </>
             }
           />
         </>
@@ -83,12 +119,21 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              <CancellationAndDelivery
-                formData={formData}
-                setFormData={setFormData}
-                nextStep={nextStep}
-                prevStep={prevStep}
-              />
+              <>
+                <Stepper activeStep={4} alternativeLabel>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+                <CancellationAndDelivery
+                  formData={formData}
+                  setFormData={setFormData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              </>
             }
           />
         </>
@@ -98,11 +143,20 @@ export default function UserForm() {
         <>
           <RentHeader
             component={
-              <Confirm
-                formData={formData}
-                nextStep={nextStep}
-                prevStep={prevStep}
-              />
+              <>
+                <Stepper activeStep={5} alternativeLabel>
+                  {steps.map((label) => (
+                    <Step key={label}>
+                      <StepLabel>{label}</StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+                <Confirm
+                  formData={formData}
+                  nextStep={nextStep}
+                  prevStep={prevStep}
+                />
+              </>
             }
           />
         </>

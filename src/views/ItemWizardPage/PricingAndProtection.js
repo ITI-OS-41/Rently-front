@@ -137,10 +137,9 @@ export const PricingAndProtection = ({
                           value={values.day}
                           onBlur={handleBlur}
                           onChange={handleChange}
-                          // error={touched.day && Boolean(errors.day)}
-                          // helperText={touched.day && errors.day}
+                          error={touched.day && Boolean(errors.day)}
+                          helperText={touched.day && errors.day}
                         />
-                        {console.log(values.price)}
                       </Grid>
                       <Grid item xs={2}>
                         <InputLabel

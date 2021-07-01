@@ -119,11 +119,8 @@ export const PostingDetails = ({
                         }}
                       />
                     
-                      {console.log("f", values.photo.length == 0)}
                       {!values.photo && (
-                        
-                          <FormHelperText>{errors.photo}</FormHelperText>
-                       
+                          <FormHelperText style={{color:"#f44336"}}>{errors.photo}</FormHelperText>
                       )}
                     </div>
                   </Card>

@@ -189,7 +189,7 @@ export const CancellationAndDelivery = ({
                     </Grid>
                   </Grid>
                   {!values.cancellation && (
-                    <FormHelperText>{errors.cancellation}</FormHelperText>
+                    <FormHelperText style={{color:"#f44336"}}>{errors.cancellation}</FormHelperText>
                   )}
                 </div>
               </Grid>
@@ -259,7 +259,7 @@ export const CancellationAndDelivery = ({
                   </div>
 
                   {!values.isDeliverable && (
-                    <FormHelperText>{errors.isDeliverable}</FormHelperText>
+                    <FormHelperText style={{color:"#f44336"}}>{errors.isDeliverable}</FormHelperText>
                   )}
                 </div>
               </Grid>
