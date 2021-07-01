@@ -97,7 +97,6 @@ export default function ItemPage(props) {
     const [priceSelect, setPriceSelect] = useState("");
     const {user} = useContext(UserContext);
     const [images, setImages] = useState([]);
-    const [mapURL,setMapURL] = useState(null);
 
 
     const [deliveryDistance,setDeliveryDistance] = useState(0);
@@ -141,7 +140,6 @@ export default function ItemPage(props) {
                     });
                 }
                 setImages(i);
-                setMapURL(`https://maps.google.com/maps?hl=en&amp;q=${response.data.location.coordinates[0]},${response.data.location.coordinates[1]}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed`)
                 calcCrow(loggedInUser.location.coordinates[0],loggedInUser.location.coordinates[1],response.data.location.coordinates[0],response.data.location.coordinates[1]);
             })
             .catch((err) => {
@@ -370,15 +368,8 @@ export default function ItemPage(props) {
                             </p>
                             <div>
                                 {/*<iframe frameBorder={0} width={'100%'} height={'250px'} src ={`https://maps.google.com/maps?q=0,0&hl=es;z=14&amp;output=embed`}></iframe>*/}
-                            {
-                                item.location.coordinates &&(
-                                <iframe
-                                    src={mapURL}
-                                    frameBorder="0"
-                                    style={{border:0}}
-                                />)
-                            }
 
+                                <div dangerouslySetInnerHTML={{ __html: `<iframe src="https://maps.google.com/maps?hl=en&amp;q=${item.location.coordinates[0]},${item.location.coordinates[1]}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width='100%' height='250px'  style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>` }} />
                             </div>
                             <hr/>
 

@@ -2,49 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/img/about1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/alaa.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/categories.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/categories01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/photo-1615404420216-cc423164563f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/img/photo-1618347191821-51285853505f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/Description.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/Links.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/Slider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CareersPage/Careers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CareersPage/Sections/SectionDescription.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/CategoryPage/Sections/PaginationStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/ContactUsPage/Sections/Contact.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/NonprofitPage/Nonprofit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/NonprofitPage/Sections/SectionDescription.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/NonprofitPage/Sections/SectionImage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/NonprofitPage/Sections/Slider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/ReadMore/ReadMore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/SubCategoryPage/Sections/PaginationStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/Sections/DraftCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/Sections/DraftItems.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/Sections/PostedCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/Sections/PostedItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/img/about.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/about.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutUsPage/AboutUsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AboutUsPage/AboutUsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionContact.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionDescription.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionOffice.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionOffice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionServices.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionTeam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AboutUsPage/Sections/SectionTeam.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/HeaderLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CategoryPage/CategoryPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ContactUsPage/ContactUsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ContactUsPage/ContactUsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ContactUsPage1/ContactUsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ContactUsPage1/ContactUsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SubCategoryPage/SubCategoryPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/MyPosting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/MyPosting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/Sections/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/MyPostings/Sections/PostItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Confirmed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Confirmed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/Rental/Sections/Request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Confirmed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Confirmed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UserProfilePage/Sections/posting/Sections/Request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +125,8 @@
       <workItem from="1624783881229" duration="5622000" />
       <workItem from="1624866726153" duration="22684000" />
       <workItem from="1624980626080" duration="13682000" />
-      <workItem from="1625042870080" duration="28813000" />
+      <workItem from="1625042870080" duration="28887000" />
+      <workItem from="1625135703956" duration="1997000" />
     </task>
     <servers />
   </component>
@@ -219,11 +182,12 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1625097411335" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1625099668308">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="-1434" y="-29" width="945" height="965" key="search.everywhere.popup" timestamp="1625136808140">
+      <screen x="-1920" y="-113" width="1920" height="1050" />
     </state>
     <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624577462207" />
     <state x="346" y="59" width="673" height="679" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624620033151" />
+    <state x="-1434" y="-29" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/-1920.-113.1920.1050@-1920.-113.1920.1050" timestamp="1625136808139" />
     <state x="-1434" y="-55" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@-1920.-139.1920.1050" timestamp="1625080273507" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1625058675528" />
     <state x="-1434" y="-111" width="946" height="967" key="search.everywhere.popup/0.0.1366.738/-1920.-195.1920.1050@-1920.-195.1920.1050" timestamp="1624718162818" />
