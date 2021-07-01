@@ -14,7 +14,7 @@ export default function SearchFilters(props) {
 
 
   useEffect(() => {
-    get('/category')
+    get('/category?model=item')
       .then(response => {
         setCategorys(response.data.res)
       })

@@ -10,7 +10,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import Typography from "@material-ui/core/Typography";
 import {DateRange} from "react-date-range";
-import {post} from "../../functions/request";
+import {patch, post} from "../../functions/request";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import Grid from "@material-ui/core/Grid";
@@ -20,6 +20,7 @@ import Select from "@material-ui/core/Select";
 import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
 import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
 import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
+import history from "../../functions/history";
 
 
 const styles = (theme) => ({
@@ -78,7 +79,7 @@ const StyledButton = withStyles({
 })(Button);
 
 export default function ItemRent(props) {
-    const {user} = useContext(UserContext);
+    const {user,setUser} = useContext(UserContext);
     const [open, setOpen] = React.useState(false);
     const {item, priceSelect, deliveryPrice, ...rest} = props;
     const [rentPrice, setRentPrice] = useState(0);
@@ -102,23 +103,37 @@ export default function ItemRent(props) {
         key: 'selection',
     });
     const handleRentRequest = () => {
-        post(`/rent/`, rent)
+        post(`/rent/`, {
+            ...rent,
+            totalPrice: needToBePaid
+        })
             .then((res) => {
                 let response = res.data;
-                console.log(response);
+
+                patch('/user/update', {
+                    wallet: walletAfter
+                }, "rent request sent successfully")
+                    .then(r => {
+
+                        setUser({
+                            ...user,
+                            wallet: walletAfter
+                        });
+
+                        history.push('profile/renting');
+                        console.log(r)})
+                    .catch(e=>{
+                        console.log(e)
+                    })
             })
             .catch((e) => {
                 console.log(e);
             });
     };
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+
     const handleClose = () => {
         setOpen(false);
     };
-
-
     const getPriceMonthly = () => {
         return item.price.month || (getPriceWeekly() * 30) / 7 || getPriceDaily() * 30;
     };
@@ -128,8 +143,6 @@ export default function ItemRent(props) {
     const getPriceDaily = () => {
         return item.price.day;
     };
-
-
     const calculateTotalPrice = () => {
         // To calculate the time difference of two dates
         const Difference_In_Time = Math.abs(new Date(selectedDate.endDate.toString()).getTime() - new Date(selectedDate.startDate.toString()).getTime());
@@ -180,8 +193,9 @@ export default function ItemRent(props) {
 
 
     useEffect(() => {
-        setNeedToBePaid(rent.totalPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet)
+        setNeedToBePaid(( rent.totalPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet ) < 0 ? 0 : ( rent.totalPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet ) )
         setWalletAfter((user.wallet - rent.totalPrice - (addDeliveryRate ? deliveryPrice : 0)) > 0 ? (user.wallet - rent.totalPrice - (addDeliveryRate ? deliveryPrice : 0)) : 0)
+
 
     }, [rent, addDeliveryRate, deliveryPrice, user]);
 
@@ -268,7 +282,7 @@ export default function ItemRent(props) {
                             <Typography color={"primary"}>Wallet:<span
                                 style={{float: 'right'}}>-{user.wallet}$</span></Typography>
                             <h4 style={{fontWeight: 'bold'}}>Total price: <span
-                                style={{float: 'right'}}>{needToBePaid < 0 ? 0 : needToBePaid}$</span></h4>
+                                style={{float: 'right'}}>{needToBePaid}$</span></h4>
                             <h4 style={{fontWeight: 'bold'}}>Wallet credits later: <span
                                 style={{float: 'right'}}>{walletAfter}$</span>
                             </h4>

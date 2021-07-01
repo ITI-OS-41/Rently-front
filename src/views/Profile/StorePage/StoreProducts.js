@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {get} from "../../../functions/request";
 import GridContainer from "../../../components/Grid/GridContainer";
 import Carousel from "nuka-carousel";
@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import SearchFilters from "./SearchFilter";
 import NoDataToShow from "../../../components/global/NoDataToShow";
 import ItemCard from "../../../components/Items/ItemCard";
+import {UserContext} from "../../../Context";
 
 
 const modelName = 'item';
@@ -18,6 +19,7 @@ const modelName = 'item';
 export default function StoreProducts() {
   const [items, setItems] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const {user} = useContext(UserContext);
 
   const changeFilter = (filters) =>{
 
@@ -29,7 +31,7 @@ export default function StoreProducts() {
       query += filters[property]?`${property}=${filters[property]}&`:""
     }
 
-    get(`/item?${query}isPublished=true`)
+    get(`/item?${query}owner=${user._id}&isPublished=true&isAvailable=true`)
       .then(response => {
         setItems(response.data.res)
       })
