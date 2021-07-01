@@ -83,7 +83,7 @@ export const CancellationAndDelivery = ({
                     <Grid item xs={6} md={4}>
                       <div style={{ marginBottom: "2rem" }}>
                         {/* easy going */}
-                        <Card>
+                        <Card style={{ height: "11rem" }}>
                           <CardBody>
                             <FormControlLabel
                               control={
@@ -118,7 +118,7 @@ export const CancellationAndDelivery = ({
                     <Grid item xs={6} md={4}>
                       {/* reasonable */}
                       <div style={{ marginBottom: "2rem" }}>
-                        <Card>
+                        <Card style={{ height: "11rem" }}>
                           <CardBody>
                             <FormControlLabel
                               control={
@@ -189,7 +189,7 @@ export const CancellationAndDelivery = ({
                     </Grid>
                   </Grid>
                   {!values.cancellation && (
-                    <FormHelperText>{errors.cancellation}</FormHelperText>
+                    <FormHelperText style={{color:"#f44336"}}>{errors.cancellation}</FormHelperText>
                   )}
                 </div>
               </Grid>
@@ -259,7 +259,7 @@ export const CancellationAndDelivery = ({
                   </div>
 
                   {!values.isDeliverable && (
-                    <FormHelperText>{errors.isDeliverable}</FormHelperText>
+                    <FormHelperText style={{color:"#f44336"}}>{errors.isDeliverable}</FormHelperText>
                   )}
                 </div>
               </Grid>
