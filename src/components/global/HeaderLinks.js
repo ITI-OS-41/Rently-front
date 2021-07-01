@@ -15,6 +15,7 @@ import StorefrontIcon from '@material-ui/icons/Storefront';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import ControlPointOutlinedIcon from '@material-ui/icons/ControlPointOutlined';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 
 
 // core components
@@ -128,6 +129,15 @@ export default function HeaderLinks(props) {
                         className={classes.navLink}
                     >
                         <ControlPointOutlinedIcon /> Create item
+                    </Link>
+                </ListItem>
+
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/favorite"
+                        className={classes.navLink}
+                    >
+                        <FavoriteOutlinedIcon /> Wishlist
                     </Link>
                 </ListItem>
 
