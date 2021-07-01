@@ -31,6 +31,7 @@ import defaultImage from "../../assets/img/noimagelarge.png";
 import Map from "components/Map/Map";
 import GridContainer from "../../components/Grid/GridContainer";
 import ItemReview from "./Sections/ItemReview";
+import AllReviews from "./Sections/AllReviews";
 import GridItem from "../../components/Grid/GridItem";
 import Share from "../../components/global/Share";
 
@@ -382,7 +383,8 @@ export default function ItemPage(props) {
                         </GridItem>
                     </GridContainer>
                 )}
-                 <ItemReview     />
+                <AllReviews />
+                 <ItemReview item={item}  />
             </div>
 
            
