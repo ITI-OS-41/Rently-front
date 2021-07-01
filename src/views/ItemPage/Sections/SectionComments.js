@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 
 import { get, patch, post } from "functions/request";
 import { grayColor, title } from "assets/jss/material-kit-pro-react.js";
+import { FaStar } from "react-icons/fa";
 
 import tooltipsStyle from "assets/jss/material-kit-pro-react/tooltipsStyle.js";
 import { dateTime } from "functions/helpers";
@@ -35,14 +36,31 @@ const sectionCommentsStyle = {
   },
 };
 
+const colors = {
+  orange: "#FFBA5A",
+  grey: "#a9a9a9",
+};
 const useStyles = makeStyles(sectionCommentsStyle);
 
 export default function SectionComments({ rate, loggedInUser }) {
   const [rent, setRent] = useState(rate);
   const [newcomment, setNewComment] = useState(false);
   const [comment, setComment] = useState(null);
-  const history = useHistory();
+  const [currentValue, setCurrentValue] = useState(0);
+  const [hoverValue, setHoverValue] = useState(undefined);
+  const stars = Array(5).fill(0);
 
+  const handleClick = (value) => {
+    setCurrentValue(value);
+  };
+
+  const handleMouseOver = (newHoverValue) => {
+    setHoverValue(newHoverValue);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(undefined);
+  };
   const handleComment = (event) => {
     setComment(event.target.value);
   };
@@ -54,21 +72,17 @@ export default function SectionComments({ rate, loggedInUser }) {
       item: rent.item._id,
       rater: loggedInUser._id,
       comment: comment,
-      rating: rent.rating,
+      rating: currentValue,
     };
-    console.log("rev0 > ", review);
 
     post(`/itemrate/${rent._id}`, review, "Comment Updated successfully ♥ ")
       .then((response) => {
-        // history.push({SectionComments});
-        // history.push(`/item/${rent.item._id}`);
-        console.log("rev it ", review.item);
+        window.location.reload();
 
-        console.log("equal888");
         update(rent, { comment: { $set: comment } });
       })
       .catch((e) => {
-        console.log(" e e e e ", e);
+        console.log(" error", e);
       });
 
   };
@@ -101,6 +115,28 @@ export default function SectionComments({ rate, loggedInUser }) {
             )}
             {newcomment && (
               <div>
+                 <div style={styles.stars}>
+              {stars.map((_, index) => {
+                return (
+                  <FaStar
+                    key={index}
+                    size={15}
+                    onClick={() => handleClick(index + 1)}
+                    onMouseOver={() => handleMouseOver(index + 1)}
+                    onMouseLeave={handleMouseLeave}
+                    color={
+                      (hoverValue || currentValue) > index
+                        ? colors.orange
+                        : colors.grey
+                    }
+                    style={{
+                      marginRight: 10,
+                      cursor: "pointer",
+                    }}
+                  />
+                );
+              })}
+            </div>
                 <textarea
                   placeholder={rent.comment}
                   style={styles.textarea}
