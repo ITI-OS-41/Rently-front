@@ -66,11 +66,10 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
     cancellation,
     isDeliverable,
     deposit,
-    price: { day, hour, week, month },
+    price: { day, week, month },
   } = formData;
   return (
     <>
- 
       {console.log(formData)}
       <Formik
         initialValues={formData}
@@ -94,23 +93,29 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                     <CardHeader color="info">Basic Info</CardHeader>
                     <List>
                       <ListItem>
-                        <ListItemText primary="Category" secondary={category} />
+                        <ListItemText
+                          primary="Category"
+                          secondary={values.cat}
+                        />
                         <ListItemText
                           primary="Sub-Category"
-                          secondary={subcategory}
+                          secondary={values.subCat}
                         />
                       </ListItem>
-                      <ListItem></ListItem>
+                      <hr />
                       <ListItem>
-                        <ListItemText primary="Item Name" secondary={name} />
+                      <ListItemText
+                          primary="Item Name"
+                          secondary={name}
+                        />
                         <ListItemText
-                          primary="Condition"
+                          primary="Item Condition"
                           secondary={condition}
                         />
                       </ListItem>
+                      <hr />
                       <ListItem>
-                        <ListItemText primary="Quantity" secondary={stock} />
-                        <ListItemText></ListItemText>
+                        <ListItemText primary="Quantity" secondary={stock} />                        
                       </ListItem>
                       <ListItem></ListItem>
                     </List>
@@ -129,24 +134,19 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                     <List component="nav">
                       <ListItem>
                         <ListItemText
-                          primary="Hourly"
-                          secondary={`${hour} EGP`}
-                        />
-                        <ListItemText
                           primary="Daily"
-                          secondary={`${day} EGP`}
+                          secondary={`${day ? `${day} EGP` : `0.00`}`}
                         />
-                      </ListItem>
-                      <ListItem>
                         <ListItemText
                           primary="Weekly"
-                          secondary={`${week} EGP`}
+                          secondary={`${week ? `${week} EGP` : `0.00`}`}
                         />
                         <ListItemText
                           primary="Monthly"
-                          secondary={`${month} EGP`}
+                          secondary={`${month ? `${month} EGP` : `0.00`}`}
                         />
                       </ListItem>
+                      <hr />
                       <ListItem>
                         <ListItemText primary="Deposit" secondary={deposit} />
                       </ListItem>
@@ -170,7 +170,9 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                       <ListItem>
                         <ListItemText
                           primary="Item Delivery"
-                          secondary={`${isDeliverable ? "yes" : "no"}`}
+                          secondary={`${
+                            isDeliverable === "true" ? "yes" : "no"
+                          }`}
                         />
                       </ListItem>
                     </List>
@@ -179,7 +181,10 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
               </Grid>
             </Grid>
 
-            <div className={classes.textCenter} style={{marginBottom:"3rem"}}>
+            <div
+              className={classes.textCenter}
+              style={{ marginBottom: "3rem" }}
+            >
               <Button
                 color="secondary"
                 variant="contained"
