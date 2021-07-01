@@ -18,7 +18,7 @@ import "./Sections/PaginationStyle.css";
 const useStyles = makeStyles((theme) => ({
   card: {
     marginTop: "10%",
-    
+
   },
   title: {
     color: "white",
@@ -112,7 +112,7 @@ export default function CategoryPage() {
           </GridContainer>
         </div>
       </Parallax>
-     
+
       <div className={classes.main}>
         <div className={classes.container}>
 
