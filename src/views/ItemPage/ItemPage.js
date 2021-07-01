@@ -393,20 +393,24 @@ export default function ItemPage(props) {
 
                                     {
                                         user._id !== item.owner._id && (
+                                            <>
                                             <ItemRent item={item} deliveryPrice={deliveryDistance/distanceToKMRate}/>
+
+                                            <hr/>
+                                            <div>
+                                                <Button
+                                                    fullWidth
+                                                    onClick={() => handleStartConversation(item.owner._id)}
+                                                    style={{marginLeft: "0.5rem"}}
+                                                    round
+                                                >
+                                                    Message {item?.owner?.username}
+                                                </Button>
+                                            </div>
+
+                                            </>
                                         )
                                     }
-                                    <hr/>
-                                    <div>
-                                        <Button
-                                            fullWidth
-                                            onClick={() => handleStartConversation(item.owner._id)}
-                                            style={{marginLeft: "0.5rem"}}
-                                            round
-                                        >
-                                            Message {item?.owner?.username}
-                                        </Button>
-                                    </div>
                                 </CardBody>
                             </Card>
                         </GridItem>
