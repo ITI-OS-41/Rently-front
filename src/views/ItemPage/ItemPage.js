@@ -13,13 +13,13 @@ import {makeStyles} from "@material-ui/core/styles";
 import Header from "../../components/global/Header.js";
 import Footer from "../../components/global/Footer.js";
 import LoadingContainer from "../../components/global/LoadingContainer";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import history from "functions/history";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import history from "../../functions/history";
 import Button from "../../components/CustomButtons/Button";
 
 import Parallax from "../../components/Parallax/Parallax.js";
-import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
+import productStyle from "../../assets/jss/material-kit-pro-react/views/productStyle.js";
 import presentationStyle from "../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import ItemRating from "../../components/Items/ItemRating";
 import ItemCancellation from "../../components/Items/ItemCancellation";
@@ -28,7 +28,6 @@ import {UserContext} from "../../Context";
 import Grid from "@material-ui/core/Grid";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import defaultImage from "../../assets/img/noimagelarge.png";
-import Map from "components/Map/Map";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
 import Share from "../../components/global/Share";
@@ -98,6 +97,14 @@ export default function ItemPage(props) {
     const [priceSelect, setPriceSelect] = useState("");
     const {user} = useContext(UserContext);
     const [images, setImages] = useState([]);
+
+
+    const [deliveryDistance,setDeliveryDistance] = useState(0);
+    const distanceToKMRate = 0.75; // 0.75$ for each KM
+    const distanceToTimeRate = 70; // KM/Hour
+
+
+
     const handleStartConversation = (userId) => {
         // create conversation between two users
         post(
@@ -132,6 +139,7 @@ export default function ItemPage(props) {
                     });
                 }
                 setImages(i);
+                calcCrow(loggedInUser.location.coordinates[0],loggedInUser.location.coordinates[1],response.data.location.coordinates[0],response.data.location.coordinates[1]);
             })
             .catch((err) => {
                 console.log(err);
@@ -141,6 +149,31 @@ export default function ItemPage(props) {
                 setIsLoading(false);
             });
     }, []);
+
+    //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
+    const calcCrow = (lat1, lon1, lat2, lon2) => {
+        console.log(lat1,lon1)
+        lat1 = parseFloat(lat1);
+        lon1 = parseFloat(lon1);
+        lat2 = parseFloat(lat2);
+        lon2 = parseFloat(lon2);
+        let R = 6371; // km
+        let dLat = toRad(lat2-lat1);
+        let dLon = toRad(lon2-lon1);
+        lat1 = toRad(lat1);
+        lat2 = toRad(lat2);
+
+        let a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        setDeliveryDistance(parseInt(R * c))
+    }
+
+    // Converts numeric degrees to radians
+    const toRad = (Value) => {
+        return Value * Math.PI / 180;
+    }
+
 
     return (
         <div className={classes.productPage}>
@@ -152,7 +185,7 @@ export default function ItemPage(props) {
                 filter="dark"
                 className={classes.pageHeader}
                 style={{height: "16rem"}}
-            ></Parallax>
+                />
             <div
                 className={classNames(classes.main, classes.mainRaised)}
                 style={{margin: "-300px 30px 0px"}}
@@ -329,12 +362,13 @@ export default function ItemPage(props) {
                                 Delivery option is available. Provide your location to see the
                                 estimated delivery cost.
                             </p>
+                            <p>
+                                This is approximately {deliveryDistance}KM ({deliveryDistance/distanceToTimeRate})Hour away from your location
+                            </p>
                             <div>
-                                <Map
-                                    changeCoordinates={(pos, address) =>
-                                        console.log({pos}, {address})
-                                    }
-                                />
+                                {/*<iframe frameBorder={0} width={'100%'} height={'250px'} src ={`https://maps.google.com/maps?q=0,0&hl=es;z=14&amp;output=embed`}></iframe>*/}
+
+                                <div dangerouslySetInnerHTML={{ __html: `<iframe src="https://maps.google.com/maps?hl=en&amp;q=${item.location.coordinates[0]},${item.location.coordinates[1]}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width='100%' height='250px'  style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>` }} />
                             </div>
                             <hr/>
 
@@ -358,7 +392,7 @@ export default function ItemPage(props) {
 
                                     {
                                         user._id !== item.owner._id && (
-                                            <ItemRent item={item}/>
+                                            <ItemRent item={item} deliveryPrice={deliveryDistance/distanceToKMRate}/>
                                         )
                                     }
                                     <hr/>

@@ -11,7 +11,8 @@ import {UserContext} from "../../Context";
 const UserRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
-    const {user} = useContext(UserContext)
+    // const {user} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem('rently-user'))
 
 
     return (

@@ -11,7 +11,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
     const token = localStorage.getItem('rently-token')
-    console.log("isAdmin", token);
+
     return (
         <Route
             {...rest}
