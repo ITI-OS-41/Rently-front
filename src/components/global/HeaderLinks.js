@@ -14,6 +14,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import ControlPointOutlinedIcon from '@material-ui/icons/ControlPointOutlined';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+
 
 // core components
 import CustomDropdown from "../../components/CustomDropdown/CustomDropdown.js";
@@ -119,9 +122,30 @@ export default function HeaderLinks(props) {
 
             {user.username &&
             <>
+
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/create-item"
+                        className={classes.navLink}
+                    >
+                        <ControlPointOutlinedIcon /> Create item
+                    </Link>
+                </ListItem>
+
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/favorite"
+                        className={classes.navLink}
+                    >
+                        <FavoriteOutlinedIcon /> Wishlist
+                    </Link>
+                </ListItem>
+
+
                 <ListItem className={classes.listItem}>
                     <NotificationNavbar dropdownHoverColor={dropdownHoverColor}/>
                 </ListItem>
+
 
             <ListItem className={classes.listItem}>
 
@@ -165,6 +189,8 @@ export default function HeaderLinks(props) {
                     ]}
                 />
             </ListItem>
+
+
             </>
             }
 

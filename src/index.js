@@ -35,7 +35,7 @@ import Nonprofit from './views/NonprofitPage/Nonprofit';
 import Careers from './views/CareersPage/Careers'
 
 import CartPage from "./views/CartPage/CartPage";
-  
+import FavoritePage from "./views/FavoritePage/FavoritePage";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -58,7 +58,7 @@ ReactDOM.render(
           <VisitorRoute path="/register" component={RegisterPage} />
 
           <Route path="/search" component={SearchPage} />
-          <Route path="/item/:id" component={ItemPage} />
+          <UserRoute path="/item/:id" component={ItemPage} />
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
@@ -82,11 +82,11 @@ ReactDOM.render(
 
           <Route path="/map" component={MapPage} />
           <Route path="/cart" component={CartPage} />
+          <Route path="/favorite" component={FavoritePage} />
 
           <Route path="/about-us" component={AboutUsPage} />
 
           <Route path="/" component={HomePage} />
-       
         </Switch>
       </Router>
     </Context>

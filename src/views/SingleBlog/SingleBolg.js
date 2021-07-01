@@ -44,7 +44,7 @@ export default function BlogPostPage(props) {
         <Header />
         { blog && (
             <>
-              <Parallax image={blog.photo ? blog.photo : office2} filter="dark">
+              <Parallax image={blog.headerPhoto || cardBlog4} filter="dark">
                 <div className={classes.container}>
                   <GridContainer justify="center">
                     <GridItem md={8} className={classes.textCenter}>

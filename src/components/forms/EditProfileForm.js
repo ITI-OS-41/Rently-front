@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import { Link } from "react-router-dom";
 import {
   Typography,
@@ -27,6 +27,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Add from "@material-ui/icons/Add";
 
 import defaultImage from '../../assets/img/noimagelarge.png';
+import {UserContext} from "../../Context";
 // import { patch } from "functions/request";
 const modelName = "user";
 
@@ -80,6 +81,8 @@ export default function EditProfileForm({ user }) {
   const id = localStorage.getItem("rently-userid");
   const [imagePreview, setImagePreview] = useState(null);
 
+  const {user:currentUser,setUser} = useContext(UserContext);
+
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -88,14 +91,18 @@ export default function EditProfileForm({ user }) {
   };
   const submitForm = async (values) => {
     setIsRequesting(true);
-    if (values.photo) {
+    if (imagePreview) {
       await uploadImage(values.photo, modelName).then((res) => {
         values.photo = res.data.url;
       });
     }
-    patch(`/user/update`, values, "User Updated successfully ♥ ")
+    patch(`/user/update`, values, "User Updated successfully")
       .then((response) => {
-        // history.push("/profile");
+        console.log(response.data)
+        setUser({
+          ...user,
+          photo: values.photo
+        })
       })
       .catch((err) => {})
       .finally(() => {
@@ -232,7 +239,7 @@ export default function EditProfileForm({ user }) {
                     value={values.email}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                {/*<Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     fullWidth
@@ -263,7 +270,7 @@ export default function EditProfileForm({ user }) {
                       touched.confirmPassword && errors.confirmPassword
                     }
                   />
-                </Grid>
+                </Grid>*/}
               </Grid>
 
               <Button

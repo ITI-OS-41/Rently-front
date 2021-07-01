@@ -46,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const validationSchema = yup.object({
   deposit: yup.number().positive().required("deposit is required"),
-  hour: yup.number().positive(),
   day: yup.number().positive().required("daily is required"),
+  hour: yup.number().positive(),
   month: yup.number().positive(),
   week: yup.number().positive(),
   // price: yup.number().required("price is required"),
@@ -62,11 +62,6 @@ export const PricingAndProtection = ({
   const [selectedEnabled, setSelectedEnabled] = React.useState("b");
 
   const [direction, setDirection] = useState("back");
-  useEffect(() => {
-    get("/category").then((response) => {
-      setCategories(response.data.res);
-    });
-  }, []);
 
   const classes = useStyles();
   return (
@@ -210,8 +205,6 @@ export const PricingAndProtection = ({
                           helperText={touched.month && errors.month}
                         />
                       </Grid>
-                      
-                   
                     </Grid>
                   </div>
 
@@ -242,6 +235,7 @@ export const PricingAndProtection = ({
                           </p>
                           <TextField
                             InputProps={{
+                            inputProps: { min: 1, max: 100000 },
                               startAdornment: (
                                 <InputAdornment position="start">
                                   EGP
