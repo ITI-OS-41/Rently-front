@@ -395,14 +395,14 @@ export const BasicInfo = ({
                       />
                     </div>
 
-                    {/* <Map
-                      changeCoordinates={(pos, address) =>
-                        console.log({ pos }, { address })
-                      }
-                    /> */}
-                    <Elements stripe={promise}>
-                      <CheckoutForm />
-                    </Elements>
+                   
+                    <Map changeCoordinates={(pos,address)=>{setFieldValue("location",{
+                      type:"Point",
+                      coordinates:[pos.lat,pos.lng],
+                      address:address
+                    })}}/>
+
+                    
                   </div>
                 </Grid>
               </Grid>
