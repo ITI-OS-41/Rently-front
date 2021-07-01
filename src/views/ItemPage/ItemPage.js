@@ -2,7 +2,7 @@
 import React, {useContext, useEffect, useState} from "react";
 
 import {Link} from "react-router-dom";
-import {get, post} from "../../functions/request";
+import {get, patch, post} from "../../functions/request";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react component used to create nice image meadia player
@@ -31,6 +31,11 @@ import defaultImage from "../../assets/img/noimagelarge.png";
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
 import Share from "../../components/global/Share";
+
+
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import IconButton from "@material-ui/core/IconButton";
 
 const customStyle = {
     timeRateLabel: {
@@ -90,13 +95,14 @@ export default function ItemPage(props) {
         classes.imgFluid
     );
     const id = props.match.params.id;
-    const {user: loggedInUser} = useContext(UserContext);
+    const {user: loggedInUser, setUser} = useContext(UserContext);
 
     const [item, setItem] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [priceSelect, setPriceSelect] = useState("");
     const {user} = useContext(UserContext);
     const [images, setImages] = useState([]);
+    const [isLiked,setIsLiked] = useState(false)
 
 
     const [deliveryDistance,setDeliveryDistance] = useState(0);
@@ -140,6 +146,8 @@ export default function ItemPage(props) {
                 }
                 setImages(i);
                 calcCrow(loggedInUser.location.coordinates[0],loggedInUser.location.coordinates[1],response.data.location.coordinates[0],response.data.location.coordinates[1]);
+                productIsLiked(response.data);
+
             })
             .catch((err) => {
                 console.log(err);
@@ -175,6 +183,52 @@ export default function ItemPage(props) {
     }
 
 
+    const productIsLiked = (item) => {
+        for (let i = 0; i < loggedInUser.favoriteItems.length; i++) {
+            if(loggedInUser.favoriteItems[i]._id == item._id){
+                console.log("found in index, ", i)
+                setIsLiked(true)
+            }
+        }
+    };
+
+    const handleLikeBtn = () => {
+        console.log(loggedInUser.favoriteItems);
+        console.log({isLiked});
+
+
+        let favoriteItems = [...loggedInUser.favoriteItems];
+
+        if(isLiked){
+            // dislike
+            const index = favoriteItems.indexOf(item._id);
+            favoriteItems.splice(index,1);
+            setIsLiked(false)
+        }
+
+
+        else {
+            // like
+            favoriteItems = [
+                ...favoriteItems,
+                item._id
+            ];
+            setIsLiked(true)
+        }
+
+
+        patch('/user/update',{
+            favoriteItems
+        }, isLiked?"Product removed from favourite":"Product added to favourite")
+            .then(res=>{
+                setUser({
+                    ...loggedInUser,
+                    favoriteItems
+                })
+            })
+    };
+
+
     return (
         <div className={classes.productPage}>
             <Header/>
@@ -194,12 +248,22 @@ export default function ItemPage(props) {
                     <LoadingContainer/>
                 ) : (
                     <GridContainer>
-                        {/* title */}
 
                         <GridItem md={8} sm={6}>
                             <div style={{display: "block", marginBottom: "2rem"}}>
                                 <h2 className={classNames(classes.title, classes.CardText)} style={{marginTop: '0'}}>
                                     {item?.name}
+
+                                    <IconButton
+                                        onClick={()=>{handleLikeBtn()}}
+                                        aria-label="facebook" style={{float: 'right', marginTop: '1rem'}}>
+                                        {isLiked
+                                            ?
+                                            <FavoriteOutlinedIcon fontSize="small" color={'error'}/>
+                                            :
+                                            <FavoriteBorderOutlinedIcon fontSize="small" color={'error'}/>
+                                        }
+                                    </IconButton>
                                 </h2>
                                 <span className="prices">
                                   <small>{item?.location?.address}</small>

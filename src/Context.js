@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useState} from "react";
-import {patch} from "./functions/request";
+import {get, patch} from "./functions/request";
 import Geocode from "react-geocode";
 
 
@@ -13,9 +13,24 @@ function Context(props) {
     const [demmy, setDummy] = useState(0);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('rently-user')) || {});
 
+
+
+
+
+
     //get user location and save it to profile
     useEffect(() => {
         if (user.username) {
+            get(`/user/infor`)
+                .then(res=>{
+                    console.log(res.data)
+                    setUser({
+                        ...user,
+                        ...res.data
+                    })
+                })
+
+
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((position) => {
