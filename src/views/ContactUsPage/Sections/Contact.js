@@ -14,8 +14,8 @@ import Links from "views/AboutUsPage/Sections/Links";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import InfoArea from "components/InfoArea/InfoArea.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
+
+import Form from "./Form";
 
 
 import {
@@ -109,45 +109,10 @@ export default function Contact() {
                 <br />
                 <br />
               </p>
-              <form>
-                <CustomInput
-                  labelText="Your Name"
-                  id="float"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                />
-                <CustomInput
-                  labelText="Email address"
-                  id="float"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                />
-                <CustomInput
-                  labelText="Phone"
-                  id="float"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                />
-                <CustomInput
-                  labelText="Your message"
-                  id="float"
-                  formControlProps={{
-                    fullWidth: true,
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 6,
-                  }}
-                />
-                <div className={classes.textCenter}>
-                  <Button color="primary" round>
-                    Contact us
-                  </Button>
-                </div>
-              </form>
+              
+              {/* form */}
+              <Form/>
+
             </GridItem>
             <GridItem md={4} sm={4} className={classes.mlAuto}>
               <InfoArea

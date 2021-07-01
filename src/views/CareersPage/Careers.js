@@ -12,6 +12,10 @@ import Parallax from "components/Parallax/Parallax.js";
 // sections for this page
 import Links from "views/AboutUsPage/Sections/Links.js";
 import SectionDescription from "./Sections/SectionDescription.js";
+import SectionImage from "./Sections/SectionImage.js";
+import Slider from "./Sections/Slider.js";
+import JoinTeam from "./Sections/JoinTeam.js";
+import Contact from "views/ContactUsPage/Sections/Contact.js";
 
 import {
   container,
@@ -68,7 +72,7 @@ export default function Nonprofit() {
                     classes.textCenter
                   )}
                 >
-                  <h1 className={classes.title}>Join the Ruckify Team</h1>
+                  <h1 className={classes.title}>Join the Rently Team</h1>
                 </GridItem>
               </GridContainer>
             </div>
@@ -77,8 +81,9 @@ export default function Nonprofit() {
             <div>
                <Links/>
                <SectionDescription/>
-
-               
+               <SectionImage/>
+               <Slider/>
+               <JoinTeam/>
             </div>
           </div>
           <Footer />
