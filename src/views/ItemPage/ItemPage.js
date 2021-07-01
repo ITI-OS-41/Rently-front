@@ -113,7 +113,6 @@ export default function ItemPage(props) {
                 receiver: userId,
             },
             null,
-            false
         )
             .then((res) => {
                 history.push(`/messenger?${res.data._id}`);
