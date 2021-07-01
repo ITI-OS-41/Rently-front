@@ -61,7 +61,8 @@ export const BasicInfo = ({
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const { itemName } = formData;
-
+  const [cat, setCat] = useState("");
+  const [subCat, setSubCat] = useState("");
   const [item, setItem] = useState({});
 
   const [direction, setDirection] = useState("back");
@@ -79,7 +80,6 @@ export const BasicInfo = ({
   }, []);
 
   useEffect(() => {
-    console.log("subcategory use effect");
     get(`/subcategory?category=${formValues.category}`).then((response) => {
       setSubcategories(response.data.res);
     });
@@ -91,6 +91,8 @@ export const BasicInfo = ({
       <Formik
         initialValues={formData}
         onSubmit={(values) => {
+          values.cat = cat;
+          values.subCat = subCat;
           setFormData(values);
           direction === "back" ? prevStep() : nextStep();
         }}
@@ -110,8 +112,10 @@ export const BasicInfo = ({
           const onChange = (e) => {
             const targetEl = e.target;
             const fieldName = targetEl.name;
+
             setFormValues({
               ...formValues,
+              ...cat,
               [fieldName]: targetEl.value,
             });
             return handleChange(e);
@@ -130,7 +134,6 @@ export const BasicInfo = ({
                       >
                         <strong>What are you posting?</strong>
                       </InputLabel>
-
                       <FormControl
                         error={touched.category && Boolean(errors.category)}
                         fullWidth
@@ -177,6 +180,7 @@ export const BasicInfo = ({
                                 key={category._id}
                               >
                                 {category.name}
+                                {setCat(category.name)}
                               </MenuItem>
                             ))}
                         </Select>
@@ -239,6 +243,8 @@ export const BasicInfo = ({
                               key={subcategory._id}
                             >
                               {subcategory.name}
+                              {setSubCat(subcategory.name)}
+
                             </MenuItem>
                           ))}
                         </Select>

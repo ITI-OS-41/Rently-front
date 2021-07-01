@@ -83,7 +83,7 @@ export const CancellationAndDelivery = ({
                     <Grid item xs={6} md={4}>
                       <div style={{ marginBottom: "2rem" }}>
                         {/* easy going */}
-                        <Card>
+                        <Card style={{ height: "11rem" }}>
                           <CardBody>
                             <FormControlLabel
                               control={
@@ -118,7 +118,7 @@ export const CancellationAndDelivery = ({
                     <Grid item xs={6} md={4}>
                       {/* reasonable */}
                       <div style={{ marginBottom: "2rem" }}>
-                        <Card>
+                        <Card style={{ height: "11rem" }}>
                           <CardBody>
                             <FormControlLabel
                               control={

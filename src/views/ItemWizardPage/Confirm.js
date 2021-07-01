@@ -66,7 +66,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
     cancellation,
     isDeliverable,
     deposit,
-    price: { day, hour, week, month },
+    price: { day, week, month },
   } = formData;
   return (
     <>
@@ -93,24 +93,29 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                     <CardHeader color="info">Basic Info</CardHeader>
                     <List>
                       <ListItem>
-                      {console.log(category)}
-                        <ListItemText primary="Category" secondary={category} />
+                        <ListItemText
+                          primary="Category"
+                          secondary={values.cat}
+                        />
                         <ListItemText
                           primary="Sub-Category"
-                          secondary={subcategory}
+                          secondary={values.subCat}
                         />
                       </ListItem>
-                      <ListItem></ListItem>
+                      <hr />
                       <ListItem>
-                        <ListItemText primary="Item Name" secondary={name} />
+                      <ListItemText
+                          primary="Item Name"
+                          secondary={name}
+                        />
                         <ListItemText
-                          primary="Condition"
+                          primary="Item Condition"
                           secondary={condition}
                         />
                       </ListItem>
+                      <hr />
                       <ListItem>
-                        <ListItemText primary="Quantity" secondary={stock} />
-                        <ListItemText></ListItemText>
+                        <ListItemText primary="Quantity" secondary={stock} />                        
                       </ListItem>
                       <ListItem></ListItem>
                     </List>
@@ -128,22 +133,20 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                     </CardHeader>
                     <List component="nav">
                       <ListItem>
-                        
                         <ListItemText
                           primary="Daily"
-                          secondary={`${day?`${day} EGP`:`0.00`}` }
+                          secondary={`${day ? `${day} EGP` : `0.00`}`}
                         />
                         <ListItemText
                           primary="Weekly"
-                          secondary={`${week?`${week} EGP`:`0.00`}` }
+                          secondary={`${week ? `${week} EGP` : `0.00`}`}
                         />
-                      </ListItem>
-                      <ListItem>
                         <ListItemText
                           primary="Monthly"
-                          secondary={`${month?`${month} EGP`:`0.00`}` }
+                          secondary={`${month ? `${month} EGP` : `0.00`}`}
                         />
                       </ListItem>
+                      <hr />
                       <ListItem>
                         <ListItemText primary="Deposit" secondary={deposit} />
                       </ListItem>
@@ -167,7 +170,9 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
                       <ListItem>
                         <ListItemText
                           primary="Item Delivery"
-                          secondary={`${isDeliverable==="true"?"yes":"no"}`}
+                          secondary={`${
+                            isDeliverable === "true" ? "yes" : "no"
+                          }`}
                         />
                       </ListItem>
                     </List>

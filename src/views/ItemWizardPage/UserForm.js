@@ -5,9 +5,9 @@ import { PricingAndProtection } from "./PricingAndProtection";
 import { Confirm } from "./Confirm";
 import { CancellationAndDelivery } from "./CancellationAndDelivery";
 import RentHeader from "./RentHeader";
-// import Stepper from "./Stepper/Stepper";
+import Stepper from "./Stepper/Stepper";
 // import { useStepper } from "./context";
-// import { StepperProvider } from "./context";
+import { StepperProvider } from "./context";
 
 export default function UserForm() {
   const [step, setStep] = useState(1);
@@ -22,6 +22,7 @@ export default function UserForm() {
     deposit: "",
     name: "",
     description: "",
+    day: "",
     price: {
       day: "",
       week: "",
