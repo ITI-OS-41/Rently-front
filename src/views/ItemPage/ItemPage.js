@@ -429,6 +429,9 @@ export default function ItemPage(props) {
                             <p>
                                 This is approximately {deliveryDistance}KM ({deliveryDistance/distanceToTimeRate})Hour away from your location
                             </p>
+                            <p>
+                                Estimated delivery rate each way ({deliveryDistance/distanceToKMRate})$
+                            </p>
                             <div>
                                 {/*<iframe frameBorder={0} width={'100%'} height={'250px'} src ={`https://maps.google.com/maps?q=0,0&hl=es;z=14&amp;output=embed`}></iframe>*/}
 
@@ -458,24 +461,22 @@ export default function ItemPage(props) {
                                         user._id !== item.owner._id && (
                                             <>
                                             <ItemRent item={item} deliveryPrice={deliveryDistance/distanceToKMRate}/>
-
-                                            <hr/>
-                                            <div>
-                                                <Button
-                                                    fullWidth
-                                                    onClick={() => handleStartConversation(item.owner._id)}
-                                                    style={{marginLeft: "0.5rem"}}
-                                                    round
-                                                >
-                                                    Message {item?.owner?.username}
-                                                </Button>
-                                            </div>
-
                                             </>
                                         )
                                     }
                                 </CardBody>
                             </Card>
+
+                            <div style={{textAlign: 'center'}}>
+                                <Button
+                                    color={"info"}
+                                    onClick={() => handleStartConversation(item.owner._id)}
+                                    style={{margin: "0.5rem auto"}}
+                                    round
+                                >
+                                    Message {item?.owner?.username}
+                                </Button>
+                            </div>
                         </GridItem>
                     </GridContainer>
                 )}

@@ -17,7 +17,10 @@ import Grid from "@material-ui/core/Grid";
 import {UserContext} from "../../Context";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import DateRangePicker from "react-date-range/dist/components/DateRangePicker";
+import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined';
+import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
+import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
+
 
 const styles = (theme) => ({
     root: {
@@ -77,8 +80,14 @@ const StyledButton = withStyles({
 export default function ItemRent(props) {
     const {user} = useContext(UserContext);
     const [open, setOpen] = React.useState(false);
-    const {item, priceSelect,deliveryPrice, ...rest} = props;
+    const {item, priceSelect, deliveryPrice, ...rest} = props;
+    const [rentPrice, setRentPrice] = useState(0);
     const [paymentType, setPaymentType] = useState('');
+
+    const [needToBePaid, setNeedToBePaid] = useState(0)
+    const [walletAfter, setWalletAfter] = useState(0)
+
+    const [addDeliveryRate, setAddDeliveryRate] = useState(false);
     const [rent, setRent] = useState({
         owner: item.owner._id,
         renter: user._id,
@@ -87,7 +96,7 @@ export default function ItemRent(props) {
         status: "pending",
         totalPrice: 0
     });
-    const [selectedDate, setSelectedDate] = React.useState( {
+    const [selectedDate, setSelectedDate] = React.useState({
         startDate: new Date(),
         endDate: new Date(),
         key: 'selection',
@@ -108,7 +117,6 @@ export default function ItemRent(props) {
     const handleClose = () => {
         setOpen(false);
     };
-
 
 
     const getPriceMonthly = () => {
@@ -143,6 +151,7 @@ export default function ItemRent(props) {
         } else {
             cost = totalDays * getPriceDaily();
         }
+        setRentPrice(Math.round(cost));
 
         setRent(prevState => ({
             ...prevState,
@@ -151,10 +160,8 @@ export default function ItemRent(props) {
     };
 
 
-
-    useEffect(()=>{
-        if(selectedDate.startDate && selectedDate.endDate){
-            console.log(selectedDate)
+    useEffect(() => {
+        if (selectedDate.startDate && selectedDate.endDate) {
             setRent(prevState => ({
                 ...prevState,
                 from: new Date(selectedDate.startDate.toString()),
@@ -162,62 +169,112 @@ export default function ItemRent(props) {
             }))
             calculateTotalPrice()
         }
-    },[selectedDate]);
+    }, [selectedDate]);
 
     // calculate total price
-    useEffect(()=>{
-        if(paymentType){
+    useEffect(() => {
+        if (paymentType) {
             calculateTotalPrice()
         }
-    },[paymentType]);
+    }, [addDeliveryRate]);
+
+
+    useEffect(() => {
+        setNeedToBePaid(rent.totalPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet)
+        setWalletAfter((user.wallet - rent.totalPrice - (addDeliveryRate ? deliveryPrice : 0)) > 0 ? (user.wallet - rent.totalPrice - (addDeliveryRate ? deliveryPrice : 0)) : 0)
+
+    }, [rent, addDeliveryRate, deliveryPrice, user]);
 
     return (
         <div>
             <Grid>
-              <Select
+                <Select
                     style={{width: '100%'}}
                     variant="outlined"
                     value={paymentType}
-                    onChange={e=>{setPaymentType(e.target.value)}}
+                    onChange={e => {
+                        setPaymentType(e.target.value)
+                    }}
                 >
                     {
                         Object.keys(item.price).map((time) => {
-                            if (parseInt(item.price[time]) > 0){
-                                return(
-                                    <MenuItem
-                                        value={time}
-                                        key={time}
-                                    >
-                                        {`${item.price[time]}$ per ${time}`}
-                                    </MenuItem>
-                                )
+                                if (parseInt(item.price[time]) > 0) {
+                                    return (
+                                        <MenuItem
+                                            value={time}
+                                            key={time}
+                                        >
+                                            {`${item.price[time]}$ per ${time}`}
+                                        </MenuItem>
+                                    )
+                                }
                             }
-                        }
                         )
                     }
                 </Select>
+
+
+                <Grid>
+                    <Button
+                        fullWidth
+                        color="primary"
+                        onClick={() => {
+                            setOpen(true)
+                        }}
+                    >
+                        <DateRangeOutlinedIcon/>
+                        Set Dates
+                    </Button>
+                </Grid>
+
 
                 <Grid>
                     <Button
                         fullWidth
                         color="info"
-                        onClick={()=>{setOpen(true)}}
+                        onClick={() => {
+                            setAddDeliveryRate(true)
+                        }}
                     >
-                        Set Dates
+                        <LocalShippingOutlinedIcon/>
+                        Add delivery
                     </Button>
                 </Grid>
+
 
                 <hr/>
 
                 {
-                    (rent.totalPrice > 0 && paymentType) && (
+
+                    (rent.totalPrice && paymentType) ? (
                         <>
-                            <h4>{paymentType} <span style={{float: 'right'}}>{item.price[paymentType]}$</span></h4>
-                            <h4>Delivery Price: <span style={{float: 'right'}}>{deliveryPrice}$</span></h4>
-                            <h4 style={{fontWeight: 'bold'}}>Total price: <span style={{float: 'right'}}>{rent.totalPrice + deliveryPrice}$</span></h4>
+                            <h4>per {paymentType} <span style={{float: 'right'}}>{item.price[paymentType]}$</span></h4>
+                            <h4>Total Rent price: <span style={{float: 'right'}}>{rentPrice}$</span></h4>
+                            {
+
+                                addDeliveryRate && <h4>
+                                    Delivery Price:<span style={{float: 'right'}}>{deliveryPrice}$</span>
+
+                                    <IconButton
+                                        onClick={() => {
+                                            setAddDeliveryRate(false)
+                                        }}
+                                        aria-label="delete" size="small">
+                                        <HighlightOffOutlinedIcon fontSize="inherit"/>
+                                    </IconButton>
+                                </h4>
+
+                            }
+                            <Typography color={"primary"}>Wallet:<span
+                                style={{float: 'right'}}>-{user.wallet}$</span></Typography>
+                            <h4 style={{fontWeight: 'bold'}}>Total price: <span
+                                style={{float: 'right'}}>{needToBePaid < 0 ? 0 : needToBePaid}$</span></h4>
+                            <h4 style={{fontWeight: 'bold'}}>Wallet credits later: <span
+                                style={{float: 'right'}}>{walletAfter}$</span>
+                            </h4>
                             <hr/>
                         </>
-                    )
+                    ) : ''
                 }
 
 
@@ -234,7 +291,9 @@ export default function ItemRent(props) {
 
 
             <Dialog
-                onClose={()=>{setOpen(false)}}
+                onClose={() => {
+                    setOpen(false)
+                }}
                 open={open}
             >
                 <DialogContent dividers>
