@@ -36,6 +36,7 @@ import Share from "../../components/global/Share";
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import IconButton from "@material-ui/core/IconButton";
+import NoDataToShow from "../../components/global/NoDataToShow";
 
 const customStyle = {
     timeRateLabel: {
@@ -467,16 +468,21 @@ export default function ItemPage(props) {
                                 </CardBody>
                             </Card>
 
-                            <div style={{textAlign: 'center'}}>
-                                <Button
-                                    color={"info"}
-                                    onClick={() => handleStartConversation(item.owner._id)}
-                                    style={{margin: "0.5rem auto"}}
-                                    round
-                                >
-                                    Message {item?.owner?.username}
-                                </Button>
-                            </div>
+                            {
+                                loggedInUser.isVerified ? (
+                                    <div style={{textAlign: 'center'}}>
+                                        <Button
+                                            color={"info"}
+                                            onClick={() => handleStartConversation(item.owner._id)}
+                                            style={{margin: "0.5rem auto"}}
+                                            round
+                                        >
+                                            Message {item?.owner?.username}
+                                        </Button>
+                                    </div>
+                                ) :
+                                    <NoDataToShow text="You need to verify your account to start messaging"/>
+                            }
                         </GridItem>
                     </GridContainer>
                 )}

@@ -101,9 +101,9 @@ export default function Form() {
   const submitForm = (values) => {
     setIsRequesting(true);
 
-    post(`/user/contact-us`, values, `${modelName} added successfully!`)
+    post(`/user/contact-us`, values, `Message sent  Successfully! Please wait for one of our agents to reach out to you!`)
       .then((response) => {
-        console.log(response);
+        history.push('/')
       })
       .catch((error) => {
         console.log(error);

@@ -1,9 +1,10 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 export default function (props){
   const {text,...rest} = props;
 
   return (
-    <h3 style={{textAlign: 'center'}}>{text || "No items to show"}</h3>
+    <Typography style={{textAlign: 'center'}}>{text || "No items to show"}</Typography>
   )
 }
