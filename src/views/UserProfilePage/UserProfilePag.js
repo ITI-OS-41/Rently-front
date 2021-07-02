@@ -24,6 +24,7 @@ import StorePage from "../Profile/StorePage/StorePage";
 import MessengerPage from "../MessengerPage/MessengerPage";
 import MyPosting from "./Sections/MyPostings/MyPosting";
 import MyWallet from "./Sections/MyWallet/MyWallet";
+import ReferAndEarn from "./Sections/ReferAndEarnPage/ReferAndEarn";
 
 
 const useStyles = makeStyles(profilePageStyle);
@@ -71,6 +72,11 @@ export default function UserProfilePage(props) {
       url: '/messenger',
       name: 'Messenger',
       component: <MessengerPage/>
+    },
+    {
+      url: '/ReferAndEarn',
+      name: 'Refer & Earn',
+      component: <ReferAndEarn/>
     },
   ];
 

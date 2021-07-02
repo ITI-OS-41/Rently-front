@@ -29,6 +29,7 @@ import SingleBlog from "./views/SingleBlog/SingleBolg";
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
+import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
 import ReadMore from './views/ReadMore/ReadMore';
 import Nonprofit from './views/NonprofitPage/Nonprofit';
@@ -62,6 +63,9 @@ ReactDOM.render(
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
+          
+          <UserRoute path="/ReferAndEarn" component={ReferAndEarn} />
+          
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
 

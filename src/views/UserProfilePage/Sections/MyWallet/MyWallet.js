@@ -12,11 +12,7 @@ import Items from "./Sections/Item";
 import User from "./Sections/User";
 
 import {
-  primaryColor,
-  grayColor,
-  container,
   cardTitle,
-  whiteColor,
   blackColor,
   hexToRgb,
 } from "assets/jss/material-kit-pro-react.js";
