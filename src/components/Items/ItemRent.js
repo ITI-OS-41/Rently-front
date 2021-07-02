@@ -120,7 +120,7 @@ export default function ItemRent(props) {
                             wallet: walletAfter
                         });
 
-                        history.push('profile/renting');
+                        history.push('/profile/renting');
                         console.log(r)})
                     .catch(e=>{
                         console.log(e)
