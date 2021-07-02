@@ -12,6 +12,8 @@ const colors = {
   grey: "#a9a9a9",
 };
 export default function ItemReview(props) {
+  const {item, ...rest} = props;
+
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0);
@@ -30,8 +32,9 @@ export default function ItemReview(props) {
   const handleMouseLeave = () => {
     setHoverValue(undefined);
   };
-  const OwnerId = props.item?.owner?._id;
-console.log("Propsssssssssssssssssssssssssssssssss" , props);
+  const OwnerId = item?.owner?._id;
+  console.log("OwnerId  22 ",OwnerId);
+console.log("Propssssssssssssssssssssssssssskhjhhkhssssss" ,item._id);
 
   const [comment, setComment] = useState(null);
   const [isRenter, setIsRenter] = useState(true);
@@ -44,7 +47,7 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
     e.preventDefault();
     
     const review = {
-      item: props.item._id,
+      item: item._id,
       rater: loggedInUser._id,
       comment: comment,
       rating: currentValue,
@@ -64,11 +67,11 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
         });
   };
   useEffect(() => {
-    get(`/itemRate`)
+    get(`/itemRate?item=${item._id}`)
       .then((response) => {
         let res = response.data.res;
         setRents(res);
-
+        
         for (let i = 0; i < res.length; i++) {
           if (loggedInUser._id == res[i].rater._id) {
             setAlreadyRated(true);
@@ -76,7 +79,7 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
           }
         }
 
-        console.log("setRents . ", res);
+        console.log("itemrate . ", res);
       })
       .catch((e) => {
         console.log(e);
@@ -84,7 +87,7 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
   }, []);
 
   useEffect(() => {
-    get(`/rent`)
+    get(`/rent/?renter=${loggedInUser._id }&item=${item._id}`)
       .then((response) => {
         let res = response.data.res;
         console.log("sss",res.length);
@@ -100,9 +103,10 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
         //     setIsRenter(false)
         // }
         for (let i = 0; i < res.length; i++) {
-            // if ((loggedInUser._id == res[i].renter ) &&( res[i].status == 'returned') )
+            // if ((loggedInUser._id == res[i].renter ) && ( res[i].status == 'returned') )
             // setIsRenter(true)
-            if (res[i].status == "returned") {
+            if (res[i].status == "returned")
+             {
                 // console.log("[[[[[[[[[[[[[[[[[[ ",res[i].status);
                 setIsRenter(true)
             }
@@ -116,7 +120,7 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
       });
   }, []);
 
-
+console.log("what is HHHHHHHEEEEEEEEEERRRRRRRRRRRRRREEEEEEEEEE  ",loggedInUser._id ,OwnerId,alreadyRated,!!isRenter);
   return (
     <div>
       <div>
@@ -124,8 +128,8 @@ console.log("Propsssssssssssssssssssssssssssssssss" , props);
           return (
             <div>
               {/* <SectionComments loggedInUser={loggedInUser} /> */}
-              <SectionComments rate={rent} loggedInUser={loggedInUser}  />
-              {/* <SectionComments rate={rent} loggedInUser={loggedInUser} item_id = {props.item._id} /> */}
+              {/* <SectionComments rate={rent} loggedInUser={loggedInUser}  /> */}
+              <SectionComments rate={rent} loggedInUser={loggedInUser} itemId = {item._id} />
             </div>
           );
         })} 

@@ -46,8 +46,13 @@ const colors = {
 };
 const useStyles = makeStyles(sectionCommentsStyle);
 
-export default function SectionComments({rate ,loggedInUser }) {
+export default function SectionComments(props) {
+  const {rate,loggedInUser,itemId, ...rest} = props;
+  // const {loggedInUser, ...rest} = props;
+  // const {itemId, ...rest} = props;
+
   console.log("loggedInUser loggedInUser loggedInUser  // ",loggedInUser);
+  console.log("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]  ",itemId);
   // const [rate, setrate] = useState(rate);
   const [newcomment, setNewComment] = useState(false);
   const [comment, setComment] = useState(null);
@@ -114,7 +119,7 @@ export default function SectionComments({rate ,loggedInUser }) {
       });
 
   };
-
+console.log("{{{{section}}}}  ",rate  );
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
@@ -123,7 +128,7 @@ export default function SectionComments({rate ,loggedInUser }) {
             {/* {rate.map((rate, i) => {
             return (
               <div> */}
-            {rate && (
+            {(rate && rate.item._id == itemId ) && (
               <Media
                 key={rate._id}
                 avatar={rate?.rater?.photo || defaultImage}
