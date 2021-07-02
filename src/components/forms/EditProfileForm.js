@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import {
   Typography,
@@ -13,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Formik } from "formik";
 import * as yup from "yup";
-import { post } from "../../functions/request";
+import {get, post} from "../../functions/request";
 import history from "../../functions/history";
 import LoadingCircle from "../global/LoadingCircle";
 import { patch } from "functions/request";
@@ -29,6 +29,8 @@ import Add from "@material-ui/icons/Add";
 import defaultImage from '../../assets/img/noimagelarge.png';
 import {UserContext} from "../../Context";
 // import { patch } from "functions/request";
+import moment from "moment";
+
 const modelName = "user";
 
 const validationSchema = yup.object().shape({
@@ -40,18 +42,9 @@ const validationSchema = yup.object().shape({
     .string("Enter your lastname")
     .min(3, "lastname should be of minimum 3 characters length")
     .required("lastname is required"),
-  username: yup
-    .string("Enter your username")
-    .min(3, "username should be of minimum 3 characters length")
-    .required("username is required"),
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-
-  terms: yup
-    .boolean()
-    .oneOf([true], "You must agree to terms and conditions to continue"),
+  dateOfBirth: yup
+    .string("Enter your dateOfBirth")
+    .required("dateOfBirth is required"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -64,11 +57,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProfileForm({ user }) {
-  console.log("fff", user);
+export default function EditProfileForm(props ) {
+  const {setUser:setUserContext} = useContext(UserContext);
+
+  const [user, setUser] = useState({});
+
+  useEffect(()=>{
+    get(`/user/infor`)
+        .then(res=>{
+
+          setUser({
+            ...res.data
+          })
+          setUserContext({
+            ...user,
+            ...res.data
+          })
+        })
+  },[])
+
   const initialValues = {
-    ...user,
+    photo: user.photo || '',
+    firstname: user.firstname || '',
+    lastname: user.lastname || '',
+    dateOfBirth: moment(user.dateOfBirth).format("yyyy-MM-DD") || ''
   };
+
   const classes = useStyles();
   const [isRequesting, setIsRequesting] = useState(false);
   const classes2 = useStyles2();
@@ -77,12 +91,9 @@ export default function EditProfileForm({ user }) {
     classes2.imgRoundedCircle,
     classes2.imgFluid
   );
-  const [edituser, setEditUser] = useState([]);
-  const id = localStorage.getItem("rently-userid");
   const [imagePreview, setImagePreview] = useState(null);
 
-  const {user:currentUser,setUser} = useContext(UserContext);
-
+  console.log(initialValues.dateOfBirth)
   const setImage = (event) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -98,10 +109,9 @@ export default function EditProfileForm({ user }) {
     }
     patch(`/user/update`, values, "User Updated successfully")
       .then((response) => {
-        console.log(response.data)
         setUser({
           ...user,
-          photo: values.photo
+          ...values
         })
       })
       .catch((err) => {})
@@ -111,7 +121,7 @@ export default function EditProfileForm({ user }) {
   };
 
   return (
-    user && (
+    user.username ? (
       <Formik
         //!
         onSubmit={(values) => {
@@ -186,13 +196,10 @@ export default function EditProfileForm({ user }) {
                       setImage(event);
                     }}
                   />
-                  <h5 className={classes.title} style={{ marginTop: "-3rem" }}>
-                    {user.name}
-                  </h5>
                 </div>
               </div>
               <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     variant="outlined"
                     fullWidth
@@ -206,12 +213,13 @@ export default function EditProfileForm({ user }) {
                     helperText={touched.firstname && errors.firstname}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                   <TextField
                     variant="outlined"
                     fullWidth
                     id="lastname"
                     name="lastname"
+                    label="lastname"
                     value={values.lastname}
                     onBlur={handleBlur}
                     onChange={handleChange}
@@ -220,57 +228,25 @@ export default function EditProfileForm({ user }) {
                   />
                 </Grid>
                 <Grid item xs={12}>
+              <h1>
+                {user.dateOfBirth}
+
+              </h1>
                   <TextField
                     variant="outlined"
                     fullWidth
-                    id="username"
-                    name="username"
-                    value={values.username}
-                    disabled
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    disabled
-                    variant="outlined"
-                    fullWidth
-                    id="email"
-                    name="email"
-                    value={values.email}
-                  />
-                </Grid>
-                {/*<Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={values.password}
+                    type="date"
+                    id="dateOfBirth"
+                    name="dateOfBirth"
+                    label="dateOfBirth"
+                    InputProps={{inputProps: { max: "2003-01-01"} }}
+                    value={values.dateOfBirth}
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    error={touched.password && Boolean(errors.password)}
-                    helperText={touched.password && errors.password}
+                    error={touched.dateOfBirth && Boolean(errors.dateOfBirth)}
+                    helperText={touched.dateOfBirth && errors.dateOfBirth}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    value={values.confirmPassword}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    error={
-                      touched.confirmPassword && Boolean(errors.confirmPassword)
-                    }
-                    helperText={
-                      touched.confirmPassword && errors.confirmPassword
-                    }
-                  />
-                </Grid>*/}
               </Grid>
 
               <Button
@@ -291,5 +267,6 @@ export default function EditProfileForm({ user }) {
         }}
       </Formik>
     )
+        : ''
   );
 }

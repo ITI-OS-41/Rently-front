@@ -107,7 +107,7 @@ export default function ItemRent(props) {
             ...rent,
             totalPrice: needToBePaid
         })
-            .then((res) => {
+            .then((res) => { 
                 let response = res.data;
 
                 patch('/user/update', {
