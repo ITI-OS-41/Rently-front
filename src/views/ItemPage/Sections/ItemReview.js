@@ -33,8 +33,6 @@ export default function ItemReview(props) {
     setHoverValue(undefined);
   };
   const OwnerId = item?.owner?._id;
-  console.log("OwnerId  22 ",OwnerId);
-console.log("Propssssssssssssssssssssssssssskhjhhkhssssss" ,item._id);
 
   const [comment, setComment] = useState(null);
   const [isRenter, setIsRenter] = useState(true);
@@ -44,7 +42,7 @@ console.log("Propssssssssssssssssssssssssssskhjhhkhssssss" ,item._id);
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     
     const review = {
       item: item._id,
@@ -60,10 +58,8 @@ console.log("Propssssssssssssssssssssssssssskhjhhkhssssss" ,item._id);
             review
           ])
           let response = res.data;
-          console.log("response poooo65897645138513", response);
         })
         .catch((e) => {
-          console.log("error");
         });
   };
   useEffect(() => {
@@ -79,10 +75,8 @@ console.log("Propssssssssssssssssssssssssssskhjhhkhssssss" ,item._id);
           }
         }
 
-        console.log("itemrate . ", res);
       })
       .catch((e) => {
-        console.log(e);
       });
   }, []);
 
@@ -90,45 +84,32 @@ console.log("Propssssssssssssssssssssssssssskhjhhkhssssss" ,item._id);
     get(`/rent/?renter=${loggedInUser._id }&item=${item._id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log("sss",res.length);
         if (res.length == 0 )
         {
             
-            console.log("res is emmmmpty**********************");
             setIsRenter(false)
 
         }
-        // if (res.status == "returned") {
-        //     console.log("[[[[[[[[[[[[[[[[[[ ",res.status);
-        //     setIsRenter(false)
-        // }
+       
         for (let i = 0; i < res.length; i++) {
-            // if ((loggedInUser._id == res[i].renter ) && ( res[i].status == 'returned') )
-            // setIsRenter(true)
+           
             if (res[i].status == "returned")
              {
-                // console.log("[[[[[[[[[[[[[[[[[[ ",res[i].status);
                 setIsRenter(true)
             }
-            console.log("isRenter ",res[i].status);
         }
-        console.log(" isrenter ",isRenter );
         
       })
       .catch((e) => {
-        console.log(e);
       });
   }, []);
 
-console.log("what is HHHHHHHEEEEEEEEEERRRRRRRRRRRRRREEEEEEEEEE  ",loggedInUser._id ,OwnerId,alreadyRated,!!isRenter);
   return (
     <div>
       <div>
         {rent.map((rent, i) => {
           return (
             <div>
-              {/* <SectionComments loggedInUser={loggedInUser} /> */}
-              {/* <SectionComments rate={rent} loggedInUser={loggedInUser}  /> */}
               <SectionComments rate={rent} loggedInUser={loggedInUser} itemId = {item._id} />
             </div>
           );

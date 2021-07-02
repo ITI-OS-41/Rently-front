@@ -48,39 +48,13 @@ const useStyles = makeStyles(sectionCommentsStyle);
 
 export default function SectionComments(props) {
   const {rate,loggedInUser,itemId, ...rest} = props;
-  // const {loggedInUser, ...rest} = props;
-  // const {itemId, ...rest} = props;
 
-  console.log("loggedInUser loggedInUser loggedInUser  // ",loggedInUser);
-  console.log("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]  ",itemId);
-  // const [rate, setrate] = useState(rate);
   const [newcomment, setNewComment] = useState(false);
   const [comment, setComment] = useState(null);
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0);
 
-// console.log("  iiiiiiiiiiiiiiiiiiii " , item_id);
-
-  // useEffect(() => {
-  //   get(`/itemRate`)
-  //     .then((response) => {
-  //       let res = response.data.res;
-  //       setRent(res);
-
-  //       // for (let i = 0; i < res.length; i++) {
-  //       //   if (loggedInUser._id == res[i].rater._id) {
-  //       //     setAlreadyRated(true);
-  //       //     break;
-  //       //   }
-  //       // }
-
-  //       console.log("setRent from SectionComment ", res);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // }, []);
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -97,7 +71,6 @@ export default function SectionComments(props) {
   const handleComment = (event) => {
     setComment(event.target.value);
   };
-  console.log("rate  dfssfffffff", rate);
   const classes = useStyles();
 
   const handleSubmit = () => {
@@ -115,19 +88,15 @@ export default function SectionComments(props) {
         update(rate, { comment: { $set: comment } });
       })
       .catch((e) => {
-        console.log(" error", e);
       });
 
   };
-console.log("{{{{section}}}}  ",rate  );
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={10} md={8}>
           <div>
-            {/* {rate.map((rate, i) => {
-            return (
-              <div> */}
+           
             {(rate && rate.item._id == itemId ) && (
               <Media
                 key={rate._id}
@@ -169,11 +138,13 @@ console.log("{{{{section}}}}  ",rate  );
                     style={{
                       marginRight: 10,
                       cursor: "pointer",
+                      marginTop:10
                     }}
                   />
                 );
               })}
             </div>
+                <div  >
                 <textarea
                   placeholder={rate.comment}
                   style={styles.textarea}
@@ -182,11 +153,9 @@ console.log("{{{{section}}}}  ",rate  );
                 <button style={styles.button} onClick={handleSubmit}>
                   Submit
                 </button>
+                </div>
               </div>
             )}
-            {/* </div>
-          );
-        })} */}
           </div>
         </GridItem>
       </GridContainer>
@@ -199,6 +168,8 @@ const styles = {
     borderRadius: 5,
     width: 200,
     padding: 5,
+    // float:'left',
+
   },
   textarea: {
     border: "1px solid #a9a9a9",
@@ -207,5 +178,7 @@ const styles = {
     margin: "20px 0",
     minHeight: 100,
     width: 300,
+    display: 'block',
+
   },
 };
