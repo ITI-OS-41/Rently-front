@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { get } from "functions/request";
 import DraftCard from "./DraftCard";
-
+import DraftItemList from "./DraftItemList";
 
 export default function DraftItems(props) {
   const id = localStorage.getItem("rently-userid");
@@ -25,23 +25,22 @@ export default function DraftItems(props) {
       });
   }, [dummy]);
 
-
   return (
-      <div>
-        {items.length ? (
-          <DraftCard onDelete={()=>{setDemmy((prevState) => prevState + 1)}} key={items._id} items={items} />
-        ) : (
-          <h4
-            style={{
-              textAlign: "center",
-              backgroundColor: "tomato",
-              padding: "10px 0px",
-              borderRadius: "5px",
-            }}
-          >
-            You do not have any Draft items.
-          </h4>
-        )}
-      </div>
+    <div>
+      {items.length ? (
+        <DraftItemList />
+      ) : (
+        <h4
+          style={{
+            textAlign: "center",
+            backgroundColor: "tomato",
+            padding: "10px 0px",
+            borderRadius: "5px",
+          }}
+        >
+          You do not have any Draft items.
+        </h4>
+      )}
+    </div>
   );
 }

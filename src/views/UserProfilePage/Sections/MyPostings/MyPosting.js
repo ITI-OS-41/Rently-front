@@ -23,7 +23,7 @@ export default function Posting(props) {
   const classes = useStyles();
 
   return (
-    <div style={{ padding: "1rem 3rem" }}>
+    <div >
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <h3 className={classes.title + " " + classes.textCenter}>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { get } from "functions/request";
 import ItemCard from "./ItemCard";
+import ConfirmedList from "./ConfirmedList";
 
 export default function Confirmed() {
   const [rent, setRent] = useState([]);
@@ -19,7 +20,7 @@ export default function Confirmed() {
   return (
     <div>
       {rent.length ? (
-        <ItemCard rent={rent} />
+        <ConfirmedList />
       ) : (
         <h4
           style={{
