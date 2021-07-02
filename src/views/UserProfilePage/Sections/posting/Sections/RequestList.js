@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Container, Row } from "reactstrap";
 import Header from "components/global/Header.js";
-import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import DoneIcon from "@material-ui/icons/Done";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import { DataGrid } from "@material-ui/data-grid";
+import history from "functions/history";
 import { Tooltip, IconButton, Button } from "@material-ui/core";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import { del } from "functions/request";
-import { get } from "functions/request";
+import { get, post } from "functions/request";
 import {
   DATAGRID_RESULTS_PER_PAGE,
   DATAGRID_WIDTH,
@@ -31,18 +34,51 @@ export default () => {
     if (!conf) {
       return;
     }
-    del(`item/${id}`, `item deleted successfully!`).then(() => {
+    del(`rent/${id}`, `item deleted successfully!`).then(() => {
       setDemmy((prevState) => prevState + 1);
     });
   };
-  const approveRequest = (id) => {
-    const conf = window.confirm(`are you sure you want to delete this item?`);
-    if (!conf) {
-      return;
-    }
-    del(`item/${id}`, `item deleted successfully!`).then(() => {
-      setDemmy((prevState) => prevState + 1);
-    });
+  const approveRequest = (rent) => {
+    const send = {
+      ...rent,
+      status: "approved",
+      item: rent.item._id,
+      owner: rent.owner._id,
+      renter: rent.renter._id,
+    };
+    console.log(send);
+    post(`rent/${rent._id}`, send, "updated successfully!")
+      .then((response) => {
+        console.log(response);
+        history.push("/profile/posting");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+  const declineRequest = (rent) => {
+    const send = {
+      ...rent,
+      status: "declined",
+      item: rent.item._id,
+      owner: rent.owner._id,
+      renter: rent.renter._id,
+    };
+    console.log(send);
+    post(`rent/${rent._id}`, send, "declined successfully!")
+      .then((response) => {
+        console.log(response);
+        history.push("/profile/posting");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -99,11 +135,15 @@ export default () => {
       },
     },
     {
-      field: "stock",
-      headerName: "Stock",
+      field: "renter",
+      headerName: "Renter",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
+        return params.row.renter.username ? (
+          <p>{params.row.renter.username}</p>
+        ) : (
+          ""
+        );
       },
     },
     {
@@ -124,14 +164,20 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-          <Button onClick={approveRequest}><DoneOutlineIcon/></Button>
-            <ListTableActions
-              showViewBtn={false}
-              showEditBtn={false}
-              modelName={modelName}
-              id={params.id}
-              handleDelete={handleDelete}
-            />
+            <Button
+              onClick={() => {
+                approveRequest(params.row);
+              }}
+            >
+              <CheckCircleOutlineIcon style={{ color: "green" }} />
+            </Button>
+            <Button
+              onClick={() => {
+                declineRequest(params.row);
+              }}
+            >
+              <RemoveCircleOutlineIcon style={{ color: "red" }} />
+            </Button>
           </>
         );
       },

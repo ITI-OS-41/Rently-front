@@ -38,7 +38,6 @@ export default () => {
   };
 
   useEffect(() => {
-    alert("hhh");
     get(`/rent?status=approved&renter=${id}`)
       .then((response) => {
         let res = response.data.res;
@@ -76,14 +75,21 @@ export default () => {
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.photo[0] ? (
-          <img src={params.row.photo[0]} height="50" />
+        return params.row.item.photo[0] ? (
+          <img src={params.row.item.photo[0]} height="50" />
         ) : (
           ""
         );
       },
     },
-    { field: "name", headerName: "Name", width: `${DATAGRID_WIDTH * 0.1}px` },
+    {
+      field: "name",
+      headerName: "Name",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.name ? <p>{params.row.item.name}</p> : "";
+      },
+    },
     {
       field: "condition",
       headerName: "Condition",
@@ -99,7 +105,7 @@ export default () => {
       headerName: "Price",
       width: `${DATAGRID_WIDTH * 0.15}px`,
       renderCell: (params) => {
-        return getPrices(params.row.price);
+        return getPrices(params.row.item.price);
       },
     },
 
