@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Container, Row } from "reactstrap";
 import Header from "components/global/Header.js";
-
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import { DataGrid } from "@material-ui/data-grid";
 import { Tooltip, IconButton, Button } from "@material-ui/core";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
@@ -25,7 +25,6 @@ export default () => {
   const [dummy, setDemmy] = useState(0);
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [items, setItems] = useState([]);
 
   const handleDelete = (id) => {
     const conf = window.confirm(`are you sure you want to delete this item?`);
@@ -36,19 +35,25 @@ export default () => {
       setDemmy((prevState) => prevState + 1);
     });
   };
-
- 
+  const approveRequest = (id) => {
+    const conf = window.confirm(`are you sure you want to delete this item?`);
+    if (!conf) {
+      return;
+    }
+    del(`item/${id}`, `item deleted successfully!`).then(() => {
+      setDemmy((prevState) => prevState + 1);
+    });
+  };
 
   useEffect(() => {
-    get(`/item/?isPublished=true&owner=${id}&limit=999`)
+    get(`/rent?status=pending&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log("ress ",res)
         res.forEach((res) => {
           res.id = res._id;
         });
         setRows(res);
-        console.log("res", res);
+        console.log("current posting Request data res----> ", res);
       })
       .catch((err) => {
         console.log(err);
@@ -60,14 +65,14 @@ export default () => {
 
   const getPrices = (prices) => {
     let final = "";
-    if (prices.day) {
-      final += `D: ${prices.day} `;
+    if (prices?.day) {
+      final += `D: ${prices?.day}$ `;
     }
-    if (prices.week) {
-      final += `W: ${prices.week} `;
+    if (prices?.week) {
+      final += `W: ${prices?.week}$ `;
     }
-    if (prices.month) {
-      final += `M: ${prices.month} `;
+    if (prices?.month) {
+      final += `M: ${prices?.month}$ `;
     }
     return final;
   };
@@ -78,30 +83,35 @@ export default () => {
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.photo[0] ? (
-          <img src={params.row.photo[0]} height="50" />
+        return params.row.item.photo ? (
+          <img src={params.row.item.photo} height="50" />
         ) : (
           ""
         );
       },
     },
-    { field: "name", headerName: "Name", width: `${DATAGRID_WIDTH * 0.1}px` },
     {
-      field: "condition",
-      headerName: "Condition",
-      width: `${DATAGRID_WIDTH * 0.12}px`,
+      field: "name",
+      headerName: "Name",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.name ? <p>{params.row.item.name}</p> : "";
+      },
     },
     {
       field: "stock",
       headerName: "Stock",
       width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
+      },
     },
     {
       field: "price",
       headerName: "Price",
       width: `${DATAGRID_WIDTH * 0.15}px`,
       renderCell: (params) => {
-        return getPrices(params.row.price);
+        return getPrices(params.row?.item?.price);
       },
     },
 
@@ -114,7 +124,9 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
+          <Button onClick={approveRequest}><DoneOutlineIcon/></Button>
             <ListTableActions
+              showViewBtn={false}
               showEditBtn={false}
               modelName={modelName}
               id={params.id}

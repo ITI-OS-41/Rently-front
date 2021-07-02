@@ -40,15 +40,14 @@ export default () => {
     get(`/rent?status=approved&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
-        res.map((res) => {
-          res["id"] = res["_id"];
+        res.forEach((res) => {
+          res.id = res._id;
         });
-
         setRows(res);
-        console.log("current posting approved data res----> ", res);
+        console.log("current posting Request data res----> ", res);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -57,14 +56,14 @@ export default () => {
 
   const getPrices = (prices) => {
     let final = "";
-    if (prices.day) {
-      final += `D: ${prices.day}$ `;
+    if (prices?.day) {
+      final += `D: ${prices?.day}$ `;
     }
-    if (prices.week) {
-      final += `W: ${prices.week}$ `;
+    if (prices?.week) {
+      final += `W: ${prices?.week}$ `;
     }
-    if (prices.month) {
-      final += `M: ${prices.month}$ `;
+    if (prices?.month) {
+      final += `M: ${prices?.month}$ `;
     }
     return final;
   };
@@ -75,30 +74,35 @@ export default () => {
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.photo[0] ? (
-          <img src={params.row.photo[0]} height="50" />
+        return params.row.item.photo ? (
+          <img src={params.row.item.photo} height="50" />
         ) : (
           ""
         );
       },
     },
-    { field: "name", headerName: "Name", width: `${DATAGRID_WIDTH * 0.1}px` },
     {
-      field: "condition",
-      headerName: "Condition",
-      width: `${DATAGRID_WIDTH * 0.12}px`,
+      field: "name",
+      headerName: "Name",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.name ? <p>{params.row.item.name}</p> : "";
+      },
     },
     {
       field: "stock",
       headerName: "Stock",
       width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
+      },
     },
     {
       field: "price",
       headerName: "Price",
       width: `${DATAGRID_WIDTH * 0.15}px`,
       renderCell: (params) => {
-        return getPrices(params.row.price);
+        return getPrices(params.row?.item?.price);
       },
     },
 

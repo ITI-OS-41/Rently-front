@@ -37,13 +37,11 @@ export default () => {
     });
   };
 
- 
-
   useEffect(() => {
-    get(`/item/?isPublished=true&owner=${id}&limit=999`)
+    get(`/rent?status=pending&renter=${id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log("ress ",res)
+        console.log("ressss ", response);
         res.forEach((res) => {
           res.id = res._id;
         });
@@ -78,30 +76,40 @@ export default () => {
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.photo[0] ? (
-          <img src={params.row.photo[0]} height="50" />
+        return params.row.item.photo[0] ? (
+          <img src={params.row.item.photo[0]} height="50" />
         ) : (
           ""
         );
       },
     },
-    { field: "name", headerName: "Name", width: `${DATAGRID_WIDTH * 0.1}px` },
+    { field: "name", headerName: "Name", width: `${DATAGRID_WIDTH * 0.1}px`, 
+    renderCell: (params) => {
+      return params.row.item.name ? <p>{params.row.item.name}</p> : "";
+    }, },
+   
     {
       field: "condition",
       headerName: "Condition",
       width: `${DATAGRID_WIDTH * 0.12}px`,
+      renderCell: (params) => {
+        return params.row.item.condition ? <p>{params.row.item.condition}</p> : "";
+      },
     },
     {
       field: "stock",
       headerName: "Stock",
       width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
+      },
     },
     {
       field: "price",
       headerName: "Price",
       width: `${DATAGRID_WIDTH * 0.15}px`,
       renderCell: (params) => {
-        return getPrices(params.row.price);
+        return getPrices(params.row.item.price);
       },
     },
 

@@ -37,13 +37,11 @@ export default () => {
     });
   };
 
- 
-
   useEffect(() => {
-    get(`/item/?isPublished=true&owner=${id}&limit=999`)
+    alert("hhh");
+    get(`/rent?status=approved&renter=${id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log("ress ",res)
         res.forEach((res) => {
           res.id = res._id;
         });

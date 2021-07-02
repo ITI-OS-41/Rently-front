@@ -13,6 +13,8 @@ import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePag
 
 import Request from "./Sections/Request";
 import Confirmed from "./Sections/Confirmed";
+import ConfirmedList from "./Sections/ConfirmedList";
+import RequestList from "./Sections/RequestList";
 
 profilePageStyle.isActive = {
   backgroundColor: "red",
@@ -22,7 +24,6 @@ const useStyles = makeStyles(profilePageStyle);
 
 export default function Rental(props) {
   const classes = useStyles();
-
 
   return (
     <div style={{ padding: "1rem 3rem" }}>
@@ -36,11 +37,11 @@ export default function Rental(props) {
             tabs={[
               {
                 tabButton: "Requests",
-                tabContent: <Request />,
+                tabContent: <RequestList />,
               },
               {
                 tabButton: "confirmed",
-                tabContent: <Confirmed />,
+                tabContent: <ConfirmedList />,
               },
             ]}
           />
