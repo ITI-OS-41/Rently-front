@@ -1,5 +1,6 @@
 // const SERVER = "https://backend-new-one.herokuapp.com/api";    //new
 const SERVER = "https://rently-service-backend.herokuapp.com/api";
+// const SERVER = "https://rently-service-backend.herokuapp.com/api";
 // const SERVER = "http://localhost:5052";
 
 const CAROUSEL_SETTINGS = {

@@ -122,6 +122,7 @@ export default function SectionBlogs({ ...rest }) {
                       , 2 days ago
                     </p>
                   </GridItem>
+            
                   <GridItem xs={12} sm={5} md={5}>
                     <CardHeader image plain>
                       <a href="#pablito" onClick={(e) => e.preventDefault()}>
