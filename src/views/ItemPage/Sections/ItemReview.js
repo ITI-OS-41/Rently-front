@@ -4,6 +4,8 @@ import { UserContext } from "../../../Context";
 import SectionComments from "./SectionComments";
 import { post, get } from "functions/request";
 import { FaStar } from "react-icons/fa";
+import LoginPage from "views/LoginPage/LoginPage";
+import { RestaurantSharp } from "@material-ui/icons";
 
 const colors = {
   orange: "#FFBA5A",
@@ -29,31 +31,37 @@ export default function ItemReview(props) {
     setHoverValue(undefined);
   };
   const OwnerId = props.item?.owner?._id;
+console.log("Propsssssssssssssssssssssssssssssssss" , props);
 
   const [comment, setComment] = useState(null);
-  const [isRater, setIsRater] = useState(false);
+  const [isRenter, setIsRenter] = useState(true);
 
   const handleComment = (event) => {
     setComment(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
     const review = {
       item: props.item._id,
       rater: loggedInUser._id,
       comment: comment,
       rating: currentValue,
     };
-    console.log("rev0 > ", review);
 
-    post(`/itemrate/`, review, "Your review addede successfully ♥")
-      .then((res) => {
-        let response = res.data;
-        console.log("response", response);
-      })
-      .catch((e) => {
-        console.log("error", e);
-      });
+        post(`/itemRate/`, review, "Your review addede successfully ♥")
+        .then((res) => {
+          setRents([
+            ...rents,
+            review
+          ])
+          let response = res.data;
+          console.log("response poooo65897645138513", response);
+        })
+        .catch((e) => {
+          console.log("error");
+        });
   };
   useEffect(() => {
     get(`/itemRate`)
@@ -75,6 +83,38 @@ export default function ItemReview(props) {
       });
   }, []);
 
+  useEffect(() => {
+    get(`/rent`)
+      .then((response) => {
+        let res = response.data.res;
+        console.log("sss",res.length);
+        if (res.length == 0 )
+        {
+            
+            console.log("res is emmmmpty**********************");
+            setIsRenter(false)
+
+        }
+        // if (res.status == "returned") {
+        //     console.log("[[[[[[[[[[[[[[[[[[ ",res.status);
+        //     setIsRenter(false)
+        // }
+        for (let i = 0; i < res.length; i++) {
+            // if ((loggedInUser._id == res[i].renter ) &&( res[i].status == 'returned') )
+            // setIsRenter(true)
+            if (res[i].status == "returned") {
+                // console.log("[[[[[[[[[[[[[[[[[[ ",res[i].status);
+                setIsRenter(true)
+            }
+            console.log("isRenter ",res[i].status);
+        }
+        console.log(" isrenter ",isRenter );
+        
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
 
   return (
@@ -83,12 +123,14 @@ export default function ItemReview(props) {
         {rent.map((rent, i) => {
           return (
             <div>
-              <SectionComments rate={rent} loggedInUser={loggedInUser} />
+              {/* <SectionComments loggedInUser={loggedInUser} /> */}
+              <SectionComments rate={rent} loggedInUser={loggedInUser}  />
+              {/* <SectionComments rate={rent} loggedInUser={loggedInUser} item_id = {props.item._id} /> */}
             </div>
           );
-        })}
+        })} 
       </div>
-      {!(loggedInUser._id == OwnerId || alreadyRated) && (
+      {!(loggedInUser._id == OwnerId || alreadyRated || !isRenter )    && (
         <form>
           <div style={styles.container}>
             <h2> Leave you review =D </h2>

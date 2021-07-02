@@ -13,7 +13,7 @@ import GridItem from "../../components/Grid/GridItem.js";
 // sections for this page
 import SectionText from "./Sections/SectionText.js";
 import SectionComments from "./Sections/SectionComments.js";
-import cardBlog4 from "../../assets/img/examples/card-blog4.jpg";
+import office2 from "assets/img/examples/office2.jpg";
 
 import { get } from "../../functions/request";
 import { dateTime } from 'functions/helpers'
@@ -44,7 +44,7 @@ export default function BlogPostPage(props) {
         <Header />
         { blog && (
             <>
-              <Parallax image={blog.photo ? blog.photo : cardBlog4} filter="dark">
+              <Parallax image={blog.headerPhoto || cardBlog4} filter="dark">
                 <div className={classes.container}>
                   <GridContainer justify="center">
                     <GridItem md={8} className={classes.textCenter}>

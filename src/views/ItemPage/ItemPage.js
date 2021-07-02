@@ -2,7 +2,7 @@
 import React, {useContext, useEffect, useState} from "react";
 
 import {Link} from "react-router-dom";
-import {get, post} from "../../functions/request";
+import {get, patch, post} from "../../functions/request";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react component used to create nice image meadia player
@@ -13,13 +13,13 @@ import {makeStyles} from "@material-ui/core/styles";
 import Header from "../../components/global/Header.js";
 import Footer from "../../components/global/Footer.js";
 import LoadingContainer from "../../components/global/LoadingContainer";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import history from "functions/history";
+import Card from "../../components/Card/Card.js";
+import CardBody from "../../components/Card/CardBody.js";
+import history from "../../functions/history";
 import Button from "../../components/CustomButtons/Button";
 
 import Parallax from "../../components/Parallax/Parallax.js";
-import productStyle from "assets/jss/material-kit-pro-react/views/productStyle.js";
+import productStyle from "../../assets/jss/material-kit-pro-react/views/productStyle.js";
 import presentationStyle from "../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
 import ItemRating from "../../components/Items/ItemRating";
 import ItemCancellation from "../../components/Items/ItemCancellation";
@@ -28,12 +28,16 @@ import {UserContext} from "../../Context";
 import Grid from "@material-ui/core/Grid";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import defaultImage from "../../assets/img/noimagelarge.png";
-import Map from "components/Map/Map";
 import GridContainer from "../../components/Grid/GridContainer";
 import ItemReview from "./Sections/ItemReview";
 import AllReviews from "./Sections/AllReviews";
 import GridItem from "../../components/Grid/GridItem";
 import Share from "../../components/global/Share";
+
+
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import IconButton from "@material-ui/core/IconButton";
 
 const customStyle = {
     timeRateLabel: {
@@ -93,13 +97,22 @@ export default function ItemPage(props) {
         classes.imgFluid
     );
     const id = props.match.params.id;
-    const {user: loggedInUser} = useContext(UserContext);
+    const {user: loggedInUser, setUser} = useContext(UserContext);
 
     const [item, setItem] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [priceSelect, setPriceSelect] = useState("");
     const {user} = useContext(UserContext);
     const [images, setImages] = useState([]);
+    const [isLiked,setIsLiked] = useState(false)
+
+
+    const [deliveryDistance,setDeliveryDistance] = useState(0);
+    const distanceToKMRate = 0.75; // 0.75$ for each KM
+    const distanceToTimeRate = 70; // KM/Hour
+
+
+
     const handleStartConversation = (userId) => {
         // create conversation between two users
         post(
@@ -108,7 +121,6 @@ export default function ItemPage(props) {
                 receiver: userId,
             },
             null,
-            false
         )
             .then((res) => {
                 history.push(`/messenger?${res.data._id}`);
@@ -135,6 +147,9 @@ export default function ItemPage(props) {
                     });
                 }
                 setImages(i);
+                calcCrow(loggedInUser.location.coordinates[0],loggedInUser.location.coordinates[1],response.data.location.coordinates[0],response.data.location.coordinates[1]);
+                productIsLiked(response.data);
+
             })
             .catch((err) => {
                 console.log(err);
@@ -145,9 +160,77 @@ export default function ItemPage(props) {
             });
     }, []);
 
-   
-  
-  
+    //This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
+    const calcCrow = (lat1, lon1, lat2, lon2) => {
+        console.log(lat1,lon1)
+        lat1 = parseFloat(lat1);
+        lon1 = parseFloat(lon1);
+        lat2 = parseFloat(lat2);
+        lon2 = parseFloat(lon2);
+        let R = 6371; // km
+        let dLat = toRad(lat2-lat1);
+        let dLon = toRad(lon2-lon1);
+        lat1 = toRad(lat1);
+        lat2 = toRad(lat2);
+
+        let a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        setDeliveryDistance(parseInt(R * c))
+    }
+
+    // Converts numeric degrees to radians
+    const toRad = (Value) => {
+        return Value * Math.PI / 180;
+    }
+
+
+    const productIsLiked = (item) => {
+        for (let i = 0; i < loggedInUser.favoriteItems.length; i++) {
+            if(loggedInUser.favoriteItems[i]._id == item._id){
+                console.log("found in index, ", i)
+                setIsLiked(true)
+            }
+        }
+    };
+
+    const handleLikeBtn = () => {
+        console.log(loggedInUser.favoriteItems);
+        console.log({isLiked});
+
+
+        let favoriteItems = [...loggedInUser.favoriteItems];
+
+        if(isLiked){
+            // dislike
+            const index = favoriteItems.indexOf(item._id);
+            favoriteItems.splice(index,1);
+            setIsLiked(false)
+        }
+
+
+        else {
+            // like
+            favoriteItems = [
+                ...favoriteItems,
+                item._id
+            ];
+            setIsLiked(true)
+        }
+
+
+        patch('/user/update',{
+            favoriteItems
+        }, isLiked?"Product removed from favourite":"Product added to favourite")
+            .then(res=>{
+                setUser({
+                    ...loggedInUser,
+                    favoriteItems
+                })
+            })
+    };
+
+
     return (
         <div className={classes.productPage}>
             <Header/>
@@ -158,7 +241,7 @@ export default function ItemPage(props) {
                 filter="dark"
                 className={classes.pageHeader}
                 style={{height: "16rem"}}
-            ></Parallax>
+                />
             <div
                 className={classNames(classes.main, classes.mainRaised)}
                 style={{margin: "-300px 30px 0px"}}
@@ -167,12 +250,22 @@ export default function ItemPage(props) {
                     <LoadingContainer/>
                 ) : (
                     <GridContainer>
-                        {/* title */}
 
                         <GridItem md={8} sm={6}>
                             <div style={{display: "block", marginBottom: "2rem"}}>
                                 <h2 className={classNames(classes.title, classes.CardText)} style={{marginTop: '0'}}>
                                     {item?.name}
+
+                                    <IconButton
+                                        onClick={()=>{handleLikeBtn()}}
+                                        aria-label="facebook" style={{float: 'right', marginTop: '1rem'}}>
+                                        {isLiked
+                                            ?
+                                            <FavoriteOutlinedIcon fontSize="small" color={'error'}/>
+                                            :
+                                            <FavoriteBorderOutlinedIcon fontSize="small" color={'error'}/>
+                                        }
+                                    </IconButton>
                                 </h2>
                                 <span className="prices">
                                   <small>{item?.location?.address}</small>
@@ -335,12 +428,16 @@ export default function ItemPage(props) {
                                 Delivery option is available. Provide your location to see the
                                 estimated delivery cost.
                             </p>
+                            <p>
+                                This is approximately {deliveryDistance}KM ({deliveryDistance/distanceToTimeRate})Hour away from your location
+                            </p>
+                            <p>
+                                Estimated delivery rate each way ({deliveryDistance/distanceToKMRate})$
+                            </p>
                             <div>
-                                <Map
-                                    changeCoordinates={(pos, address) =>
-                                        console.log({pos}, {address})
-                                    }
-                                />
+                                {/*<iframe frameBorder={0} width={'100%'} height={'250px'} src ={`https://maps.google.com/maps?q=0,0&hl=es;z=14&amp;output=embed`}></iframe>*/}
+
+                                <div dangerouslySetInnerHTML={{ __html: `<iframe src="https://maps.google.com/maps?hl=en&amp;q=${item.location.coordinates[0]},${item.location.coordinates[1]}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width='100%' height='250px'  style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>` }} />
                             </div>
                             <hr/>
 
@@ -364,22 +461,24 @@ export default function ItemPage(props) {
 
                                     {
                                         user._id !== item.owner._id && (
-                                            <ItemRent item={item}/>
+                                            <>
+                                            <ItemRent item={item} deliveryPrice={deliveryDistance/distanceToKMRate}/>
+                                            </>
                                         )
                                     }
-                                    <hr/>
-                                    <div>
-                                        <Button
-                                            fullWidth
-                                            onClick={() => handleStartConversation(item.owner._id)}
-                                            style={{marginLeft: "0.5rem"}}
-                                            round
-                                        >
-                                            Message {item?.owner?.username}
-                                        </Button>
-                                    </div>
                                 </CardBody>
                             </Card>
+
+                            <div style={{textAlign: 'center'}}>
+                                <Button
+                                    color={"info"}
+                                    onClick={() => handleStartConversation(item.owner._id)}
+                                    style={{margin: "0.5rem auto"}}
+                                    round
+                                >
+                                    Message {item?.owner?.username}
+                                </Button>
+                            </div>
                         </GridItem>
                     </GridContainer>
                 )}

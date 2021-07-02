@@ -11,6 +11,7 @@ import {
     TextField,
   } from "@material-ui/core";
 
+import defaultImage from '../../../assets/img/noimagelarge.png';
 
 
 const sectionCommentsStyle = {
@@ -45,7 +46,7 @@ export default function SectionWriteComment(props) {
     const [text, setText] = useState('');
     const { user } = useContext(UserContext)
 
-    
+     
     const submitComment = (e) =>{
         e.preventDefault();
 
@@ -70,7 +71,7 @@ export default function SectionWriteComment(props) {
                 onSubmit={submitComment}
             >
             <Media
-                avatar={user.photo || ''}
+                avatar={user.photo || defaultImage}
                 body={
                     <TextField
                     variant="outlined"

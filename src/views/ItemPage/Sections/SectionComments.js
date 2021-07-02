@@ -14,6 +14,10 @@ import { FaStar } from "react-icons/fa";
 import tooltipsStyle from "assets/jss/material-kit-pro-react/tooltipsStyle.js";
 import { dateTime } from "functions/helpers";
 import update from "react-addons-update";
+
+import defaultImage from '../../../assets/img/noimagelarge.png'
+
+
 const sectionCommentsStyle = {
   ...tooltipsStyle,
   section: {
@@ -42,18 +46,41 @@ const colors = {
 };
 const useStyles = makeStyles(sectionCommentsStyle);
 
-export default function SectionComments({ rate, loggedInUser }) {
-  const [rent, setRent] = useState(rate);
+export default function SectionComments({rate ,loggedInUser }) {
+  console.log("loggedInUser loggedInUser loggedInUser  // ",loggedInUser);
+  // const [rate, setrate] = useState(rate);
   const [newcomment, setNewComment] = useState(false);
   const [comment, setComment] = useState(null);
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0);
 
+// console.log("  iiiiiiiiiiiiiiiiiiii " , item_id);
+
+  // useEffect(() => {
+  //   get(`/itemRate`)
+  //     .then((response) => {
+  //       let res = response.data.res;
+  //       setRent(res);
+
+  //       // for (let i = 0; i < res.length; i++) {
+  //       //   if (loggedInUser._id == res[i].rater._id) {
+  //       //     setAlreadyRated(true);
+  //       //     break;
+  //       //   }
+  //       // }
+
+  //       console.log("setRent from SectionComment ", res);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // }, []);
+
   const handleClick = (value) => {
     setCurrentValue(value);
   };
-
+ 
   const handleMouseOver = (newHoverValue) => {
     setHoverValue(newHoverValue);
   };
@@ -61,50 +88,55 @@ export default function SectionComments({ rate, loggedInUser }) {
   const handleMouseLeave = () => {
     setHoverValue(undefined);
   };
+
   const handleComment = (event) => {
     setComment(event.target.value);
   };
-  console.log("rent ", rent);
+  console.log("rate  dfssfffffff", rate);
   const classes = useStyles();
 
   const handleSubmit = () => {
     const review = {
-      item: rent.item._id,
+      item: rate.item._id,
       rater: loggedInUser._id,
       comment: comment,
       rating: currentValue,
     };
 
-    post(`/itemrate/${rent._id}`, review, "Comment Updated successfully ♥ ")
+    post(`/itemrate/${rate._id}`, review, "Your review Updated successfully ♥ ")
       .then((response) => {
         window.location.reload();
 
-        update(rent, { comment: { $set: comment } });
+        update(rate, { comment: { $set: comment } });
       })
       .catch((e) => {
         console.log(" error", e);
       });
 
   };
+
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={10} md={8}>
           <div>
-            {rent && (
+            {/* {rate.map((rate, i) => {
+            return (
+              <div> */}
+            {rate && (
               <Media
-                key={rent._id}
-                avatar={rent?.rater?.photo}
+                key={rate._id}
+                avatar={rate?.rater?.photo || defaultImage}
                 title={
                   <span>
-                    {rent?.rater?.firstname}
-                    <small> {dateTime(rent.createdAt)}</small>
+                    {rate?.rater?.firstname}
+                    <small> {dateTime(rate.createdAt)}</small>
                   </span>
                 }
-                body={<p className={classes.color555}><h6>Rate: {rent.rating} Stars</h6><h3>{rent.comment}</h3></p>}
+                body={<p className={classes.color555}><h6>Rate: {rate.rating} Stars</h6><h3>{rate.comment}</h3></p>}
               />
             )}
-            {loggedInUser._id === rent?.rater?._id && (
+            {loggedInUser._id === rate?.rater?._id && (
               <button
                 onClick={() => setNewComment(true)}
                 style={styles.button}
@@ -138,7 +170,7 @@ export default function SectionComments({ rate, loggedInUser }) {
               })}
             </div>
                 <textarea
-                  placeholder={rent.comment}
+                  placeholder={rate.comment}
                   style={styles.textarea}
                   onChange={handleComment}
                 />
@@ -147,6 +179,9 @@ export default function SectionComments({ rate, loggedInUser }) {
                 </button>
               </div>
             )}
+            {/* </div>
+          );
+        })} */}
           </div>
         </GridItem>
       </GridContainer>
@@ -157,8 +192,8 @@ const styles = {
   button: {
     border: "1px solid #a9a9a9",
     borderRadius: 5,
-    width: 300,
-    padding: 10,
+    width: 200,
+    padding: 5,
   },
   textarea: {
     border: "1px solid #a9a9a9",

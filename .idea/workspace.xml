@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Context.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Context.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/Share.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/Share.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemPage/ItemPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemRent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemRent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/ProfilePage/StoreHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/ProfilePage/StoreHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/SearchFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/SearchFilter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Profile/StorePage/StoreProducts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +44,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="1u3OEJLMNcVUHg9GQg6DBs8FrDv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -124,7 +128,8 @@
       <workItem from="1624783881229" duration="5622000" />
       <workItem from="1624866726153" duration="22684000" />
       <workItem from="1624980626080" duration="13682000" />
-      <workItem from="1625042870080" duration="9080000" />
+      <workItem from="1625042870080" duration="28887000" />
+      <workItem from="1625135703956" duration="19537000" />
     </task>
     <servers />
   </component>
@@ -167,23 +172,30 @@
     <state width="1397" height="234" key="GridCell.Tab.0.right/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624647547424" />
     <state width="1397" height="234" key="GridCell.Tab.0.right/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624664967395" />
     <state width="1323" height="190" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1624842319283" />
-    <state x="-1365" y="-99" width="854" height="972" key="find.popup" timestamp="1625051701714">
-      <screen x="-1920" y="-139" width="1920" height="1050" />
+    <state x="-1365" y="-73" width="854" height="972" key="find.popup" timestamp="1625162268945">
+      <screen x="-1920" y="-113" width="1920" height="1050" />
     </state>
     <state x="-1024" y="-94" width="607" height="804" key="find.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624573917672" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624628771393" />
+    <state x="-1365" y="-73" width="854" height="972" key="find.popup/0.0.1366.738/-1920.-113.1920.1050@-1920.-113.1920.1050" timestamp="1625162268945" />
     <state x="-1365" y="-99" width="854" height="972" key="find.popup/0.0.1366.738/-1920.-139.1920.1050@-1920.-139.1920.1050" timestamp="1625051701714" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1624909409045" />
     <state x="-1365" y="-155" width="854" height="972" key="find.popup/0.0.1366.738/-1920.-195.1920.1050@-1920.-195.1920.1050" timestamp="1624707124708" />
     <state x="395" y="28" width="607" height="683" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1625003698813" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1625057162364">
+    <state x="339" y="165" key="run.anything.popup" timestamp="1625097411335">
       <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1625097411335" />
+    <state x="-1434" y="-29" width="945" height="965" key="search.everywhere.popup" timestamp="1625161865551">
+      <screen x="-1920" y="-113" width="1920" height="1050" />
     </state>
     <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624577462207" />
     <state x="346" y="59" width="673" height="679" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@0.0.1366.738" timestamp="1624620033151" />
-    <state x="-1434" y="-55" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@-1920.-139.1920.1050" timestamp="1625050999959" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1625057162364" />
+    <state x="-1434" y="-29" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/-1920.-113.1920.1050@-1920.-113.1920.1050" timestamp="1625161865551" />
+    <state x="346" y="59" width="673" height="679" key="search.everywhere.popup/0.0.1366.738/-1920.-113.1920.1050@0.0.1366.738" timestamp="1625144482551" />
+    <state x="-1434" y="-55" width="945" height="965" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@-1920.-139.1920.1050" timestamp="1625080273507" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1625058675528" />
     <state x="-1434" y="-111" width="946" height="967" key="search.everywhere.popup/0.0.1366.738/-1920.-195.1920.1050@-1920.-195.1920.1050" timestamp="1624718162818" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625002412107" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625099668308" />
   </component>
 </project>

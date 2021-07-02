@@ -31,16 +31,23 @@ const img = {
   width: "auto",
   height: "100%",
 };
+function requiredPhotos(file) {
+  if (file.name.length == 0) {
+    console.log(file.name);
+    return {
+      code: "name-too-large",
+      message: `Name is larger than  characters`,
+    };
+  }
 
+  return null;
+}
 export default function UploadImages({ formData, submitPhotos }) {
   const [files, setFiles] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
-      if (acceptedFiles.length != 0) {
-        submitPhotos(acceptedFiles);
-      }
-
+      submitPhotos(acceptedFiles);
       setFiles(
         acceptedFiles.map((file) =>
           Object.assign(file, {
