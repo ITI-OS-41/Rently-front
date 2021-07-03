@@ -33,7 +33,9 @@ import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferA
 
 import ReadMore from './views/ReadMore/ReadMore';
 import Nonprofit from './views/NonprofitPage/Nonprofit';
-import Careers from './views/CareersPage/Careers'
+import Careers from './views/CareersPage/Careers';
+
+import NoResult from './views/NoResultFoundPage/NoResult'
 
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
@@ -76,6 +78,7 @@ ReactDOM.render(
           <Route path="/read-more" component={ReadMore} />
           <Route path="/nonprofit" component={Nonprofit} />
           <Route path="/careers" component={Careers} />
+          <Route path="/no-result" component={NoResult} />
 
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
