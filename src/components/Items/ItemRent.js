@@ -21,6 +21,8 @@ import LocalShippingOutlinedIcon from '@material-ui/icons/LocalShippingOutlined'
 import DateRangeOutlinedIcon from '@material-ui/icons/DateRangeOutlined';
 import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 import history from "../../functions/history";
+import TextField from "@material-ui/core/TextField";
+import toast from "../../functions/toast";
 
 
 const styles = (theme) => ({
@@ -81,7 +83,7 @@ const StyledButton = withStyles({
 export default function ItemRent(props) {
     const {user,setUser} = useContext(UserContext);
     const [open, setOpen] = React.useState(false);
-    const {item, priceSelect, deliveryPrice, ...rest} = props;
+    const {item, priceSelect, maxQuantity , deliveryPrice, ...rest} = props;
     const [rentPrice, setRentPrice] = useState(0);
     const [paymentType, setPaymentType] = useState('');
 
@@ -95,7 +97,8 @@ export default function ItemRent(props) {
         item: item._id,
         insurance: 10,
         status: "pending",
-        totalPrice: 0
+        totalPrice: 0,
+        quantity: 1
     });
     const [selectedDate, setSelectedDate] = React.useState({
         startDate: new Date(),
@@ -103,6 +106,10 @@ export default function ItemRent(props) {
         key: 'selection',
     });
     const handleRentRequest = () => {
+        if (!user.isVerified){
+            toast.error("Please verify your account to rent");
+            return;
+        }
         post(`/rent/`, {
             ...rent,
             totalPrice: needToBePaid
@@ -120,7 +127,7 @@ export default function ItemRent(props) {
                             wallet: walletAfter
                         });
 
-                        history.push('profile/renting');
+                        history.push('/profile/renting');
                         console.log(r)})
                     .catch(e=>{
                         console.log(e)
@@ -130,6 +137,7 @@ export default function ItemRent(props) {
                 console.log(e);
             });
     };
+
 
     const handleClose = () => {
         setOpen(false);
@@ -164,7 +172,7 @@ export default function ItemRent(props) {
         } else {
             cost = totalDays * getPriceDaily();
         }
-        setRentPrice(Math.round(cost));
+        setRentPrice(Math.round(cost)* rent.quantity);
 
         setRent(prevState => ({
             ...prevState,
@@ -189,14 +197,12 @@ export default function ItemRent(props) {
         if (paymentType) {
             calculateTotalPrice()
         }
-    }, [addDeliveryRate]);
+    }, [addDeliveryRate,rent.quantity]);
 
 
     useEffect(() => {
-        setNeedToBePaid(( rent.totalPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet ) < 0 ? 0 : ( rent.totalPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet ) )
-        setWalletAfter((user.wallet - rent.totalPrice - (addDeliveryRate ? deliveryPrice : 0)) > 0 ? (user.wallet - rent.totalPrice - (addDeliveryRate ? deliveryPrice : 0)) : 0)
-
-
+        setNeedToBePaid(( rentPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet||0 ) < 0 ? 0 : ( rentPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet||0 ) )
+        setWalletAfter((user.wallet||0 - rentPrice - (addDeliveryRate ? deliveryPrice : 0)) > 0 ? (user.wallet||0 - rentPrice - (addDeliveryRate ? deliveryPrice : 0)) : 0)
     }, [rent, addDeliveryRate, deliveryPrice, user]);
 
     return (
@@ -226,6 +232,30 @@ export default function ItemRent(props) {
                         )
                     }
                 </Select>
+
+
+                <Grid>
+                    <TextField
+                        style={{margin: '1rem auto'}}
+                        type="number"
+                        variant="outlined"
+                        fullWidth
+                        label="quantity"
+                        value={rent.quantity}
+
+                        inputProps={{
+                            max: maxQuantity,
+                            min: 1
+                        }}
+
+                        onChange={e=>setRent(prevState => (
+                            {
+                                ...prevState,
+                                quantity: e.target.value
+                            }
+                        ))}
+                    />
+                </Grid>
 
 
                 <Grid>

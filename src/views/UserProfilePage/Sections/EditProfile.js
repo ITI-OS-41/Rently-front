@@ -12,6 +12,9 @@ import EditProfileForm from "../../../components/forms/EditProfileForm";
 const useStyles = makeStyles(sectionInterestedStyle);
 const useStyles2 = makeStyles(profilePageStyle);
 import { get } from "../../../functions/request";
+import EditPasswordForm from "../../../components/forms/EditPasswordForm";
+import Typography from "@material-ui/core/Typography";
+import AccountVerification from "../../../components/forms/AccountVerification";
 
 export default function EditProfile() {
   const classes = useStyles();
@@ -33,9 +36,27 @@ export default function EditProfile() {
     <div>
       <GridContainer>
         <Card blog className={classes.card}>
-          <CardHeader image/>
+          <CardHeader color="primary">
+            <Typography>Basic info</Typography>
+          </CardHeader>
           <CardBody>
             <EditProfileForm type="edit" user={user} />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader color="primary">
+            <Typography>Account Security</Typography>
+          </CardHeader>
+          <CardBody>
+            <EditPasswordForm />
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader color="primary">
+            <Typography>Identity Verification</Typography>
+          </CardHeader>
+          <CardBody>
+            <AccountVerification/>
           </CardBody>
         </Card>
       </GridContainer>

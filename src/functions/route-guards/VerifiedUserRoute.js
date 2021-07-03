@@ -7,8 +7,9 @@ import React, {useContext} from 'react'
 import { Redirect, Route } from 'react-router-dom'
 import { isAdmin } from '../helpers'
 import {UserContext} from "../../Context";
+import toast from "../toast";
 
-const UserRoute = ({ component: Component, ...rest }) => {
+const VerifiedUserRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
     // const {user} = useContext(UserContext)
@@ -19,14 +20,17 @@ const UserRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={props =>
-                user?.token ? (
+                user.isVerified ? (
                     <Component {...props} />
                 ) : (
-                    <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+                    <>
+                        {toast.error("Your account is not verified ")}
+                        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+                    </>
                 )
             }
         />
     )
 }
 
-export default UserRoute
+export default VerifiedUserRoute

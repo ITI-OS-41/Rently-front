@@ -84,8 +84,8 @@ const validationSchema = yup.object().shape({
     .required("Email is required"),
   phone: yup.number("Enter phone").required("phone is required"),
   message: yup
-    .string("Enter store message")
-    .required("store message is required"),
+    .string("Enter message")
+    .required("message is required"),
 });
 const initialValues = {
     name: '',
@@ -101,9 +101,9 @@ export default function Form() {
   const submitForm = (values) => {
     setIsRequesting(true);
 
-    post(`/${modelName}`, values, `${modelName} added successfully!`)
+    post(`/user/contact-us`, values, `Message sent  Successfully! Please wait for one of our agents to reach out to you!`)
       .then((response) => {
-        console.log(response);
+        history.push('/')
       })
       .catch((error) => {
         console.log(error);
@@ -195,9 +195,7 @@ export default function Form() {
             
             />
             <div className={classes.textCenter}>
-              <Button color="primary" round>
-                Contact us
-              </Button>
+              <SubmitButton isRequesting={isRequesting} type="Send Message" />
             </div>
           </form>
         );

@@ -15,6 +15,7 @@ import history from "../../../functions/history";
 const useStyles = makeStyles(profilePageStyle);
 
 import defaultImage from '../../../assets/img/noimagelarge.png'
+import NoDataToShow from "../../../components/global/NoDataToShow";
 
 
 export default function StoreHeader(props) {
@@ -76,13 +77,13 @@ export default function StoreHeader(props) {
             ))
           }
           {
-            loggedInUser._id !== user._id && (
+            (loggedInUser._id !== user._id && loggedInUser.isVerified) ? (
                 <Button
                     onClick={()=>(handleStartConversation(user._id))}
                     style={{marginLeft: '0.5rem'}}
                     round
                 >Message</Button>
-            )
+            ) : ''
           }
         </div>
       </Grid>
