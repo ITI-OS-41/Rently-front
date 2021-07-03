@@ -90,6 +90,17 @@ export default function HeaderLinks(props) {
         <List
             className={classes.list + " " + classes.mlAuto}>
 
+            {user?.role==='admin' &&
+            <>
+                <a
+
+                    href="https://rently-service-dashboard.herokuapp.com/"
+                    className={classes.navLink}
+                >
+                    Dashboard
+                </a>
+            </>
+            }
             { !user.username &&
             <>
                 <ListItem className={classes.listItem}>

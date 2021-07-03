@@ -62,8 +62,6 @@ ReactDOM.render(
           <Route path="/search" component={SearchPage} />
           <UserRoute path="/item/:id" component={ItemPage} />
 
-          <UserRoute path="/messenger" component={MessengerPage} />
-
           
           <UserRoute path="/ReferAndEarn" component={ReferAndEarn} />
           
@@ -80,7 +78,7 @@ ReactDOM.render(
           <Route path="/search" component={SearchPage} />
           <Route path="/item/:id" component={ItemPage} />
 
-          <UserRoute path="/messenger" component={MessengerPage} />
+          <VerifiedUserRoute path="/messenger" component={MessengerPage} />
 
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />

@@ -39,7 +39,7 @@ export default function MainPageParallax() {
 
   return (
     <Parallax
-      image={require("assets/img/bg6.jpg").default}
+      image={require("../../../assets/img/bg6.jpg").default}
       className={classes.parallax}
     >
       <div className={classes.container}>
