@@ -122,7 +122,7 @@ export const PricingAndProtection = ({
                       <Grid item xs={3}>
                         <TextField
                           InputProps={{
-                            inputProps: { min: 1, max: 10000 },
+                            inputProps: { min: 1 },
                             startAdornment: (
                               <InputAdornment position="start">
                                 EGP
@@ -153,7 +153,7 @@ export const PricingAndProtection = ({
                       <Grid item xs={3}>
                         <TextField
                           InputProps={{
-                            inputProps: { min: 1, max: 10000 },
+                            inputProps: { min: 1 },
                             startAdornment: (
                               <InputAdornment position="start">
                                 EGP
@@ -186,7 +186,7 @@ export const PricingAndProtection = ({
                       <Grid item xs={3}>
                         <TextField
                           InputProps={{
-                            inputProps: { min: 1, max: 1000 },
+                            inputProps: { min: 1 },
                             startAdornment: (
                               <InputAdornment position="start">
                                 EGP
@@ -235,7 +235,7 @@ export const PricingAndProtection = ({
                           </p>
                           <TextField
                             InputProps={{
-                            inputProps: { min: 1, max: 100000 },
+                            inputProps: { min: 1 },
                               startAdornment: (
                                 <InputAdornment position="start">
                                   EGP
