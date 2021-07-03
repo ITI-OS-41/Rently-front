@@ -15,6 +15,7 @@ import Request from "./Sections/Request";
 import Confirmed from "./Sections/Confirmed";
 import ConfirmedList from "./Sections/ConfirmedList";
 import RequestList from "./Sections/RequestList";
+import HistoryList from "./Sections/HistoryList";
 
 profilePageStyle.isActive = {
   backgroundColor: "red",
@@ -49,8 +50,12 @@ export default function Rental(props) {
                 tabContent: <RequestList />,
               },
               {
-                tabButton: "confirmed",
+                tabButton: "Confirmed",
                 tabContent: <ConfirmedList />,
+              },
+              {
+                tabButton: "History",
+                tabContent: <HistoryList />,
               },
             ]}
           />

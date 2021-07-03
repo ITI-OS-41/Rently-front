@@ -15,6 +15,7 @@ import Request from "./Sections/Request";
 import Confirmed from "./Sections/Confirmed";
 import RequestList from "./Sections/RequestList";
 import ConfirmedList from "./Sections/ConfirmedList";
+import HistoryList from "./Sections/HistoryList";
 
 profilePageStyle.isActive = {
   backgroundColor: "red",
@@ -42,6 +43,10 @@ export default function Posting(props) {
               {
                 tabButton: "confirmed",
                 tabContent: <ConfirmedList />,
+              },
+              {
+                tabButton: "history",
+                tabContent: <HistoryList/>,
               },
             ]}
           />
