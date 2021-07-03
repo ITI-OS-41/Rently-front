@@ -41,8 +41,8 @@ export default () => {
     get(`/item/?isPublished=false&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
-console.log("reshh",res)
-         res.forEach((res) => {
+        console.log("reshh", res);
+        res.forEach((res) => {
           res.id = res._id;
         });
         setRows(res);
@@ -112,7 +112,7 @@ console.log("reshh",res)
               showViewBtn={false}
               showEditBtn={false}
               modelName={modelName}
-              id={id}
+              id={params.id}
               handleDelete={handleDelete}
             />
           </>
