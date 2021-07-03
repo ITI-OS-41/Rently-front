@@ -71,6 +71,7 @@ export default () => {
     post(`rent/${rent._id}`, send, "declined successfully!")
       .then((response) => {
         console.log(response);
+        setDemmy((prevState) => prevState + 1);
         history.push("/profile/posting");
       })
       .catch((error) => {
@@ -97,7 +98,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
 
   const getPrices = (prices) => {
     let final = "";

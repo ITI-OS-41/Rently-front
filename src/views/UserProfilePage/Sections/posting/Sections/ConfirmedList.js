@@ -28,7 +28,6 @@ export default () => {
   const [rent, setRent] = useState("");
 
   const updateDelivery = () => {
-    console.log(rent);
     patch(`rent/${rent}`, {}, "status updated successfully!")
       .then((response) => {
         setDemmy((prevState) => prevState + 1);
@@ -41,7 +40,6 @@ export default () => {
       });
   };
   const updateReturned = () => {
-    console.log(rent);
     patch(`rent/${rent}`, {}, "status updated successfully!")
       .then((response) => {
         setDemmy((prevState) => prevState + 1);
@@ -71,7 +69,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
 
   const getPrices = (prices) => {
     let final = "";
