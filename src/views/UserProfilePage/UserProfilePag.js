@@ -23,6 +23,7 @@ import Rental from './Sections/Rental/Rental';
 import StorePage from "../Profile/StorePage/StorePage";
 import MessengerPage from "../MessengerPage/MessengerPage";
 import MyPosting from "./Sections/MyPostings/MyPosting";
+import MyWallet from "./Sections/MyWallet/MyWallet";
 
 
 const useStyles = makeStyles(profilePageStyle);
@@ -60,6 +61,11 @@ export default function UserProfilePage(props) {
       url: '/profile/renting',
       name: 'My Rental Requests',
       component: <Rental/>
+    },
+    {
+      url: '/profile/wallet',
+      name: 'My Wallet',
+      component: <MyWallet/>
     },
     {
       url: '/messenger',
