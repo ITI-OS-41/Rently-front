@@ -12,8 +12,7 @@ function Context(props) {
     const {children, ...rest} = props;
     const [demmy, setDummy] = useState(0);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('rently-user')) || {});
-
-
+    const [rentUsers,setRentUsers]= useState([]);
 
 
 
