@@ -23,12 +23,13 @@ function Context(props) {
         if (user.username) {
             get(`/user/infor`)
                 .then(res=>{
-                    console.log(res.data)
                     setUser({
                         ...user,
                         ...res.data
                     })
+
                 })
+                .catch(e=>{console.log(e)})
 
 
 

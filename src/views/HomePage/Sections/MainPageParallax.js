@@ -8,8 +8,9 @@ import Button from "../../../components/CustomButtons/Button";
 import Parallax from "../../../components/Parallax/Parallax";
 import React from "react";
 import presentationStyle from "../../../assets/jss/material-kit-pro-react/views/presentationStyle.js";
+import history from "../../../functions/history";
 
-import {makeStyles} from "@material-ui/core";
+import {makeStyles, TextField} from "@material-ui/core";
 import headerStyle from "../../../assets/jss/material-kit-pro-react/components/headerStyle";
 
 
@@ -21,6 +22,20 @@ const useStyles = makeStyles({
 
 export default function MainPageParallax() {
   const classes = useStyles();
+
+
+  const handleSearch = e => {
+    e.preventDefault();
+    const q = e.target.search.value;
+    console.log(q)
+
+    if (q){
+      history.push(`/search?${q}`)
+    }
+
+  }
+
+
 
   return (
     <Parallax
@@ -49,25 +64,20 @@ export default function MainPageParallax() {
           >
             <Card raised className={classes.card}>
               <CardBody formHorizontal>
-                <form>
+                <form onSubmit={handleSearch}>
                   <GridContainer>
                     <GridItem xs={12} sm={8} md={8}>
-                      <CustomInput
-                        inputProps={{
-                          placeholder: "Search keyword",
-                        }}
-                        formControlProps={{
-                          fullWidth: true,
-                          style: {
-                            marginBottom: '0',
-                            padding: '0',
-                            marginTop: '0.8rem'
-                          }
-                        }}
-                      />
+                      <TextField
+                          variant="standard"
+                          fullWidth
+                          id="search"
+                          name="search"
+                          label="Search"
+                        />
                     </GridItem>
                     <GridItem xs={12} sm={4} md={4}>
                       <Button
+                        type="submit"
                         block
                         color="primary"
                       >

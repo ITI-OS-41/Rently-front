@@ -29,6 +29,7 @@ import SingleBlog from "./views/SingleBlog/SingleBolg";
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
+import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
 import ReadMore from './views/ReadMore/ReadMore';
 import Nonprofit from './views/NonprofitPage/Nonprofit';
@@ -36,6 +37,8 @@ import Careers from './views/CareersPage/Careers'
 
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
+import VerifiedUserRoute from "./functions/route-guards/VerifiedUserRoute";
+import {Redirect} from "react-router-dom";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -43,10 +46,9 @@ ReactDOM.render(
       <div id="snackbarhelper" />
       <Router history={history}>
         <Switch>
-          <Route path="/error-page" component={ErrorPage} />
           <UserRoute path="/new" component={NewPage} />
 
-          <Route path="/create-item" component={UserForm} />
+          <VerifiedUserRoute path="/create-item" component={UserForm} />
           <Route exact path="/category" component={CategoryPage} />
           <Route path="/category/:id" component={SubCategoryPage} />
 
@@ -62,6 +64,9 @@ ReactDOM.render(
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
+          
+          <UserRoute path="/ReferAndEarn" component={ReferAndEarn} />
+          
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
 
@@ -81,12 +86,14 @@ ReactDOM.render(
           <UserRoute path="/user/:id" component={userStorePage} />
 
           <Route path="/map" component={MapPage} />
-          <Route path="/cart" component={CartPage} />
+          <VerifiedUserRoute path="/cart" component={CartPage} />
           <Route path="/favorite" component={FavoritePage} />
 
           <Route path="/about-us" component={AboutUsPage} />
 
-          <Route path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
+          <Route component={ErrorPage} />
+
         </Switch>
       </Router>
     </Context>

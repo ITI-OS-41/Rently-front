@@ -37,6 +37,7 @@ import Share from "../../components/global/Share";
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import IconButton from "@material-ui/core/IconButton";
+import NoDataToShow from "../../components/global/NoDataToShow";
 
 const customStyle = {
   timeRateLabel: {
