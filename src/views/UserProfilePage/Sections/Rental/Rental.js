@@ -19,7 +19,15 @@ import RequestList from "./Sections/RequestList";
 profilePageStyle.isActive = {
   backgroundColor: "red",
 };
-
+function getSteps() {
+  return [
+    "Basic Info",
+    "Posting Details",
+    "Pricing And Protection",
+    "Cancellation Policy",
+    "Confirm",
+  ];
+}
 const useStyles = makeStyles(profilePageStyle);
 
 export default function Rental(props) {
@@ -32,6 +40,7 @@ export default function Rental(props) {
           <h3 className={classes.title + " " + classes.textCenter}>
             My Rental Requests
           </h3>
+          <></>
           <NavPills
             alignCenter
             tabs={[

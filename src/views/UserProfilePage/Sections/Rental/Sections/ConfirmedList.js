@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Card, CardHeader, CardBody, Container, Row } from "reactstrap";
 import Header from "components/global/Header.js";
-
+import CallSplitIcon from '@material-ui/icons/CallSplit';
+import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import { DataGrid } from "@material-ui/data-grid";
 import { Tooltip, IconButton, Button } from "@material-ui/core";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import { del } from "functions/request";
-import { get } from "functions/request";
+import { get,post,del } from "functions/request";
 import {
   DATAGRID_RESULTS_PER_PAGE,
   DATAGRID_WIDTH,
@@ -17,6 +17,7 @@ import {
 import { Link } from "react-router-dom";
 import UncontrolableSwitch from "components/global/UncontrolableSwitch";
 import ListTableActions from "components/global/ListTableActions";
+import {UserContext} from "../";
 
 const modelName = "item";
 
@@ -26,6 +27,7 @@ export default () => {
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
+    const {user,setUser} = useContext(UserContext);
 
   const handleDelete = (id) => {
     const conf = window.confirm(`are you sure you want to delete this item?`);
@@ -36,6 +38,26 @@ export default () => {
       setDemmy((prevState) => prevState + 1);
     });
   };
+const updateStatus = (item) => {
+    const send = {
+      ...item,
+      category: item.category._id,
+      subcategory: item.subcategory._id,
+      owner:item.owner._id,
+      isAvailable: !item.isAvailable,
+    };
+    post(`item/${item._id}`, send, "item availabilty updated successfully!")
+      .then((response) => {
+      setDemmy((prevState) => prevState + 1);
+      })
+      .catch((error) => {
+        console.log("error");
+        alert("hiii")
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   useEffect(() => {
     get(`/rent?status=approved&renter=${id}`)
@@ -45,7 +67,6 @@ export default () => {
           res.id = res._id;
         });
         setRows(res);
-        console.log("res", res);
       })
       .catch((err) => {
         console.log(err);
@@ -94,11 +115,25 @@ export default () => {
       field: "condition",
       headerName: "Condition",
       width: `${DATAGRID_WIDTH * 0.12}px`,
+      renderCell: (params) => {
+        return params.row.item.condition ? (
+          <p> {params.row.item.condition} </p>
+        ) : (
+          ""
+        );
+      },
     },
     {
-      field: "stock",
-      headerName: "Stock",
+      field: "status",
+      headerName: "Status",
       width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.item.status ? (
+          <p> {params.row.item.status} </p>
+        ) : (
+          ""
+        );
+      },
     },
     {
       field: "price",
@@ -118,12 +153,15 @@ export default () => {
       renderCell: (params) => {
         return (
           <>
-            <ListTableActions
-              showEditBtn={false}
-              modelName={modelName}
-              id={params.id}
-              handleDelete={handleDelete}
-            />
+            
+            <Button onClick={() => {
+                  updateStatus(params.row);
+                }}>
+            <CallSplitIcon style={{color:"#FDB813"}}/>
+            </Button>
+            <Button>
+            <CompareArrowsIcon style={{color:"green"}}/>
+            </Button>
           </>
         );
       },

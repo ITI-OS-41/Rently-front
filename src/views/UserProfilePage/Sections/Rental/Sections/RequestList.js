@@ -26,13 +26,14 @@ export default () => {
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
+  const [itemId, setItemId] = useState(null);
 
-  const handleDelete = (id) => {
+  const handleDelete = (itemId) => {
     const conf = window.confirm(`are you sure you want to delete this item?`);
     if (!conf) {
       return;
     }
-    del(`item/${id}`, `item deleted successfully!`).then(() => {
+    del(`item/${itemId}`, `item deleted successfully!`).then(() => {
       setDemmy((prevState) => prevState + 1);
     });
   };
@@ -41,12 +42,12 @@ export default () => {
     get(`/rent?status=pending&renter=${id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log("ressss ", response);
         res.forEach((res) => {
           res.id = res._id;
-        });
+setItemId(res.item._id)
+          // console.log("logggg ",res.item._id );   
+               });
         setRows(res);
-        console.log("res", res);
       })
       .catch((err) => {
         console.log(err);
@@ -55,6 +56,7 @@ export default () => {
         setIsLoading(false);
       });
   }, []);
+        // console.log("item id 555 ", itemId);
 
   const getPrices = (prices) => {
     let final = "";
@@ -97,13 +99,14 @@ export default () => {
       },
     },
     {
-      field: "stock",
-      headerName: "Stock",
-      width: `${DATAGRID_WIDTH * 0.1}px`,
+      field: "status",
+      headerName: "Status",
+      width: `${DATAGRID_WIDTH * 0.12}px`,
       renderCell: (params) => {
-        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
+        return params.row.item.status ? <p>{params.row.item.status}</p> : "";
       },
     },
+    
     {
       field: "price",
       headerName: "Price",
@@ -125,7 +128,7 @@ export default () => {
             <ListTableActions
               showEditBtn={false}
               modelName={modelName}
-              id={params.id}
+              id={itemId}
               handleDelete={handleDelete}
             />
           </>

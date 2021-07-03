@@ -22,6 +22,7 @@ const modelName = "item";
 
 export default () => {
   const id = localStorage.getItem("rently-userid");
+
   const [dummy, setDemmy] = useState(0);
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,11 +41,10 @@ export default () => {
     get(`/item/?isPublished=false&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
-
-        res.map((res) => {
-          res["id"] = res["_id"];
+console.log("reshh",res)
+         res.forEach((res) => {
+          res.id = res._id;
         });
-
         setRows(res);
       })
       .finally(() => {
@@ -112,7 +112,7 @@ export default () => {
               showViewBtn={false}
               showEditBtn={false}
               modelName={modelName}
-              id={params.id}
+              id={id}
               handleDelete={handleDelete}
             />
           </>

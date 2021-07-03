@@ -20,7 +20,7 @@ const ListTableActions = (props) => {
         <Link to={`/item/` + id}>
           <Tooltip title="Show" aria-label="show">
             <IconButton aria-label="show" className="mx-1">
-              <VisibilityOutlinedIcon />
+              <VisibilityOutlinedIcon style={{color:"green"}}/>
             </IconButton>
           </Tooltip>
         </Link>
@@ -44,7 +44,7 @@ const ListTableActions = (props) => {
             aria-label="delete"
             className="mx-1"
           >
-            <DeleteOutlinedIcon />
+            <DeleteOutlinedIcon style={{color:"red"}}/>
           </IconButton>
         </Tooltip>
       )}
