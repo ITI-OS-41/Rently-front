@@ -46,7 +46,7 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
 
     post("item", send, "Submitted successfully!")
       .then((response) => {
-        history.push("/profile");
+        history.push("/profile/my-postings");
       })
       .catch((error) => {
         console.log(error);
