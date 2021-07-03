@@ -30,7 +30,7 @@ export default function MainPageParallax() {
     console.log(q)
 
     if (q){
-      history.push(`/search?${q}`)
+      history.push(`/search?name=${q}`)
     }
 
   }

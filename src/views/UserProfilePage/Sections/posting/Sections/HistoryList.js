@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Container, Row } from "reactstrap";
 import Header from "components/global/Header.js";
-import { Button } from "@material-ui/core";
+import CallSplitIcon from "@material-ui/icons/CallSplit";
+import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
 import { DataGrid } from "@material-ui/data-grid";
+import { Tooltip, IconButton, Button } from "@material-ui/core";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
+import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import { get, patch } from "functions/request";
 import {
   DATAGRID_RESULTS_PER_PAGE,
   DATAGRID_WIDTH,
 } from "../../../../../config";
-
-import Rating from "./Rating"
+import { Link } from "react-router-dom";
+import UncontrolableSwitch from "components/global/UncontrolableSwitch";
+import ListTableActions from "components/global/ListTableActions";
 
 const modelName = "item";
 
@@ -21,7 +28,7 @@ export default () => {
   const [rent, setRent] = useState("");
 
   useEffect(() => {
-    get(`/item?owner=${id}`)
+    get(`/rent?status=returned&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
         res.forEach((res) => {
@@ -39,64 +46,64 @@ export default () => {
       });
   }, []);
 
+  const getPrices = (prices) => {
+    let final = "";
+    if (prices?.day) {
+      final += `D: ${prices?.day}$ `;
+    }
+    if (prices?.week) {
+      final += `W: ${prices?.week}$ `;
+    }
+    if (prices?.month) {
+      final += `M: ${prices?.month}$ `;
+    }
+    return final;
+  };
+
   const columns = [
     {
       field: "photo",
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.photo ? (
-            <>
-          <img src={params.row.photo} height="50" />
-          </>
+        return params.row.item.photo ? (
+          <img src={params.row.item.photo} height="50" />
         ) : (
           ""
         );
       },
-     
     },
     {
       field: "name",
-      headerName: "name",
-      width: `${DATAGRID_WIDTH * 0.11}px`,
+      headerName: "Name",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row?.name ? (
-         <>   
-        <p>{params.row?.name}</p>
-        <Rating/>
-        </>
-        ) : (
-            ""
-        ); 
+        return params.row.item.name ? <p>{params.row.item.name}</p> : "";
       },
     },
     {
-      field: "Views",
-      headerName: "Views",
+      field: "status",
+      headerName: "Status",
       width: `${DATAGRID_WIDTH * 0.1}px`,
-      renderCell: (params) =>("1")
+     
     },
     {
-      field: "Bookings",
-      headerName: "Bookings",
+      field: "stock",
+      headerName: "Stock",
       width: `${DATAGRID_WIDTH * 0.1}px`,
-      renderCell: (params) =>("0")
+      renderCell: (params) => {
+        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
+      },
     },
     {
-      field: "Reviews",
-      headerName: "Reviews",
+      field: "price",
+      headerName: "Price",
       width: `${DATAGRID_WIDTH * 0.15}px`,
-      renderCell: (params) =>("1")
-    },
-    {
-        field: "action",
-        headerName: "action",
-        width: `${DATAGRID_WIDTH * 0.1}px`,
-        renderCell: (params) =>(
-        <Button
-            style={{backgroundColor:"#038C7F", color: "#FFF"}}
-        >share</Button>)
+      renderCell: (params) => {
+        return getPrices(params.row?.item?.price);
       },
+    },
+
     
   ];
 
