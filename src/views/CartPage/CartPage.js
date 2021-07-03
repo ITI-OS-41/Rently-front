@@ -47,7 +47,13 @@ export default function ShoppingCartPage() {
     useEffect(()=>{
         get('rent?status=approved')
             .then(res=>{
-                setRents(res.data.res)
+                let data = res.data.res;
+                console.log({data})
+                if(data.length){
+                    setRents(data);
+                } else {
+                    history.push('/');
+                }
             })
             .catch(e=>console.log(e))
     },[temp])
@@ -183,9 +189,6 @@ export default function ShoppingCartPage() {
                                                     (user.wallet - getTotalPrice()) >= 0 ? 0: ((getTotalPrice() - (user.wallet || 0)))
                                                 )}</span>
                                             </h4>
-
-                                            {/* <h1>Payment Form here ya nada</h1> */}
-
 
                                             <Checkout total={600} products={rents}/>
 
