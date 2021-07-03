@@ -87,7 +87,7 @@ export const CancellationAndDelivery = ({
                           <CardBody>
                             <FormControlLabel
                               control={
-                                <Radio
+                                <Radio 
                                   checked={values.cancellation === "easygoing"}
                                   onChange={handleChange}
                                   value="easygoing"

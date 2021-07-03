@@ -26,6 +26,7 @@ import {currency, dateTime} from "../../functions/helpers";
 import SubmitButton from "../../components/global/SubmitButton";
 import {UserContext} from "../../Context";
 import {TextField} from "@material-ui/core";
+import Checkout from "../../components/global/Checkout";
 
 const useStyles = makeStyles(shoppingCartStyle);
 
@@ -185,8 +186,8 @@ export default function ShoppingCartPage() {
 
                                             {/* <h1>Payment Form here ya nada</h1> */}
 
-                                            <SubmitButton style={{marginTop: '2rem'}} color="primary" fullWidth onClick={()=>{handleCheckout()}} isRequesting={isCheckingOut} type={"Checkout"}/>
 
+                                            <Checkout total={600} products={rents}/>
 
 
                                             <GridContainer justify="center" style={{marginTop: '1rem'}}>
