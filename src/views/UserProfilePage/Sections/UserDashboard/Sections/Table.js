@@ -63,7 +63,10 @@ export default () => {
         return params.row?.name ? (
          <>   
         <p>{params.row?.name}</p>
-        <Rating/>
+        <Rating
+          name="simple-controlled"
+          value={params.row.rating}
+        />
         </>
         ) : (
             ""
