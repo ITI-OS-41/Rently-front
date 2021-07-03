@@ -31,9 +31,9 @@ import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
-import ReadMore from './views/ReadMore/ReadMore';
-import Nonprofit from './views/NonprofitPage/Nonprofit';
-import Careers from './views/CareersPage/Careers'
+import ReadMore from "./views/ReadMore/ReadMore";
+import Nonprofit from "./views/NonprofitPage/Nonprofit";
+import Careers from "./views/CareersPage/Careers";
 
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";

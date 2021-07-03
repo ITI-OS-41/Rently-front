@@ -12,6 +12,8 @@ const CAROUSEL_SETTINGS = {
   scrollMode: "remainder",
   slidesToScroll: "auto",
 };
+const DATAGRID_RESULTS_PER_PAGE = 5;
+const DATAGRID_WIDTH = 1200;
 const HTTPS = true;
 const CLOUDINARY_URL =
   "cloudinary://524458174797441:x2MQJicIN5bP7zZP2C_pAFBeLCM@rently-service";
@@ -36,4 +38,6 @@ export {
   CLOUDINARY_SECRET,
   SCROLLBAR_CONFIG,
   HTTPS,
+  DATAGRID_RESULTS_PER_PAGE,
+  DATAGRID_WIDTH,
 };
