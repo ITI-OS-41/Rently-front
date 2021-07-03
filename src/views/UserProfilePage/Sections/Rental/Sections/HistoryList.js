@@ -28,32 +28,6 @@ export default () => {
   const [items, setItems] = useState([]);
   const [rent, setRent] = useState("");
 
-  const updateDelivery = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
-      .then((response) => {
-        setDemmy((prevState) => prevState + 1);
-      })
-      .catch((error) => {
-        console.log("error");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-  const updateReturned = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
-      .then((response) => {
-        setDemmy((prevState) => prevState + 1);
-      })
-      .catch((error) => {
-        console.log("error");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
 
   useEffect(() => {
     get(`/rent?status=returned&renter=${id}`)

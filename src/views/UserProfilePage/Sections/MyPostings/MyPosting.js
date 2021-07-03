@@ -10,8 +10,6 @@ import Grid from "@material-ui/core/Grid";
 import GridItem from "components/Grid/GridItem.js";
 import NavPills from "components/NavPills/NavPills.js";
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
-import PostedItems from "./Sections/PostedItem";
-import DraftItems from './Sections/DraftItems';
 import DraftItemList from "./Sections/DraftItemList";
 import PostedItemList from "./Sections/PostedItemList";
 

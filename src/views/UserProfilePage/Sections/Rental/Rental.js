@@ -11,8 +11,6 @@ import GridItem from "components/Grid/GridItem.js";
 import NavPills from "components/NavPills/NavPills.js";
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
 
-import Request from "./Sections/Request";
-import Confirmed from "./Sections/Confirmed";
 import ConfirmedList from "./Sections/ConfirmedList";
 import RequestList from "./Sections/RequestList";
 import HistoryList from "./Sections/HistoryList";

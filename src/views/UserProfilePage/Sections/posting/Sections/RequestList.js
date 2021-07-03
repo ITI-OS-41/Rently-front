@@ -135,6 +135,11 @@ export default () => {
       },
     },
     {
+      field: "status",
+      headerName: "Status",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+    },
+    {
       field: "renter",
       headerName: "Renter",
       width: `${DATAGRID_WIDTH * 0.1}px`,

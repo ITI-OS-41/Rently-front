@@ -27,33 +27,6 @@ export default () => {
   const [isLoading, setIsLoading] = useState(true);
   const [rent, setRent] = useState("");
 
-  const updateDelivery = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
-      .then((response) => {
-        setDemmy((prevState) => prevState + 1);
-      })
-      .catch((error) => {
-        console.log("error");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-  const updateReturned = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
-      .then((response) => {
-        setDemmy((prevState) => prevState + 1);
-      })
-      .catch((error) => {
-        console.log("error");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   useEffect(() => {
     get(`/rent?status=returned&owner=${id}`)
       .then((response) => {
@@ -107,6 +80,12 @@ export default () => {
       renderCell: (params) => {
         return params.row.item.name ? <p>{params.row.item.name}</p> : "";
       },
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+     
     },
     {
       field: "stock",
