@@ -39,7 +39,7 @@ import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
 import VerifiedUserRoute from "./functions/route-guards/VerifiedUserRoute";
 import {Redirect} from "react-router-dom";
-import Checkout from "./components/global/Checkout";
+// import Checkout from "./components/global/Checkout";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -91,7 +91,7 @@ ReactDOM.render(
           <Route path="/about-us" component={AboutUsPage} />
 
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/checkout" component={Checkout} />
+          {/* <Route exact path="/checkout" component={Checkout} /> */}
           <Route component={ErrorPage} />
 
         </Switch>
