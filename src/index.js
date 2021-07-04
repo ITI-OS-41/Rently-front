@@ -32,6 +32,8 @@ import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
+import ReadMore from './views/ReadMore/ReadMore';
+import NoResult from './views/NoResultFoundPage/NoResult'
 import ReadMore from "./views/ReadMore/ReadMore";
 import Nonprofit from "./views/NonprofitPage/Nonprofit";
 import Careers from "./views/CareersPage/Careers";
@@ -79,6 +81,7 @@ ReactDOM.render(
           <Route path="/read-more" component={ReadMore} />
           <Route path="/nonprofit" component={Nonprofit} />
           <Route path="/careers" component={Careers} />
+          <Route path="/no-result" component={NoResult} />
 
           <VerifiedUserRoute path="/messenger" component={MessengerPage} />
 
