@@ -112,26 +112,11 @@ export default function ItemRent(props) {
         }
         post(`/rent/`, {
             ...rent,
-            totalPrice: needToBePaid
-        })
+            totalPrice: needToBePaid+user.wallet
+        },
+            "rent request sent successfully")
             .then((res) => {
-                let response = res.data;
-
-                patch('/user/update', {
-                    wallet: walletAfter
-                }, "rent request sent successfully")
-                    .then(r => {
-
-                        setUser({
-                            ...user,
-                            wallet: walletAfter
-                        });
-
-                        history.push('/profile/renting');
-                        console.log(r)})
-                    .catch(e=>{
-                        console.log(e)
-                    })
+                history.push('/profile/renting');
             })
             .catch((e) => {
                 console.log(e);
@@ -202,7 +187,7 @@ export default function ItemRent(props) {
 
     useEffect(() => {
         setNeedToBePaid(( rentPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet||0 ) < 0 ? 0 : ( rentPrice + (addDeliveryRate ? deliveryPrice : 0) - user.wallet||0 ) )
-        setWalletAfter((user.wallet||0 - rentPrice - (addDeliveryRate ? deliveryPrice : 0)) > 0 ? (user.wallet||0 - rentPrice - (addDeliveryRate ? deliveryPrice : 0)) : 0)
+        setWalletAfter(((user.wallet||0) - rentPrice - (addDeliveryRate ? deliveryPrice : 0)) > 0 ? ((user.wallet||0) - rentPrice - (addDeliveryRate ? deliveryPrice : 0)) : 0)
     }, [rent, addDeliveryRate, deliveryPrice, user]);
 
     return (

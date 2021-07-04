@@ -82,7 +82,7 @@ ReactDOM.render(
           <VerifiedUserRoute path="/cart" component={CartPage} />
           <Route path="/favorite" component={FavoritePage} />
 
-          <Route exact path="/checkout" component={Checkout} />
+          {/*<Route exact path="/checkout" component={Checkout} />*/}
           <Route exact path="/" component={HomePage} />
           <Route component={ErrorPage} />
 
