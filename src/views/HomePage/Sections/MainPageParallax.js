@@ -30,7 +30,7 @@ export default function MainPageParallax() {
     console.log(q)
 
     if (q){
-      history.push(`/search?${q}`)
+      history.push(`/search?name=${q}`)
     }
 
   }
@@ -39,7 +39,7 @@ export default function MainPageParallax() {
 
   return (
     <Parallax
-      image={require("assets/img/bg6.jpg").default}
+      image={require("../../../assets/img/bg6.jpg").default}
       className={classes.parallax}
     >
       <div className={classes.container}>

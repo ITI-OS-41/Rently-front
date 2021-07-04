@@ -16,10 +16,14 @@ import MainPageItems from "./Sections/MainPageTopItems";
 import MainPageUsers from "./Sections/MainPageTopUsers";
 import MainPageAppRate from "./Sections/MainPageAppReview";
 import MainPageTopPosts from "./Sections/MainPageTopPosts";
+import MainPageSection from "./Sections/MainPageSection";
 
 
+const useStyles = makeStyles({
+  presentationStyle
+});
 
-const useStyles = makeStyles(presentationStyle);
+
 
 export default function HomePage() {
   React.useEffect(() => {
@@ -31,20 +35,22 @@ export default function HomePage() {
     <div>
       <Header />
 
-      <MainPageParallax/>
+      <MainPageParallax />
 
 
       <div className={classNames(classes.main, classes.mainRaised)}>
 
-        <MainPageCategories style={{padding: '1rem 2rem', margin: '1rem auto'}}/>
+        <MainPageCategories style={{ padding: '1rem 2rem', margin: '1rem auto' }} />
 
-        <MainPageItems style={{padding: '1rem 2rem', margin: '1rem auto'}}/>
+        <MainPageItems style={{ padding: '1rem 2rem', margin: '1rem auto' }} />
 
-        <MainPageUsers style={{padding: '1rem 2rem', margin: '1rem auto'}}/>
+        <MainPageUsers style={{ padding: '1rem 2rem', margin: '1rem auto' }} />
 
-        <MainPageAppRate style={{padding: '1rem 2rem', margin: '1rem auto'}}/>
+        <MainPageAppRate style={{ padding: '1rem 2rem', margin: '1rem auto' }} />
 
-        <MainPageTopPosts style={{padding: '1rem 2rem', margin: '1rem auto'}}/>
+        <MainPageTopPosts style={{ padding: '1rem 2rem', margin: '1rem auto' }} />
+        <MainPageSection style={{ padding: '1rem 2rem', margin: '1rem auto' }} />
+
       </div>
 
       <Footer />

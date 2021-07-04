@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 // nodejs library that concatenates classes
-import classNames from "classnames";
 // plugin that creates slider
-import Slider from "nouislider";
 // @material-ui/core components
 import {makeStyles} from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -15,7 +13,6 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
-import Button from "components/CustomButtons/Button.js";
 
 import {get} from '../../../functions/request'
 
@@ -23,7 +20,7 @@ import styles from "assets/jss/material-kit-pro-react/views/ecommerceSections/pr
 import CustomInput from "../../../components/CustomInput/CustomInput";
 import LoadingContainer from "../../../components/global/LoadingContainer";
 import ItemCard from "../../../components/Items/ItemCard";
-import {changeQueryParamsURL} from "../../../functions/helpers";
+import NoDataToShow from "../../../components/global/NoDataToShow";
 
 const useStyles = makeStyles(styles);
 
@@ -39,10 +36,10 @@ export default function SectionProducts(props) {
     const [isRequesting, setIsRequesting] = useState(true)
     const [categorys, setCategorys] = React.useState([]);
     const [subcategorys, setSubcategorys] = React.useState([]);
-    const [name, setName] = useState(params.get('name')||'')
-    const [selectedCategory, setSelectedCategory] = useState(params.get('category')||'')
-    const [selectedSubCategory, setSelectedSubCategory] = useState(params.get('subcategory')||'')
-    const [selectedCondition, setSelectedCondition] = useState(params.get('condition')||'')
+    const [name, setName] = useState(params.get('name') || '')
+    const [selectedCategory, setSelectedCategory] = useState(params.get('category') || '')
+    const [selectedSubCategory, setSelectedSubCategory] = useState(params.get('subcategory') || '')
+    const [selectedCondition, setSelectedCondition] = useState(params.get('condition') || '')
 
 
     useEffect(() => {
@@ -86,7 +83,6 @@ export default function SectionProducts(props) {
         //update url
         const newURL = window.location.protocol + "//" + window.location.host + '/search?' + query;
         window.history.pushState({path: newURL}, '', newURL);
-
 
 
         get(`/item?${query}`)
@@ -259,7 +255,7 @@ export default function SectionProducts(props) {
                         </Card>
                     </GridItem>
                     <GridItem md={9} sm={9}>
-                        {items ?
+                        {isRequesting ? <LoadingContainer/> : items.length ?
                             (<GridContainer>
                                 {items.map(item => {
                                     return (
@@ -268,17 +264,8 @@ export default function SectionProducts(props) {
                                         </GridItem>
                                     )
                                 })}
-                            </GridContainer>)
-                            : <LoadingContainer/>}
-                        <GridItem
-                            md={3}
-                            sm={3}
-                            className={classNames(classes.mlAuto, classes.mrAuto)}
-                        >
-                            <Button round color="rose">
-                                Load more...
-                            </Button>
-                        </GridItem>
+                            </GridContainer>) : <NoDataToShow text="no items meets your criteria"/>
+                        }
                     </GridItem>
                 </GridContainer>
             </div>

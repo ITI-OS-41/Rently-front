@@ -11,8 +11,9 @@ import GridItem from "components/Grid/GridItem.js";
 import NavPills from "components/NavPills/NavPills.js";
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
 
-import Request from "./Sections/Request";
-import Confirmed from "./Sections/Confirmed";
+import RequestList from "./Sections/RequestList";
+import ConfirmedList from "./Sections/ConfirmedList";
+import HistoryList from "./Sections/HistoryList";
 
 profilePageStyle.isActive = {
   backgroundColor: "red",
@@ -35,11 +36,15 @@ export default function Posting(props) {
             tabs={[
               {
                 tabButton: "Requests",
-                tabContent: <Request />,
+                tabContent: <RequestList />,
               },
               {
                 tabButton: "confirmed",
-                tabContent: <Confirmed />,
+                tabContent: <ConfirmedList />,
+              },
+              {
+                tabButton: "history",
+                tabContent: <HistoryList/>,
               },
             ]}
           />

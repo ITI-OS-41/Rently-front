@@ -120,7 +120,7 @@ export default function UserForm() {
           <RentHeader
             component={
               <>
-                <Stepper activeStep={4} alternativeLabel>
+                <Stepper activeStep={3} alternativeLabel>
                   {steps.map((label) => (
                     <Step key={label}>
                       <StepLabel>{label}</StepLabel>
@@ -144,7 +144,7 @@ export default function UserForm() {
           <RentHeader
             component={
               <>
-                <Stepper activeStep={5} alternativeLabel>
+                <Stepper activeStep={4} alternativeLabel>
                   {steps.map((label) => (
                     <Step key={label}>
                       <StepLabel>{label}</StepLabel>
