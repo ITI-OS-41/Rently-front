@@ -167,9 +167,9 @@ export const BasicInfo = ({
                             Category
                           </MenuItem>
                           {categories
-                            .filter(
-                              (category) => category.subcategory.length > 0
-                            )
+                            // .filter(
+                            //   (category) => category.subcategory.length > 0
+                            // )
                             .map((category) => (
                               <MenuItem
                                 classes={{

@@ -90,7 +90,7 @@ export default function SectionContentAreas() {
         </div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={12}>
-            <h4>Simple Table</h4>
+            <h4>Simple With Actions</h4>
           </GridItem>
           <GridItem
             xs={12}

@@ -176,7 +176,6 @@ export default () => {
                 approveRequest(params.row);
               }}
             >
-            
               <CheckCircleOutlineIcon style={{ color: "green" }} />
             </Button>
             <Button

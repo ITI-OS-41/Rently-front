@@ -55,7 +55,6 @@ export default () => {
     get(`/rent?status=approved,delivered&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log(res);
         res.forEach((res) => {
           res.id = res._id;
         });

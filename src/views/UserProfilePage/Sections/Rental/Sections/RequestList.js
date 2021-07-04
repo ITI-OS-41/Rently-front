@@ -26,6 +26,7 @@ export default () => {
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
+  const [itemId, setItemId] = useState(null);
 
   const handleDelete = (itemId) => {
     const conf = window.confirm(`are you sure you want to delete this item?`);

@@ -34,6 +34,7 @@ import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
+
 import ReadMore from './views/ReadMore/ReadMore';
 import NoResult from './views/NoResultFoundPage/NoResult'
 import ReadMore from "./views/ReadMore/ReadMore";
