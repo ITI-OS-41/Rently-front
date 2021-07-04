@@ -95,12 +95,12 @@ export default () => {
     },
 
     {
-      field: "condition",
-      headerName: "Condition",
+      field: "owner",
+      headerName: "Owner",
       width: `${DATAGRID_WIDTH * 0.12}px`,
       renderCell: (params) => {
-        return params.row.item.condition ? (
-          <p>{params.row.item.condition}</p>
+        return params.row.item.owner ? (
+          <p>{params.row.item.owner}</p>
         ) : (
           ""
         );

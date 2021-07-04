@@ -110,8 +110,20 @@ export default () => {
       },
     },
     {
-      field: "condition",
-      headerName: "Condition",
+      field: "owner",
+      headerName: "Owner",
+      width: `${DATAGRID_WIDTH * 0.12}px`,
+      renderCell: (params) => {
+        return params.row.item.owner ? (
+          <p> {params.row.item.owner} </p>
+        ) : (
+          ""
+        );
+      },
+    },
+    {
+      field: "owner",
+      headerName: "Owner",
       width: `${DATAGRID_WIDTH * 0.12}px`,
       renderCell: (params) => {
         return params.row.item.condition ? (

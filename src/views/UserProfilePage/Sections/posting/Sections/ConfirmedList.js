@@ -91,8 +91,8 @@ export default () => {
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.item.photo ? (
-          <img src={params.row.item.photo} height="50" />
+        return params.row.photo ? (
+          <img src={params.row.photo} height="50" />
         ) : (
           ""
         );
@@ -103,7 +103,7 @@ export default () => {
       headerName: "Name",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.item.name ? <p>{params.row.item.name}</p> : "";
+        return params.row.name ? <p>{params.row.name}</p> : "";
       },
     },
     {
@@ -139,7 +139,7 @@ export default () => {
           <>
             {params.row.status == "approved" && (
               <Button
-                id={rent}
+                id={params.id}
                 onClick={() => {
                   updateDelivery(params.row);
                 }}
@@ -150,7 +150,7 @@ export default () => {
 
             {params.row.status == "delivered" && (
               <Button
-                id={rent}
+                id={params.id}
                 onClick={() => {
                   updateReturned(params.row);
                 }}
