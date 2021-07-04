@@ -50,6 +50,7 @@ export default () => {
     post(`rent/${rent._id}`, send, "updated successfully!")
       .then((response) => {
         console.log(response);
+        setDemmy((prevState) => prevState + 1);
         history.push("/profile/posting");
       })
       .catch((error) => {
@@ -175,6 +176,7 @@ export default () => {
                 approveRequest(params.row);
               }}
             >
+            
               <CheckCircleOutlineIcon style={{ color: "green" }} />
             </Button>
             <Button

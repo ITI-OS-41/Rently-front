@@ -82,10 +82,21 @@ export default () => {
       },
     },
     {
+      field: "renter",
+      headerName: "Renter",
+      width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) => {
+        return params.row.renter.username ? (
+          <p>{params.row.renter.username}</p>
+        ) : (
+          ""
+        );
+      },
+    },
+    {
       field: "status",
       headerName: "Status",
       width: `${DATAGRID_WIDTH * 0.1}px`,
-     
     },
     {
       field: "stock",
@@ -103,8 +114,6 @@ export default () => {
         return getPrices(params.row?.item?.price);
       },
     },
-
-    
   ];
 
   return (

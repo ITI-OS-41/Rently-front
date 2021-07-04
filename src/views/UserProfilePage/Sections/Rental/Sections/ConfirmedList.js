@@ -28,9 +28,8 @@ export default () => {
   const [items, setItems] = useState([]);
   const [rent, setRent] = useState("");
 
-  const updateDelivery = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
+  const updateDelivery = (id) => {
+    patch(`rent/${id}`, {}, "status updated successfully!")
       .then((response) => {
         setDemmy((prevState) => prevState + 1);
       })
@@ -41,9 +40,9 @@ export default () => {
         setIsLoading(false);
       });
   };
-  const updateReturned = () => {
+  const updateReturned = (id) => {
     console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
+    patch(`rent/${id}`, {}, "status updated successfully!")
       .then((response) => {
         setDemmy((prevState) => prevState + 1);
       })
@@ -60,7 +59,6 @@ export default () => {
       .then((response) => {
         let res = response.data.res;
         res.forEach((res) => {
-          setRent(res._id);
           res.id = res._id;
         });
         setRows(res);
@@ -72,7 +70,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
 
   const getPrices = (prices) => {
     let final = "";
@@ -150,9 +148,9 @@ export default () => {
           <>
             {params.row.status == "approved" && (
               <Button
-                id={rent}
+                id={params.row._id}
                 onClick={() => {
-                  updateDelivery(params.row);
+                  updateDelivery(params.row._id);
                 }}
               >
                 <CallSplitIcon style={{ color: "#FDB813" }} />
@@ -161,9 +159,9 @@ export default () => {
 
             {params.row.status == "delivered" && (
               <Button
-                id={rent}
+                id={params.row._id}
                 onClick={() => {
-                  updateReturned(params.row);
+                  updateReturned(params.row._id);
                 }}
               >
                 <CompareArrowsIcon style={{ color: "green" }} />
