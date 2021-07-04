@@ -26,7 +26,6 @@ export default () => {
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
-  const [itemId, setItemId] = useState(null);
 
   const handleDelete = (itemId) => {
     const conf = window.confirm(`are you sure you want to delete this item?`);
@@ -44,7 +43,6 @@ export default () => {
         let res = response.data.res;
         res.forEach((res) => {
           res.id = res._id;
-          setItemId(res.item._id);
           // console.log("logggg ",res.item._id );
         });
         setRows(res);
@@ -55,7 +53,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
   // console.log("item id 555 ", itemId);
 
   const getPrices = (prices) => {
@@ -99,8 +97,8 @@ export default () => {
       headerName: "Owner",
       width: `${DATAGRID_WIDTH * 0.12}px`,
       renderCell: (params) => {
-        return params.row.item.owner ? (
-          <p>{params.row.item.owner}</p>
+        return params.row.item.owner.username ? (
+          <p>{params.row.item.owner.username}</p>
         ) : (
           ""
         );
@@ -136,7 +134,7 @@ export default () => {
             <ListTableActions
               showEditBtn={false}
               modelName={modelName}
-              id={itemId}
+              id={params.row.item._id}
               handleDelete={handleDelete}
             />
           </>

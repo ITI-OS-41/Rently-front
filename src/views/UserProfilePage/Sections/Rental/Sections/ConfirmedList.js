@@ -114,25 +114,14 @@ export default () => {
       headerName: "Owner",
       width: `${DATAGRID_WIDTH * 0.12}px`,
       renderCell: (params) => {
-        return params.row.item.owner ? (
-          <p> {params.row.item.owner} </p>
+        return params.row.item.owner.username ? (
+          <p> {params.row.item.owner.username} </p>
         ) : (
           ""
         );
       },
     },
-    {
-      field: "owner",
-      headerName: "Owner",
-      width: `${DATAGRID_WIDTH * 0.12}px`,
-      renderCell: (params) => {
-        return params.row.item.condition ? (
-          <p> {params.row.item.condition} </p>
-        ) : (
-          ""
-        );
-      },
-    },
+    
     {
       field: "status",
       headerName: "Status",

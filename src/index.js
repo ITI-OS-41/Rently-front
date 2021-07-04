@@ -39,7 +39,6 @@ import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
 import VerifiedUserRoute from "./functions/route-guards/VerifiedUserRoute";
 import {Redirect} from "react-router-dom";
-// import Checkout from "./components/global/Checkout";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -82,7 +81,6 @@ ReactDOM.render(
           <VerifiedUserRoute path="/cart" component={CartPage} />
           <Route path="/favorite" component={FavoritePage} />
 
-          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/" component={HomePage} />
           <Route component={ErrorPage} />
 
