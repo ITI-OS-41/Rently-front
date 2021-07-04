@@ -56,7 +56,8 @@ const initialValues = {
   email: "da7doom@gmail.com",
   password: "123123123",
   confirmPassword: "123123123",
-  terms: true
+  terms: true,
+  referralCode: ''
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -197,6 +198,22 @@ export default function RegisterForm({ props }) {
                   helperText={touched.confirmPassword && errors.confirmPassword}
                 />
               </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                    variant="outlined"
+                    fullWidth
+                    id="referralCode"
+                    name="referralCode"
+                    label="friend referralCode"
+                    value={values.referralCode}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    error={touched.referralCode && Boolean(errors.referralCode)}
+                    helperText={touched.referralCode && errors.referralCode}
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <FormControlLabel
                   control={

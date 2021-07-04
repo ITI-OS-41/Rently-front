@@ -3,15 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Items/ItemCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Items/ItemCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/global/UserCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/global/UserCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageAppReview.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageAppReview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopCategories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopItems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopPosts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageTopUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/RegisterForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageSectionReviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomePage/Sections/MainPageSectionReviews.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/LoginPage/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +194,7 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1625097411335" />
-    <state x="1852" y="84" width="946" height="967" key="search.everywhere.popup" timestamp="1625388392082">
+    <state x="1852" y="84" width="946" height="967" key="search.everywhere.popup" timestamp="1625391457011">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="-1075" y="-57" width="709" height="800" key="search.everywhere.popup/0.0.1366.738/-1440.-127.1440.870@-1440.-127.1440.870" timestamp="1624577462207" />
@@ -209,7 +205,7 @@
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738/-1920.-139.1920.1050@0.0.1366.738" timestamp="1625058675528" />
     <state x="-1434" y="-111" width="946" height="967" key="search.everywhere.popup/0.0.1366.738/-1920.-195.1920.1050@-1920.-195.1920.1050" timestamp="1624718162818" />
     <state x="346" y="59" width="673" height="679" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@0.0.1366.738" timestamp="1625318284913" />
-    <state x="1852" y="84" width="946" height="967" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625388392082" />
+    <state x="1852" y="84" width="946" height="967" key="search.everywhere.popup/0.0.1366.738/1366.0.1920.1050@1366.0.1920.1050" timestamp="1625391457011" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1625365887452" />
   </component>
 </project>

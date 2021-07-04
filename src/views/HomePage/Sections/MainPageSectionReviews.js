@@ -15,6 +15,8 @@ import {makeStyles, withStyles} from "@material-ui/core/styles";
 import testimonialsStyle from "../../../assets/jss/material-kit-pro-react/views/sectionsSections/testimonialsStyle";
 import StarIcon from "@material-ui/icons/Star";
 import Rating from "@material-ui/lab/Rating";
+import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(testimonialsStyle);
@@ -58,40 +60,50 @@ export default function MainPageSectionReviews(props) {
 
   return (
       <div>
-        <GridContainer  justify="center">
           {
             reviews &&
             (
-              reviews.map(review=>(
+                <>
+                <GridContainer  justify="center">
+                {
 
-                <GridItem xs={12} sm={6} md={4} lg={3} key={review._id}>
-                  <Card testimonial className={classes.card1}>
-                    <div className={classes.icon}>
-                      <FormatQuote />
-                    </div>
-                    <CardBody>
-                      <h5 className={classes.cardDescription}>{review.comment}</h5>
-                    </CardBody>
-                    <CardFooter testimonial>
-                      <div >
+                    reviews.map(review=>(
+                        <GridItem xs={12} sm={6} md={4} lg={3} key={review._id}>
+                          <Card testimonial className={classes.card1}>
+                            <div className={classes.icon}>
+                              <FormatQuote />
+                            </div>
+                            <CardBody>
+                              <h5 className={classes.cardDescription}>{review.comment}</h5>
+                            </CardBody>
+                            <CardFooter testimonial>
+                              <div >
                         <span style={{color: 'gold'}}>
                           {Array(review.rating).fill(0).map((_, i) => <StarIcon/>)}
                         </span>
-                        <span className={classes.cardDescription}>
+                                <span className={classes.cardDescription}>
                           {Array(5-review.rating).fill(0).map((_, i) => <StarIcon/>)}
                         </span>
-                      </div>
-                      <h4 className={classes.cardTitle}>{review.rater.username}</h4>
-                      <CardAvatar testimonial testimonialFooter>
-                          <img src={review.rater.photo} alt={review.rater.username} style={{objectFit:'cover', width:'100px', height:'100px'}}/>
-                      </CardAvatar>
-                    </CardFooter>
-                  </Card>
-                </GridItem>
-              ))
+                              </div>
+                              <h4 className={classes.cardTitle}>{review.rater.username}</h4>
+                              <CardAvatar testimonial testimonialFooter>
+                                <img src={review.rater.photo} alt={review.rater.username} style={{objectFit:'cover', width:'100px', height:'100px'}}/>
+                              </CardAvatar>
+                            </CardFooter>
+                          </Card>
+                        </GridItem>
+                    ))
+                  }
+
+
+                </GridContainer>
+
+                  <Button component={Link} to="/app-rate" color="primary" style={{margin: '2rem auto 0'}}>
+                    App Reviews
+                  </Button>
+                </>
             )
           }
-        </GridContainer>
       </div>
     
   )
