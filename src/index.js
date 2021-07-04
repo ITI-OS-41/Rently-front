@@ -27,6 +27,8 @@ import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
+import AppRate from "./views/AppRate/AppRate";
+
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
@@ -73,6 +75,7 @@ ReactDOM.render(
 
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
+          <UserRoute path="/app-rate" component={AppRate} />
 
 
           <Route path="/legal" component={Legal} />
