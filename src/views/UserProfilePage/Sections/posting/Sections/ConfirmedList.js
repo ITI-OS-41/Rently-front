@@ -25,11 +25,9 @@ export default () => {
   const [dummy, setDemmy] = useState(0);
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [rent, setRent] = useState("");
 
-  const updateDelivery = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
+  const updateDelivery = (id) => {
+    patch(`rent/${id}`, {}, "status updated successfully!")
       .then((response) => {
         setDemmy((prevState) => prevState + 1);
       })
@@ -40,9 +38,8 @@ export default () => {
         setIsLoading(false);
       });
   };
-  const updateReturned = () => {
-    console.log(rent);
-    patch(`rent/${rent}`, {}, "status updated successfully!")
+  const updateReturned = (id) => {
+    patch(`rent/${id}`, {}, "status updated successfully!")
       .then((response) => {
         setDemmy((prevState) => prevState + 1);
       })
@@ -58,9 +55,9 @@ export default () => {
     get(`/rent?status=approved,delivered&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
+        console.log(res);
         res.forEach((res) => {
           res.id = res._id;
-          setRent(res._id);
         });
         setRows(res);
         console.log("current posting Request data res----> ", res);
@@ -71,7 +68,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
 
   const getPrices = (prices) => {
     let final = "";
@@ -103,7 +100,7 @@ export default () => {
     {
       field: "name",
       headerName: "Name",
-      width: `${DATAGRID_WIDTH * 0.1}px`,
+      width: `${DATAGRID_WIDTH * 0.14}px`,
       renderCell: (params) => {
         return params.row.item.name ? <p>{params.row.item.name}</p> : "";
       },
@@ -114,19 +111,15 @@ export default () => {
       width: `${DATAGRID_WIDTH * 0.1}px`,
     },
     {
-      field: "stock",
-      headerName: "Stock",
-      width: `${DATAGRID_WIDTH * 0.1}px`,
-      renderCell: (params) => {
-        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
-      },
-    },
-    {
-      field: "price",
-      headerName: "Price",
+      field: "renter",
+      headerName: "Renter",
       width: `${DATAGRID_WIDTH * 0.15}px`,
       renderCell: (params) => {
-        return getPrices(params.row?.item?.price);
+        return params.row.renter.username ? (
+          <p>{params.row.renter.username}</p>
+        ) : (
+          ""
+        );
       },
     },
 
@@ -141,9 +134,9 @@ export default () => {
           <>
             {params.row.status == "approved" && (
               <Button
-                id={rent}
+                id={params.row._id}
                 onClick={() => {
-                  updateDelivery(params.row);
+                  updateDelivery(params.row._id);
                 }}
               >
                 <CallSplitIcon style={{ color: "#FDB813" }} />
@@ -152,9 +145,9 @@ export default () => {
 
             {params.row.status == "delivered" && (
               <Button
-                id={rent}
+                id={params.row._id}
                 onClick={() => {
-                  updateReturned(params.row);
+                  updateReturned(params.row._id);
                 }}
               >
                 <CompareArrowsIcon style={{ color: "green" }} />

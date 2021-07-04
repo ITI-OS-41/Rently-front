@@ -28,13 +28,11 @@ export default () => {
   const [items, setItems] = useState([]);
   const [rent, setRent] = useState("");
 
-
   useEffect(() => {
     get(`/rent?status=returned&renter=${id}`)
       .then((response) => {
         let res = response.data.res;
         res.forEach((res) => {
-          setRent(res._id);
           res.id = res._id;
         });
         setRows(res);
@@ -96,6 +94,18 @@ export default () => {
       },
     },
     {
+      field: "owner",
+      headerName: "Owner",
+      width: `${DATAGRID_WIDTH * 0.12}px`,
+      renderCell: (params) => {
+        return params.row.item.owner.username ? (
+          <p> {params.row.item.owner.username} </p>
+        ) : (
+          ""
+        );
+      },
+    },
+    {
       field: "status",
       headerName: "Status",
       width: `${DATAGRID_WIDTH * 0.1}px`,
@@ -110,7 +120,7 @@ export default () => {
       renderCell: (params) => {
         return getPrices(params.row.item.price);
       },
-    }
+    },
   ];
 
   return (

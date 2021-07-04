@@ -75,7 +75,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
 
   const getPrices = (prices) => {
     let final = "";

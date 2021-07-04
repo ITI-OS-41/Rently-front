@@ -41,7 +41,6 @@ export default () => {
     get(`/item/?isPublished=false&owner=${id}`)
       .then((response) => {
         let res = response.data.res;
-        console.log("reshh", res);
         res.forEach((res) => {
           res.id = res._id;
         });
