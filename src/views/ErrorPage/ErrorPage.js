@@ -28,7 +28,7 @@ export default function ErrorPage({ ...rest }) {
   });
 
   useEffect(()=>{
-    window.history.pushState({path: '/'}, 'Error 404', '/');
+    window.history.pushState({path: '/error404'}, 'Error 404', '/error404');
   },[]);
 
   const classes = useStyles();
