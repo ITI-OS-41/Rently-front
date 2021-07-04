@@ -459,6 +459,8 @@ export default function ItemPage(props) {
                 </div>
                 <hr />
 
+                <span className={classes.storeName}>Available Times</span>
+
                 <span className={classes.storeName}>Keep in Mind</span>
                 <p>
                   You remain fully liable to the Owner for any damage, loss, or

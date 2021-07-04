@@ -25,6 +25,7 @@ import MessengerPage from "../MessengerPage/MessengerPage";
 import MyPosting from "./Sections/MyPostings/MyPosting";
 import MyWallet from "./Sections/MyWallet/MyWallet";
 import ReferAndEarn from "./Sections/ReferAndEarnPage/ReferAndEarn";
+import Dashboard from './Sections/UserDashboard/Dashboard';
 
 
 const useStyles = makeStyles(profilePageStyle);
@@ -47,6 +48,11 @@ export default function UserProfilePage(props) {
       url: '/profile/store',
       name: 'Store',
       component: <StorePage/>
+    },
+    {
+      url: '/profile/my-dashboard',
+      name: 'Dashboard',
+      component: <Dashboard/>
     },
     {
       url: '/profile/my-postings',

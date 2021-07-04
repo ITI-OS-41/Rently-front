@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Container, Row } from "reactstrap";
 import Header from "components/global/Header.js";
-import CallSplitIcon from "@material-ui/icons/CallSplit";
-import CompareArrowsIcon from "@material-ui/icons/CompareArrows";
+import { Button } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
-import { Tooltip, IconButton, Button } from "@material-ui/core";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
-import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
-import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import { get, patch } from "functions/request";
 import {
   DATAGRID_RESULTS_PER_PAGE,
   DATAGRID_WIDTH,
 } from "../../../../../config";
-import { Link } from "react-router-dom";
-import UncontrolableSwitch from "components/global/UncontrolableSwitch";
-import ListTableActions from "components/global/ListTableActions";
+
+import Rating from "./Rating"
 
 const modelName = "item";
 
@@ -28,7 +21,7 @@ export default () => {
   const [rent, setRent] = useState("");
 
   useEffect(() => {
-    get(`/rent?status=returned&owner=${id}`)
+    get(`/item?owner=${id}`)
       .then((response) => {
         let res = response.data.res;
         res.forEach((res) => {
@@ -46,74 +39,68 @@ export default () => {
       });
   }, []);
 
-  const getPrices = (prices) => {
-    let final = "";
-    if (prices?.day) {
-      final += `D: ${prices?.day}$ `;
-    }
-    if (prices?.week) {
-      final += `W: ${prices?.week}$ `;
-    }
-    if (prices?.month) {
-      final += `M: ${prices?.month}$ `;
-    }
-    return final;
-  };
-
   const columns = [
     {
       field: "photo",
       headerName: "Photo",
       width: `${DATAGRID_WIDTH * 0.1}px`,
       renderCell: (params) => {
-        return params.row.item.photo ? (
-          <img src={params.row.item.photo} height="50" />
+        return params.row.photo ? (
+            <>
+          <img src={params.row.photo} height="50" />
+          </>
         ) : (
           ""
         );
       },
+     
     },
     {
       field: "name",
-      headerName: "Name",
-      width: `${DATAGRID_WIDTH * 0.1}px`,
+      headerName: "name",
+      width: `${DATAGRID_WIDTH * 0.11}px`,
       renderCell: (params) => {
-        return params.row.item.name ? <p>{params.row.item.name}</p> : "";
-      },
-    },
-    {
-      field: "renter",
-      headerName: "Renter",
-      width: `${DATAGRID_WIDTH * 0.1}px`,
-      renderCell: (params) => {
-        return params.row.renter.username ? (
-          <p>{params.row.renter.username}</p>
+        return params.row?.name ? (
+         <>   
+        <p>{params.row?.name}</p>
+        <Rating
+          name="simple-controlled"
+          value={params.row.rating}
+        />
+        </>
         ) : (
-          ""
-        );
+            ""
+        ); 
       },
     },
     {
-      field: "status",
-      headerName: "Status",
+      field: "Views",
+      headerName: "Views",
       width: `${DATAGRID_WIDTH * 0.1}px`,
+      renderCell: (params) =>("1")
     },
     {
-      field: "stock",
-      headerName: "Stock",
+      field: "Bookings",
+      headerName: "Bookings",
       width: `${DATAGRID_WIDTH * 0.1}px`,
-      renderCell: (params) => {
-        return params.row.item.stock ? <p>{params.row.item.stock}</p> : "";
-      },
+      renderCell: (params) =>("0")
     },
     {
-      field: "price",
-      headerName: "Price",
+      field: "Reviews",
+      headerName: "Reviews",
       width: `${DATAGRID_WIDTH * 0.15}px`,
-      renderCell: (params) => {
-        return getPrices(params.row?.item?.price);
-      },
+      renderCell: (params) =>("1")
     },
+    {
+        field: "action",
+        headerName: "action",
+        width: `${DATAGRID_WIDTH * 0.1}px`,
+        renderCell: (params) =>(
+        <Button
+            style={{backgroundColor:"#038C7F", color: "#FFF"}}
+        >share</Button>)
+      },
+    
   ];
 
   return (

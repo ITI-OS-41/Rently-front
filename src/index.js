@@ -27,11 +27,16 @@ import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
+import AppRate from "./views/AppRate/AppRate";
+
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
+
+import ReadMore from './views/ReadMore/ReadMore';
+import NoResult from './views/NoResultFoundPage/NoResult'
 import ReadMore from "./views/ReadMore/ReadMore";
 import Nonprofit from "./views/NonprofitPage/Nonprofit";
 import Careers from "./views/CareersPage/Careers";
@@ -71,6 +76,7 @@ ReactDOM.render(
 
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
+          <UserRoute path="/app-rate" component={AppRate} />
 
 
           <Route path="/legal" component={Legal} />
@@ -79,6 +85,7 @@ ReactDOM.render(
           <Route path="/read-more" component={ReadMore} />
           <Route path="/nonprofit" component={Nonprofit} />
           <Route path="/careers" component={Careers} />
+          <Route path="/no-result" component={NoResult} />
 
           <VerifiedUserRoute path="/messenger" component={MessengerPage} />
 
