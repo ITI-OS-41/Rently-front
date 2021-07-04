@@ -17,6 +17,7 @@ import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import HomePage from "./views/HomePage/HomePage";
+
 import SearchPage from "./views/SearchPage/SearchPage";
 import CategoryPage from "./views/CategoryPage/CategoryPage";
 import SubCategoryPage from "views/SubCategoryPage/SubCategoryPage";
@@ -38,7 +39,7 @@ import Careers from "./views/CareersPage/Careers";
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
 import VerifiedUserRoute from "./functions/route-guards/VerifiedUserRoute";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 // import Checkout from "./components/global/Checkout";
 
 ReactDOM.render(
@@ -63,8 +64,14 @@ ReactDOM.render(
           <Route path="/search" component={SearchPage} />
           <UserRoute path="/item/:id" component={ItemPage} />
 
-          
+          <UserRoute path="/messenger" component={MessengerPage} />
+
+
           <UserRoute path="/ReferAndEarn" component={ReferAndEarn} />
+
+          <UserRoute path="/profile" component={UserProfilePage} />
+          <UserRoute path="/user/:id" component={userStorePage} />
+
 
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
@@ -84,6 +91,7 @@ ReactDOM.render(
 
           {/*<Route exact path="/checkout" component={Checkout} />*/}
           <Route exact path="/" component={HomePage} />
+
           <Route component={ErrorPage} />
 
         </Switch>
