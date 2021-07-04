@@ -1,34 +1,70 @@
 // @noflow
 
-import React,{useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, Elements, ElementsConsumer} from '@stripe/react-stripe-js';
-import {post} from "../../functions/request";
+import {patch, post} from "../../functions/request";
 import StripeCheckout from "react-stripe-checkout";
 import toast from "../../functions/toast";
 import {SERVER} from "../../config";
 
+import history from '../../functions/history'
+import {UserContext} from "../../Context";
 
 const Checkout = (props) => {
     const {total, products,...rest} = props;
+    const {user,setUser} = useContext(UserContext);
 
     console.log({products})
-    // const [product] = useState(products);
 
 
 
     async function handleToken(token, addresses) {
         const response = await post(
             `${SERVER}/checkout`,
-            { token, products, total }
+            { token, products, total: (total-user.wallet) }
         );
         const { status } = response.data;
         console.log("Response:", response.data);
         if (status === "success") {
-            alert('success')
+
+            for (let i = 0; i < products.length; i++) {
+                await patch(`/rent/checkout/${products[i]._id}`)
+                    .then(res=>{
+                        console.log(res)
+
+                        const newWalletValue = (user.wallet > total  ? user.wallet - total : 0)
+                        patch('/user/update', {
+
+                            wallet: newWalletValue
+                        }, )
+                            .then(r => {
+                                setUser(
+                                    {
+                                        ...user,
+                                        wallet: newWalletValue
+                                    }
+                                )
+                                console.log(r)})
+                            .catch(e=>{
+                                console.log(e)
+                            })
+
+
+                    })
+                    .catch(err=>{
+                        console.log(err)
+                    })
+            }
+            console.log('finished')
+
+            toast.success('Paid successfully')
+            history.push('/profile/renting')
+
             console.log("Success! Check email for details", { type: "success" });
         } else {
-            alert('error')
+            toast.error('Something went wrong, contact the Administrator')
+
             console.log("Something went wrong", { type: "error" });
         }
     }

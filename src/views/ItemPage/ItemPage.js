@@ -471,9 +471,9 @@ export default function ItemPage(props) {
               <GridItem md={4} sm={6}>
                 <Share />
 
+                {user._id !== item.owner._id && (
                 <Card>
                   <CardBody>
-                    {user._id !== item.owner._id && (
                       <>
                         <ItemRent
                           item={item}
@@ -481,9 +481,9 @@ export default function ItemPage(props) {
                           maxQuantity={item.stock}
                         />
                       </>
-                    )}  
                   </CardBody>
                 </Card>
+                )}
 
                 <div style={{ textAlign: "center" }}>
                   <Button
