@@ -17,6 +17,7 @@ import LoadingContainer from "../../../components/global/LoadingContainer";
 import Carousel from "nuka-carousel";
 import {CAROUSEL_SETTINGS} from "../../../config";
 import PostCard from "../../../components/global/PostCard";
+import {shuffle} from "../../../functions/helpers";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'blog';
@@ -31,10 +32,10 @@ export default function MainPageTopPosts({ ...rest }) {
 
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?limit=10`)
       .then(response => {
         const res = response.data.res
-        setItems(res.splice(-2,4))
+        setItems(shuffle(res))
       })
       .catch(err=>{
         console.log(err)

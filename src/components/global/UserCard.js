@@ -8,6 +8,8 @@ import {makeStyles} from "@material-ui/core";
 import CardAvatar from "../Card/CardAvatar";
 import {Link} from "react-router-dom";
 
+import defaultImage from '../../assets/img/noimagelarge.png';
+
 const useStyles = makeStyles(teamStyle);
 export default function UserCard(props) {
   const classes = useStyles();
@@ -17,7 +19,7 @@ export default function UserCard(props) {
     <Card profile plain>
       <CardAvatar profile plain>
         <Link to={`user/${user._id}`}>
-          <img src={user.photo} alt={user.name} className={classes.img} style={{
+          <img src={user.photo || defaultImage} alt={user.name} className={classes.img} style={{
             width: '130px',
             height: '130px',
             objectFit: 'cover'
@@ -25,7 +27,7 @@ export default function UserCard(props) {
         </Link>
       </CardAvatar>
       <CardBody plain>
-        <h4 className={classes.cardTitle}>{user.firstname} {user.lastname}</h4>
+        <h4 className={classes.cardTitle}>{user?.store?.name || user.firstname+' '+user.lastname}</h4>
         <h6 className={classes.textMuted}>{user.email}</h6>
         <p className={classes.cardDescription}>
           {user.rating}

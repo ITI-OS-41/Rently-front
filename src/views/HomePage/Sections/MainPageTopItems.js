@@ -17,6 +17,9 @@ import LoadingContainer from "../../../components/global/LoadingContainer";
 import Carousel from "nuka-carousel";
 import {CAROUSEL_SETTINGS} from "../../../config";
 import ItemCard from "../../../components/Items/ItemCard";
+import {shuffle} from "../../../functions/helpers";
+import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'item';
@@ -31,10 +34,10 @@ export default function MainPageItems({ ...rest }) {
 
 
   useEffect(() => {
-    get(`/${modelName}?isPublished=true&isAvailable=true`)
+    get(`/${modelName}?isPublished=true&isAvailable=true&limit=10`)
       .then(response => {
         const res = response.data.res
-        setItems(res)
+        setItems(shuffle(res))
       })
       .catch(err=>{
         console.log(err)
@@ -51,11 +54,19 @@ export default function MainPageItems({ ...rest }) {
           <h2 className={classes.title}>Top Items</h2>
           <GridContainer>
             { items?
-              (<Carousel {...CAROUSEL_SETTINGS}>
-                {items.map(item=>{
-                  return (<ItemCard key={item._id} item={item} />)
-                })}
-              </Carousel>)
+              (
+                  <>
+                    <Carousel {...CAROUSEL_SETTINGS}>
+                      {items.map(item=>{
+                        return (<ItemCard key={item._id} item={item} />)
+                      })}
+                    </Carousel>
+
+                    <Button component={Link} to="/search" color="primary" style={{margin: '2rem auto 0'}}>
+                      All Items
+                    </Button>
+                  </>
+              )
               : <LoadingContainer/> }
           </GridContainer>
         </div>

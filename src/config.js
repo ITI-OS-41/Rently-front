@@ -4,7 +4,7 @@
 
 const CAROUSEL_SETTINGS = {
   withoutControls: true,
-  slideWidth: "300px",
+  slideWidth: "260px",
   cellSpacing: 20,
   heightMode: "max",
   framePadding: "30px 0",

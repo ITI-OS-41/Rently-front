@@ -13,6 +13,9 @@ import CategoryCard from "../../../components/global/CategoryCard";
 import LoadingContainer from "../../../components/global/LoadingContainer";
 
 import {CAROUSEL_SETTINGS} from '../../../config'
+import {shuffle} from "../../../functions/helpers";
+import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 
 
@@ -28,10 +31,12 @@ export default function MainPageCategories({...rest}) {
 
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?limit=10`)
       .then(response => {
         const res = response.data.res
-        setCategories(res)
+
+
+        setCategories(shuffle(res))
       })
       .catch(err => {
         console.log(err)
@@ -48,11 +53,20 @@ export default function MainPageCategories({...rest}) {
         <h2 className={classes.title}>Top Categories</h2>
         <GridContainer>
           { categories?
-            (<Carousel {...CAROUSEL_SETTINGS}>
-              {categories.map(item=>{
-                return (<CategoryCard key={item._id} category={item} />)
-              })}
-            </Carousel>)
+            (
+                <>
+                  <Carousel {...CAROUSEL_SETTINGS}>
+                    {categories.map(item=>{
+                      return (<CategoryCard key={item._id} category={item} />)
+                    })}
+                  </Carousel>
+
+
+                  <Button component={Link} to="/category" color="primary" style={{margin: '2rem auto 0'}}>
+                    All categories
+                  </Button>
+                </>
+            )
             : <LoadingContainer/> }
         </GridContainer>
       </div>

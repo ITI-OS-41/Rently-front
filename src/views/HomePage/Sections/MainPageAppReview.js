@@ -18,6 +18,7 @@ import UserCard from "../../../components/global/UserCard";
 import AppRateCard from "../../../components/global/AppRateCard";
 import Carousel from "nuka-carousel";
 import {CAROUSEL_SETTINGS} from "../../../config";
+import {shuffle} from "../../../functions/helpers";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'apprate';
@@ -29,10 +30,10 @@ export default function MainPageAppRate({ ...rest }) {
 
 
   useEffect(() => {
-    get(`/${modelName}`)
+    get(`/${modelName}?limit=10`)
       .then(response => {
         const res = response.data.res
-        setItems(res)
+        setItems(shuffle(res))
       })
       .catch(err=>{
         console.log(err)

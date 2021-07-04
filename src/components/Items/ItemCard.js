@@ -87,7 +87,6 @@ export default function ItemCard(props) {
   const [price, setPrice] = useState('');
 
   const { item } = props;
-  const { username } = item?.owner?.username
 
   const handleChange = (event) => {
     setPrice(
@@ -106,14 +105,18 @@ export default function ItemCard(props) {
       <CardBody plain>
         {/*<div className={classes.cardLabel}><small>.67 km</small></div>*/}
         <Link to={`/item/${item._id}`} onClick={() => history.push("/item/" + item._id)}>
-          <img className={classes.cardImage} src={item.photo[0]||defaultImage} alt={item.name} />
+          <img className={classes.cardImage} src={item.photo[0]||defaultImage} style={{height: '250px', objectFit: 'cover'}} alt={item.name} />
         </Link>
-        <h5 className={classNames(classes.cardTitle, classes.itemTitle)}>
+        <h5 className={classNames(classes.cardTitle, classes.itemTitle)} style={{
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}>
           <Link to={`/item/${item?._id}`}>{item.name}</Link>
         </h5>
         <div>
           <p className={classes.cardDescription}>{item.description}</p>
-          <Link to={`/item/${item._id}`} className={classes.storeName} onClick={() => history.push("/item/" + item._id)}>Owner: {username}</Link><br />
+          <Link to={`/item/${item._id}`} className={classes.storeName} onClick={() => history.push("/item/" + item._id)}>Owner: {item.owner.username}</Link><br />
           <ItemRating itemRate={item.itemRate} />
         </div>
         <FormControl className={classes.formControl}>

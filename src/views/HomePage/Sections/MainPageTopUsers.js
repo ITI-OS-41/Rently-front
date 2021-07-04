@@ -17,6 +17,7 @@ import LoadingContainer from "../../../components/global/LoadingContainer";
 import UserCard from "../../../components/global/UserCard";
 import Carousel from "nuka-carousel";
 import {CAROUSEL_SETTINGS} from "../../../config";
+import {shuffle} from "../../../functions/helpers";
 
 const useStyles = makeStyles(blogsStyle);
 const modelName = 'user';
@@ -31,10 +32,10 @@ export default function MainPageUsers({ ...rest }) {
 
 
   useEffect(() => {
-    get(`/${modelName}/top`)
+    get(`/${modelName}/top?limit=10`)
       .then(response => {
         const res = response.data
-        setItems(res)
+        setItems(shuffle(res))
       })
       .catch(err=>{
         console.log(err)
@@ -48,7 +49,7 @@ export default function MainPageUsers({ ...rest }) {
   return (
     <div className="cd-section" {...rest}>
       <div>
-        <h2 className={classes.title}>Top Users</h2>
+        <h2 className={classes.title}>Top Stores</h2>
         <GridContainer>
           { items?
             (<Carousel {...CAROUSEL_SETTINGS}>
