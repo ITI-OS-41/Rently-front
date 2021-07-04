@@ -16,6 +16,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import ControlPointOutlinedIcon from '@material-ui/icons/ControlPointOutlined';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 
 // core components
@@ -90,6 +91,17 @@ export default function HeaderLinks(props) {
         <List
             className={classes.list + " " + classes.mlAuto}>
 
+            {user?.role==='admin' &&
+            <>
+                <a
+
+                    href="https://rently-service-dashboard.herokuapp.com/"
+                    className={classes.navLink}
+                >
+                    Dashboard
+                </a>
+            </>
+            }
             { !user.username &&
             <>
                 <ListItem className={classes.listItem}>
@@ -137,7 +149,17 @@ export default function HeaderLinks(props) {
                         to="/favorite"
                         className={classes.navLink}
                     >
-                        <FavoriteOutlinedIcon /> Wishlist
+                        <FavoriteOutlinedIcon />
+                    </Link>
+                </ListItem>
+
+
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/cart"
+                        className={classes.navLink}
+                    >
+                        <ShoppingCartOutlinedIcon/>
                     </Link>
                 </ListItem>
 

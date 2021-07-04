@@ -55,7 +55,7 @@ export const CancellationAndDelivery = ({
   prevStep,
 }) => {
   const [direction, setDirection] = useState("back");
-
+  const [delivery, setDelivery] = useState("false");
   const classes = useStyles();
   return (
     <>
@@ -189,7 +189,9 @@ export const CancellationAndDelivery = ({
                     </Grid>
                   </Grid>
                   {!values.cancellation && (
-                    <FormHelperText style={{color:"#f44336"}}>{errors.cancellation}</FormHelperText>
+                    <FormHelperText style={{ color: "#f44336" }}>
+                      {errors.cancellation}
+                    </FormHelperText>
                   )}
                 </div>
               </Grid>
@@ -239,7 +241,7 @@ export const CancellationAndDelivery = ({
                             <Radio
                               checked={values.isDeliverable === "false"}
                               onChange={handleChange}
-                              value="false"
+                              value={delivery}
                               name="isDeliverable"
                               aria-label="False"
                               classes={{
@@ -259,7 +261,9 @@ export const CancellationAndDelivery = ({
                   </div>
 
                   {!values.isDeliverable && (
-                    <FormHelperText style={{color:"#f44336"}}>{errors.isDeliverable}</FormHelperText>
+                    <FormHelperText style={{ color: "#f44336" }}>
+                      {errors.isDeliverable}
+                    </FormHelperText>
                   )}
                 </div>
               </Grid>

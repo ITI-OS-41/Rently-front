@@ -382,17 +382,7 @@ export const BasicInfo = ({
                       >
                         <strong>Where will your item be when rented?</strong>
                       </InputLabel>
-                      <TextField
-                        variant="outlined"
-                        fullWidth
-                        size="small"
-                        id="address"
-                        name="address"
-                        // onBlur={handleBlur}
-                        // onChange={handleChange}
-                        // error={touched.username && Boolean(errors.username)}
-                        // helperText={touched.username && errors.username}
-                      />
+                      
                     </div>
 
                    

@@ -17,6 +17,7 @@ import RegisterPage from "views/RegisterPage/RegisterPage";
 import UserRoute from "functions/route-guards/UserRoute";
 import VisitorRoute from "functions/route-guards/VisitorRoute";
 import HomePage from "./views/HomePage/HomePage";
+
 import SearchPage from "./views/SearchPage/SearchPage";
 import CategoryPage from "./views/CategoryPage/CategoryPage";
 import SubCategoryPage from "views/SubCategoryPage/SubCategoryPage";
@@ -26,20 +27,25 @@ import userStorePage from "./views/Profile/StorePage/UserStorePage";
 import MessengerPage from "./views/MessengerPage/MessengerPage";
 import Blogs from "./views/Blogs/Blogs";
 import SingleBlog from "./views/SingleBlog/SingleBolg";
+import AppRate from "./views/AppRate/AppRate";
+
 import Context from "./Context";
 import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
+
+import ReadMore from './views/ReadMore/ReadMore';
+import NoResult from './views/NoResultFoundPage/NoResult'
 import ReadMore from "./views/ReadMore/ReadMore";
 import Nonprofit from "./views/NonprofitPage/Nonprofit";
 import Careers from "./views/CareersPage/Careers";
-import NoResult from "./views/NoResultFoundPage/NoResult"
 
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
 import VerifiedUserRoute from "./functions/route-guards/VerifiedUserRoute";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+// import Checkout from "./components/global/Checkout";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -65,11 +71,13 @@ ReactDOM.render(
 
           <UserRoute path="/messenger" component={MessengerPage} />
 
-          
+
           <UserRoute path="/ReferAndEarn" component={ReferAndEarn} />
-          
+
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
+          <UserRoute path="/app-rate" component={AppRate} />
+
 
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
@@ -79,10 +87,7 @@ ReactDOM.render(
           <Route path="/careers" component={Careers} />
           <Route path="/no-result" component={NoResult} />
 
-          <Route path="/search" component={SearchPage} />
-          <Route path="/item/:id" component={ItemPage} />
-
-          <UserRoute path="/messenger" component={MessengerPage} />
+          <VerifiedUserRoute path="/messenger" component={MessengerPage} />
 
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
@@ -91,9 +96,9 @@ ReactDOM.render(
           <VerifiedUserRoute path="/cart" component={CartPage} />
           <Route path="/favorite" component={FavoritePage} />
 
-          <Route path="/about-us" component={AboutUsPage} />
-
+          {/*<Route exact path="/checkout" component={Checkout} />*/}
           <Route exact path="/" component={HomePage} />
+
           <Route component={ErrorPage} />
 
         </Switch>

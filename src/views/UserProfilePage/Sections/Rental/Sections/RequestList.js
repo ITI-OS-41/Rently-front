@@ -44,7 +44,6 @@ export default () => {
         let res = response.data.res;
         res.forEach((res) => {
           res.id = res._id;
-          setItemId(res.item._id);
           // console.log("logggg ",res.item._id );
         });
         setRows(res);
@@ -55,7 +54,7 @@ export default () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [dummy]);
   // console.log("item id 555 ", itemId);
 
   const getPrices = (prices) => {
@@ -95,12 +94,12 @@ export default () => {
     },
 
     {
-      field: "condition",
-      headerName: "Condition",
+      field: "owner",
+      headerName: "Owner",
       width: `${DATAGRID_WIDTH * 0.12}px`,
       renderCell: (params) => {
-        return params.row.item.condition ? (
-          <p>{params.row.item.condition}</p>
+        return params.row.item.owner.username ? (
+          <p>{params.row.item.owner.username}</p>
         ) : (
           ""
         );
@@ -136,7 +135,7 @@ export default () => {
             <ListTableActions
               showEditBtn={false}
               modelName={modelName}
-              id={itemId}
+              id={params.row.item._id}
               handleDelete={handleDelete}
             />
           </>

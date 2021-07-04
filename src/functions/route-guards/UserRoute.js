@@ -19,7 +19,7 @@ const UserRoute = ({ component: Component, ...rest }) => {
         <Route
             {...rest}
             render={props =>
-                user.token ? (
+                user?.token ? (
                     <Component {...props} />
                 ) : (
                     <Redirect to={{ pathname: '/login', state: { from: props.location } }} />

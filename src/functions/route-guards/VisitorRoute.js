@@ -11,7 +11,7 @@ import {UserContext} from "../../Context";
 const VisitorRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
-    const token = JSON.parse(localStorage.getItem('rently-token'))
+    const token = localStorage.getItem('rently-token');
 
     return (
         <Route
