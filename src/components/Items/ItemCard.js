@@ -87,7 +87,7 @@ export default function ItemCard(props) {
   const [price, setPrice] = useState('');
 
   const { item } = props;
-  const { username } = item.owner
+  const { username } = item?.owner?.username
 
   const handleChange = (event) => {
     setPrice(
@@ -109,7 +109,7 @@ export default function ItemCard(props) {
           <img className={classes.cardImage} src={item.photo[0]||defaultImage} alt={item.name} />
         </Link>
         <h5 className={classNames(classes.cardTitle, classes.itemTitle)}>
-          <Link to={`/item/${item._id}`}>{item.name}</Link>
+          <Link to={`/item/${item?._id}`}>{item.name}</Link>
         </h5>
         <div>
           <p className={classes.cardDescription}>{item.description}</p>

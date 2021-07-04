@@ -38,6 +38,7 @@ import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import FavoriteBorderOutlinedIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import NoDataToShow from "../../components/global/NoDataToShow";
+import Typography from "@material-ui/core/Typography";
 
 const customStyle = {
   timeRateLabel: {
@@ -81,6 +82,9 @@ const customStyle = {
       objectFit: "contain",
     },
   },
+  outOfStock:{
+    color:"red"
+  }
 };
 
 const useStyles = makeStyles({
@@ -356,9 +360,11 @@ export default function ItemPage(props) {
                     {item?.name} -{" "}
                     <span className={classes.title}>{item?.condition}</span>
                   </h2>
-                  <p>
-                    <p>{item?.description}</p>
-                  </p>
+                  <div>
+                    <Typography className={ `${classes.storeName} ${item.stock===0&&classes.outOfStock}`}>Stock: {item.stock}</Typography>
+
+                    <Typography >{item?.description}</Typography>
+                  </div>
                 </div>
                 <hr />
                 <div>
@@ -453,8 +459,6 @@ export default function ItemPage(props) {
                 </div>
                 <hr />
 
-                <span className={classes.storeName}>Available Times</span>
-
                 <span className={classes.storeName}>Keep in Mind</span>
                 <p>
                   You remain fully liable to the Owner for any damage, loss, or
@@ -467,18 +471,19 @@ export default function ItemPage(props) {
               <GridItem md={4} sm={6}>
                 <Share />
 
+                {user._id !== item.owner._id && (
                 <Card>
                   <CardBody>
-                    {user._id !== item.owner._id && (
                       <>
                         <ItemRent
                           item={item}
-                          deliveryPrice={deliveryDistance / distanceToKMRate}
+                          deliveryPrice={deliveryDistance? Math.round(deliveryDistance / distanceToKMRate) : 0}
+                          maxQuantity={item.stock}
                         />
                       </>
-                    )}  
                   </CardBody>
                 </Card>
+                )}
 
                 <div style={{ textAlign: "center" }}>
                   <Button

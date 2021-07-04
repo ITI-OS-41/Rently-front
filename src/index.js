@@ -32,14 +32,15 @@ import MapPage from "./views/MapPage/MapPage";
 import Legal from "./views/Legal/Legal";
 import ReferAndEarn from "views/UserProfilePage/Sections/ReferAndEarnPage/ReferAndEarn";
 
-import ReadMore from './views/ReadMore/ReadMore';
-import Nonprofit from './views/NonprofitPage/Nonprofit';
-import Careers from './views/CareersPage/Careers'
+import ReadMore from "./views/ReadMore/ReadMore";
+import Nonprofit from "./views/NonprofitPage/Nonprofit";
+import Careers from "./views/CareersPage/Careers";
 
 import CartPage from "./views/CartPage/CartPage";
 import FavoritePage from "./views/FavoritePage/FavoritePage";
 import VerifiedUserRoute from "./functions/route-guards/VerifiedUserRoute";
 import { Redirect } from "react-router-dom";
+// import Checkout from "./components/global/Checkout";
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -71,6 +72,7 @@ ReactDOM.render(
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
 
+
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
           <Route path="/contact-us" component={ContactUsPage} />
@@ -78,10 +80,7 @@ ReactDOM.render(
           <Route path="/nonprofit" component={Nonprofit} />
           <Route path="/careers" component={Careers} />
 
-          <Route path="/search" component={SearchPage} />
-          <Route path="/item/:id" component={ItemPage} />
-
-          <UserRoute path="/messenger" component={MessengerPage} />
+          <VerifiedUserRoute path="/messenger" component={MessengerPage} />
 
           <UserRoute path="/profile" component={UserProfilePage} />
           <UserRoute path="/user/:id" component={userStorePage} />
@@ -90,8 +89,7 @@ ReactDOM.render(
           <VerifiedUserRoute path="/cart" component={CartPage} />
           <Route path="/favorite" component={FavoritePage} />
 
-          <Route path="/about-us" component={AboutUsPage} />
-
+          {/*<Route exact path="/checkout" component={Checkout} />*/}
           <Route exact path="/" component={HomePage} />
 
           <Route component={ErrorPage} />

@@ -10,8 +10,8 @@ import Grid from "@material-ui/core/Grid";
 import GridItem from "components/Grid/GridItem.js";
 import NavPills from "components/NavPills/NavPills.js";
 import profilePageStyle from "assets/jss/material-kit-pro-react/views/profilePageStyle.js";
-import PostedItems from "./Sections/PostedItem";
-import DraftItems from './Sections/DraftItems';
+import DraftItemList from "./Sections/DraftItemList";
+import PostedItemList from "./Sections/PostedItemList";
 
 profilePageStyle.isActive = {
   backgroundColor: "red",
@@ -23,7 +23,7 @@ export default function Posting(props) {
   const classes = useStyles();
 
   return (
-    <div style={{ padding: "1rem 3rem" }}>
+    <div >
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
           <h3 className={classes.title + " " + classes.textCenter}>
@@ -34,11 +34,11 @@ export default function Posting(props) {
             tabs={[
               {
                 tabButton: "Posted items",
-                tabContent: <PostedItems/>,
+                tabContent: <PostedItemList/>,
               },
               {
                 tabButton: "Draft items",
-                tabContent: <DraftItems />,
+                tabContent: <DraftItemList />,
               },
             ]}
           />
