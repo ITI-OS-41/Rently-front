@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9766e9-6606-4655-b108-30af8767bbbf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/global/Checkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/route-guards/VisitorRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/CartPage/CartPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/CartPage/CartPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ItemWizardPage/CancellationAndDelivery.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ItemWizardPage/CancellationAndDelivery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ErrorPage/ErrorPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ErrorPage/ErrorPage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +135,7 @@
       <workItem from="1625259476313" duration="760000" />
       <workItem from="1625261811993" duration="1848000" />
       <workItem from="1625307909504" duration="93000" />
-      <workItem from="1625317635049" duration="16035000" />
+      <workItem from="1625317635049" duration="19762000" />
     </task>
     <servers />
   </component>

@@ -65,9 +65,6 @@ ReactDOM.render(
 
           
           <UserRoute path="/ReferAndEarn" component={ReferAndEarn} />
-          
-          <UserRoute path="/profile" component={UserProfilePage} />
-          <UserRoute path="/user/:id" component={userStorePage} />
 
           <Route path="/legal" component={Legal} />
           <Route path="/about-us" component={AboutUsPage} />
@@ -75,9 +72,6 @@ ReactDOM.render(
           <Route path="/read-more" component={ReadMore} />
           <Route path="/nonprofit" component={Nonprofit} />
           <Route path="/careers" component={Careers} />
-
-          <Route path="/search" component={SearchPage} />
-          <Route path="/item/:id" component={ItemPage} />
 
           <VerifiedUserRoute path="/messenger" component={MessengerPage} />
 
@@ -88,10 +82,8 @@ ReactDOM.render(
           <VerifiedUserRoute path="/cart" component={CartPage} />
           <Route path="/favorite" component={FavoritePage} />
 
-          <Route path="/about-us" component={AboutUsPage} />
-
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/" component={HomePage} />
-          {/* <Route exact path="/checkout" component={Checkout} /> */}
           <Route component={ErrorPage} />
 
         </Switch>
